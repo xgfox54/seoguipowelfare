@@ -2,9 +2,68 @@
 
 복지톡에서 사용하던 38개 Markdown 업무자료를 OpenKB와 로컬 Ollama(Gemma 4)로 질의하는 개인용 로컬 시스템입니다. 화면은 KRDS-MCP의 색상, 타이포그래피, 반응형, 접근성 원칙을 적용했습니다.
 
-## 바로 사용하기
+질문과 원문이 전부 이 PC 안에서만 처리되며, 인터넷 연결 없이도 동작합니다(모델 설치는 최초 1회 인터넷이 필요합니다).
 
-`C:\Users\USER\Documents\Codex\복지업무비서\복지업무비서.cmd`를 더블클릭합니다. 잠시 후 기본 브라우저에서 아래 주소가 열립니다.
+## 시작하기 전에 (준비물)
+
+아래 3가지가 이 PC에 설치돼 있어야 합니다. 이미 설치돼 있다면 건너뛰어도 됩니다.
+
+| 준비물 | 확인 방법 | 설치 위치 |
+| --- | --- | --- |
+| Python 3.12 이상 | PowerShell에서 `python --version` | [python.org/downloads](https://www.python.org/downloads/) — 설치 화면에서 **"Add python.exe to PATH"를 반드시 체크** |
+| Git | PowerShell에서 `git --version` | [git-scm.com/downloads](https://git-scm.com/downloads) |
+| Ollama | PowerShell에서 `ollama --version` | [ollama.com/download](https://ollama.com/download) |
+
+세 명령이 모두 버전 정보를 출력하면 준비 완료입니다.
+
+## 1단계. 코드 내려받기
+
+아무 폴더나 원하는 위치에서 PowerShell을 열고 다음을 실행합니다. (여기서는 예시로 문서 폴더 아래에 내려받습니다.)
+
+```powershell
+cd $HOME\Documents
+git clone https://gitlab.aigov.go.kr/memory365/seoguipowelfare.git 복지업무비서
+cd 복지업무비서
+```
+
+이후 안내되는 모든 명령은 이 `복지업무비서` 폴더 안에서 실행한다고 가정합니다. PowerShell 창을 새로 열었다면 먼저 `cd 복지업무비서를 내려받은 경로`로 이동하세요.
+
+## 2단계. 실행환경(가상환경) 만들고 필요한 패키지 설치
+
+아래 명령을 순서대로 하나씩 실행합니다. 패키지 설치는 자료 양이 많아 수 분 정도 걸릴 수 있습니다.
+
+```powershell
+python -m venv .venv-openkb
+.\.venv-openkb\Scripts\python.exe -m pip install --upgrade pip
+.\.venv-openkb\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+마지막 줄이 오류 없이 끝나면 실행환경 준비가 끝난 것입니다.
+
+## 3단계. 복지 업무자료 검색색인 만들기
+
+`source-md\` 폴더 안의 38개 원문을 검색 가능한 형태로 변환합니다. 문서 용량이 커서 1~2분 정도 걸릴 수 있습니다.
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File .\setup-openkb.ps1 -RebuildIndex
+```
+
+`Setup check completed.` 문구가 보이면 색인 생성이 끝난 것입니다.
+
+## 4단계. 로컬 AI 모델 준비 (Ollama)
+
+답변을 생성하는 AI 모델을 내려받습니다. 최초 1회만 인터넷이 필요하며, 이후에는 완전히 오프라인으로 동작합니다.
+
+```powershell
+ollama pull gemma4:e4b
+ollama pull gemma4:e2b-it-qat
+```
+
+Ollama는 설치 시 백그라운드 서비스로 자동 등록되는 경우가 많습니다. 혹시 모델 다운로드 시 오류가 나면 Ollama 프로그램이 실행 중인지 먼저 확인하세요.
+
+## 5단계. 실행하기
+
+여기까지 마쳤다면 준비는 끝났습니다. `복지업무비서` 폴더에서 `복지업무비서.cmd`를 더블클릭합니다. 잠시 후 기본 브라우저에서 아래 주소가 자동으로 열립니다.
 
 ```text
 http://127.0.0.1:8765/
@@ -15,7 +74,6 @@ http://127.0.0.1:8765/
 PowerShell에서 브라우저를 열지 않고 서버만 시작:
 
 ```powershell
-Set-Location 'C:\Users\USER\Documents\Codex\복지업무비서'
 powershell.exe -ExecutionPolicy Bypass -File .\복지업무비서-웹.ps1 -NoOpen
 ```
 
@@ -32,6 +90,15 @@ powershell.exe -ExecutionPolicy Bypass -File .\복지업무비서.ps1 -Status
 - 전체 원문: 38개, 61,234,862바이트
 - 전체 검색색인: 3,116개 근거 구간
 - OpenKB 네이티브 컴파일: 현재 등록 수는 화면의 시스템 상태에서 확인
+
+### 자주 겪는 문제
+
+| 증상 | 원인과 해결 |
+| --- | --- |
+| `복지업무 비서 실행환경이 없습니다. setup-openkb.ps1을 먼저 실행하세요.` | 2단계(가상환경 생성)를 건너뛴 경우입니다. 2단계부터 다시 진행하세요. |
+| `OpenKB is not installed` | `requirements.txt` 설치가 실패했거나 중간에 중단된 경우입니다. 2단계 명령을 다시 실행하세요. |
+| 화면은 열리는데 답변이 안 나옴 | Ollama가 실행 중인지, 4단계의 두 모델이 정상적으로 받아졌는지 확인하세요(`ollama list`로 확인 가능). |
+| `python`, `git`, `ollama` 명령을 찾을 수 없음 | 설치 후 PowerShell 창을 새로 열지 않았을 수 있습니다. 창을 닫았다가 다시 열어보세요. |
 
 ## 사용 방법
 
@@ -57,12 +124,7 @@ powershell.exe -ExecutionPolicy Bypass -File .\복지업무비서.ps1 -Status
 
 이 프로젝트는 OpenAI API 키나 ChatGPT Plus 계정 없이 동작합니다. 답변은 로컬에 설치된 Ollama가 처리하며, 두 모델(`ollama/gemma4:e4b`, `ollama/gemma4:e2b-it-qat`) 모두 무료이고 추가 사용 요금이 없습니다. 대신 처리 속도와 답변 품질은 이 PC의 하드웨어 성능에 좌우됩니다.
 
-Ollama가 실행 중이어야 하며(`ollama serve`, 보통 설치 시 자동 등록됨), 아래 모델이 설치돼 있어야 화면에서 선택할 수 있습니다.
-
-```powershell
-ollama pull gemma4:e4b
-ollama pull gemma4:e2b-it-qat
-```
+Ollama가 실행 중이어야 하며(`ollama serve`, 보통 설치 시 자동 등록됨), 4단계에서 받은 두 모델이 설치돼 있어야 화면에서 선택할 수 있습니다.
 
 ## 자료 갱신
 
@@ -94,29 +156,20 @@ powershell.exe -ExecutionPolicy Bypass -File .\verify-sources.ps1
 - 모델 답변의 Markdown은 원시 HTML을 비활성화한 뒤 표시합니다.
 - 디자인 시스템 규칙은 `DESIGN.md`, 컴포넌트 상태는 `http://127.0.0.1:8765/showcase`에서 확인할 수 있습니다.
 
-## 다른 노트북으로 이식하기
+## 다른 PC로 이식하기
 
-지금 PC에서 압축을 만듭니다. `.venv`, `.venv-openkb`는 용량이 커서 압축에서 제외됩니다.
-
-```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\package-for-laptop.ps1
-```
-
-바탕화면에 `복지업무비서-이식.zip`이 생성됩니다. 이 파일을 USB나 클라우드로 노트북에 옮깁니다.
-
-노트북에서 압축을 원하는 위치(예: `C:\Users\사용자\Documents\Codex\복지업무비서`)에 풉니다. Python이 없다면 [python.org](https://www.python.org/downloads/)에서 **3.12** 버전을 먼저 설치합니다(설치 중 "Add python.exe to PATH" 체크). 그다음 압축을 푼 폴더에서 실행합니다.
+`.venv-openkb`(가상환경)와 `wiki\search\welfare.db`(검색색인)는 이 저장소에 포함돼 있지 않습니다. 용량이 크고 각 PC에서 새로 만들 수 있기 때문입니다. 다른 PC에서 사용하려면 위의 **1~4단계**를 그대로 반복하면 됩니다.
 
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\install-on-new-pc.ps1
-```
-
-이 스크립트가 `.venv-openkb`를 새로 만들고, `requirements.txt`의 패키지를 설치하고, 복지DB 검색색인을 구축합니다. 완료 후 `복지업무비서.cmd`를 실행하면 됩니다.
-
-로컬 Gemma 모델은 PC마다 별도로 설치해야 합니다. 노트북에도 Ollama를 설치하고 아래 두 모델을 받아야 화면에서 선택할 수 있습니다.
-
-```powershell
+cd $HOME\Documents
+git clone https://gitlab.aigov.go.kr/memory365/seoguipowelfare.git 복지업무비서
+cd 복지업무비서
+python -m venv .venv-openkb
+.\.venv-openkb\Scripts\python.exe -m pip install --upgrade pip
+.\.venv-openkb\Scripts\python.exe -m pip install -r requirements.txt
+powershell.exe -ExecutionPolicy Bypass -File .\setup-openkb.ps1 -RebuildIndex
 ollama pull gemma4:e4b
 ollama pull gemma4:e2b-it-qat
 ```
 
-설치하지 않은 모델은 상태 화면에서 "사용 불가"로 표시됩니다.
+로컬 Gemma 모델은 PC마다 별도로 설치해야 합니다. 설치하지 않은 모델은 상태 화면에서 "사용 불가"로 표시됩니다.
