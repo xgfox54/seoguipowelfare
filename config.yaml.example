@@ -1,0 +1,4 @@
+model: ollama/gemma4:e4b
+language: ko
+pageindex_threshold: 20
+concurrency: 1

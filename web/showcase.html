@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="개인용 복지업무 비서 KRDS 컴포넌트 점검 화면">
+    <title>KRDS 컴포넌트 점검 | 개인용 복지업무 비서</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문 바로가기</a>
+    <div class="utility-bar">
+      <div class="container utility-bar__inner">
+        <p>로컬 PC에서만 실행되는 개인 도구입니다.</p>
+        <p>디자인 시스템 점검용</p>
+      </div>
+    </div>
+    <header class="service-header">
+      <div class="container service-header__inner">
+        <div class="service-identity">
+          <span class="service-identity__mark" aria-hidden="true">복지DB</span>
+          <div class="service-identity__copy">
+            <p class="service-identity__name">개인용 복지업무 비서</p>
+            <p class="service-identity__qualifier">개인용 · 비공식</p>
+          </div>
+        </div>
+        <span class="status-badge status-badge--success">시스템 정상</span>
+      </div>
+    </header>
+
+    <main id="main" class="container page-main">
+      <section class="page-intro" aria-labelledby="showcase-title">
+        <p class="eyebrow">KRDS 기반 상태 점검</p>
+        <h1 id="showcase-title" class="page-title">컴포넌트 점검</h1>
+        <p class="page-summary">실제 화면과 동일한 토큰으로 버튼, 입력, 상태, 알림, 답변 문서를 확인합니다.</p>
+      </section>
+
+      <section class="showcase-section" aria-labelledby="buttons-title">
+        <h2 id="buttons-title" class="showcase-section__heading">버튼</h2>
+        <div class="showcase-grid showcase-grid--three">
+          <div class="showcase-sample">
+            <p class="showcase-sample__label">기본</p>
+            <div class="button-row">
+              <button class="button button--primary" type="button">복지DB에서 찾기</button>
+              <button class="button button--secondary" type="button">질문 지우기</button>
+            </div>
+          </div>
+          <div class="showcase-sample">
+            <p class="showcase-sample__label">호버 · 포커스 · 누름</p>
+            <div class="button-row">
+              <button class="button button--primary is-hover" type="button">호버</button>
+              <button class="button button--secondary is-focus" type="button">포커스</button>
+              <button class="button button--primary is-active" type="button">누름</button>
+            </div>
+          </div>
+          <div class="showcase-sample">
+            <p class="showcase-sample__label">비활성 · 처리 중</p>
+            <div class="button-row">
+              <button class="button button--primary" type="button" disabled>비활성</button>
+              <button class="button button--primary" type="button" disabled aria-busy="true">
+                <span class="spinner" aria-hidden="true"></span>
+                확인 중
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="showcase-section" aria-labelledby="fields-title">
+        <h2 id="fields-title" class="showcase-section__heading">질문 입력</h2>
+        <div class="showcase-grid">
+          <div class="showcase-sample">
+            <p class="showcase-sample__label">기본 · 입력됨</p>
+            <label class="form-label" for="sample-filled">질문 <span class="required-text">필수</span></label>
+            <textarea id="sample-filled" class="textarea" rows="4" aria-describedby="sample-filled-help">의료요양 통합돌봄의 지원 대상과 신청 절차를 알려줘</textarea>
+            <div class="field-meta" id="sample-filled-help">
+              <p>대상자의 상황과 확인할 업무를 함께 적으면 더 정확합니다.</p>
+              <output>30 / 2,000</output>
+            </div>
+          </div>
+          <div class="showcase-sample">
+            <p class="showcase-sample__label">포커스</p>
+            <label class="form-label" for="sample-focus">질문</label>
+            <textarea id="sample-focus" class="textarea is-focus" rows="4" aria-describedby="sample-focus-help">생계급여 자동차 재산 기준은?</textarea>
+            <div class="field-meta" id="sample-focus-help">
+              <p>Government Blue 테두리와 키보드 포커스를 함께 제공합니다.</p>
+              <output>18 / 2,000</output>
+            </div>
+          </div>
+          <div class="showcase-sample">
+            <p class="showcase-sample__label">오류</p>
+            <label class="form-label" for="sample-error">질문 <span class="required-text">필수</span></label>
+            <textarea id="sample-error" class="textarea is-invalid" rows="4" aria-invalid="true" aria-describedby="sample-error-text"></textarea>
+            <p id="sample-error-text" class="field-error">질문을 2자 이상 입력하세요.</p>
+          </div>
+          <div class="showcase-sample">
+            <p class="showcase-sample__label">비활성</p>
+            <label class="form-label" for="sample-disabled">질문</label>
+            <textarea id="sample-disabled" class="textarea" rows="4" disabled>답변 생성 중에는 입력을 잠시 사용할 수 없습니다.</textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="showcase-section" aria-labelledby="status-title">
+        <h2 id="status-title" class="showcase-section__heading">상태와 알림</h2>
+        <div class="showcase-grid showcase-grid--three">
+          <div class="showcase-sample">
+            <p class="showcase-sample__label">상태 배지</p>
+            <div class="button-row">
+              <span class="status-badge status-badge--success">시스템 정상</span>
+              <span class="status-badge status-badge--warning">로그인 확인</span>
+              <span class="status-badge status-badge--error">점검 필요</span>
+            </div>
+          </div>
+          <div class="showcase-sample">
+            <p class="showcase-sample__label">정보</p>
+            <div class="notice notice--info">
+              <p class="notice__title">복지DB 근거 답변</p>
+              <p class="notice__body">등록된 매뉴얼 원문과 줄 범위를 함께 표시합니다.</p>
+            </div>
+          </div>
+          <div class="showcase-sample">
+            <p class="showcase-sample__label">주의</p>
+            <div class="notice notice--warning">
+              <p class="notice__title">개인정보 입력 금지</p>
+              <p class="notice__body">주민등록번호, 주소, 전화번호 등 개인정보를 입력하지 마세요.</p>
+            </div>
+          </div>
+          <div class="showcase-sample">
+            <p class="showcase-sample__label">오류</p>
+            <div class="notice notice--error" role="alert">
+              <p class="notice__title">답변을 불러오지 못했습니다</p>
+              <p class="notice__body">잠시 후 다시 시도하거나 로그인 상태를 확인하세요.</p>
+            </div>
+          </div>
+          <div class="showcase-sample">
+            <p class="showcase-sample__label">로딩</p>
+            <div class="loading-state" role="status" aria-live="polite">
+              <span class="spinner" aria-hidden="true"></span>
+              <div>
+                <p class="loading-state__title">복지DB를 확인하고 있습니다</p>
+                <p class="loading-state__body">관련 매뉴얼과 적용 조건을 찾는 중입니다.</p>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-sample">
+            <p class="showcase-sample__label">빈 상태</p>
+            <div class="empty-state">
+              <div>
+                <p class="empty-state__title">질문을 입력해 주세요</p>
+                <p class="empty-state__body">답변은 등록된 복지 매뉴얼만 근거로 작성됩니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="showcase-section" aria-labelledby="facts-title">
+        <h2 id="facts-title" class="showcase-section__heading">시스템 정보</h2>
+        <div class="card status-panel">
+          <div class="status-panel__header">
+            <h3 class="status-panel__title">현재 연결</h3>
+            <span class="status-badge status-badge--success">정상</span>
+          </div>
+          <dl class="fact-list">
+            <div class="fact-list__item"><dt>모델</dt><dd>Gemma 4 E4B (로컬)</dd></div>
+            <div class="fact-list__item"><dt>인증</dt><dd>ChatGPT Plus OAuth</dd></div>
+            <div class="fact-list__item"><dt>복지 매뉴얼</dt><dd>38개</dd></div>
+            <div class="fact-list__item"><dt>검색 구간</dt><dd>3,116개</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="showcase-section" aria-labelledby="answer-title">
+        <h2 id="answer-title" class="showcase-section__heading">답변 문서</h2>
+        <article class="answer-document">
+          <h2>의료요양 통합돌봄 개요</h2>
+          <p>의료요양 통합돌봄은 일상생활에 어려움이 있는 사람이 살던 곳에서 건강하게 생활하도록 의료, 요양, 돌봄 서비스를 통합적으로 연계하는 지원 체계입니다.</p>
+          <h3>실무 확인사항</h3>
+          <ol>
+            <li>대상자의 건강 상태와 일상생활 수행 능력을 확인합니다.</li>
+            <li>기존에 이용 중인 의료·요양·돌봄 서비스를 함께 검토합니다.</li>
+          </ol>
+          <blockquote>세부 적용 여부는 대상자 주소지의 통합지원 창구와 최신 지침을 확인해야 합니다.</blockquote>
+          <table>
+            <thead><tr><th>확인 항목</th><th>내용</th></tr></thead>
+            <tbody><tr><td>근거 문서</td><td>2026년 의료요양 통합돌봄 사업 안내</td></tr><tr><td>근거 위치</td><td>원문 120~138줄</td></tr></tbody>
+          </table>
+        </article>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <div class="container"><p>KRDS 원칙을 적용한 개인용 로컬 업무 도구입니다.</p></div>
+    </footer>
+  </body>
+</html>
