@@ -731,6 +731,10 @@ a:hover {
   color: var(--color-gray-700);
 }
 
+.empty-state__actions {
+  margin-block-start: var(--space-4);
+}
+
 .answer-document {
   max-inline-size: var(--reading-max);
   padding: var(--space-6);

@@ -21,12 +21,8 @@ def build_welfare_agent(
         "사용자가 제공한 복지DB 원문만 근거로 답하고, 추측하지 않습니다. "
         f"답변 언어는 {language}입니다."
     )
-    is_ollama = model.startswith(("ollama/", "ollama_chat/"))
-    supports_parallel_tool_calls = not is_ollama
     return base.clone(
         instructions=instructions,
         tools=[],
-        model_settings=ModelSettings(
-            parallel_tool_calls=False if supports_parallel_tool_calls else None
-        ),
+        model_settings=ModelSettings(),
     )

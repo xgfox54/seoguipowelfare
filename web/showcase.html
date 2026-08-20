@@ -24,7 +24,10 @@
             <p class="service-identity__qualifier">개인용 · 비공식</p>
           </div>
         </div>
-        <span class="status-badge status-badge--success">시스템 정상</span>
+        <div class="button-row" aria-label="서비스 헤더 상태 예시">
+          <span class="status-badge status-badge--success">시스템 정상</span>
+          <span class="status-badge status-badge--warning">저하 상태</span>
+        </div>
       </div>
     </header>
 
@@ -41,7 +44,7 @@
           <div class="showcase-sample">
             <p class="showcase-sample__label">기본</p>
             <div class="button-row">
-              <button class="button button--primary" type="button">복지DB에서 찾기</button>
+              <button class="button button--primary" type="button">질문하기</button>
               <button class="button button--secondary" type="button">질문 지우기</button>
             </div>
           </div>
@@ -69,6 +72,15 @@
       <section class="showcase-section" aria-labelledby="fields-title">
         <h2 id="fields-title" class="showcase-section__heading">질문 입력</h2>
         <div class="showcase-grid">
+          <div class="showcase-sample">
+            <p class="showcase-sample__label">기본 · 빈 상태</p>
+            <label class="form-label" for="sample-empty">질문 <span class="required-text">필수</span></label>
+            <textarea id="sample-empty" class="textarea" rows="4" aria-describedby="sample-empty-help"></textarea>
+            <div class="field-meta" id="sample-empty-help">
+              <p>대상자의 상황과 확인할 업무를 함께 적으면 더 정확합니다.</p>
+              <output>0 / 2,000</output>
+            </div>
+          </div>
           <div class="showcase-sample">
             <p class="showcase-sample__label">기본 · 입력됨</p>
             <label class="form-label" for="sample-filled">질문 <span class="required-text">필수</span></label>
@@ -108,7 +120,7 @@
             <p class="showcase-sample__label">상태 배지</p>
             <div class="button-row">
               <span class="status-badge status-badge--success">시스템 정상</span>
-              <span class="status-badge status-badge--warning">로그인 확인</span>
+              <span class="status-badge status-badge--warning">모델 확인</span>
               <span class="status-badge status-badge--error">점검 필요</span>
             </div>
           </div>
@@ -130,7 +142,7 @@
             <p class="showcase-sample__label">오류</p>
             <div class="notice notice--error" role="alert">
               <p class="notice__title">답변을 불러오지 못했습니다</p>
-              <p class="notice__body">잠시 후 다시 시도하거나 로그인 상태를 확인하세요.</p>
+              <p class="notice__body">Ollama와 선택한 로컬 모델의 실행 상태를 확인하세요.</p>
             </div>
           </div>
           <div class="showcase-sample">
@@ -149,6 +161,10 @@
               <div>
                 <p class="empty-state__title">질문을 입력해 주세요</p>
                 <p class="empty-state__body">답변은 등록된 복지 매뉴얼만 근거로 작성됩니다.</p>
+                <div class="example-list empty-state__actions" aria-label="추천 질문">
+                  <button class="example-button" type="button">의료요양 통합돌봄 신청 절차</button>
+                  <button class="example-button" type="button">생계급여 자동차 기준</button>
+                </div>
               </div>
             </div>
           </div>
@@ -164,7 +180,7 @@
           </div>
           <dl class="fact-list">
             <div class="fact-list__item"><dt>모델</dt><dd>Gemma 4 E4B (로컬)</dd></div>
-            <div class="fact-list__item"><dt>인증</dt><dd>ChatGPT Plus OAuth</dd></div>
+            <div class="fact-list__item"><dt>실행 방식</dt><dd>로컬 Ollama</dd></div>
             <div class="fact-list__item"><dt>복지 매뉴얼</dt><dd>38개</dd></div>
             <div class="fact-list__item"><dt>검색 구간</dt><dd>3,116개</dd></div>
           </dl>

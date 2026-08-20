@@ -8,11 +8,12 @@ from fastapi.testclient import TestClient
 from welfare_web import Answerer, StatusReader, create_app
 
 
-def _status(_: Path) -> Mapping[str, object]:
+def _status(_: Path) -> Mapping[
+    str, str | int | list[dict[str, str | bool]]
+]:
     return {
         "status": "정상",
         "model": "ollama/gemma4:e4b",
-        "authentication": "로컬 Ollama",
         "source_documents": 38,
         "search_sections": 3116,
         "native_openkb_documents": 36,

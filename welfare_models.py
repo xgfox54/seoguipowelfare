@@ -4,14 +4,13 @@ import json
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
-from pathlib import Path
 
-from openkb.config import LlmCredentialBundle, resolve_credential_bundle
+from openkb.config import LlmCredentialBundle
 
 OLLAMA_BASE_URL = "http://127.0.0.1:11434"
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, slots=True)
 class ModelChoice:
     key: str
     label: str
@@ -50,14 +49,8 @@ def resolve_choice(model_key: str | None) -> ModelChoice:
     return choice
 
 
-def is_local(choice: ModelChoice) -> bool:
-    return choice.model.startswith(("ollama/", "ollama_chat/"))
-
-
-def credential_bundle(kb_dir: Path, choice: ModelChoice) -> LlmCredentialBundle:
-    if is_local(choice):
-        return LlmCredentialBundle(api_key="ollama", base_url=OLLAMA_BASE_URL)
-    return resolve_credential_bundle(kb_dir)
+def credential_bundle() -> LlmCredentialBundle:
+    return LlmCredentialBundle(api_key="ollama", base_url=OLLAMA_BASE_URL)
 
 
 def installed_local_models() -> frozenset[str]:
@@ -72,17 +65,13 @@ def installed_local_models() -> frozenset[str]:
     )
 
 
-def available_choices(oauth_ready: bool) -> tuple[dict[str, object], ...]:
+def available_choices() -> tuple[dict[str, str | bool], ...]:
     local_models = installed_local_models()
-    described: list[dict[str, object]] = []
+    described: list[dict[str, str | bool]] = []
     for choice in MODEL_CHOICES:
-        if is_local(choice):
-            tag = choice.model.split("/", 1)[1]
-            ready = tag in local_models
-            reason = "" if ready else f"Ollama에서 {tag}를 찾을 수 없습니다."
-        else:
-            ready = oauth_ready
-            reason = "" if ready else "ChatGPT 로그인이 필요합니다."
+        tag = choice.model.split("/", 1)[1]
+        ready = tag in local_models
+        reason = "" if ready else f"Ollama에서 {tag}를 찾을 수 없습니다."
         described.append(
             {
                 "key": choice.key,

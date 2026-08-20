@@ -104,7 +104,7 @@ The `/showcase` route is the state harness. Product screens cannot ship until ev
 4. `TextareaField`: empty, populated, focus, invalid, disabled; label, helper, count.
 5. `StatusBadge`: healthy, warning, error; icon-free text treatment.
 6. `Notice`: information, warning, error; semantic role and readable label.
-7. `FactList`: model, authentication, document count, indexed section count.
+7. `FactList`: model, local runtime, document count, indexed section count.
 8. `AnswerDocument`: headings, paragraphs, lists, blockquote, code, table, source references.
 9. `LoadingState`: spinner, `복지DB를 확인하고 있습니다` text, polite live region.
 10. `EmptyState`: concise instructions and suggested-question buttons.
@@ -116,7 +116,7 @@ The `/showcase` route is the state harness. Product screens cannot ship until ev
 - Header: service name and explicit personal/non-official qualifier.
 - Intro: `복지 업무 질문` and one-sentence evidence-first guidance.
 - Question form: textarea, character count (2-2000), personal-data warning, examples, primary submit and clear actions.
-- Status rail: real `/api/status` facts for health, model, authentication, document count, and search section count.
+- Status rail: real `/api/status` facts for health, model, document count, and search section count.
 - Answer area states: empty, loading, result, validation error, request/model error.
 - Submitting a question moves focus to the result heading after completion; failures move focus to the alert.
 

@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [switch]$RebuildIndex
 )
@@ -13,17 +13,6 @@ $OpenKB = Join-Path $ProjectRoot '.venv-openkb\Scripts\openkb.exe'
 $Source = Join-Path $ProjectRoot 'source-md'
 $PolicyTemplate = Join-Path $ProjectRoot 'policy\AGENTS.md'
 $Policy = Join-Path $ProjectRoot 'wiki\AGENTS.md'
-
-function Invoke-OpenKB {
-    param([Parameter(Mandatory = $true)][string[]]$Arguments)
-    if (-not (Test-Path -LiteralPath $OpenKB)) {
-        throw "OpenKB is not installed. Run .\setup-openkb.ps1 again after network/package installation is available."
-    }
-    & $OpenKB @Arguments
-    if ($LASTEXITCODE -ne 0) {
-        throw "OpenKB command failed: openkb $($Arguments -join ' ')"
-    }
-}
 
 if (-not (Test-Path -LiteralPath $Source)) {
     throw "Source directory not found: $Source"
@@ -41,11 +30,12 @@ Copy-Item -LiteralPath $PolicyTemplate -Destination $Policy -Force
 
 Push-Location $ProjectRoot
 try {
+    & $Python 'welfare_assistant.py' 'init'
+    if ($LASTEXITCODE -ne 0) { throw '로컬 OpenKB 상태 초기화에 실패했습니다.' }
     if ($RebuildIndex -or -not (Test-Path -LiteralPath 'wiki\search\welfare.db')) {
         & $Python 'welfare_index.py' 'build'
         if ($LASTEXITCODE -ne 0) { throw '전체 복지DB 검색색인 구축에 실패했습니다.' }
     }
-    Invoke-OpenKB @('status')
     & $Python 'welfare_assistant.py' 'status'
     if ($LASTEXITCODE -ne 0) { throw '복지업무 비서 상태 점검에 실패했습니다.' }
 } finally {

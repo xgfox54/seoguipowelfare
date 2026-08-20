@@ -4,18 +4,36 @@ from collections.abc import AsyncIterator
 from pathlib import Path
 
 from agents import Runner
-from agents.items import ModelResponse, TResponseStreamEvent
+from agents.agent_output import AgentOutputSchemaBase
+from agents.handoffs import Handoff
+from agents.items import ModelResponse, TResponseInputItem, TResponseStreamEvent
+from agents.model_settings import ModelSettings
 from agents.models.fake_id import FAKE_RESPONSES_ID
-from agents.models.interface import Model
+from agents.models.interface import Model, ModelTracing
+from agents.tool import Tool
 from agents.usage import Usage
 from openai.types.responses import ResponseOutputMessage, ResponseOutputText
+from openai.types.responses.response_prompt_param import ResponsePromptParam
 
 from welfare_agent import build_welfare_agent
 from welfare_search import build_index
 
 
 class StaticModel(Model):
-    async def get_response(self, *args: object, **kwargs: object) -> ModelResponse:
+    async def get_response(
+        self,
+        system_instructions: str | None,
+        input: str | list[TResponseInputItem],
+        model_settings: ModelSettings,
+        tools: list[Tool],
+        output_schema: AgentOutputSchemaBase | None,
+        handoffs: list[Handoff],
+        tracing: ModelTracing,
+        *,
+        previous_response_id: str | None,
+        conversation_id: str | None,
+        prompt: ResponsePromptParam | None,
+    ) -> ModelResponse:
         message = ResponseOutputMessage(
             id=FAKE_RESPONSES_ID,
             content=[
@@ -32,7 +50,18 @@ class StaticModel(Model):
         return ModelResponse(output=[message], usage=Usage(), response_id=FAKE_RESPONSES_ID)
 
     def stream_response(
-        self, *args: object, **kwargs: object
+        self,
+        system_instructions: str | None,
+        input: str | list[TResponseInputItem],
+        model_settings: ModelSettings,
+        tools: list[Tool],
+        output_schema: AgentOutputSchemaBase | None,
+        handoffs: list[Handoff],
+        tracing: ModelTracing,
+        *,
+        previous_response_id: str | None,
+        conversation_id: str | None,
+        prompt: ResponsePromptParam | None,
     ) -> AsyncIterator[TResponseStreamEvent]:
         async def empty_stream() -> AsyncIterator[TResponseStreamEvent]:
             events: tuple[TResponseStreamEvent, ...] = ()
@@ -76,17 +105,16 @@ def test_welfare_agent_runs_through_agents_sdk(tmp_path: Path) -> None:
 
 
 def test_local_ollama_agent_omits_unsupported_parallel_tool_calls(tmp_path: Path) -> None:
-    # Given: a knowledge base queried through a locally installed Ollama model
-    # and a hosted (non-Ollama) model.
+    # Given: a knowledge base queried through both supported local Ollama models.
     source = tmp_path / "source-md"
     source.mkdir()
     _ = (source / "01.md").write_text("# 생계급여\n근거 본문\n", encoding="utf-8")
     _ = build_index(source, tmp_path / "wiki" / "search")
 
-    # When: agents are built for a local Ollama model and a hosted model.
-    local = build_welfare_agent(tmp_path, "ollama/gemma4:e2b-it-qat", "ko")
-    hosted = build_welfare_agent(tmp_path, "chatgpt/gpt-5.4", "ko")
+    # When: agents are built for E4B and E2B.
+    e4b = build_welfare_agent(tmp_path, "ollama/gemma4:e4b", "ko")
+    e2b = build_welfare_agent(tmp_path, "ollama/gemma4:e2b-it-qat", "ko")
 
-    # Then: only the hosted model receives the parameter Ollama rejects.
-    assert local.model_settings.parallel_tool_calls is None
-    assert hosted.model_settings.parallel_tool_calls is False
+    # Then: neither model receives the parameter Ollama rejects.
+    assert e4b.model_settings.parallel_tool_calls is None
+    assert e2b.model_settings.parallel_tool_calls is None

@@ -11,11 +11,10 @@ import sqlite3
 import sys
 from pathlib import Path
 
-import litellm
 from agents import Runner, set_tracing_disabled
 from dotenv import load_dotenv
 from openkb.agent.query import MAX_TURNS, build_run_config_from_bundle
-from openkb.config import resolve_effective_config
+from openkb.config import load_config
 
 from welfare_agent import build_welfare_agent
 from welfare_models import (
@@ -38,20 +37,20 @@ def _project_root() -> Path:
     return Path(__file__).resolve().parent
 
 
-def _register_chatgpt_responses_model(model: str) -> None:
-    if not model.startswith("chatgpt/"):
-        return
-    litellm.register_model(
-        {
-            model: {
-                "litellm_provider": "chatgpt",
-                "mode": "responses",
-            }
-        }
-    )
+def initialize_local_state(kb_dir: Path) -> None:
+    state_dir = kb_dir / ".openkb"
+    state_dir.mkdir(parents=True, exist_ok=True)
+    config_path = state_dir / "config.yaml"
+    if not config_path.exists():
+        config_path.write_bytes((kb_dir / "config.yaml.example").read_bytes())
+    registry_path = state_dir / "hashes.json"
+    if not registry_path.exists():
+        _ = registry_path.write_text("{}\n", encoding="utf-8")
 
 
-def system_status(kb_dir: Path) -> dict[str, object]:
+def system_status(
+    kb_dir: Path,
+) -> dict[str, str | int | list[dict[str, str | bool]]]:
     database = kb_dir / "wiki" / "search" / "welfare.db"
     manifest_path = kb_dir / "wiki" / "search" / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -59,13 +58,13 @@ def system_status(kb_dir: Path) -> dict[str, object]:
         documents = connection.execute("SELECT COUNT(*) FROM documents").fetchone()[0]
         sections = connection.execute("SELECT COUNT(*) FROM sections").fetchone()[0]
         fts_sections = connection.execute("SELECT COUNT(*) FROM sections_fts").fetchone()[0]
-    registry = json.loads((kb_dir / ".openkb" / "hashes.json").read_text(encoding="utf-8"))
-    oauth_path = kb_dir / ".openkb" / "oauth-live" / "auth.json"
-    oauth_ready = False
-    if oauth_path.exists():
-        auth = json.loads(oauth_path.read_text(encoding="utf-8"))
-        oauth_ready = all(auth.get(key) for key in ("access_token", "refresh_token"))
-    config = resolve_effective_config(kb_dir)[0]
+    registry_path = kb_dir / ".openkb" / "hashes.json"
+    registry = (
+        json.loads(registry_path.read_text(encoding="utf-8"))
+        if registry_path.exists()
+        else {}
+    )
+    config = load_config(kb_dir / ".openkb" / "config.yaml")
     healthy = (
         documents == manifest["document_count"]
         and sections == manifest["section_count"]
@@ -75,12 +74,11 @@ def system_status(kb_dir: Path) -> dict[str, object]:
     return {
         "status": "정상" if healthy else "점검 필요",
         "model": config["model"],
-        "authentication": "ChatGPT Plus OAuth" if oauth_ready else "로그인 필요",
         "source_documents": documents,
         "search_sections": sections,
         "native_openkb_documents": len(registry),
         "source_bytes": manifest["source_bytes"],
-        "models": list(available_choices(oauth_ready)),
+        "models": list(available_choices()),
         "default_model": DEFAULT_MODEL_KEY,
     }
 
@@ -90,12 +88,11 @@ def answer_question(
 ) -> str:
     set_tracing_disabled(True)
     _ = load_dotenv(kb_dir / ".env", override=False)
-    config = resolve_effective_config(kb_dir)[0]
+    config = load_config(kb_dir / ".openkb" / "config.yaml")
     choice = resolve_choice(model_key)
     model = choice.model
     language = str(config["language"])
-    _register_chatgpt_responses_model(model)
-    bundle = credential_bundle(kb_dir, choice)
+    bundle = credential_bundle()
     context = retrieve_context(kb_dir / "wiki" / "search" / "welfare.db", question)
     agent = build_welfare_agent(kb_dir, model, language, bundle=bundle)
     run_config = build_run_config_from_bundle(model, bundle)
@@ -131,6 +128,7 @@ def answer_question(
 def _usage() -> str:
     return (
         "사용법:\n"
+        "  welfare_assistant.py init\n"
         "  welfare_assistant.py status\n"
         "  welfare_assistant.py ask <질문>\n"
         "  welfare_assistant.py <질문>\n"
@@ -144,6 +142,10 @@ def main(args: tuple[str, ...]) -> int:
     if not args:
         print(_usage())
         return 2
+    if args[0] == "init":
+        initialize_local_state(kb_dir)
+        print("Local knowledge base initialized.")
+        return 0
     if args[0] == "status":
         print(json.dumps(system_status(kb_dir), ensure_ascii=False, indent=2))
         return 0

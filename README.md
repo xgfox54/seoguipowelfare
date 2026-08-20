@@ -42,7 +42,7 @@ python -m venv .venv-openkb
 
 ## 3단계. 복지 업무자료 검색색인 만들기
 
-`source-md\` 폴더 안의 38개 원문을 검색 가능한 형태로 변환합니다. 문서 용량이 커서 1~2분 정도 걸릴 수 있습니다.
+`source-md\` 폴더 안의 38개 원문을 검색 가능한 형태로 변환합니다. 이 과정에서 로컬 OpenKB 설정도 자동으로 생성합니다. 문서 용량이 커서 1~2분 정도 걸릴 수 있습니다.
 
 ```powershell
 powershell.exe -ExecutionPolicy Bypass -File .\setup-openkb.ps1 -RebuildIndex
@@ -103,7 +103,7 @@ powershell.exe -ExecutionPolicy Bypass -File .\복지업무비서.ps1 -Status
 ## 사용 방법
 
 1. 질문란에 대상자의 상황과 확인할 업무를 적습니다.
-2. `복지DB에서 찾기`를 누릅니다.
+2. `질문하기`를 누르거나 Enter를 누릅니다. 줄바꿈은 Shift+Enter를 사용합니다.
 3. 답변의 결론, 적용 조건·예외, 실무 확인사항을 읽습니다.
 4. 중요한 안내나 처분 전에는 표시된 문서명과 원문 줄을 다시 확인합니다.
 
@@ -159,6 +159,8 @@ powershell.exe -ExecutionPolicy Bypass -File .\verify-sources.ps1
 ## 다른 PC로 이식하기
 
 `.venv-openkb`(가상환경)와 `wiki\search\welfare.db`(검색색인)는 이 저장소에 포함돼 있지 않습니다. 용량이 크고 각 PC에서 새로 만들 수 있기 때문입니다. 다른 PC에서 사용하려면 위의 **1~4단계**를 그대로 반복하면 됩니다.
+
+설치 스크립트는 기존 `.openkb\config.yaml`을 덮어쓰지 않으므로, 재설치하거나 색인을 갱신해도 사용자가 선택한 로컬 설정은 유지됩니다.
 
 ```powershell
 cd $HOME\Documents

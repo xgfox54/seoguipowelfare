@@ -59,7 +59,6 @@ class ModelOption(BaseModel):
 class StatusResponse(BaseModel):
     status: str
     model: str
-    authentication: str
     source_documents: int
     search_sections: int
     native_openkb_documents: int
