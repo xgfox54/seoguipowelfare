@@ -1,0 +1,10 @@
+*.cmd text eol=crlf
+*.css text eol=lf
+*.html text eol=lf
+*.js text eol=lf
+*.md text eol=lf
+*.ps1 text eol=crlf
+*.py text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+source-md/*.md -text
