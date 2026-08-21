@@ -1,16 +1,17 @@
 # 개인용 복지업무 비서
 
-복지톡에서 사용하던 38개 Markdown 업무자료를 OpenKB와 로컬 Ollama(Gemma 4)로 질의하는 개인용 로컬 시스템입니다. 화면은 KRDS-MCP의 색상, 타이포그래피, 반응형, 접근성 원칙을 적용했습니다.
+복지톡에서 사용하던 38개 Markdown 업무자료를 자체 전체 원문 검색색인으로 검색하고, OpenKB의 질의 에이전트 구성요소와 로컬 Ollama(Gemma 4)를 이용해 답변하는 개인용 Windows 시스템입니다. 화면은 KRDS 설계 원칙을 참고해 색상, 타이포그래피, 반응형, 접근성을 구성했습니다.
 
 질문과 원문이 전부 이 PC 안에서만 처리되며, 인터넷 연결 없이도 동작합니다(모델 설치는 최초 1회 인터넷이 필요합니다).
 
 ## 시작하기 전에 (준비물)
 
-아래 3가지가 이 PC에 설치돼 있어야 합니다. 이미 설치돼 있다면 건너뛰어도 됩니다.
+이 프로젝트는 **Windows 10/11과 Python 3.12에서 검증**했습니다. 아래 항목이 이 PC에 설치돼 있어야 하며, 이미 설치돼 있다면 건너뛰어도 됩니다. Python 3.13 이상은 현재 지원을 보장하지 않습니다.
 
 | 준비물 | 확인 방법 | 설치 위치 |
 | --- | --- | --- |
-| Python 3.12 이상 | PowerShell에서 `python --version` | [python.org/downloads](https://www.python.org/downloads/) — 설치 화면에서 **"Add python.exe to PATH"를 반드시 체크** |
+| Windows 10/11 | `winver` 실행 | PowerShell 및 CMD 실행 스크립트를 사용하므로 Windows가 필요합니다. |
+| Python 3.12 | PowerShell에서 `python --version` | [python.org/downloads](https://www.python.org/downloads/) — 설치 화면에서 **"Add python.exe to PATH"를 반드시 체크** |
 | Git | PowerShell에서 `git --version` | [git-scm.com/downloads](https://git-scm.com/downloads) |
 | Ollama | PowerShell에서 `ollama --version` | [ollama.com/download](https://ollama.com/download) |
 
@@ -42,7 +43,7 @@ python -m venv .venv-openkb
 
 ## 3단계. 복지 업무자료 검색색인 만들기
 
-`source-md\` 폴더 안의 38개 원문을 검색 가능한 형태로 변환합니다. 이 과정에서 로컬 OpenKB 설정도 자동으로 생성합니다. 문서 용량이 커서 1~2분 정도 걸릴 수 있습니다.
+`source-md\` 폴더 안의 38개 원문을 SQLite 기반 전체 원문 검색색인으로 변환합니다. 이 과정에서 OpenKB 질의 에이전트가 사용할 로컬 설정과 복지업무 정책 파일도 자동으로 준비합니다. 문서 용량이 커서 1~2분 정도 걸릴 수 있습니다.
 
 ```powershell
 powershell.exe -ExecutionPolicy Bypass -File .\setup-openkb.ps1 -RebuildIndex
@@ -85,18 +86,19 @@ powershell.exe -ExecutionPolicy Bypass -File .\복지업무비서.ps1 -Status
 
 정상 상태의 핵심 수치는 다음과 같습니다.
 
-- 인증: `로컬 Ollama` (인터넷 연결 불필요)
+- 실행 방식: `로컬 Ollama` (인터넷 연결 불필요)
 - 기본 모델: `ollama/gemma4:e4b`
 - 전체 원문: 38개, 61,234,862바이트
 - 전체 검색색인: 3,116개 근거 구간
-- OpenKB 네이티브 컴파일: 현재 등록 수는 화면의 시스템 상태에서 확인
+
+화면의 `시스템 정상`은 **원문과 검색색인이 정상적으로 준비됐다는 뜻**입니다. Ollama 실행 여부와 모델 설치 여부는 별도로 확인하며, 설치되지 않은 모델은 선택 화면에서 `사용 불가`로 표시됩니다. 따라서 상단 상태가 정상이더라도 사용 가능한 로컬 모델이 하나 이상 있어야 실제 답변을 생성할 수 있습니다.
 
 ### 자주 겪는 문제
 
 | 증상 | 원인과 해결 |
 | --- | --- |
 | `복지업무 비서 실행환경이 없습니다. setup-openkb.ps1을 먼저 실행하세요.` | 2단계(가상환경 생성)를 건너뛴 경우입니다. 2단계부터 다시 진행하세요. |
-| `OpenKB is not installed` | `requirements.txt` 설치가 실패했거나 중간에 중단된 경우입니다. 2단계 명령을 다시 실행하세요. |
+| `검증된 OpenKB 실행환경이 없습니다. Python 3.12로 .venv-openkb를 먼저 구성해야 합니다.` | `requirements.txt` 설치가 실패했거나 가상환경 구성이 중간에 중단된 경우입니다. 2단계 명령을 다시 실행하세요. |
 | 화면은 열리는데 답변이 안 나옴 | Ollama가 실행 중인지, 4단계의 두 모델이 정상적으로 받아졌는지 확인하세요(`ollama list`로 확인 가능). |
 | `python`, `git`, `ollama` 명령을 찾을 수 없음 | 설치 후 PowerShell 창을 새로 열지 않았을 수 있습니다. 창을 닫았다가 다시 열어보세요. |
 
@@ -113,18 +115,27 @@ powershell.exe -ExecutionPolicy Bypass -File .\복지업무비서.ps1 -Status
 
 ## 시스템 구성
 
-전체 자료는 다음 두 층으로 사용합니다.
+질문은 다음 순서로 처리합니다.
 
-1. OpenKB 네이티브 위키: 표본 문서를 요약·개념·엔티티로 컴파일해 설치와 질의 동작을 검증합니다.
-2. 전체 원문 검색색인: 38개 대용량 Markdown을 빠르게 검색하고, 질문과 관련된 원문 및 줄 번호를 로컬 모델에 전달합니다.
+1. 전체 원문 검색색인: 38개 대용량 Markdown에서 질문과 관련된 구간을 검색하고 문서명과 원문 줄 범위를 추출합니다.
+2. OpenKB 질의 에이전트 구성요소: 로컬 모델 연결, 실행 설정과 복지업무 답변 정책을 적용합니다.
+3. 로컬 Ollama: 검색된 원문만 근거로 답변을 생성합니다.
 
-이 하이브리드 구조를 사용한 이유는 현재 OpenKB가 Markdown 파일을 페이지 수 기준의 장문 문서로 분류하지 않고 문서 전체를 한 번에 모델에 보내기 때문입니다. 수 MB짜리 합본 38개를 전부 네이티브 컴파일하면 로컬 모델의 문맥 한도를 크게 초과할 수 있습니다. 일상 질문은 전체 38개 원문을 모두 검색하므로 네이티브 컴파일 수와 관계없이 자료 검색 범위는 38개입니다.
+현재 배포본은 38개 문서를 OpenKB 네이티브 위키로 컴파일하거나 네이티브 위키 검색 도구로 조회하지 않습니다. 대용량 합본 문서를 로컬 모델의 문맥 한도 안에서 안정적으로 다루기 위해 자체 검색색인을 사용하며, 일상 질문의 검색 범위는 항상 전체 38개 원문입니다.
 
 ## 사용 모델과 실행 환경
 
-이 프로젝트는 OpenAI API 키나 ChatGPT Plus 계정 없이 동작합니다. 답변은 로컬에 설치된 Ollama가 처리하며, 두 모델(`ollama/gemma4:e4b`, `ollama/gemma4:e2b-it-qat`) 모두 무료이고 추가 사용 요금이 없습니다. 대신 처리 속도와 답변 품질은 이 PC의 하드웨어 성능에 좌우됩니다.
+이 프로젝트는 OpenAI API 키나 ChatGPT Plus 계정 없이 동작합니다. 답변은 로컬에 설치된 Ollama가 처리하며, 두 모델(`ollama/gemma4:e4b`, `ollama/gemma4:e2b-it-qat`)을 호출할 때 별도의 API 사용 요금이 발생하지 않습니다. 모델 이용 조건은 각 모델의 라이선스를 따르며, 처리 속도와 답변 품질은 이 PC의 메모리·CPU·GPU 성능에 좌우됩니다.
 
 Ollama가 실행 중이어야 하며(`ollama serve`, 보통 설치 시 자동 등록됨), 4단계에서 받은 두 모델이 설치돼 있어야 화면에서 선택할 수 있습니다.
+
+모델 설치 용량과 현재 사용 가능 여부는 다음 명령으로 확인할 수 있습니다.
+
+```powershell
+ollama list
+```
+
+PC 사양이나 저장공간이 부족하면 두 모델을 모두 설치할 필요는 없습니다. 설치된 모델만 선택할 수 있습니다.
 
 ## 자료 갱신
 
@@ -134,11 +145,26 @@ Ollama가 실행 중이어야 하며(`ollama serve`, 보통 설치 시 자동 �
 powershell.exe -ExecutionPolicy Bypass -File .\setup-openkb.ps1 -RebuildIndex
 ```
 
-원본 38개가 다운로드 폴더 사본과 같은지 확인:
+문서 수, 전체 바이트 수와 검색 구간 수는 자료가 바뀌면 함께 달라질 수 있습니다. 갱신 후에는 `-Status` 명령과 실제 질문으로 새 자료가 검색되는지 확인하세요.
+
+현재 `v1.0.2` 배포본의 38개 파일이 기존 다운로드 폴더 사본과 완전히 같은지 확인할 때만 다음 명령을 사용합니다.
 
 ```powershell
 powershell.exe -ExecutionPolicy Bypass -File .\verify-sources.ps1
 ```
+
+`verify-sources.ps1`은 다운로드 폴더 아래에서 **38개·61,234,862바이트인 원본 폴더가 정확히 하나 존재한다는 전제**로 SHA-256을 비교합니다. 새 매뉴얼로 교체한 뒤에는 이전 배포본 기준의 이 명령을 사용하지 마세요.
+
+## 개발 및 검증
+
+가상환경과 검색색인이 준비된 상태에서 다음 명령으로 코드와 검색 재현성을 확인할 수 있습니다.
+
+```powershell
+.\.venv-openkb\Scripts\python.exe -m ruff check welfare_*.py welfare_search tests
+.\.venv-openkb\Scripts\python.exe -m pytest -q
+```
+
+GitLab의 `verify_on_runner` 작업은 Runner가 연결된 환경에서 수동으로 실행하는 선택형 검증 작업입니다. Runner가 할당되지 않은 현재 환경에서는 파이프라인이 실패하지 않고 `skipped`로 표시되는 것이 정상입니다.
 
 ## 답변 원칙
 
@@ -175,3 +201,7 @@ ollama pull gemma4:e2b-it-qat
 ```
 
 로컬 Gemma 모델은 PC마다 별도로 설치해야 합니다. 설치하지 않은 모델은 상태 화면에서 "사용 불가"로 표시됩니다.
+
+## 라이선스
+
+현재 저장소에는 별도의 오픈소스 라이선스가 지정돼 있지 않습니다. 개인용 설치와 사용 범위를 넘어 코드나 복지DB를 수정·재배포하려면 저장소 관리자에게 사용 조건을 확인해야 합니다. 원문 복지 매뉴얼의 저작권과 이용 조건은 각 발행기관의 기준을 따릅니다.
