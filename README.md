@@ -8,6 +8,9 @@
 
 OpenAI API, ChatGPT Plus, OpenKB, OpenAI Agents SDK는 실행에 필요하지 않습니다.
 
+(다운로드 페이지 링크)
+https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
+
 ## 현재 버전 한눈에 보기
 
 | 항목 | 현재 구현 |
