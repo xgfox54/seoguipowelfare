@@ -13,7 +13,7 @@ import urllib.request
 import uvicorn
 import webview
 
-from welfare_runtime import knowledge_base_root
+from welfare_runtime import knowledge_base_root, resource_path
 from welfare_web import create_app
 
 HOST = "127.0.0.1"
@@ -101,7 +101,11 @@ def _show_app_window(server: uvicorn.Server) -> None:
         server.should_exit = True
 
     window.events.closed += close_server
-    webview.start(gui="edgechromium", private_mode=True)
+    webview.start(
+        gui="edgechromium",
+        private_mode=True,
+        icon=str(resource_path("assets", "bokjitalk.ico")),
+    )
 
 
 def main() -> int:

@@ -11,6 +11,7 @@ a = Analysis(
     binaries=[],
     datas=[
         ("web", "web"),
+        ("assets/bokjitalk.ico", "assets"),
         ("wiki/search/welfare.db", "wiki/search"),
         ("wiki/search/manifest.json", "wiki/search"),
         ("config.yaml.example", "."),
@@ -32,6 +33,7 @@ exe = EXE(
     a.datas,
     [],
     name="복지업무비서",
+    icon="assets/bokjitalk.ico",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
