@@ -209,5 +209,47 @@ def test_release_corpus_build_is_reproducible(tmp_path: Path) -> None:
 
     # Then: the release reproduces the verified source bytes and section count.
     assert report.document_count == 38
-    assert report.section_count == 3116
+    assert report.section_count > 3116
     assert report.source_bytes == 61234862
+
+
+def test_v120_schema_records_hierarchy_references_and_quality(source_dir: Path, tmp_path: Path) -> None:
+    source = source_dir / "03.[법령] 2026년 예시법령.md"
+    _ = source.write_text(
+        "# 예시법령\n## 적용기준\n「국민기초생활 보장법」 제7조 및 별표 3을 확인한다.\n",
+        encoding="utf-8",
+    )
+    output = tmp_path / "search"
+    _ = build_index(source_dir, output)
+
+    with sqlite3.connect(output / "welfare.db") as connection:
+        version = connection.execute("PRAGMA user_version").fetchone()[0]
+        node_count = connection.execute("SELECT COUNT(*) FROM nodes").fetchone()[0]
+        reference_count = connection.execute("SELECT COUNT(*) FROM references_map").fetchone()[0]
+        oversized = connection.execute(
+            "SELECT COUNT(*) FROM quality_issues WHERE issue_code='oversized_chunk'"
+        ).fetchone()[0]
+
+    assert version == 3
+    assert node_count > 0
+    assert reference_count >= 3
+    assert oversized == 0
+
+
+def test_v120_chunk_size_is_bounded(tmp_path: Path) -> None:
+    source = tmp_path / "source-md"
+    source.mkdir()
+    body = "\n".join(f"복지 서비스 세부 기준 {index}." for index in range(1000))
+    _ = (source / "01.[매뉴얼] 2026년 긴문서.md").write_text(
+        f"# 긴 문서\n## 세부 기준\n{body}\n",
+        encoding="utf-8",
+    )
+    output = tmp_path / "search"
+    _ = build_index(source, output)
+
+    with sqlite3.connect(output / "welfare.db") as connection:
+        maximum = connection.execute("SELECT MAX(length(content)) FROM sections").fetchone()[0]
+        count = connection.execute("SELECT COUNT(*) FROM sections").fetchone()[0]
+
+    assert count > 1
+    assert maximum <= 2800

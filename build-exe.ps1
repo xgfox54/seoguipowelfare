@@ -10,7 +10,7 @@ $Spec = Join-Path $ProjectRoot '복지업무비서.spec'
 if (-not (Test-Path -LiteralPath $Python)) {
     throw '패키징 가상환경이 없습니다. Python 3.12로 .venv-package를 만든 뒤 requirements-build.txt를 설치하세요.'
 }
-if (-not (Test-Path -LiteralPath (Join-Path $ProjectRoot 'wiki\search\welfare.db'))) {
+if (-not (Test-Path -LiteralPath (Join-Path $ProjectRoot 'wiki\kb-v120\welfare.db'))) {
     throw '검색 DB가 없습니다. 먼저 welfare_index.py build를 실행하세요.'
 }
 

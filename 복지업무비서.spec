@@ -12,8 +12,8 @@ a = Analysis(
     datas=[
         ("web", "web"),
         ("assets/bokjitalk.ico", "assets"),
-        ("wiki/search/welfare.db", "wiki/search"),
-        ("wiki/search/manifest.json", "wiki/search"),
+        ("wiki/kb-v120/welfare.db", "wiki/kb-v120"),
+        ("wiki/kb-v120/manifest.json", "wiki/kb-v120"),
         ("config.yaml.example", "."),
     ],
     hiddenimports=hiddenimports,

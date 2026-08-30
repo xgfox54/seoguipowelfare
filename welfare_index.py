@@ -2,7 +2,6 @@
 # requires-python = ">=3.12"
 # dependencies = []
 # ///
-# How to run: .venv-openkb\Scripts\python.exe welfare_index.py build
 
 from __future__ import annotations
 
@@ -13,7 +12,7 @@ from dataclasses import asdict
 from enum import StrEnum, unique
 from pathlib import Path
 
-from welfare_search import build_index, read_sections, search_index
+from welfare_search import build_embeddings, build_index, read_sections, search_index
 
 
 def _configure_console() -> None:
@@ -26,6 +25,7 @@ def _configure_console() -> None:
 @unique
 class Command(StrEnum):
     BUILD = "build"
+    EMBED = "embed"
     SEARCH = "search"
     READ = "read"
 
@@ -34,6 +34,7 @@ def _usage() -> str:
     return (
         "사용법:\n"
         "  welfare_index.py build\n"
+        "  welfare_index.py embed <ollama-embedding-model>\n"
         "  welfare_index.py search <질문>\n"
         "  welfare_index.py read <section_id[,section_id]>"
     )
@@ -49,20 +50,26 @@ def main(args: tuple[str, ...]) -> int:
     except ValueError:
         print(_usage())
         return 2
+    db = Path("wiki/kb-v120/welfare.db")
     match command:
         case Command.BUILD:
-            report = build_index(Path("source-md"), Path("wiki/search"))
+            report = build_index(Path("source-md"), Path("wiki/kb-v120"))
             print(json.dumps(asdict(report), ensure_ascii=False, indent=2))
+        case Command.EMBED:
+            if len(args) != 2:
+                print(_usage())
+                return 2
+            print(json.dumps(build_embeddings(db, args[1]), ensure_ascii=False, indent=2))
         case Command.SEARCH:
             if len(args) < 2:
                 print(_usage())
                 return 2
-            print(search_index(Path("wiki/search/welfare.db"), " ".join(args[1:])))
+            print(search_index(db, " ".join(args[1:])))
         case Command.READ:
             if len(args) != 2:
                 print(_usage())
                 return 2
-            print(read_sections(Path("wiki/search/welfare.db"), args[1]))
+            print(read_sections(db, args[1]))
     return 0
 
 

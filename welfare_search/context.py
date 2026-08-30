@@ -1,81 +1,80 @@
 from __future__ import annotations
 
-import re
 import sqlite3
 from pathlib import Path
 
-from welfare_search.search import search_sections, search_terms
+from welfare_search.search import search_sections
 from welfare_search.types import SearchHit
 
 
+def _fetch_evidence(
+    database_path: Path, hits: tuple[SearchHit, ...]
+) -> tuple[tuple[SearchHit, tuple[str, ...], tuple[str, ...]], ...]:
+    if not hits:
+        return ()
+    ids = tuple(hit.section_id for hit in hits)
+    placeholders = ",".join("?" for _ in ids)
+    with sqlite3.connect(database_path) as connection:
+        rows = connection.execute(
+            "SELECT s.section_id, s.source_name, s.title, s.headings, s.original_name, "
+            "s.start_line, s.end_line, s.content, "
+            "COALESCE(n.heading_path, s.headings), d.document_type, d.publisher, d.edition, d.year, "
+            "d.effective_from, d.effective_to "
+            "FROM sections AS s "
+            "JOIN documents AS d ON d.source_name = s.source_name "
+            "LEFT JOIN nodes AS n ON n.node_id = s.node_id "
+            f"WHERE s.section_id IN ({placeholders})",
+            ids,
+        ).fetchall()
+        refs_by_id: dict[str, list[str]] = {section_id: [] for section_id in ids}
+        for section_id, ref_type, target in connection.execute(
+            f"SELECT section_id, reference_type, target_text FROM references_map WHERE section_id IN ({placeholders}) "
+            "ORDER BY section_id, reference_type, target_text",
+            ids,
+        ).fetchall():
+            refs_by_id.setdefault(str(section_id), []).append(f"{ref_type}:{target}")
+    loaded = {
+        row[0]: (
+            SearchHit(*row[:8]),
+            tuple(str(value) for value in row[8:15]),
+            tuple(refs_by_id.get(str(row[0]), [])),
+        )
+        for row in rows
+    }
+    return tuple(loaded[section_id] for section_id in ids if section_id in loaded)
+
+
 def retrieve_context(database_path: Path, query: str, limit: int = 6) -> str:
-    terms = search_terms(query)
     candidates = search_sections(database_path, query, min(limit * 3, 20))
     source_counts: dict[str, int] = {}
-    hits: list[SearchHit] = []
+    selected: list[SearchHit] = []
     for hit in candidates:
         count = source_counts.get(hit.source_name, 0)
-        if count >= 4:
+        if count >= 3:
             continue
         source_counts[hit.source_name] = count + 1
-        hits.append(hit)
-        if len(hits) == limit:
+        selected.append(hit)
+        if len(selected) == limit:
             break
-    blocks = []
-    for hit in _load_full_hits(database_path, tuple(hits)):
-        content, start_line, end_line = _focus_content(hit, terms)
+
+    blocks: list[str] = []
+    for hit, metadata, references in _fetch_evidence(database_path, tuple(selected)):
+        heading_path, document_type, publisher, edition, year, effective_from, effective_to = metadata
+        validity = ""
+        if effective_from or effective_to:
+            validity = f"[effective_period: {effective_from or '미표기'} ~ {effective_to or '현재'}]\n"
+        refs = f"[references: {'; '.join(references)}]\n" if references else ""
         blocks.append(
             f"[section_id: {hit.section_id}]\n"
             f"[source_name: {hit.source_name}]\n"
             f"[original_name: {hit.original_name}]\n"
-            f"[lines: {start_line}-{end_line}]\n"
-            f"[title: {hit.title}]\n{content}"
+            f"[document_type: {document_type}]\n"
+            f"[publisher: {publisher}]\n"
+            f"[edition: {edition or year}]\n"
+            f"{validity}"
+            f"[heading_path: {heading_path}]\n"
+            f"[lines: {hit.start_line}-{hit.end_line}]\n"
+            f"{refs}"
+            f"[title: {hit.title}]\n{hit.content.strip()}"
         )
     return "\n\n-----\n\n".join(blocks)
-
-
-def _load_full_hits(
-    database_path: Path, hits: tuple[SearchHit, ...]
-) -> tuple[SearchHit, ...]:
-    if not hits:
-        return ()
-    by_id = {hit.section_id: hit for hit in hits}
-    placeholders = ",".join("?" for _ in hits)
-    sql = (
-        "SELECT section_id, source_name, title, headings, original_name, "
-        "start_line, end_line, content FROM sections "
-        f"WHERE section_id IN ({placeholders})"
-    )
-    with sqlite3.connect(database_path) as connection:
-        rows: list[tuple[str, str, str, str, str, int, int, str]] = connection.execute(
-            sql, tuple(by_id)
-        ).fetchall()
-    full_by_id = {row[0]: SearchHit(*row) for row in rows}
-    return tuple(full_by_id[hit.section_id] for hit in hits)
-
-
-def _focus_content(
-    hit: SearchHit, terms: tuple[str, ...], window_chars: int = 6_000
-) -> tuple[str, int, int]:
-    lines = hit.content.splitlines(keepends=True)
-    if not lines:
-        return "", hit.start_line, hit.end_line
-    useful_terms = tuple(
-        term.casefold()
-        for term in terms
-        if not re.fullmatch(r"20\d{2}년?", term) and len(term) >= 2
-    )
-    scores = [
-        sum(len(term) for term in useful_terms if term in line.casefold())
-        for line in lines
-    ]
-    anchor_line = max(range(len(lines)), key=lambda index: scores[index])
-    anchor_offset = sum(len(line) for line in lines[:anchor_line])
-    raw_start = max(0, anchor_offset - window_chars // 5)
-    raw_end = min(len(hit.content), anchor_offset + window_chars * 4 // 5)
-    start = hit.content.rfind("\n", 0, raw_start) + 1 if raw_start else 0
-    next_newline = hit.content.find("\n", raw_end)
-    end = len(hit.content) if next_newline < 0 else next_newline + 1
-    start_line = hit.start_line + hit.content.count("\n", 0, start)
-    end_line = hit.start_line + hit.content.count("\n", 0, max(start, end - 1))
-    return hit.content[start:end].strip(), start_line, end_line

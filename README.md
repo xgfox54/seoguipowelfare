@@ -18,9 +18,9 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 | 사용자 실행 파일 | `복지업무비서.exe` 단일 파일 |
 | 화면 | pywebview + Microsoft Edge WebView2 기반 독립 프로그램 창 |
 | 로컬 서버 | FastAPI / Uvicorn, `127.0.0.1:8765`에만 바인딩 |
-| 검색 | SQLite FTS 기반 자체 전체 원문 검색 |
+| 검색 | SQLite FTS5/BM25 + 선택적 로컬 semantic hybrid 검색 |
 | 복지 업무자료 | 38개 Markdown 원문 |
-| 검색 구간 | 3,116개 |
+| 검색 구간 | 18,649개 |
 | 원문 총량 | 61,234,862바이트 |
 | 기본 AI 모델 | Gemma 4 E4B (`gemma4:e4b`) |
 | 선택 가능 모델 | Gemma 4 E4B / Gemma 4 E2B QAT (`gemma4:e2b-it-qat`) |
@@ -161,17 +161,19 @@ AI 답변은 `welfare_assistant.py`가 Ollama의 로컬 HTTP API를 직접 호�
 
 ## 복지DB 기준
 
-현재 검증 기준:
+현재 v1.2.0 검증 기준:
 
 - 원문 문서: **38개**
 - 원문 총량: **61,234,862바이트**
-- 검색 구간: **3,116개**
+- 검색 구간: **18,649개**
+- 검색 인덱스 DB: **약 266.9MB**
+- 품질 오류: **0건**
 
 EXE 빌드 시 다음 파일이 실행 파일 내부에 함께 포함됩니다.
 
 ```text
-wiki/search/welfare.db
-wiki/search/manifest.json
+wiki/kb-v120/welfare.db
+wiki/kb-v120/manifest.json
 web/
 config.yaml.example
 ```

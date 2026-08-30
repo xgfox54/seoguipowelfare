@@ -55,9 +55,17 @@ def initialize_local_state(kb_dir: Path) -> None:
         registry_path.write_text("{}\n", encoding="utf-8")
 
 
+def _index_dir(kb_dir: Path) -> Path:
+    preferred = kb_dir / "wiki" / "kb-v120"
+    if (preferred / "welfare.db").exists() or (preferred / "manifest.json").exists():
+        return preferred
+    return kb_dir / "wiki" / "search"
+
+
 def system_status(kb_dir: Path) -> dict[str, str | int | list[dict[str, str | bool]]]:
-    database = kb_dir / "wiki" / "search" / "welfare.db"
-    manifest_path = kb_dir / "wiki" / "search" / "manifest.json"
+    index_dir = _index_dir(kb_dir)
+    database = index_dir / "welfare.db"
+    manifest_path = index_dir / "manifest.json"
     if not database.exists() or not manifest_path.exists():
         return {
             "status": "점검 필요",
@@ -126,7 +134,7 @@ def _ollama_generate(model_tag: str, prompt: str, timeout: int = 600) -> str:
 
 def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_KEY) -> str:
     choice = resolve_choice(model_key)
-    context = retrieve_context(kb_dir / "wiki" / "search" / "welfare.db", question)
+    context = retrieve_context(_index_dir(kb_dir) / "welfare.db", question)
     return _ollama_generate(choice.ollama_tag, build_grounded_prompt(question, context))
 
 
