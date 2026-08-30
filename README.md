@@ -2,208 +2,340 @@
 
 # 개인용 복지업무 비서
 
-복지톡에서 사용하던 38개 Markdown 업무자료를 자체 전체 원문 검색색인으로 검색하고, OpenKB의 질의 에이전트 구성요소와 로컬 Ollama(Gemma 4)를 이용해 답변하는 개인용 Windows 시스템입니다. 화면은 KRDS 설계 원칙을 참고해 색상, 타이포그래피, 반응형, 접근성을 구성했습니다.
+복지 업무자료 38개를 **로컬 SQLite FTS 검색색인**으로 검색하고, PC에 설치된 **Ollama + Gemma 4**가 검색된 원문만 근거로 답변하는 Windows용 개인 업무 도구입니다.
 
-질문과 원문이 전부 이 PC 안에서만 처리되며, 인터넷 연결 없이도 동작합니다(모델 설치는 최초 1회 인터넷이 필요합니다).
+현재 배포 구조의 핵심은 **단일 EXE**입니다. `복지업무비서.exe`를 실행하면 기본 브라우저가 아니라 별도의 Windows 프로그램 창이 열리며, 내부 FastAPI 서버와 검색 DB, 웹 화면은 EXE에 함께 포함됩니다.
 
-## 시작하기 전에 (준비물)
+OpenAI API, ChatGPT Plus, OpenKB, OpenAI Agents SDK는 실행에 필요하지 않습니다.
 
-이 프로젝트는 **Windows 10/11과 Python 3.12에서 검증**했습니다. 아래 항목이 이 PC에 설치돼 있어야 하며, 이미 설치돼 있다면 건너뛰어도 됩니다. Python 3.13 이상은 현재 지원을 보장하지 않습니다.
+## 현재 버전 한눈에 보기
 
-| 준비물 | 확인 방법 | 설치 위치 |
-| --- | --- | --- |
-| Windows 10/11 | `winver` 실행 | PowerShell 및 CMD 실행 스크립트를 사용하므로 Windows가 필요합니다. |
-| Python 3.12 | PowerShell에서 `python --version` | [python.org/downloads](https://www.python.org/downloads/) — 설치 화면에서 **"Add python.exe to PATH"를 반드시 체크** |
-| Git | PowerShell에서 `git --version` | [git-scm.com/downloads](https://git-scm.com/downloads) |
-| Ollama | PowerShell에서 `ollama --version` | [ollama.com/download](https://ollama.com/download) |
+| 항목 | 현재 구현 |
+| --- | --- |
+| 사용자 실행 파일 | `복지업무비서.exe` 단일 파일 |
+| 화면 | pywebview + Microsoft Edge WebView2 기반 독립 프로그램 창 |
+| 로컬 서버 | FastAPI / Uvicorn, `127.0.0.1:8765`에만 바인딩 |
+| 검색 | SQLite FTS 기반 자체 전체 원문 검색 |
+| 복지 업무자료 | 38개 Markdown 원문 |
+| 검색 구간 | 3,116개 |
+| 원문 총량 | 61,234,862바이트 |
+| 기본 AI 모델 | Gemma 4 E4B (`gemma4:e4b`) |
+| 선택 가능 모델 | Gemma 4 E4B / Gemma 4 E2B QAT (`gemma4:e2b-it-qat`) |
+| AI 호출 방식 | Ollama 로컬 HTTP API 직접 호출 |
+| 인터넷 필요 여부 | 모델 최초 설치 시 필요, 일반 질의는 로컬 처리 |
 
-세 명령이 모두 버전 정보를 출력하면 준비 완료입니다.
+## 일반 사용자: EXE로 실행하기
 
-## 1단계. 코드 내려받기
+### 1. 필요한 프로그램
 
-아무 폴더나 원하는 위치에서 PowerShell을 열고 다음을 실행합니다. (여기서는 예시로 문서 폴더 아래에 내려받습니다.)
+일반 사용자는 Python, Git, 가상환경을 설치할 필요가 없습니다. 다음 두 가지만 준비하면 됩니다.
 
-```powershell
-cd $HOME\Documents
-git clone https://gitlab.aigov.go.kr/memory365/seoguipowelfare.git 복지업무비서
-cd 복지업무비서
-```
+1. **Windows 10/11**
+2. **Ollama**
 
-이후 안내되는 모든 명령은 이 `복지업무비서` 폴더 안에서 실행한다고 가정합니다. PowerShell 창을 새로 열었다면 먼저 `cd 복지업무비서를 내려받은 경로`로 이동하세요.
+Ollama 설치:
 
-## 2단계. 실행환경(가상환경) 만들고 필요한 패키지 설치
+- <https://ollama.com/download>
 
-아래 명령을 순서대로 하나씩 실행합니다. 패키지 설치는 자료 양이 많아 수 분 정도 걸릴 수 있습니다.
+프로그램 창은 Microsoft Edge WebView2 런타임을 사용합니다. Windows 11과 최신 Windows 10 환경에는 보통 이미 설치돼 있습니다.
 
-```powershell
-python -m venv .venv-openkb
-.\.venv-openkb\Scripts\python.exe -m pip install --upgrade pip
-.\.venv-openkb\Scripts\python.exe -m pip install -r requirements.txt
-```
+### 2. Gemma 모델 설치
 
-마지막 줄이 오류 없이 끝나면 실행환경 준비가 끝난 것입니다.
-
-## 3단계. 복지 업무자료 검색색인 만들기
-
-`source-md\` 폴더 안의 38개 원문을 SQLite 기반 전체 원문 검색색인으로 변환합니다. 이 과정에서 OpenKB 질의 에이전트가 사용할 로컬 설정과 복지업무 정책 파일도 자동으로 준비합니다. 문서 용량이 커서 1~2분 정도 걸릴 수 있습니다.
-
-```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\setup-openkb.ps1 -RebuildIndex
-```
-
-`Setup check completed.` 문구가 보이면 색인 생성이 끝난 것입니다.
-
-## 4단계. 로컬 AI 모델 준비 (Ollama)
-
-답변을 생성하는 AI 모델을 내려받습니다. 최초 1회만 인터넷이 필요하며, 이후에는 완전히 오프라인으로 동작합니다.
+PowerShell 또는 CMD에서 필요한 모델을 설치합니다.
 
 ```powershell
 ollama pull gemma4:e4b
 ollama pull gemma4:e2b-it-qat
 ```
 
-Ollama는 설치 시 백그라운드 서비스로 자동 등록되는 경우가 많습니다. 혹시 모델 다운로드 시 오류가 나면 Ollama 프로그램이 실행 중인지 먼저 확인하세요.
+두 모델을 모두 설치할 필요는 없습니다. 저장공간이나 PC 성능에 따라 하나만 설치해도 되며, 설치된 모델만 프로그램에서 사용할 수 있습니다.
 
-## 5단계. 실행하기
-
-여기까지 마쳤다면 준비는 끝났습니다. `복지업무비서` 폴더에서 `복지업무비서.cmd`를 더블클릭합니다. 잠시 후 기본 브라우저에서 아래 주소가 자동으로 열립니다.
-
-```text
-http://127.0.0.1:8765/
-```
-
-브라우저를 닫아도 로컬 서버는 계속 실행됩니다. 완전히 종료하려면 `복지업무비서-종료.cmd`를 더블클릭합니다. 기존 명령창 방식이 필요하면 `복지업무비서-콘솔.cmd`를 사용합니다.
-
-PowerShell에서 브라우저를 열지 않고 서버만 시작:
-
-```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\복지업무비서-웹.ps1 -NoOpen
-```
-
-상태 확인:
-
-```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\복지업무비서.ps1 -Status
-```
-
-정상 상태의 핵심 수치는 다음과 같습니다.
-
-- 실행 방식: `로컬 Ollama` (인터넷 연결 불필요)
-- 기본 모델: `ollama/gemma4:e4b`
-- 전체 원문: 38개, 61,234,862바이트
-- 전체 검색색인: 3,116개 근거 구간
-
-화면의 `시스템 정상`은 **원문과 검색색인이 정상적으로 준비됐다는 뜻**입니다. Ollama 실행 여부와 모델 설치 여부는 별도로 확인하며, 설치되지 않은 모델은 선택 화면에서 `사용 불가`로 표시됩니다. 따라서 상단 상태가 정상이더라도 사용 가능한 로컬 모델이 하나 이상 있어야 실제 답변을 생성할 수 있습니다.
-
-### 자주 겪는 문제
-
-| 증상 | 원인과 해결 |
-| --- | --- |
-| `복지업무 비서 실행환경이 없습니다. setup-openkb.ps1을 먼저 실행하세요.` | 2단계(가상환경 생성)를 건너뛴 경우입니다. 2단계부터 다시 진행하세요. |
-| `검증된 OpenKB 실행환경이 없습니다. Python 3.12로 .venv-openkb를 먼저 구성해야 합니다.` | `requirements.txt` 설치가 실패했거나 가상환경 구성이 중간에 중단된 경우입니다. 2단계 명령을 다시 실행하세요. |
-| 화면은 열리는데 답변이 안 나옴 | Ollama가 실행 중인지, 4단계의 두 모델이 정상적으로 받아졌는지 확인하세요(`ollama list`로 확인 가능). |
-| `python`, `git`, `ollama` 명령을 찾을 수 없음 | 설치 후 PowerShell 창을 새로 열지 않았을 수 있습니다. 창을 닫았다가 다시 열어보세요. |
-
-## 사용 방법
-
-1. 질문란에 대상자의 상황과 확인할 업무를 적습니다.
-2. `질문하기`를 누르거나 Enter를 누릅니다. 줄바꿈은 Shift+Enter를 사용합니다.
-3. 답변의 결론, 적용 조건·예외, 실무 확인사항을 읽습니다.
-4. 중요한 안내나 처분 전에는 표시된 문서명과 원문 줄을 다시 확인합니다.
-
-주민등록번호, 주소, 전화번호, 실명 등 개인정보는 질문에 입력하지 마십시오. 답변은 로컬 Ollama에서 생성되므로 질문과 원문은 외부로 전송되지 않습니다.
-
-답변 모델은 화면에서 **Gemma 4 E4B**와 **Gemma 4 E2B QAT Q4** 중 선택할 수 있습니다. 두 모델 모두 로컬 Ollama에서 실행되므로 질문이 이 PC를 벗어나지 않습니다.
-
-## 시스템 구성
-
-질문은 다음 순서로 처리합니다.
-
-1. 전체 원문 검색색인: 38개 대용량 Markdown에서 질문과 관련된 구간을 검색하고 문서명과 원문 줄 범위를 추출합니다.
-2. OpenKB 질의 에이전트 구성요소: 로컬 모델 연결, 실행 설정과 복지업무 답변 정책을 적용합니다.
-3. 로컬 Ollama: 검색된 원문만 근거로 답변을 생성합니다.
-
-현재 배포본은 38개 문서를 OpenKB 네이티브 위키로 컴파일하거나 네이티브 위키 검색 도구로 조회하지 않습니다. 대용량 합본 문서를 로컬 모델의 문맥 한도 안에서 안정적으로 다루기 위해 자체 검색색인을 사용하며, 일상 질문의 검색 범위는 항상 전체 38개 원문입니다.
-
-## 사용 모델과 실행 환경
-
-이 프로젝트는 OpenAI API 키나 ChatGPT Plus 계정 없이 동작합니다. 답변은 로컬에 설치된 Ollama가 처리하며, 두 모델(`ollama/gemma4:e4b`, `ollama/gemma4:e2b-it-qat`)을 호출할 때 별도의 API 사용 요금이 발생하지 않습니다. 모델 이용 조건은 각 모델의 라이선스를 따르며, 처리 속도와 답변 품질은 이 PC의 메모리·CPU·GPU 성능에 좌우됩니다.
-
-Ollama가 실행 중이어야 하며(`ollama serve`, 보통 설치 시 자동 등록됨), 4단계에서 받은 두 모델이 설치돼 있어야 화면에서 선택할 수 있습니다.
-
-모델 설치 용량과 현재 사용 가능 여부는 다음 명령으로 확인할 수 있습니다.
+설치 상태 확인:
 
 ```powershell
 ollama list
 ```
 
-PC 사양이나 저장공간이 부족하면 두 모델을 모두 설치할 필요는 없습니다. 설치된 모델만 선택할 수 있습니다.
+### 3. `복지업무비서.exe` 실행
 
-## 자료 갱신
+배포받은 `복지업무비서.exe`를 더블클릭합니다.
 
-`source-md\`에 새 버전의 Markdown을 추가하거나 기존 파일을 교체한 뒤 다음을 실행합니다.
+실행하면 다음 과정이 자동으로 진행됩니다.
 
-```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\setup-openkb.ps1 -RebuildIndex
+1. 이미 프로그램이 실행 중인지 확인합니다.
+2. `127.0.0.1:8765` 포트 사용 여부를 확인합니다.
+3. Ollama가 꺼져 있고 `ollama` 명령을 찾을 수 있으면 `ollama serve` 시작을 시도합니다.
+4. EXE 내부의 복지 검색 DB와 FastAPI 서버를 시작합니다.
+5. 별도의 **개인용 복지업무 비서** 프로그램 창을 엽니다.
+
+기본 브라우저를 자동으로 열지 않습니다.
+
+### 4. 화면에서 AI 상태 확인
+
+시스템 상태 영역에서 다음 항목을 바로 확인할 수 있습니다.
+
+- **AI 연결**: 사용 가능한 Gemma 모델이 하나 이상 있으면 `연결됨`
+- **Gemma 4 E4B**: `설치됨` / `미설치`
+- **Gemma 4 E2B**: `설치됨` / `미설치`
+- 복지 매뉴얼 수
+- 검색 구간 수
+- 현재 선택 모델
+
+`시스템 정상`은 복지 원문과 검색색인이 정상이라는 뜻입니다. 실제 AI 답변을 생성하려면 Ollama가 실행 중이고 E4B 또는 E2B 모델이 하나 이상 설치돼 있어야 합니다.
+
+### 5. 프로그램 종료
+
+다음 두 방법 모두 내부 로컬 서버까지 함께 종료합니다.
+
+- 프로그램 창 닫기
+- 화면 오른쪽 위 **프로그램 종료** 버튼 누르기
+
+프로그램 창만 사라지고 서버가 계속 남아 있는 브라우저 기반 실행 방식은 현재 기본 배포 방식이 아닙니다.
+
+## 사용 방법
+
+1. 질문란에 확인할 복지업무 내용을 입력합니다.
+2. 사용할 모델을 선택합니다.
+3. `질문하기`를 누르거나 Enter를 누릅니다.
+4. 검색된 복지DB 원문을 근거로 생성된 답변을 확인합니다.
+5. 중요한 안내, 급여 결정, 행정처분 전에는 반드시 원문 지침을 다시 확인합니다.
+
+질문에는 주민등록번호, 전화번호, 상세 주소, 실명 등 개인 식별 정보를 입력하지 마십시오.
+
+## 답변 처리 구조
+
+현재 버전의 실제 처리 흐름은 다음과 같습니다.
+
+```text
+사용자 질문
+   ↓
+SQLite FTS 전체 원문 검색
+   ↓
+관련 복지 지침 구간 추출
+   ↓
+근거 포함 프롬프트 구성
+   ↓
+Ollama /api/generate 직접 호출
+   ↓
+Gemma 4 E4B 또는 E2B 답변 생성
+   ↓
+프로그램 창에 Markdown 렌더링
 ```
 
-문서 수, 전체 바이트 수와 검색 구간 수는 자료가 바뀌면 함께 달라질 수 있습니다. 갱신 후에는 `-Status` 명령과 실제 질문으로 새 자료가 검색되는지 확인하세요.
+### OpenKB 사용 여부
 
-현재 `v1.0.2` 배포본의 38개 파일이 기존 다운로드 폴더 사본과 완전히 같은지 확인할 때만 다음 명령을 사용합니다.
+현재 실행 경로에서는 **OpenKB를 사용하지 않습니다.**
 
-```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\verify-sources.ps1
+과거 버전에서 사용하던 `.openkb` 디렉터리명과 `setup-openkb.ps1` 파일명 일부는 기존 작업환경 및 스크립트 호환을 위해 남아 있지만, 현재 `requirements.txt`에는 OpenKB가 포함돼 있지 않으며 실행 시 `openkb.exe`도 필요하지 않습니다.
+
+AI 답변은 `welfare_assistant.py`가 Ollama의 로컬 HTTP API를 직접 호출해 생성합니다.
+
+## 모델
+
+### Gemma 4 E4B
+
+- Ollama 태그: `gemma4:e4b`
+- 프로그램 모델 키: `gemma_e4b`
+- 현재 기본 모델
+
+### Gemma 4 E2B QAT
+
+- Ollama 태그: `gemma4:e2b-it-qat`
+- 프로그램 모델 키: `gemma_e2b`
+- 저사양 PC에서 선택 가능한 경량 모델
+
+두 모델 모두 로컬 Ollama에서 실행되며 별도의 OpenAI API 요금은 발생하지 않습니다. 처리 속도와 답변 품질은 CPU, RAM, GPU, 모델 로딩 상태에 따라 달라집니다.
+
+## 로컬 보안 구조
+
+- FastAPI 서버는 `127.0.0.1`에만 바인딩됩니다.
+- 웹 UI의 외부 폰트, 외부 스크립트, 통계/분석 서비스 의존성이 없습니다.
+- Markdown 렌더링 시 원시 HTML은 비활성화합니다.
+- 질문과 검색 원문은 Ollama 로컬 API로 전달됩니다.
+- 프로그램 자체는 답변 생성을 위해 외부 AI API를 호출하지 않습니다.
+
+단, Ollama 모델을 최초 다운로드하거나 Git 저장소/패키지를 설치하는 개발 과정에서는 인터넷 연결이 필요합니다.
+
+## 복지DB 기준
+
+현재 검증 기준:
+
+- 원문 문서: **38개**
+- 원문 총량: **61,234,862바이트**
+- 검색 구간: **3,116개**
+
+EXE 빌드 시 다음 파일이 실행 파일 내부에 함께 포함됩니다.
+
+```text
+wiki/search/welfare.db
+wiki/search/manifest.json
+web/
+config.yaml.example
 ```
 
-`verify-sources.ps1`은 다운로드 폴더 아래에서 **38개·61,234,862바이트인 원본 폴더가 정확히 하나 존재한다는 전제**로 SHA-256을 비교합니다. 새 매뉴얼로 교체한 뒤에는 이전 배포본 기준의 이 명령을 사용하지 마세요.
+따라서 완성된 EXE 사용자는 별도로 검색색인을 만들 필요가 없습니다.
 
-## 개발 및 검증
+## 개발자용: 소스에서 실행환경 구성
 
-가상환경과 검색색인이 준비된 상태에서 다음 명령으로 코드와 검색 재현성을 확인할 수 있습니다.
+이 절은 **EXE 사용자에게는 필요하지 않습니다.** 복지 원문을 갱신하거나 EXE를 새로 빌드하는 개발자용 절차입니다.
 
-```powershell
-.\.venv-openkb\Scripts\python.exe -m ruff check welfare_*.py welfare_search tests
-.\.venv-openkb\Scripts\python.exe -m pytest -q
-```
+### 준비물
 
-GitLab의 `verify_on_runner` 작업은 Runner가 연결된 환경에서 수동으로 실행하는 선택형 검증 작업입니다. Runner가 할당되지 않은 현재 환경에서는 파이프라인이 실패하지 않고 `skipped`로 표시되는 것이 정상입니다.
+- Windows 10/11
+- Python 3.12
+- Git
+- Ollama
 
-## 답변 원칙
-
-- 질문에 기준연도를 포함하면 해당 연도 세부 사업안내를 우선합니다.
-- 수치·자격·예외에는 문서명과 줄 범위를 표시합니다.
-- 중앙부처 지침과 제주·서귀포 지역지침을 구분합니다.
-- 종합안내서보다 해당 사업의 세부 안내서를 우선합니다.
-- 자료에 없거나 문서끼리 충돌하면 추정하지 않고 그 사실을 표시합니다.
-- 실제 수급 결정이나 행정처분은 담당자의 최종 확인이 필요합니다.
-
-## 로컬 보안
-
-- 서버는 외부 네트워크가 아닌 `127.0.0.1`에만 연결됩니다.
-- 외부 폰트, 스크립트, 이미지, 통계 도구를 불러오지 않습니다.
-- 모델 답변의 Markdown은 원시 HTML을 비활성화한 뒤 표시합니다.
-- 디자인 시스템 규칙은 `DESIGN.md`, 컴포넌트 상태는 `http://127.0.0.1:8765/showcase`에서 확인할 수 있습니다.
-
-## 다른 PC로 이식하기
-
-`.venv-openkb`(가상환경)와 `wiki\search\welfare.db`(검색색인)는 이 저장소에 포함돼 있지 않습니다. 용량이 크고 각 PC에서 새로 만들 수 있기 때문입니다. 다른 PC에서 사용하려면 위의 **1~4단계**를 그대로 반복하면 됩니다.
-
-설치 스크립트는 기존 `.openkb\config.yaml`을 덮어쓰지 않으므로, 재설치하거나 색인을 갱신해도 사용자가 선택한 로컬 설정은 유지됩니다.
+저장소 내려받기:
 
 ```powershell
 cd $HOME\Documents
 git clone https://gitlab.aigov.go.kr/memory365/seoguipowelfare.git 복지업무비서
 cd 복지업무비서
+```
+
+가상환경 생성 및 의존성 설치:
+
+```powershell
 python -m venv .venv-openkb
 .\.venv-openkb\Scripts\python.exe -m pip install --upgrade pip
 .\.venv-openkb\Scripts\python.exe -m pip install -r requirements.txt
-powershell.exe -ExecutionPolicy Bypass -File .\setup-openkb.ps1 -RebuildIndex
-ollama pull gemma4:e4b
-ollama pull gemma4:e2b-it-qat
 ```
 
-로컬 Gemma 모델은 PC마다 별도로 설치해야 합니다. 설치하지 않은 모델은 상태 화면에서 "사용 불가"로 표시됩니다.
+`.venv-openkb`라는 이름은 과거 버전과의 경로 호환을 위해 유지한 디렉터리명일 뿐, 현재 환경에 OpenKB가 설치된다는 뜻은 아닙니다.
+
+## 검색색인 생성·갱신
+
+`source-md\`의 Markdown 원문을 SQLite 검색 DB로 다시 만들려면 다음을 실행합니다.
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File .\setup-openkb.ps1 -RebuildIndex
+```
+
+현재 `setup-openkb.ps1`의 역할은 다음뿐입니다.
+
+1. Python 가상환경 확인
+2. 로컬 상태 디렉터리 초기화
+3. `welfare_index.py build`를 이용한 SQLite 검색색인 생성
+4. `welfare_assistant.py status` 상태 확인
+
+**OpenKB 실행파일 검사, OpenKB 설치, OpenKB 네이티브 위키 생성은 수행하지 않습니다.**
+
+파일명 `setup-openkb.ps1`은 기존 자동화와 경로 호환을 위해 유지합니다.
+
+직접 명령으로 색인을 만들 수도 있습니다.
+
+```powershell
+.\.venv-openkb\Scripts\python.exe welfare_index.py build
+.\.venv-openkb\Scripts\python.exe welfare_assistant.py status
+```
+
+## 개발 서버로 실행
+
+EXE가 아닌 개발 상태에서 FastAPI 서버만 실행하려면:
+
+```powershell
+.\.venv-openkb\Scripts\python.exe welfare_web.py
+```
+
+접속 주소:
+
+```text
+http://127.0.0.1:8765/
+```
+
+이 방식은 개발·디버깅용입니다. 일반 사용자 배포 방식은 `복지업무비서.exe`입니다.
+
+## 단일 EXE 빌드
+
+패키징 전용 가상환경을 만듭니다.
+
+```powershell
+python -m venv .venv-package
+.\.venv-package\Scripts\python.exe -m pip install --upgrade pip
+.\.venv-package\Scripts\python.exe -m pip install -r requirements-build.txt
+```
+
+검색 DB가 준비된 상태에서 빌드:
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File .\build-exe.ps1
+```
+
+또는 직접:
+
+```powershell
+.\.venv-package\Scripts\python.exe -m PyInstaller --noconfirm --clean .\복지업무비서.spec
+```
+
+결과 파일:
+
+```text
+dist\복지업무비서.exe
+```
+
+PyInstaller 설정은 `console=False`인 Windows 단일 EXE이며, `pywebview`와 `uvicorn` 모듈 및 검색 DB/웹 자원을 함께 패키징합니다.
+
+## 테스트와 코드 검사
+
+```powershell
+.\.venv-openkb\Scripts\python.exe -m pytest -q
+.\.venv-openkb\Scripts\python.exe -m ruff check welfare_*.py welfare_search tests
+```
+
+현재 검증 기준은 **25개 테스트 통과**입니다.
+
+## 자료 갱신 절차
+
+1. `source-md\`에서 Markdown 원문을 추가·교체합니다.
+2. 검색색인을 다시 생성합니다.
+3. 문서 수, 검색 구간 수, 원문 바이트 수를 확인합니다.
+4. 실제 질문으로 검색·답변을 검증합니다.
+5. `build-exe.ps1`로 새 EXE를 생성합니다.
+6. 새 EXE에서 프로그램 창, AI 상태 표시, 질의, 종료까지 E2E 검증합니다.
+
+기존 배포본과 원문이 완전히 같은지 확인할 때만 `verify-sources.ps1`을 사용합니다. 원문을 갱신한 뒤에는 과거 배포본 기준의 해시 검증 결과를 그대로 사용하면 안 됩니다.
+
+## 주요 파일
+
+| 파일/폴더 | 역할 |
+| --- | --- |
+| `welfare_launcher.py` | 단일 EXE 진입점, 로컬 서버 및 WebView 프로그램 창 관리 |
+| `welfare_web.py` | FastAPI API 및 정적 웹 UI 제공 |
+| `welfare_assistant.py` | 검색 근거 구성 및 Ollama 직접 호출 |
+| `welfare_models.py` | Gemma 모델 정의 및 Ollama 설치 상태 확인 |
+| `welfare_index.py` | SQLite 검색색인 생성 |
+| `welfare_search/` | 검색 로직 |
+| `web/` | 프로그램 UI |
+| `source-md/` | 복지 업무 원문 Markdown |
+| `setup-openkb.ps1` | 레거시 파일명을 유지한 검색 DB 초기화/재생성 스크립트 |
+| `복지업무비서.spec` | PyInstaller 단일 EXE 설정 |
+| `build-exe.ps1` | 단일 EXE 빌드 스크립트 |
+| `requirements.txt` | 실행/개발 Python 의존성 |
+| `requirements-build.txt` | PyInstaller 빌드 의존성 |
+
+## 자주 겪는 문제
+
+| 증상 | 확인할 사항 |
+| --- | --- |
+| `AI 연결: 연결 안 됨` | Ollama 실행 여부와 `ollama list` 확인 |
+| E4B 또는 E2B가 `미설치` | 해당 `ollama pull ...` 명령 실행 |
+| 프로그램 창이 열리지 않음 | Microsoft Edge WebView2 Runtime 설치 상태 확인 |
+| `포트 8765을 다른 프로그램이 사용 중입니다` | 기존 복지업무 비서 또는 다른 로컬 서버 종료 |
+| 프로그램이 이미 실행 중이라는 메시지 | 기존 프로그램 창을 사용하거나 기존 인스턴스를 종료 |
+| 개발용 `setup-openkb.ps1`에서 Python 오류 | `.venv-openkb` 생성 및 `requirements.txt` 설치 여부 확인 |
+| 검색 DB가 없다는 빌드 오류 | 먼저 `setup-openkb.ps1 -RebuildIndex` 또는 `welfare_index.py build` 실행 |
+
+## 답변 원칙
+
+- 검색된 복지DB 원문만 근거로 답변합니다.
+- 원문에서 확인되지 않는 내용은 추측하지 않도록 프롬프트를 구성합니다.
+- 핵심 결론, 요약, 상세 내용, 근거 지침, 확인 필요사항을 구조화해 표시합니다.
+- 실제 수급 결정이나 행정처분은 담당자가 원문을 최종 확인해야 합니다.
+- 상담 시 민원인의 개인 식별 정보를 입력하지 마십시오.
 
 ## 라이선스
 
-현재 저장소에는 별도의 오픈소스 라이선스가 지정돼 있지 않습니다. 개인용 설치와 사용 범위를 넘어 코드나 복지DB를 수정·재배포하려면 저장소 관리자에게 사용 조건을 확인해야 합니다. 원문 복지 매뉴얼의 저작권과 이용 조건은 각 발행기관의 기준을 따릅니다.
+현재 저장소에는 별도의 오픈소스 라이선스가 지정돼 있지 않습니다. 개인용 설치와 사용 범위를 넘어 코드나 복지DB를 수정·재배포하려면 저장소 관리자에게 사용 조건을 확인해야 합니다.
+
+복지 원문 자료의 저작권과 이용 조건은 각 발행기관의 기준을 따릅니다.
