@@ -4,7 +4,7 @@
 
 복지 업무자료 38개를 **로컬 SQLite FTS 검색색인**으로 검색하고, PC에 설치된 **Ollama + Gemma 4**가 검색된 원문만 근거로 답변하는 Windows용 개인 업무 도구입니다.
 
-현재 배포 구조의 핵심은 **단일 EXE**입니다. `복지업무비서.exe`를 실행하면 기본 브라우저가 아니라 별도의 Windows 프로그램 창이 열리며, 내부 FastAPI 서버와 검색 DB, 웹 화면은 EXE에 함께 포함됩니다.
+`복지업무비서.exe`를 실행하고 업무에 필요한 내용을 검색하면 Gemma4 e4b, e2b가 답변해줍니다.
 
 OpenAI API, ChatGPT Plus, OpenKB, OpenAI Agents SDK는 실행에 필요하지 않습니다.
 
