@@ -25,7 +25,10 @@
             <p class="service-identity__qualifier">개인용 · 비공식</p>
           </div>
         </div>
-        <span id="header-status" class="status-badge status-badge--warning">상태 확인 중</span>
+        <div class="form-actions form-actions--inline">
+          <span id="header-status" class="status-badge status-badge--warning">상태 확인 중</span>
+          <button id="shutdown-button" class="button button--secondary" type="button">프로그램 종료</button>
+        </div>
       </div>
     </header>
 
@@ -94,6 +97,9 @@
             <span id="panel-status" class="status-badge status-badge--warning">확인 중</span>
           </div>
           <dl class="fact-list" aria-live="polite">
+            <div class="fact-list__item"><dt>AI 연결</dt><dd id="status-ai">확인 중</dd></div>
+            <div class="fact-list__item"><dt>Gemma 4 E4B</dt><dd id="status-e4b">확인 중</dd></div>
+            <div class="fact-list__item"><dt>Gemma 4 E2B</dt><dd id="status-e2b">확인 중</dd></div>
             <div class="fact-list__item"><dt>선택한 모델</dt><dd id="status-model">확인 중</dd></div>
             <div class="fact-list__item"><dt>복지 매뉴얼</dt><dd id="status-documents">확인 중</dd></div>
             <div class="fact-list__item"><dt>검색 구간</dt><dd id="status-sections">확인 중</dd></div>

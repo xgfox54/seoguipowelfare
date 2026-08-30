@@ -145,3 +145,22 @@ def test_line_break_tags_render_while_other_html_stays_escaped(tmp_path: Path) -
     assert "첫째 줄<br>둘째 줄" in payload["answer_html"]
     assert "<img" not in payload["answer_html"]
     assert "&lt;img" in payload["answer_html"]
+
+
+def test_shutdown_endpoint_invokes_launcher_callback(tmp_path: Path) -> None:
+    calls: list[str] = []
+    answerer: Answerer = _answer
+    status_reader: StatusReader = _status
+    with TestClient(
+        create_app(
+            tmp_path,
+            answerer=answerer,
+            status_reader=status_reader,
+            shutdowner=lambda: calls.append("shutdown"),
+        )
+    ) as client:
+        response = client.post("/api/shutdown")
+
+    assert response.status_code == 200
+    assert response.json() == {"ok": True}
+    assert calls == ["shutdown"]

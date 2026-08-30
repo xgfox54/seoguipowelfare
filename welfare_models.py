@@ -5,8 +5,6 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass
 
-from openkb.config import LlmCredentialBundle
-
 OLLAMA_BASE_URL = "http://127.0.0.1:11434"
 
 
@@ -17,6 +15,10 @@ class ModelChoice:
     model: str
     runtime: str
     description: str
+
+    @property
+    def ollama_tag(self) -> str:
+        return self.model.split("/", 1)[-1]
 
 
 MODEL_CHOICES: tuple[ModelChoice, ...] = (
@@ -49,10 +51,6 @@ def resolve_choice(model_key: str | None) -> ModelChoice:
     return choice
 
 
-def credential_bundle() -> LlmCredentialBundle:
-    return LlmCredentialBundle(api_key="ollama", base_url=OLLAMA_BASE_URL)
-
-
 def installed_local_models() -> frozenset[str]:
     request = urllib.request.Request(f"{OLLAMA_BASE_URL}/api/tags")
     try:
@@ -69,9 +67,8 @@ def available_choices() -> tuple[dict[str, str | bool], ...]:
     local_models = installed_local_models()
     described: list[dict[str, str | bool]] = []
     for choice in MODEL_CHOICES:
-        tag = choice.model.split("/", 1)[1]
-        ready = tag in local_models
-        reason = "" if ready else f"Ollama에서 {tag}를 찾을 수 없습니다."
+        ready = choice.ollama_tag in local_models
+        reason = "" if ready else f"Ollama에서 {choice.ollama_tag}를 찾을 수 없습니다."
         described.append(
             {
                 "key": choice.key,

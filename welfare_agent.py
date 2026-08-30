@@ -1,28 +1,27 @@
 from __future__ import annotations
 
-from pathlib import Path
+SYSTEM_PROMPT_TEMPLATE = (
+    "당신은 대한민국 사회복지 업무를 지원하는 개인용 비서입니다. "
+    "사용자가 제공한 복지DB 원문만 근거로 답하고, 원문에 없는 내용은 추측하지 않습니다. "
+    "답변은 {language}로 작성합니다."
+)
 
-from agents import Agent
-from agents.model_settings import ModelSettings
-from openkb.agent.query import build_query_agent
-from openkb.config import LlmCredentialBundle
+
+def build_system_prompt(language: str = "한국어") -> str:
+    return SYSTEM_PROMPT_TEMPLATE.format(language=language)
 
 
-def build_welfare_agent(
-    kb_dir: Path,
-    model: str,
-    language: str = "ko",
-    bundle: LlmCredentialBundle | None = None,
-) -> Agent:
-    wiki_root = kb_dir / "wiki"
-    base = build_query_agent(str(wiki_root), model, language=language, bundle=bundle)
-    instructions = (
-        "당신은 대한민국 사회복지 업무를 지원하는 개인용 비서입니다. "
-        "사용자가 제공한 복지DB 원문만 근거로 답하고, 추측하지 않습니다. "
-        f"답변 언어는 {language}입니다."
-    )
-    return base.clone(
-        instructions=instructions,
-        tools=[],
-        model_settings=ModelSettings(),
+def build_grounded_prompt(question: str, context: str) -> str:
+    return (
+        f"질문:\n{question}\n\n"
+        "검색된 복지DB 원문:\n"
+        f"{context}\n\n"
+        "위 원문만 근거로, 아래 형식을 그대로 따라 답변하세요.\n\n"
+        "1. 첫 문단: 인용 표시 없이 질문의 핵심 결론을 자연스러운 설명문 1~3문장으로 작성하세요.\n"
+        "2. `## ✅ 요약` 제목 아래 핵심 결론을 불릿 목록으로 정리하세요. 중요한 수치나 기준은 **굵게** 표시하세요.\n"
+        "3. 세부 내용이 있다면 `## 📋 상세 내용` 같은 제목 아래 항목별로 번호를 매긴 소제목과 불릿 설명으로 기준·예외·절차를 정리하세요.\n"
+        "4. `## 📚 근거 지침` 제목 아래 답변에 사용한 문서명만 목록으로 나열하세요.\n"
+        "5. 원문에 없거나 매년 바뀔 수 있는 수치·기준이 있다면 `## ⚠️ 확인 필요` 제목 아래 안내하세요. 해당 사항이 없으면 생략하세요.\n"
+        "6. 마지막으로 `## 🚨 주의` 제목 아래에 \"상담 시 민원인의 개인 식별 정보(주민번호 등)를 입력하지 마십시오.\"라는 문구를 포함하세요.\n\n"
+        "원문에서 확인되지 않는 내용은 추측하지 말고 확인되지 않는다고 명시하세요."
     )

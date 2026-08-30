@@ -15,10 +15,14 @@
   const resultHeading = document.querySelector("#result-heading");
   const exampleButtons = document.querySelectorAll("[data-question]");
   const modelOptions = document.querySelector("#model-options");
+  const shutdownButton = document.querySelector("#shutdown-button");
 
   const statusFields = {
     header: document.querySelector("#header-status"),
     panel: document.querySelector("#panel-status"),
+    ai: document.querySelector("#status-ai"),
+    e4b: document.querySelector("#status-e4b"),
+    e2b: document.querySelector("#status-e2b"),
     model: document.querySelector("#status-model"),
     documents: document.querySelector("#status-documents"),
     sections: document.querySelector("#status-sections"),
@@ -130,6 +134,10 @@
     element.textContent = text;
   }
 
+  function modelAvailability(status, key) {
+    return status.models.find((model) => model.key === key)?.available === true;
+  }
+
   async function loadStatus() {
     try {
       const response = await fetch("/api/status", { headers: { Accept: "application/json" } });
@@ -138,8 +146,14 @@
       }
       const status = await response.json();
       const healthy = status.status === "정상";
+      const e4bAvailable = modelAvailability(status, "gemma_e4b");
+      const e2bAvailable = modelAvailability(status, "gemma_e2b");
+      const aiConnected = e4bAvailable || e2bAvailable;
       statusBadge(statusFields.header, healthy ? "success" : "error", healthy ? "시스템 정상" : "점검 필요");
       statusBadge(statusFields.panel, healthy ? "success" : "error", status.status);
+      statusBadge(statusFields.ai, aiConnected ? "success" : "error", aiConnected ? "연결됨" : "연결 안 됨");
+      statusBadge(statusFields.e4b, e4bAvailable ? "success" : "error", e4bAvailable ? "설치됨" : "미설치");
+      statusBadge(statusFields.e2b, e2bAvailable ? "success" : "error", e2bAvailable ? "설치됨" : "미설치");
       renderModelOptions(status.models, status.default_model);
       statusFields.model.textContent = selectedModelLabel();
       statusFields.documents.textContent = `${formatNumber.format(status.source_documents)}개`;
@@ -147,6 +161,9 @@
     } catch {
       statusBadge(statusFields.header, "error", "상태 확인 실패");
       statusBadge(statusFields.panel, "error", "확인 실패");
+      statusBadge(statusFields.ai, "error", "확인 실패");
+      statusBadge(statusFields.e4b, "error", "확인 실패");
+      statusBadge(statusFields.e2b, "error", "확인 실패");
       statusFields.model.textContent = "확인할 수 없음";
       statusFields.documents.textContent = "확인할 수 없음";
       statusFields.sections.textContent = "확인할 수 없음";
@@ -204,6 +221,22 @@
     question.focus();
   }
 
+  async function shutdownApplication() {
+    shutdownButton.disabled = true;
+    shutdownButton.textContent = "종료 중";
+    try {
+      await fetch("/api/shutdown", { method: "POST" });
+      if (window.pywebview?.api?.close_app) {
+        await window.pywebview.api.close_app();
+        return;
+      }
+      document.body.innerHTML = '<main class="container page-main"><section class="card"><h1 class="page-title">복지업무 비서를 종료했습니다</h1><p class="page-summary">이 창을 닫아도 됩니다. 다시 사용하려면 EXE 파일을 실행하세요.</p></section></main>';
+    } catch {
+      shutdownButton.disabled = false;
+      shutdownButton.textContent = "프로그램 종료";
+    }
+  }
+
   question.addEventListener("input", () => {
     clearValidation();
     updateCount();
@@ -216,6 +249,7 @@
   });
   form.addEventListener("submit", submitQuestion);
   clearButton.addEventListener("click", clearQuestion);
+  shutdownButton.addEventListener("click", shutdownApplication);
   for (const button of exampleButtons) {
     button.addEventListener("click", () => {
       question.value = button.dataset.question ?? "";

@@ -16,9 +16,11 @@ from starlette.middleware.base import RequestResponseEndpoint
 
 from welfare_assistant import answer_question, system_status
 from welfare_models import DEFAULT_MODEL_KEY, resolve_choice
+from welfare_runtime import knowledge_base_root, resource_path
 
 Answerer = Callable[[Path, str, str], str]
 StatusReader = Callable[[Path], Mapping[str, object]]
+Shutdowner = Callable[[], None]
 ANSWER_SECTION_TITLES = frozenset(
     {"결론", "적용조건·예외", "적용 조건·예외", "실무 확인사항"}
 )
@@ -97,8 +99,9 @@ def create_app(
     *,
     answerer: Answerer = answer_question,
     status_reader: StatusReader = system_status,
+    shutdowner: Shutdowner | None = None,
 ) -> FastAPI:
-    web_dir = Path(__file__).resolve().parent / "web"
+    web_dir = resource_path("web")
     markdown = MarkdownIt("commonmark", {"html": False, "linkify": False}).enable(
         "table"
     )
@@ -172,11 +175,17 @@ def create_app(
             model_label=choice.label,
         )
 
+    @application.post("/api/shutdown", include_in_schema=False)
+    def shutdown() -> dict[str, bool]:
+        if shutdowner is not None:
+            shutdowner()
+        return {"ok": True}
+
     return application
 
 
 def _project_root() -> Path:
-    return Path(__file__).resolve().parent
+    return knowledge_base_root()
 
 
 app = create_app(_project_root())

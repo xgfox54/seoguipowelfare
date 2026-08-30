@@ -1,26 +1,20 @@
-# /// script
-# requires-python = ">=3.12"
-# dependencies = []
-# ///
-
 from __future__ import annotations
 
 import io
 import json
 import sqlite3
 import sys
+import urllib.error
+import urllib.request
 from pathlib import Path
 
-from agents import Runner, set_tracing_disabled
-from dotenv import load_dotenv
-from openkb.agent.query import MAX_TURNS, build_run_config_from_bundle
-from openkb.config import load_config
+import yaml
 
-from welfare_agent import build_welfare_agent
+from welfare_agent import build_grounded_prompt, build_system_prompt
 from welfare_models import (
     DEFAULT_MODEL_KEY,
+    OLLAMA_BASE_URL,
     available_choices,
-    credential_bundle,
     resolve_choice,
 )
 from welfare_search import retrieve_context
@@ -37,34 +31,52 @@ def _project_root() -> Path:
     return Path(__file__).resolve().parent
 
 
+def _read_runtime_config(kb_dir: Path) -> dict[str, str]:
+    config_path = kb_dir / ".openkb" / "config.yaml"
+    if not config_path.exists():
+        config_path = kb_dir / "config.yaml.example"
+    if not config_path.exists():
+        return {"model": resolve_choice(DEFAULT_MODEL_KEY).model, "language": "ko"}
+    data = yaml.safe_load(config_path.read_text(encoding="utf-8")) or {}
+    return {
+        "model": str(data.get("model", resolve_choice(DEFAULT_MODEL_KEY).model)),
+        "language": str(data.get("language", "ko")),
+    }
+
+
 def initialize_local_state(kb_dir: Path) -> None:
     state_dir = kb_dir / ".openkb"
     state_dir.mkdir(parents=True, exist_ok=True)
     config_path = state_dir / "config.yaml"
-    if not config_path.exists():
+    if not config_path.exists() and (kb_dir / "config.yaml.example").exists():
         config_path.write_bytes((kb_dir / "config.yaml.example").read_bytes())
     registry_path = state_dir / "hashes.json"
     if not registry_path.exists():
-        _ = registry_path.write_text("{}\n", encoding="utf-8")
+        registry_path.write_text("{}\n", encoding="utf-8")
 
 
-def system_status(
-    kb_dir: Path,
-) -> dict[str, str | int | list[dict[str, str | bool]]]:
+def system_status(kb_dir: Path) -> dict[str, str | int | list[dict[str, str | bool]]]:
     database = kb_dir / "wiki" / "search" / "welfare.db"
     manifest_path = kb_dir / "wiki" / "search" / "manifest.json"
+    if not database.exists() or not manifest_path.exists():
+        return {
+            "status": "점검 필요",
+            "model": resolve_choice(DEFAULT_MODEL_KEY).model,
+            "source_documents": 0,
+            "search_sections": 0,
+            "native_openkb_documents": 0,
+            "source_bytes": 0,
+            "models": list(available_choices()),
+            "default_model": DEFAULT_MODEL_KEY,
+        }
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     with sqlite3.connect(database) as connection:
         documents = connection.execute("SELECT COUNT(*) FROM documents").fetchone()[0]
         sections = connection.execute("SELECT COUNT(*) FROM sections").fetchone()[0]
         fts_sections = connection.execute("SELECT COUNT(*) FROM sections_fts").fetchone()[0]
     registry_path = kb_dir / ".openkb" / "hashes.json"
-    registry = (
-        json.loads(registry_path.read_text(encoding="utf-8"))
-        if registry_path.exists()
-        else {}
-    )
-    config = load_config(kb_dir / ".openkb" / "config.yaml")
+    registry = json.loads(registry_path.read_text(encoding="utf-8")) if registry_path.exists() else {}
+    config = _read_runtime_config(kb_dir)
     healthy = (
         documents == manifest["document_count"]
         and sections == manifest["section_count"]
@@ -83,46 +95,39 @@ def system_status(
     }
 
 
-def answer_question(
-    kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_KEY
-) -> str:
-    set_tracing_disabled(True)
-    _ = load_dotenv(kb_dir / ".env", override=False)
-    config = load_config(kb_dir / ".openkb" / "config.yaml")
+def _ollama_generate(model_tag: str, prompt: str, timeout: int = 600) -> str:
+    payload = json.dumps(
+        {
+            "model": model_tag,
+            "system": build_system_prompt(),
+            "prompt": prompt,
+            "stream": False,
+            "options": {"temperature": 0.2},
+        },
+        ensure_ascii=False,
+    ).encode("utf-8")
+    request = urllib.request.Request(
+        f"{OLLAMA_BASE_URL}/api/generate",
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            result = json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as error:
+        detail = error.read().decode("utf-8", errors="replace")
+        raise RuntimeError(f"Ollama 응답 오류({error.code}): {detail}") from error
+    except (urllib.error.URLError, TimeoutError) as error:
+        raise RuntimeError("Ollama에 연결할 수 없습니다. Ollama가 실행 중인지 확인하세요.") from error
+    answer = str(result.get("response", "")).strip()
+    return answer or "답변을 생성하지 못했습니다."
+
+
+def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_KEY) -> str:
     choice = resolve_choice(model_key)
-    model = choice.model
-    language = str(config["language"])
-    bundle = credential_bundle()
     context = retrieve_context(kb_dir / "wiki" / "search" / "welfare.db", question)
-    agent = build_welfare_agent(kb_dir, model, language, bundle=bundle)
-    run_config = build_run_config_from_bundle(model, bundle)
-    grounded_input = (
-        f"질문:\n{question}\n\n"
-        "검색된 복지DB 원문:\n"
-        f"{context}\n\n"
-        "위 원문만 근거로, 아래 형식을 그대로 따라 답변하세요.\n\n"
-        "1. 첫 문단: 인용 표시 없이, 질문의 핵심 결론을 자연스러운 설명문 1~3문장으로 "
-        "작성하세요.\n"
-        "2. `## ✅ 요약` 제목 아래, 핵심 결론을 불릿 목록으로 정리하세요. 중요한 수치나 "
-        "기준은 **굵게** 표시하세요. 문장마다 인용을 반복하지 마세요.\n"
-        "3. 세부 내용이 있다면 `## 📋 상세 내용` 같은 제목 아래, 항목별로 번호를 매긴 "
-        "소제목(예: `### 1. 생계급여`)과 불릿 설명으로 기준·예외·절차를 정리하세요. "
-        "여기서도 문장마다 인용을 반복하지 마세요.\n"
-        "4. `## 📚 근거 지침` 제목 아래, 답변에 사용한 문서명만 목록으로 나열하세요. "
-        "줄 번호나 문장별 인용은 넣지 마세요.\n"
-        "5. 원문에 없거나 매년 바뀔 수 있는 수치·기준이 있다면 `## ⚠️ 확인 필요` 제목 "
-        "아래에 안내하세요. 해당 사항이 없으면 이 절은 생략하세요.\n"
-        "6. 마지막으로 `## 🚨 주의` 제목 아래에 \"상담 시 민원인의 개인 식별 정보"
-        "(주민번호 등)를 입력하지 마십시오.\"라는 문구를 포함하세요.\n\n"
-        "원문에서 확인되지 않는 내용은 추측하지 말고 확인되지 않는다고 명시하세요."
-    )
-    result = Runner.run_sync(
-        agent,
-        grounded_input,
-        max_turns=MAX_TURNS,
-        run_config=run_config,
-    )
-    return str(result.final_output or "답변을 생성하지 못했습니다.")
+    return _ollama_generate(choice.ollama_tag, build_grounded_prompt(question, context))
 
 
 def _usage() -> str:
