@@ -91,7 +91,7 @@ def _try_start_ollama() -> None:
 def _show_app_window(server: uvicorn.Server) -> None:
     api = DesktopApi(server)
     window = webview.create_window(
-        "개인용 복지업무 비서",
+        "서귀포시 복지톡(Talk) AI 업무비서(로컬PC용)",
         BASE_URL,
         width=1280,
         height=900,

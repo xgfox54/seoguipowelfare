@@ -111,7 +111,7 @@ def create_app(
     )
     question_lock = Lock()
     application = FastAPI(
-        title="개인용 복지업무 비서",
+        title="서귀포시 복지톡(Talk) AI 업무비서(로컬PC용)",
         docs_url=None,
         redoc_url=None,
         openapi_url=None,

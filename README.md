@@ -84,7 +84,7 @@ Ollama나 모델이 설치돼 있지 않은 상태로 프로그램을 실행하�
 2. `127.0.0.1:8765` 포트 사용 여부를 확인합니다.
 3. Ollama가 꺼져 있고 실행 파일을 찾을 수 있으면 `ollama serve` 시작을 시도합니다.
 4. EXE 내부의 복지 검색 DB와 FastAPI 서버를 시작합니다.
-5. 별도의 프로그램 창을 엽니다.
+5. 별도의 **서귀포시 복지톡(Talk) AI 업무비서(로컬PC용)** 프로그램 창을 엽니다.
 
 기본 브라우저를 자동으로 열지 않습니다.
 
@@ -277,7 +277,7 @@ powershell.exe -ExecutionPolicy Bypass -File .\setup-openkb.ps1 -RebuildIndex
 .\.venv-openkb\Scripts\python.exe welfare_assistant.py status
 ```
 
-`welfare_index.py build`는 검색 DB를 `wiki/kb-v120/`에 생성합니다. `-RebuildIndex` 옵션 없이 `setup-openkb.ps1`을 실행하면 기존 색인 유무를 다른 경로 기준으로 확인하므로, 색인을 처음 만들거나 다시 만들 때는 `-RebuildIndex`를 명시하거나 위 직접 명령을 사용하는 것이 안전합니다.
+`welfare_index.py build`는 검색 DB를 `wiki/kb-v120/`에 생성합니다. `setup-openkb.ps1`은 이 경로에 색인이 이미 있으면 재생성을 건너뛰고, `-RebuildIndex`를 지정하면 항상 다시 만듭니다.
 
 ## 개발 서버로 실행
 

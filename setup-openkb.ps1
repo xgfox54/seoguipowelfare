@@ -23,7 +23,7 @@ Push-Location $ProjectRoot
 try {
     & $Python 'welfare_assistant.py' 'init'
     if ($LASTEXITCODE -ne 0) { throw '로컬 복지업무 비서 상태 초기화에 실패했습니다.' }
-    if ($RebuildIndex -or -not (Test-Path -LiteralPath 'wiki\search\welfare.db')) {
+    if ($RebuildIndex -or -not (Test-Path -LiteralPath 'wiki\kb-v120\welfare.db')) {
         & $Python 'welfare_index.py' 'build'
         if ($LASTEXITCODE -ne 0) { throw '전체 복지DB 검색색인 구축에 실패했습니다.' }
     }
