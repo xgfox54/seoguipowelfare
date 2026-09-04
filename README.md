@@ -1,6 +1,6 @@
 ![서귀포시 복지톡 AI 배너](docs/banner.png)
 
-# 개인용 복지업무 비서
+# 서귀포시 복지톡(Talk) AI 업무비서(로컬PC용)
 
 복지 업무자료 38개를 **로컬 SQLite FTS 검색색인**으로 검색하고, PC에 설치된 **Ollama + Gemma 4**가 검색된 원문만 근거로 답변하는 Windows용 개인 업무 도구입니다.
 
@@ -15,6 +15,7 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 
 | 항목 | 현재 구현 |
 | --- | --- |
+| 버전 | v1.3.0 |
 | 사용자 실행 파일 | `복지업무비서.exe` 단일 파일 |
 | 화면 | pywebview + Microsoft Edge WebView2 기반 독립 프로그램 창 |
 | 로컬 서버 | FastAPI / Uvicorn, `127.0.0.1:8765`에만 바인딩 |
@@ -26,6 +27,18 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 | 선택 가능 모델 | Gemma 4 E4B / Gemma 4 E2B QAT (`gemma4:e2b-it-qat`) |
 | AI 호출 방식 | Ollama 로컬 HTTP API 직접 호출 |
 | 인터넷 필요 여부 | 모델 최초 설치 시 필요, 일반 질의는 로컬 처리 |
+
+## v1.3.0 주요 변경
+
+- 복지톡 전용 아이콘(둥근 모서리, 완전 투명 모서리)을 웹 헤더, 브라우저 파비콘, EXE, 작업표시줄에 통일 적용
+- 검색 결과 화면에 **결과 내 검색** 입력창과 이전/다음 이동 버튼 추가
+- **답변에 걸린 시간** 표시 위치를 검색 결과 제목 옆으로 이동
+- Ollama 미설치/미실행 시 설치 안내 다이얼로그 추가 (Ollama 다운로드 페이지 바로가기, 모델 설치 명령 복사, 설치 상태 다시 확인 버튼 포함)
+- Ollama 실행 파일 탐색 로직을 표준 설치 경로까지 확인하도록 보강
+- 개인정보 경고 문구를 로컬 처리 안내로 교체
+- HTTP(S) 스킴만 허용하는 내부 통신 헬퍼 도입 및 의존성 버전 고정으로 GitLab 보안 스캔(Semgrep, OSV-Scanner) 통과
+
+전체 변경 이력은 [RELEASE_NOTES_v1.3.0.md](RELEASE_NOTES_v1.3.0.md)를 참고하세요.
 
 ## 일반 사용자: EXE로 실행하기
 
@@ -59,6 +72,8 @@ ollama pull gemma4:e2b-it-qat
 ollama list
 ```
 
+Ollama나 모델이 설치돼 있지 않은 상태로 프로그램을 실행하면, 화면에 설치 안내 다이얼로그가 자동으로 표시됩니다. 이 다이얼로그에서 Ollama 다운로드 페이지를 바로 열거나, 모델 설치 명령을 복사하고, 설치 완료 후 상태를 다시 확인할 수 있습니다.
+
 ### 3. `복지업무비서.exe` 실행
 
 배포받은 `복지업무비서.exe`를 더블클릭합니다.
@@ -67,9 +82,9 @@ ollama list
 
 1. 이미 프로그램이 실행 중인지 확인합니다.
 2. `127.0.0.1:8765` 포트 사용 여부를 확인합니다.
-3. Ollama가 꺼져 있고 `ollama` 명령을 찾을 수 있으면 `ollama serve` 시작을 시도합니다.
+3. Ollama가 꺼져 있고 실행 파일을 찾을 수 있으면 `ollama serve` 시작을 시도합니다.
 4. EXE 내부의 복지 검색 DB와 FastAPI 서버를 시작합니다.
-5. 별도의 **개인용 복지업무 비서** 프로그램 창을 엽니다.
+5. 별도의 프로그램 창을 엽니다.
 
 기본 브라우저를 자동으로 열지 않습니다.
 
@@ -78,6 +93,7 @@ ollama list
 시스템 상태 영역에서 다음 항목을 바로 확인할 수 있습니다.
 
 - **AI 연결**: 사용 가능한 Gemma 모델이 하나 이상 있으면 `연결됨`
+- **Ollama**: 설치·실행 상태
 - **Gemma 4 E4B**: `설치됨` / `미설치`
 - **Gemma 4 E2B**: `설치됨` / `미설치`
 - 복지 매뉴얼 수
@@ -100,7 +116,7 @@ ollama list
 1. 질문란에 확인할 복지업무 내용을 입력합니다.
 2. 사용할 모델을 선택합니다.
 3. `질문하기`를 누르거나 Enter를 누릅니다.
-4. 검색된 복지DB 원문을 근거로 생성된 답변을 확인합니다.
+4. 검색된 복지DB 원문을 근거로 생성된 답변을 확인합니다. 답변이 길 경우 검색 결과 영역의 **결과 내 검색** 창으로 원하는 내용을 바로 찾을 수 있습니다.
 5. 중요한 안내, 급여 결정, 행정처분 전에는 반드시 원문 지침을 다시 확인합니다.
 
 질문과 검색 원문은 로컬 Ollama에서 처리되며 외부 AI 서비스로 전송하지 않습니다. 업무상 필요한 사례정보도 동일한 로컬 처리 경로를 사용합니다.
@@ -152,7 +168,7 @@ SQLite FTS5/BM25 + 선택적 semantic hybrid 검색
 
 현재 실행 경로에서는 **OpenKB를 사용하지 않습니다.**
 
-과거 버전에서 사용하던 `.openkb` 디렉터리명과 `setup-openkb.ps1` 파일명 일부는 기존 작업환경 및 스크립트 호환을 위해 남아 있지만, 현재 `requirements.txt`에는 OpenKB가 포함돼 있지 않으며 실행 시 `openkb.exe`도 필요하지 않습니다.
+과거 버전에서 사용하던 `.venv-openkb` 가상환경 이름과 `setup-openkb.ps1` 파일명 일부는 기존 작업환경 및 스크립트 호환을 위해 남아 있지만, 현재 `requirements.txt`에는 OpenKB가 포함돼 있지 않으며 실행 시 `openkb.exe`도 필요하지 않습니다.
 
 AI 답변은 `welfare_assistant.py`가 Ollama의 로컬 HTTP API를 직접 호출해 생성합니다.
 
@@ -179,6 +195,7 @@ AI 답변은 `welfare_assistant.py`가 Ollama의 로컬 HTTP API를 직접 호�
 - Markdown 렌더링 시 원시 HTML은 비활성화합니다.
 - 질문과 검색 원문은 Ollama 로컬 API로 전달됩니다.
 - 프로그램 자체는 답변 생성을 위해 외부 AI API를 호출하지 않습니다.
+- 내부 HTTP 통신은 http/https 스킴만 허용하는 헬퍼를 거쳐 이뤄지며, GitLab 저장소의 서버 측 보안 스캔(Semgrep, OSV-Scanner 등)을 통과한 상태로 배포됩니다.
 
 단, Ollama 모델을 최초 다운로드하거나 Git 저장소/패키지를 설치하는 개발 과정에서는 인터넷 연결이 필요합니다.
 
@@ -189,7 +206,7 @@ AI 답변은 `welfare_assistant.py`가 Ollama의 로컬 HTTP API를 직접 호�
 - 원문 문서: **38개**
 - 원문 총량: **61,234,862바이트**
 - 검색 구간: **18,649개**
-- 검색 인덱스 DB: **약 266.9MB**
+- 검색 인덱스 DB: **약 355.9MB**
 - 품질 오류: **0건**
 
 EXE 빌드 시 다음 파일이 실행 파일 내부에 함께 포함됩니다.
@@ -232,6 +249,8 @@ python -m venv .venv-openkb
 
 `.venv-openkb`라는 이름은 과거 버전과의 경로 호환을 위해 유지한 디렉터리명일 뿐, 현재 환경에 OpenKB가 설치된다는 뜻은 아닙니다.
 
+`requirements.txt`에는 직접 사용하는 패키지 외에, 취약점 스캐너가 실제 설치 버전을 정확히 인식하도록 전이 의존성 버전도 함께 고정되어 있습니다.
+
 ## 검색색인 생성·갱신
 
 `source-md\`의 Markdown 원문을 SQLite 검색 DB로 다시 만들려면 다음을 실행합니다.
@@ -257,6 +276,8 @@ powershell.exe -ExecutionPolicy Bypass -File .\setup-openkb.ps1 -RebuildIndex
 .\.venv-openkb\Scripts\python.exe welfare_index.py build
 .\.venv-openkb\Scripts\python.exe welfare_assistant.py status
 ```
+
+`welfare_index.py build`는 검색 DB를 `wiki/kb-v120/`에 생성합니다. `-RebuildIndex` 옵션 없이 `setup-openkb.ps1`을 실행하면 기존 색인 유무를 다른 경로 기준으로 확인하므로, 색인을 처음 만들거나 다시 만들 때는 `-RebuildIndex`를 명시하거나 위 직접 명령을 사용하는 것이 안전합니다.
 
 ## 개발 서버로 실행
 
@@ -293,7 +314,7 @@ powershell.exe -ExecutionPolicy Bypass -File .\build-exe.ps1
 또는 직접:
 
 ```powershell
-.\.venv-package\Scripts\python.exe -m PyInstaller --noconfirm --clean .\복지업무비서.spec
+.\.venv-package\Scripts\python.exe -m PyInstaller --noconfirm --clean .\welfare_assistant.spec
 ```
 
 결과 파일:
@@ -302,16 +323,16 @@ powershell.exe -ExecutionPolicy Bypass -File .\build-exe.ps1
 dist\복지업무비서.exe
 ```
 
-PyInstaller 설정은 `console=False`인 Windows 단일 EXE이며, `pywebview`와 `uvicorn` 모듈 및 검색 DB/웹 자원을 함께 패키징합니다.
+PyInstaller 설정은 `console=False`인 Windows 단일 EXE이며, `pywebview`와 `uvicorn` 모듈 및 검색 DB/웹 자원을 함께 패키징합니다. 빌드 산출물 내부 모듈명은 `welfare_assistant`이고, `build-exe.ps1`이 최종 결과 파일명을 `복지업무비서.exe`로 정리합니다.
 
 ## 테스트와 코드 검사
 
 ```powershell
-.\.venv-openkb\Scripts\python.exe -m pytest -q
-.\.venv-openkb\Scripts\python.exe -m ruff check welfare_*.py welfare_search tests
+.\.venv-package\Scripts\python.exe -m pytest -q
+.\.venv-package\Scripts\python.exe -m ruff check welfare_*.py welfare_search tests
 ```
 
-현재 검증 기준은 **25개 테스트 통과**입니다.
+현재 검증 기준은 **39개 테스트 통과**이며, 이 중 1건은 원문 61.2MB 전체를 다시 색인하는 무거운 회귀 테스트라 다른 테스트보다 오래 걸립니다.
 
 ## 자료 갱신 절차
 
@@ -332,27 +353,29 @@ PyInstaller 설정은 `console=False`인 Windows 단일 EXE이며, `pywebview`�
 | `welfare_web.py` | FastAPI API 및 정적 웹 UI 제공 |
 | `welfare_assistant.py` | 검색 근거 구성 및 Ollama 직접 호출 |
 | `welfare_models.py` | Gemma 모델 정의 및 Ollama 설치 상태 확인 |
+| `welfare_runtime.py` | 리소스 경로 및 http/https로 제한된 내부 HTTP 통신 헬퍼 |
 | `welfare_index.py` | SQLite 검색색인 생성 |
 | `welfare_search/` | 검색 로직 |
 | `web/` | 프로그램 UI |
 | `source-md/` | 복지 업무 원문 Markdown |
 | `setup-openkb.ps1` | 레거시 파일명을 유지한 검색 DB 초기화/재생성 스크립트 |
-| `복지업무비서.spec` | PyInstaller 단일 EXE 설정 |
+| `welfare_assistant.spec` | PyInstaller 단일 EXE 설정 |
 | `build-exe.ps1` | 단일 EXE 빌드 스크립트 |
-| `requirements.txt` | 실행/개발 Python 의존성 |
-| `requirements-build.txt` | PyInstaller 빌드 의존성 |
+| `tools/generate_bokjitalk_icon.ps1` | 원본 아이콘 PNG로부터 웹/EXE용 아이콘 자산을 생성하는 스크립트 |
+| `requirements.txt` | 실행/개발 Python 의존성 (전이 의존성 버전 고정 포함) |
+| `requirements-build.txt` | PyInstaller 빌드 의존성 (전이 의존성 버전 고정 포함) |
 
 ## 자주 겪는 문제
 
 | 증상 | 확인할 사항 |
 | --- | --- |
 | `AI 연결: 연결 안 됨` | Ollama 실행 여부와 `ollama list` 확인 |
-| E4B 또는 E2B가 `미설치` | 해당 `ollama pull ...` 명령 실행 |
+| E4B 또는 E2B가 `미설치` | 해당 `ollama pull ...` 명령 실행, 또는 화면의 설치 안내 다이얼로그 사용 |
 | 프로그램 창이 열리지 않음 | Microsoft Edge WebView2 Runtime 설치 상태 확인 |
 | `포트 8765을 다른 프로그램이 사용 중입니다` | 기존 복지업무 비서 또는 다른 로컬 서버 종료 |
 | 프로그램이 이미 실행 중이라는 메시지 | 기존 프로그램 창을 사용하거나 기존 인스턴스를 종료 |
 | 개발용 `setup-openkb.ps1`에서 Python 오류 | `.venv-openkb` 생성 및 `requirements.txt` 설치 여부 확인 |
-| 검색 DB가 없다는 빌드 오류 | 먼저 `setup-openkb.ps1 -RebuildIndex` 또는 `welfare_index.py build` 실행 |
+| 검색 DB가 없다는 빌드 오류 | 먼저 `welfare_index.py build`로 `wiki/kb-v120/welfare.db`를 생성했는지 확인 |
 
 ## 답변 원칙
 
