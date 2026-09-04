@@ -32,7 +32,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name="복지업무비서",
+    name="welfare_assistant",
     icon="assets/bokjitalk.ico",
     debug=False,
     bootloader_ignore_signals=False,

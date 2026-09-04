@@ -1,11 +1,17 @@
 from __future__ import annotations
 
 import json
+import os
+import shutil
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
+from pathlib import Path
+
+from welfare_runtime import open_http_url
 
 OLLAMA_BASE_URL = "http://127.0.0.1:11434"
+OLLAMA_WINDOWS_DOWNLOAD_URL = "https://ollama.com/download/windows"
 
 
 @dataclass(frozen=True, slots=True)
@@ -51,10 +57,45 @@ def resolve_choice(model_key: str | None) -> ModelChoice:
     return choice
 
 
+def find_ollama_executable() -> str:
+    discovered = shutil.which("ollama")
+    if discovered:
+        return discovered
+
+    candidates: list[Path] = []
+    local_app_data = os.environ.get("LOCALAPPDATA")
+    if local_app_data:
+        root = Path(local_app_data)
+        candidates.extend(
+            (
+                root / "Programs" / "Ollama" / "ollama.exe",
+                root / "Ollama" / "ollama.exe",
+            )
+        )
+    for variable in ("PROGRAMFILES", "PROGRAMFILES(X86)"):
+        base = os.environ.get(variable)
+        if base:
+            candidates.append(Path(base) / "Ollama" / "ollama.exe")
+    return next((str(path) for path in candidates if path.is_file()), "")
+
+
+def ollama_is_running() -> bool:
+    request = urllib.request.Request(f"{OLLAMA_BASE_URL}/api/tags")
+    try:
+        with open_http_url(request, timeout=2) as response:
+            return response.status == 200
+    except (urllib.error.URLError, TimeoutError):
+        return False
+
+
+def ollama_is_installed() -> bool:
+    return bool(find_ollama_executable()) or ollama_is_running()
+
+
 def installed_local_models() -> frozenset[str]:
     request = urllib.request.Request(f"{OLLAMA_BASE_URL}/api/tags")
     try:
-        with urllib.request.urlopen(request, timeout=2) as response:
+        with open_http_url(request, timeout=2) as response:
             payload = json.loads(response.read().decode("utf-8"))
     except (urllib.error.URLError, TimeoutError, json.JSONDecodeError):
         return frozenset()
@@ -63,12 +104,29 @@ def installed_local_models() -> frozenset[str]:
     )
 
 
-def available_choices() -> tuple[dict[str, str | bool], ...]:
-    local_models = installed_local_models()
+def available_choices(
+    *,
+    local_models: frozenset[str] | None = None,
+    runtime_installed: bool | None = None,
+    runtime_running: bool | None = None,
+) -> tuple[dict[str, str | bool], ...]:
+    if runtime_running is None:
+        runtime_running = ollama_is_running()
+    if runtime_installed is None:
+        runtime_installed = bool(find_ollama_executable()) or runtime_running
+    if local_models is None:
+        local_models = installed_local_models() if runtime_running else frozenset()
     described: list[dict[str, str | bool]] = []
     for choice in MODEL_CHOICES:
         ready = choice.ollama_tag in local_models
-        reason = "" if ready else f"Ollama에서 {choice.ollama_tag}를 찾을 수 없습니다."
+        if ready:
+            reason = ""
+        elif not runtime_installed:
+            reason = "Ollama가 설치되어 있지 않습니다. 설치 안내를 확인하세요."
+        elif not runtime_running:
+            reason = "Ollama가 실행되고 있지 않습니다. 프로그램을 다시 실행해 주세요."
+        else:
+            reason = f"모델 {choice.ollama_tag}가 설치되어 있지 않습니다."
         described.append(
             {
                 "key": choice.key,

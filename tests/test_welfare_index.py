@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 from welfare_search import build_index, read_sections, retrieve_context, search_sections
+from welfare_search.search import search_terms
 
 
 @pytest.fixture
@@ -27,7 +28,7 @@ def source_dir(tmp_path: Path) -> Path:
         encoding="utf-8",
     )
     _ = (source / "02.[서귀포시업무-돌봄] 2026년 제주가치돌봄.md").write_text(
-        "# 제주가치돌봄\n## 신청 대상\n서귀포시 거주 돌봄 필요 주민이 신청한다.\n",
+        "# 제주가치돌봄\n## 서비스\n식사지원은 도시락을 제공한다.\n## 신청 대상\n서귀포시 거주 돌봄 필요 주민이 신청한다.\n",
         encoding="utf-8",
     )
     return source
@@ -79,6 +80,39 @@ def test_search_index_returns_grounded_sections(
     assert first.section_id
 
 
+def test_service_name_index_is_inherited_by_eligibility_sections(
+    source_dir: Path, tmp_path: Path
+) -> None:
+    output = tmp_path / "wiki" / "search"
+    _ = build_index(source_dir, output)
+
+    hits = search_sections(output / "welfare.db", "제주가치돌봄 식사지원 조건", limit=5)
+
+    assert hits
+    assert hits[0].source_name.startswith("02.")
+    with sqlite3.connect(output / "welfare.db") as connection:
+        service_names = {
+            row[0]
+            for row in connection.execute(
+                "SELECT service_names FROM sections WHERE source_name LIKE '02.%'"
+            ).fetchall()
+        }
+    assert service_names
+    assert all("제주가치돌봄" in value for value in service_names)
+    assert all("식사지원" in value for value in service_names)
+
+
+def test_condition_query_prefers_eligibility_heading(source_dir: Path, tmp_path: Path) -> None:
+    output = tmp_path / "wiki" / "search"
+    _ = build_index(source_dir, output)
+
+    hits = search_sections(output / "welfare.db", "제주가치돌봄 식사지원 조건", limit=5)
+
+    assert hits
+    assert hits[0].source_name.startswith("02.")
+    assert any("신청 대상" in f"{hit.title} {hit.headings} {hit.content}" for hit in hits[:3])
+
+
 def test_build_index_is_idempotent(source_dir: Path, tmp_path: Path) -> None:
     # Given: an already-built index.
     output = tmp_path / "wiki" / "search"
@@ -120,6 +154,48 @@ def test_search_prefers_requested_year_over_term_frequency(
 
     # Then: the 2026 source outranks the older high-frequency source.
     assert hits[0].source_name.startswith("01.")
+
+
+def test_search_prefers_latest_primary_source_without_explicit_year(
+    source_dir: Path, tmp_path: Path
+) -> None:
+    _ = (source_dir / "03.[매뉴얼-종합안내] 2024년 생계급여 요약.md").write_text(
+        "---\nauthority: summary\n---\n# 생계급여 자동차\n" + ("생계급여 자동차 재산 " * 80),
+        encoding="utf-8",
+    )
+    _ = (source_dir / "04.[매뉴얼-공적급여] 2026년 생계급여 원본.md").write_text(
+        "---\nauthority: primary\n---\n# 생계급여 자동차\n현행 자동차 재산 기준을 확인한다.\n",
+        encoding="utf-8",
+    )
+    output = tmp_path / "wiki" / "search"
+    _ = build_index(source_dir, output)
+
+    hits = search_sections(output / "welfare.db", "생계급여 자동차 재산", limit=3)
+
+    assert hits[0].source_name.startswith("04.")
+
+
+def test_welfare_synonym_dictionary_expands_common_abbreviations() -> None:
+    assert "근로소득" in search_terms("생계급여 받는데 알바하면 끊기나")
+    assert "긴급복지" in search_terms("긴급생계비 위기사유")
+    assert "자동차재산" in search_terms("차 있으면 수급자 안 되나")
+
+
+def test_program_term_outranks_case_condition_term(source_dir: Path, tmp_path: Path) -> None:
+    _ = (source_dir / "05.[매뉴얼-공적급여] 2026년 국민기초생활보장 사업안내.md").write_text(
+        "# 국민기초생활보장\n수급자의 자동차재산 기준을 확인한다.\n",
+        encoding="utf-8",
+    )
+    _ = (source_dir / "06.[매뉴얼-차상위] 2026년 차상위 안내.md").write_text(
+        "# 자동차재산\n자동차재산 자동차재산 자동차재산 기준.\n",
+        encoding="utf-8",
+    )
+    output = tmp_path / "wiki" / "search"
+    _ = build_index(source_dir, output)
+
+    hits = search_sections(output / "welfare.db", "차 있으면 수급자 안 되나", limit=2)
+
+    assert hits[0].source_name.startswith("05.")
 
 
 def test_search_prefers_filename_with_rare_program_phrase(
@@ -178,6 +254,8 @@ def test_retrieve_context_includes_citable_source_metadata(
     # Then: the model receives verbatim text plus document and line metadata.
     assert "[source_name: 01.[매뉴얼-공적급여] 2026년 기초생활.md]" in context
     assert "[lines:" in context
+    assert "[authority: primary]" in context
+    assert "[topic:" in context
     assert "장애인 사용 자동차는 예외 기준을 검토한다." in context
 
 
@@ -230,7 +308,7 @@ def test_v120_schema_records_hierarchy_references_and_quality(source_dir: Path, 
             "SELECT COUNT(*) FROM quality_issues WHERE issue_code='oversized_chunk'"
         ).fetchone()[0]
 
-    assert version == 3
+    assert version == 5
     assert node_count > 0
     assert reference_count >= 3
     assert oversized == 0

@@ -2,18 +2,19 @@ from __future__ import annotations
 
 import ctypes
 import json
-import shutil
 import socket
 import subprocess
 import threading
 import time
 import urllib.error
 import urllib.request
+import webbrowser
 
 import uvicorn
 import webview
 
-from welfare_runtime import knowledge_base_root, resource_path
+from welfare_models import OLLAMA_WINDOWS_DOWNLOAD_URL, find_ollama_executable
+from welfare_runtime import knowledge_base_root, open_http_url, resource_path
 from welfare_web import create_app
 
 HOST = "127.0.0.1"
@@ -32,6 +33,9 @@ class DesktopApi:
             self.window.destroy()
         return True
 
+    def open_ollama_download(self) -> bool:
+        return bool(webbrowser.open(OLLAMA_WINDOWS_DOWNLOAD_URL, new=2))
+
 
 def _message_box(message: str, title: str = "복지업무 비서") -> None:
     ctypes.windll.user32.MessageBoxW(None, message, title, 0x40)
@@ -39,7 +43,7 @@ def _message_box(message: str, title: str = "복지업무 비서") -> None:
 
 def _app_is_running() -> bool:
     try:
-        with urllib.request.urlopen(f"{BASE_URL}/api/status", timeout=1.5) as response:
+        with open_http_url(f"{BASE_URL}/api/status", timeout=1.5) as response:
             if response.status != 200:
                 return False
             payload = json.loads(response.read().decode("utf-8"))
@@ -56,7 +60,7 @@ def _port_is_busy() -> bool:
 
 def _ollama_is_running() -> bool:
     try:
-        with urllib.request.urlopen("http://127.0.0.1:11434/api/tags", timeout=1.5) as response:
+        with open_http_url("http://127.0.0.1:11434/api/tags", timeout=1.5) as response:
             return response.status == 200
     except (urllib.error.URLError, TimeoutError):
         return False
@@ -65,7 +69,7 @@ def _ollama_is_running() -> bool:
 def _try_start_ollama() -> None:
     if _ollama_is_running():
         return
-    ollama = shutil.which("ollama")
+    ollama = find_ollama_executable()
     if not ollama:
         return
     creationflags = getattr(subprocess, "CREATE_NO_WINDOW", 0)

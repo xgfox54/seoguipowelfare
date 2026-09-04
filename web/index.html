@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="개인 복지DB 매뉴얼을 근거로 답하는 로컬 복지업무 비서">
-    <title>개인용 복지업무 비서</title>
+    <meta name="description" content="서귀포시 복지톡(Talk) AI 업무비서(로컬PC용)">
+    <title>서귀포시 복지톡(Talk) AI 업무비서(로컬PC용)</title>
+    <link rel="icon" href="/static/bokjitalk.ico" sizes="any">
     <link rel="stylesheet" href="/static/styles.css">
     <script src="/static/app.js" defer></script>
   </head>
@@ -19,10 +20,9 @@
     <header class="service-header">
       <div class="container service-header__inner">
         <div class="service-identity">
-          <span class="service-identity__mark" aria-hidden="true">복지DB</span>
+          <img class="service-identity__mark" src="/static/bokjitalk.png" alt="복지톡 아이콘">
           <div class="service-identity__copy">
-            <p class="service-identity__name">개인용 복지업무 비서</p>
-            <p class="service-identity__qualifier">개인용 · 비공식</p>
+            <p class="service-identity__name">서귀포시 복지톡(Talk) AI 업무비서(로컬PC용)</p>
           </div>
         </div>
         <div class="form-actions form-actions--inline">
@@ -69,9 +69,9 @@
               <button id="clear-button" class="button button--secondary" type="button">질문 지우기</button>
             </div>
 
-            <div id="privacy-warning" class="notice notice--warning privacy-notice">
-              <p class="notice__title">개인정보를 입력하지 마세요</p>
-              <p class="notice__body">주민등록번호, 주소, 전화번호, 실명 등 개인을 식별할 수 있는 정보는 빼고 상황만 적어 주세요.</p>
+            <div id="privacy-warning" class="notice privacy-notice">
+              <p class="notice__title">로컬 처리</p>
+              <p class="notice__body">질문과 복지DB 원문은 이 PC의 로컬 Ollama에서 처리되며 외부 AI 서비스로 전송하지 않습니다.</p>
             </div>
 
             <fieldset class="model-group">
@@ -98,6 +98,7 @@
           </div>
           <dl class="fact-list" aria-live="polite">
             <div class="fact-list__item"><dt>AI 연결</dt><dd id="status-ai">확인 중</dd></div>
+            <div class="fact-list__item"><dt>Ollama</dt><dd id="status-ollama">확인 중</dd></div>
             <div class="fact-list__item"><dt>Gemma 4 E4B</dt><dd id="status-e4b">확인 중</dd></div>
             <div class="fact-list__item"><dt>Gemma 4 E2B</dt><dd id="status-e2b">확인 중</dd></div>
             <div class="fact-list__item"><dt>선택한 모델</dt><dd id="status-model">확인 중</dd></div>
@@ -108,11 +109,39 @@
             <p class="notice__title">답변 확인 원칙</p>
             <p class="notice__body">실제 처분이나 안내 전에는 답변에 표시된 문서명과 원문 줄을 다시 확인하세요.</p>
           </div>
+          <div id="setup-summary" class="notice notice--warning setup-summary" hidden>
+            <p class="notice__title">AI 실행환경 설치가 필요합니다</p>
+            <p id="setup-summary-text" class="notice__body">Ollama 또는 로컬 모델 설치 상태를 확인하세요.</p>
+            <div class="button-row setup-summary__actions">
+              <button id="setup-guide-button" class="button button--secondary" type="button">설치 안내 보기</button>
+              <button id="setup-refresh-button" class="button button--secondary" type="button">설치 상태 다시 확인</button>
+            </div>
+          </div>
         </aside>
       </div>
 
       <section id="result-section" class="result-section" aria-labelledby="result-heading">
-        <h2 id="result-heading" class="result-heading" tabindex="-1">검색 결과</h2>
+        <div class="result-heading-row">
+          <div class="result-heading-meta">
+            <h2 id="result-heading" class="result-heading" tabindex="-1">검색 결과</h2>
+            <p id="answer-elapsed" class="answer-elapsed" aria-live="off">답변에 걸린 시간: 00분 00초</p>
+          </div>
+          <div class="result-search" role="search" aria-label="결과 내 검색">
+            <input
+              id="result-search-input"
+              class="result-search__input"
+              type="search"
+              inputmode="search"
+              autocomplete="off"
+              placeholder="결과 내 검색"
+              aria-label="검색 결과 내용에서 검색"
+              disabled
+            >
+            <output id="result-search-count" class="result-search__count" aria-live="polite">0 / 0</output>
+            <button id="result-search-prev" class="result-search__nav" type="button" aria-label="이전 검색 결과" title="이전 검색 결과" disabled>↑</button>
+            <button id="result-search-next" class="result-search__nav" type="button" aria-label="다음 검색 결과" title="다음 검색 결과" disabled>↓</button>
+          </div>
+        </div>
 
         <div id="empty-state" class="empty-state">
           <div>
@@ -143,5 +172,43 @@
         <p>이 도구는 개인 업무를 돕기 위한 비공식 시스템이며, 최종 판단은 최신 법령·지침과 담당 기관 확인을 따릅니다.</p>
       </div>
     </footer>
+
+    <dialog id="setup-dialog" class="setup-dialog" aria-labelledby="setup-dialog-title">
+      <div class="setup-dialog__content">
+        <div class="setup-dialog__header">
+          <div>
+            <p class="eyebrow">다른 PC에서 처음 실행할 때</p>
+            <h2 id="setup-dialog-title" class="setup-dialog__title">AI 실행환경 설치 안내</h2>
+          </div>
+          <button id="setup-close-button" class="setup-dialog__close" type="button" aria-label="설치 안내 닫기">×</button>
+        </div>
+        <p id="setup-dialog-status" class="setup-dialog__status">현재 설치 상태를 확인하고 있습니다.</p>
+        <ol class="setup-steps">
+          <li>
+            <strong>Ollama를 설치합니다.</strong>
+            <p>인터넷이 연결된 상태에서 Ollama Windows 버전을 설치하세요. 설치가 끝난 뒤에는 복지업무비서를 오프라인으로 사용할 수 있습니다.</p>
+            <button id="ollama-download-button" class="button button--secondary" type="button">Ollama 다운로드 페이지 열기</button>
+          </li>
+          <li>
+            <strong>기본 모델 E4B를 설치합니다.</strong>
+            <p>PowerShell 또는 명령 프롬프트를 열고 아래 명령을 실행하세요. 다운로드 용량은 약 9.6GB입니다.</p>
+            <div class="command-box"><code>ollama pull gemma4:e4b</code><button class="command-copy" type="button" data-copy-command="ollama pull gemma4:e4b">복사</button></div>
+          </li>
+          <li>
+            <strong>E2B는 선택사항입니다.</strong>
+            <p>E2B 선택 기능도 사용하려면 아래 모델을 추가로 설치하세요. 다운로드 용량은 약 4.3GB입니다.</p>
+            <div class="command-box"><code>ollama pull gemma4:e2b-it-qat</code><button class="command-copy" type="button" data-copy-command="ollama pull gemma4:e2b-it-qat">복사</button></div>
+          </li>
+          <li>
+            <strong>설치 완료 후 상태를 다시 확인합니다.</strong>
+            <p>Ollama가 바로 인식되지 않으면 이 프로그램을 종료한 뒤 다시 실행하세요.</p>
+          </li>
+        </ol>
+        <div class="setup-dialog__actions">
+          <button id="setup-dialog-refresh-button" class="button button--primary" type="button">설치 상태 다시 확인</button>
+          <button id="setup-dialog-done-button" class="button button--secondary" type="button">닫기</button>
+        </div>
+      </div>
+    </dialog>
   </body>
 </html>

@@ -10,13 +10,25 @@ from pathlib import Path
 
 import yaml
 
-from welfare_agent import build_grounded_prompt, build_system_prompt
+from welfare_agent import (
+    build_grounded_prompt,
+    build_multi_agent_answer_prompt,
+    build_refiner_prompt,
+    build_refiner_system_prompt,
+    build_supervisor_prompt,
+    build_supervisor_system_prompt,
+    build_system_prompt,
+)
 from welfare_models import (
     DEFAULT_MODEL_KEY,
     OLLAMA_BASE_URL,
     available_choices,
+    find_ollama_executable,
+    installed_local_models,
+    ollama_is_running,
     resolve_choice,
 )
+from welfare_runtime import open_http_url
 from welfare_search import retrieve_context
 
 
@@ -62,10 +74,27 @@ def _index_dir(kb_dir: Path) -> Path:
     return kb_dir / "wiki" / "search"
 
 
-def system_status(kb_dir: Path) -> dict[str, str | int | list[dict[str, str | bool]]]:
+def _runtime_status() -> tuple[bool, bool, frozenset[str], list[dict[str, str | bool]]]:
+    runtime_running = ollama_is_running()
+    runtime_installed = bool(find_ollama_executable()) or runtime_running
+    local_models = installed_local_models() if runtime_running else frozenset()
+    models = list(
+        available_choices(
+            local_models=local_models,
+            runtime_installed=runtime_installed,
+            runtime_running=runtime_running,
+        )
+    )
+    return runtime_installed, runtime_running, local_models, models
+
+
+def system_status(kb_dir: Path) -> dict[str, object]:
     index_dir = _index_dir(kb_dir)
     database = index_dir / "welfare.db"
     manifest_path = index_dir / "manifest.json"
+    runtime_installed, runtime_running, _local_models, models = _runtime_status()
+    ai_ready = any(model["available"] is True for model in models)
+    setup_required = not runtime_installed or not runtime_running or not ai_ready
     if not database.exists() or not manifest_path.exists():
         return {
             "status": "점검 필요",
@@ -74,8 +103,12 @@ def system_status(kb_dir: Path) -> dict[str, str | int | list[dict[str, str | bo
             "search_sections": 0,
             "native_openkb_documents": 0,
             "source_bytes": 0,
-            "models": list(available_choices()),
+            "models": models,
             "default_model": DEFAULT_MODEL_KEY,
+            "ollama_installed": runtime_installed,
+            "ollama_running": runtime_running,
+            "ai_ready": ai_ready,
+            "setup_required": setup_required,
         }
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     with sqlite3.connect(database) as connection:
@@ -98,19 +131,30 @@ def system_status(kb_dir: Path) -> dict[str, str | int | list[dict[str, str | bo
         "search_sections": sections,
         "native_openkb_documents": len(registry),
         "source_bytes": manifest["source_bytes"],
-        "models": list(available_choices()),
+        "models": models,
         "default_model": DEFAULT_MODEL_KEY,
+        "ollama_installed": runtime_installed,
+        "ollama_running": runtime_running,
+        "ai_ready": ai_ready,
+        "setup_required": setup_required,
     }
 
 
-def _ollama_generate(model_tag: str, prompt: str, timeout: int = 600) -> str:
+def _ollama_generate(
+    model_tag: str,
+    prompt: str,
+    timeout: int = 600,
+    *,
+    system_prompt: str | None = None,
+    temperature: float = 0.2,
+) -> str:
     payload = json.dumps(
         {
             "model": model_tag,
-            "system": build_system_prompt(),
+            "system": system_prompt or build_system_prompt(),
             "prompt": prompt,
             "stream": False,
-            "options": {"temperature": 0.2},
+            "options": {"temperature": temperature, "num_ctx": 32768},
         },
         ensure_ascii=False,
     ).encode("utf-8")
@@ -121,7 +165,7 @@ def _ollama_generate(model_tag: str, prompt: str, timeout: int = 600) -> str:
         method="POST",
     )
     try:
-        with urllib.request.urlopen(request, timeout=timeout) as response:
+        with open_http_url(request, timeout=timeout) as response:
             result = json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as error:
         detail = error.read().decode("utf-8", errors="replace")
@@ -132,10 +176,79 @@ def _ollama_generate(model_tag: str, prompt: str, timeout: int = 600) -> str:
     return answer or "답변을 생성하지 못했습니다."
 
 
+def _clean_refined_question(question: str, candidate: str) -> str:
+    refined = candidate.strip().strip("`").strip()
+    for prefix in ("정제된 질문:", "검색 질문:", "검색질문:", "질문:"):
+        if refined.startswith(prefix):
+            refined = refined[len(prefix) :].strip()
+            break
+    if not refined or len(refined) > 2000:
+        return question
+    return refined
+
+
+def _refine_question(model_tag: str, question: str) -> str:
+    try:
+        candidate = _ollama_generate(
+            model_tag,
+            build_refiner_prompt(question),
+            timeout=300,
+            system_prompt=build_refiner_system_prompt(),
+            temperature=0.0,
+        )
+    except RuntimeError:
+        return question
+    return _clean_refined_question(question, candidate)
+
+
+def _supervise_answer(
+    model_tag: str,
+    original_question: str,
+    refined_question: str,
+    context: str,
+    draft_answer: str,
+) -> str:
+    try:
+        reviewed = _ollama_generate(
+            model_tag,
+            build_supervisor_prompt(
+                original_question,
+                refined_question,
+                context,
+                draft_answer,
+            ),
+            timeout=600,
+            system_prompt=build_supervisor_system_prompt(),
+            temperature=0.0,
+        )
+    except RuntimeError:
+        return draft_answer
+    return reviewed.strip() or draft_answer
+
+
 def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_KEY) -> str:
     choice = resolve_choice(model_key)
-    context = retrieve_context(_index_dir(kb_dir) / "welfare.db", question)
-    return _ollama_generate(choice.ollama_tag, build_grounded_prompt(question, context))
+    refined_question = _refine_question(choice.ollama_tag, question)
+    retrieval_query = question if refined_question == question else f"{question}\n{refined_question}"
+    context = retrieve_context(_index_dir(kb_dir) / "welfare.db", retrieval_query)
+    try:
+        draft_answer = _ollama_generate(
+            choice.ollama_tag,
+            build_multi_agent_answer_prompt(question, refined_question, context),
+        )
+    except RuntimeError:
+        context = retrieve_context(_index_dir(kb_dir) / "welfare.db", question)
+        return _ollama_generate(
+            choice.ollama_tag,
+            build_grounded_prompt(question, context),
+        )
+    return _supervise_answer(
+        choice.ollama_tag,
+        question,
+        refined_question,
+        context,
+        draft_answer,
+    )
 
 
 def _usage() -> str:

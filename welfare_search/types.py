@@ -37,6 +37,10 @@ class SourceDocument:
     edition: str
     effective_from: str
     effective_to: str
+    topic: str
+    authority: str
+    source_role: str
+    jurisdiction: str
 
 
 @dataclass(frozen=True, slots=True)

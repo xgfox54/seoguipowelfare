@@ -4,10 +4,12 @@ import json
 import re
 import sqlite3
 from dataclasses import asdict
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Final
 
 from welfare_search.semantic import semantic_section_ids
+from welfare_search.synonyms import expand_query_terms, preferred_program_term
 from welfare_search.types import SearchHit
 
 TOKEN_PATTERN: Final[re.Pattern[str]] = re.compile(r"[0-9A-Za-z가-힣_]{2,}")
@@ -20,26 +22,15 @@ QUESTION_STOPWORDS: Final[frozenset[str]] = frozenset(
 KOREAN_SUFFIXES: Final[tuple[str, ...]] = (
     "으로부터", "에게서", "에서는", "으로는", "까지는", "부터는", "에서", "에게", "께서", "으로", "처럼", "보다", "까지", "부터", "하며", "하고", "이며", "이고", "과", "와", "을", "를", "은", "는", "이", "가", "의", "에", "도", "만", "로",
 )
-QUERY_EXPANSIONS: Final[tuple[tuple[re.Pattern[str], tuple[str, ...]], ...]] = (
-    (re.compile(r"\b차\b|차가|차량"), ("자동차", "자동차재산")),
-    (re.compile(r"병원.*같이|같이.*병원|병원.*동행"), ("병원동행", "동행")),
-    (
-        re.compile(r"집에서.*돌봄|재택.*돌봄|집에서.*계속"),
-        ("재가", "재가서비스", "재가노인", "재가노인지원서비스", "노인맞춤돌봄", "방문"),
-    ),
-    (re.compile(r"월세|집세"), ("주거급여", "임차급여")),
-    (re.compile(r"아이.*낳|출산.*돈|출산.*지원"), ("부모급여", "아동수당", "출산")),
-    (re.compile(r"목욕.*도움|씻.*도움"), ("방문목욕", "목욕")),
-    (re.compile(r"먹고살|생활비"), ("생계급여", "생계")),
-)
+AUTHORITY_RANK: Final[dict[str, int]] = {"primary": 0, "reference": 1, "summary": 2, "index": 3}
 
 SEARCH_SQL: Final = """
 SELECT s.section_id, s.source_name, s.title, s.headings, s.original_name,
-       s.start_line, s.end_line, snippet(sections_fts, 4, '', '', ' … ', 72),
-       bm25(sections_fts, 0.0, 5.0, 4.0, 3.0, 1.0)
+       s.start_line, s.end_line, snippet(sections_fts, 5, '', '', ' … ', 72),
+       bm25(sections_fts, 0.0, 5.0, 4.0, 3.0, 8.0, 1.0)
 FROM sections_fts JOIN sections AS s ON s.section_id = sections_fts.section_id
 WHERE sections_fts MATCH ?
-ORDER BY bm25(sections_fts, 0.0, 5.0, 4.0, 3.0, 1.0)
+ORDER BY bm25(sections_fts, 0.0, 5.0, 4.0, 3.0, 8.0, 1.0)
 LIMIT ?
 """
 
@@ -62,10 +53,27 @@ def search_terms(query: str) -> tuple[str, ...]:
                 terms.append(stem)
         elif token not in QUESTION_STOPWORDS:
             terms.append(token)
-    for pattern, expansions in QUERY_EXPANSIONS:
-        if pattern.search(query):
-            terms.extend(expansions)
+    terms.extend(expand_query_terms(query))
     return tuple(dict.fromkeys(term for term in terms if len(term) >= 2))
+
+
+def _freshness_rank(metadata: tuple[str, ...], requested_years: frozenset[str]) -> tuple[int, int]:
+    year, _document_type, _edition, effective_from, effective_to, _authority = metadata[:6]
+    if requested_years:
+        if year in requested_years:
+            return (0, 0)
+        if year.isdigit():
+            return (1, min(abs(int(year) - int(item)) for item in requested_years))
+        return (2, 999)
+    current_date = datetime.now(timezone.utc).date()
+    today = current_date.isoformat()
+    if effective_from and effective_from <= today and (not effective_to or effective_to >= today):
+        return (0, 0)
+    current_year = current_date.year
+    if year.isdigit():
+        parsed = int(year)
+        return (1 if parsed <= current_year else 2, abs(current_year - parsed))
+    return (3, 999)
 
 
 def _fts_ranked(database_path: Path, query: str, limit: int) -> tuple[SearchHit, ...]:
@@ -87,22 +95,41 @@ def _fts_ranked(database_path: Path, query: str, limit: int) -> tuple[SearchHit,
         metadata = {
             row[0]: row[1:]
             for row in connection.execute(
-                "SELECT source_name, year, document_type, edition, effective_from, effective_to FROM documents"
+                "SELECT source_name, year, document_type, edition, effective_from, effective_to, authority, topic, source_role, jurisdiction FROM documents"
             ).fetchall()
         }
     available_terms = tuple(term for term in subject_terms if term_document_matches[term])
-    subject_term = min(available_terms, key=lambda term: (len(term_document_matches[term]), -len(term))) if available_terms else ""
+    program_term = preferred_program_term(available_terms)
+    subject_term = (
+        program_term
+        if program_term
+        else min(available_terms, key=lambda term: (len(term_document_matches[term]), -len(term)))
+        if available_terms
+        else ""
+    )
     document_matches = term_document_matches[subject_term] if subject_term else {}
     scored_hits = tuple((SearchHit(*row[:8]), row[8]) for row in rows)
+
+    def rank_key(item: tuple[SearchHit, float]) -> tuple[object, ...]:
+        hit, bm25_score = item
+        meta = tuple(str(value) for value in metadata.get(hit.source_name, ("", "", "", "", "", "", "primary")))
+        year = meta[0] if meta else ""
+        authority = meta[6] if len(meta) > 6 else "primary"
+        explicit_year_rank = 0 if not requested_years or year in requested_years else 1
+        subject_rank = 0 if subject_term and subject_term in f"{hit.source_name} {hit.title} {hit.headings}" else 1
+        return (
+            explicit_year_rank,
+            subject_rank,
+            AUTHORITY_RANK.get(authority, 4),
+            _freshness_rank(meta, requested_years),
+            -document_matches.get(hit.source_name, 0),
+            -sum(term in f"{hit.source_name} {hit.title} {hit.headings}" for term in terms),
+            bm25_score,
+        )
+
     ranked = sorted(
         scored_hits,
-        key=lambda item: (
-            0 if any(year in item[0].source_name or year == str(metadata.get(item[0].source_name, ("",))[0]) for year in requested_years) else 1,
-            0 if subject_term and subject_term in f"{item[0].source_name} {item[0].title} {item[0].headings}" else 1,
-            -document_matches.get(item[0].source_name, 0),
-            -sum(term in f"{item[0].source_name} {item[0].title} {item[0].headings}" for term in terms),
-            item[1],
-        ),
+        key=rank_key,
     )
     return tuple(hit for hit, _score in ranked[: max(1, min(limit, 50))])
 

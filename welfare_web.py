@@ -67,6 +67,10 @@ class StatusResponse(BaseModel):
     source_bytes: int
     models: list[ModelOption]
     default_model: str
+    ollama_installed: bool
+    ollama_running: bool
+    ai_ready: bool
+    setup_required: bool
 
 
 def _structure_answer_markdown(answer: str) -> str:

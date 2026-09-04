@@ -8,6 +8,8 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
+from welfare_runtime import open_http_url
+
 OLLAMA_BASE_URL = "http://127.0.0.1:11434"
 
 
@@ -22,7 +24,7 @@ def _embed(model: str, texts: list[str], timeout: int = 120) -> list[list[float]
         method="POST",
     )
     try:
-        with urllib.request.urlopen(request, timeout=timeout) as response:
+        with open_http_url(request, timeout=timeout) as response:
             result = json.loads(response.read().decode("utf-8"))
     except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError):
         return []

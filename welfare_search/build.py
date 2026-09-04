@@ -18,7 +18,25 @@ CATEGORY_PATTERN: Final[re.Pattern[str]] = re.compile(r"\[([^\]]+)\]")
 LAW_REFERENCE_PATTERN: Final[re.Pattern[str]] = re.compile(r"「([^」]{2,80})」")
 ARTICLE_REFERENCE_PATTERN: Final[re.Pattern[str]] = re.compile(r"제\s*\d+\s*조(?:의\s*\d+)?")
 ATTACHMENT_REFERENCE_PATTERN: Final[re.Pattern[str]] = re.compile(r"(?:별표|별지)\s*(?:제\s*)?\d+(?:호)?")
-SCHEMA_VERSION: Final = 3
+SERIAL_PATTERN: Final[re.Pattern[str]] = re.compile(r"^(\d{2})[._]")
+SERVICE_NAME_PATTERN: Final[re.Pattern[str]] = re.compile(
+    r"[가-힣A-Za-z0-9][가-힣A-Za-z0-9·_-]{1,32}(?:서비스|급여|수당|지원|돌봄|연금|바우처|보험|보장|복지|급식|후견|보육|일자리|이용권)"
+)
+SERVICE_NAME_EXCLUDES: Final[frozenset[str]] = frozenset(
+    {
+        "서비스",
+        "서비스지원",
+        "복지서비스",
+        "사회서비스",
+        "지원",
+        "지원서비스",
+        "지원대상",
+        "지원기준",
+        "지원내용",
+        "지원한도",
+    }
+)
+SCHEMA_VERSION: Final = 5
 
 SCHEMA: Final = """
 PRAGMA synchronous = NORMAL;
@@ -34,6 +52,10 @@ CREATE TABLE IF NOT EXISTS documents (
     edition TEXT NOT NULL DEFAULT '',
     effective_from TEXT NOT NULL DEFAULT '',
     effective_to TEXT NOT NULL DEFAULT '',
+    topic TEXT NOT NULL DEFAULT '',
+    authority TEXT NOT NULL DEFAULT 'primary',
+    source_role TEXT NOT NULL DEFAULT 'operational_manual',
+    jurisdiction TEXT NOT NULL DEFAULT 'national',
     section_count INTEGER NOT NULL
 );
 CREATE TABLE IF NOT EXISTS nodes (
@@ -55,6 +77,7 @@ CREATE TABLE IF NOT EXISTS sections (
     node_id TEXT NOT NULL DEFAULT '',
     title TEXT NOT NULL,
     headings TEXT NOT NULL,
+    service_names TEXT NOT NULL DEFAULT '',
     original_name TEXT NOT NULL,
     start_line INTEGER NOT NULL,
     end_line INTEGER NOT NULL,
@@ -64,7 +87,7 @@ CREATE TABLE IF NOT EXISTS sections (
 );
 CREATE INDEX IF NOT EXISTS idx_sections_source ON sections(source_name, ordinal);
 CREATE VIRTUAL TABLE IF NOT EXISTS sections_fts USING fts5(
-    section_id UNINDEXED, source_name, title, headings, content, tokenize = 'unicode61'
+    section_id UNINDEXED, source_name, title, headings, service_names, content, tokenize = 'unicode61'
 );
 CREATE TABLE IF NOT EXISTS index_state (
     source_name TEXT PRIMARY KEY,
@@ -96,7 +119,7 @@ CREATE TABLE IF NOT EXISTS quality_issues (
     message TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_quality_source ON quality_issues(source_name, severity);
-PRAGMA user_version = 3;
+PRAGMA user_version = 5;
 """
 
 
@@ -127,6 +150,47 @@ def _document_type(category: str) -> str:
     return category.split("-", 1)[0] if category and category != "기타" else "기타"
 
 
+def _metadata_catalog(path: Path) -> dict[str, object]:
+    catalog_path = path.parent.parent / "document_metadata.yaml"
+    if not catalog_path.exists():
+        return {}
+    try:
+        data = yaml.safe_load(catalog_path.read_text(encoding="utf-8")) or {}
+    except yaml.YAMLError:
+        return {}
+    documents = data.get("documents", {}) if isinstance(data, dict) else {}
+    serial_match = SERIAL_PATTERN.match(path.name)
+    if not serial_match or not isinstance(documents, dict):
+        return {}
+    meta = documents.get(serial_match.group(1), {})
+    return meta if isinstance(meta, dict) else {}
+
+
+def _default_topic(category: str) -> str:
+    return category.split("-", 1)[-1] if category and category != "기타" else "기타"
+
+
+def _index_fingerprint(document: SourceDocument) -> str:
+    payload = "\n".join(
+        (
+            document.sha256,
+            document.year,
+            document.category,
+            document.document_type,
+            document.publisher,
+            document.edition,
+            document.effective_from,
+            document.effective_to,
+            document.topic,
+            document.authority,
+            document.source_role,
+            document.jurisdiction,
+            str(SCHEMA_VERSION),
+        )
+    )
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
 def _load_document(path: Path) -> SourceDocument:
     raw = path.read_bytes()
     try:
@@ -137,9 +201,12 @@ def _load_document(path: Path) -> SourceDocument:
     category_match = CATEGORY_PATTERN.search(path.name)
     year = year_match.group(0) if year_match else "미표기"
     category = category_match.group(1) if category_match else "기타"
-    meta = _frontmatter(text)
+    catalog = _metadata_catalog(path)
+    meta = {**catalog, **_frontmatter(text)}
     publisher = str(meta.get("publisher", "서귀포시" if "서귀포시업무" in category else "미표기"))
     edition = str(meta.get("edition", year if year != "미표기" else ""))
+    default_role = "local_operational_manual" if "서귀포시업무" in category else "operational_manual"
+    default_jurisdiction = "seogwipo" if "서귀포시업무" in category else "national"
     return SourceDocument(
         path.name,
         path,
@@ -153,6 +220,10 @@ def _load_document(path: Path) -> SourceDocument:
         edition,
         str(meta.get("effective_from", "")),
         str(meta.get("effective_to", "")),
+        str(meta.get("topic", _default_topic(category))),
+        str(meta.get("authority", "primary")),
+        str(meta.get("source_role", default_role)),
+        str(meta.get("jurisdiction", default_jurisdiction)),
     )
 
 
@@ -203,6 +274,25 @@ def _extract_references(content: str) -> tuple[tuple[str, str], ...]:
     return tuple(dict.fromkeys(found))
 
 
+def _extract_service_names(document: SourceDocument) -> tuple[str, ...]:
+    """Build a compact document-level welfare-service vocabulary for every chunk.
+
+    The source files are merged manuals, so a section about eligibility may not repeat the
+    service name locally.  Indexing the manual's service vocabulary on every section keeps
+    queries such as '제주가치돌봄 식사지원 조건' connected to the eligibility section.
+    """
+    found: list[str] = []
+    search_text = f"{document.name}\n{document.text}"
+    for match in SERVICE_NAME_PATTERN.finditer(search_text):
+        name = match.group(0).strip("_-·")
+        if name in SERVICE_NAME_EXCLUDES or name in found:
+            continue
+        found.append(name)
+        if len(found) >= 120:
+            break
+    return tuple(found)
+
+
 def _quality_issues(source_name: str, section_id: str, title: str, headings: str, content: str) -> tuple[tuple[str, str, str], ...]:
     issues: list[tuple[str, str, str]] = []
     if len(content) > MAX_SECTION_CHARS:
@@ -221,8 +311,10 @@ def _quality_issues(source_name: str, section_id: str, title: str, headings: str
 def _insert_document(connection: sqlite3.Connection, document: SourceDocument) -> int:
     nodes = build_nodes(document)
     sections = split_document(document)
+    service_names = " ".join(_extract_service_names(document))
     connection.execute(
-        "INSERT INTO documents VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO documents(source_name, source_path, sha256, byte_size, year, category, document_type, publisher, edition, effective_from, effective_to, topic, authority, source_role, jurisdiction, section_count) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         (
             document.name,
             str(document.path.resolve()),
@@ -235,6 +327,10 @@ def _insert_document(connection: sqlite3.Connection, document: SourceDocument) -
             document.edition,
             document.effective_from,
             document.effective_to,
+            document.topic,
+            document.authority,
+            document.source_role,
+            document.jurisdiction,
             len(sections),
         ),
     )
@@ -256,7 +352,8 @@ def _insert_document(connection: sqlite3.Connection, document: SourceDocument) -
         ),
     )
     connection.executemany(
-        "INSERT INTO sections VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO sections(section_id, source_name, ordinal, node_id, title, headings, service_names, original_name, start_line, end_line, content, content_hash) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         (
             (
                 section.section_id,
@@ -265,6 +362,7 @@ def _insert_document(connection: sqlite3.Connection, document: SourceDocument) -
                 section.node_id,
                 section.title,
                 section.headings,
+                service_names,
                 section.original_name,
                 section.start_line,
                 section.end_line,
@@ -275,9 +373,16 @@ def _insert_document(connection: sqlite3.Connection, document: SourceDocument) -
         ),
     )
     connection.executemany(
-        "INSERT INTO sections_fts VALUES (?, ?, ?, ?, ?)",
+        "INSERT INTO sections_fts VALUES (?, ?, ?, ?, ?, ?)",
         (
-            (section.section_id, section.source_name, section.title, section.headings, section.content)
+            (
+                section.section_id,
+                section.source_name,
+                section.title,
+                section.headings,
+                service_names,
+                section.content,
+            )
             for section in sections
         ),
     )
@@ -302,7 +407,7 @@ def _insert_document(connection: sqlite3.Connection, document: SourceDocument) -
             )
     connection.execute(
         "INSERT INTO index_state(source_name, source_hash, index_version) VALUES (?, ?, ?)",
-        (document.name, document.sha256, SCHEMA_VERSION),
+        (document.name, _index_fingerprint(document), SCHEMA_VERSION),
     )
     return len(sections)
 
@@ -334,7 +439,7 @@ def build_index(source_dir: Path, output_dir: Path) -> IndexReport:
             _delete_document(connection, removed)
 
         for document in documents:
-            if indexed.get(document.name) == document.sha256:
+            if indexed.get(document.name) == _index_fingerprint(document):
                 continue
             if document.name in indexed:
                 _delete_document(connection, document.name)
@@ -356,6 +461,9 @@ def build_index(source_dir: Path, output_dir: Path) -> IndexReport:
                 "reference_count": reference_count,
                 "quality_issue_count": quality_issue_count,
                 "quality_error_count": error_count,
+                "metadata_catalog": "document_metadata.yaml",
+                "authority_levels": ["primary", "reference", "summary", "index"],
+                "service_name_index": "document vocabulary inherited by every section",
             },
             ensure_ascii=False,
             indent=2,

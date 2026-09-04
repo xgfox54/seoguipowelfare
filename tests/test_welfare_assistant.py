@@ -28,9 +28,18 @@ def _knowledge_base(tmp_path: Path) -> Path:
     return tmp_path
 
 
-def test_system_status_reports_local_hybrid_index(tmp_path: Path) -> None:
+def test_system_status_reports_local_hybrid_index(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     # Given: a complete local index and OpenKB registry.
     kb_dir = _knowledge_base(tmp_path)
+    monkeypatch.setattr(welfare_assistant, "ollama_is_running", lambda: True)
+    monkeypatch.setattr(welfare_assistant, "find_ollama_executable", lambda: "C:/Ollama/ollama.exe")
+    monkeypatch.setattr(
+        welfare_assistant,
+        "installed_local_models",
+        lambda: frozenset({"gemma4:e4b", "gemma4:e2b-it-qat"}),
+    )
 
     # When: the user-facing health status is collected.
     status = system_status(kb_dir)
@@ -48,8 +57,28 @@ def test_system_status_reports_local_hybrid_index(tmp_path: Path) -> None:
         "native_openkb_documents": 1,
         "source_bytes": source_bytes,
         "default_model": "gemma_e4b",
+        "ollama_installed": True,
+        "ollama_running": True,
+        "ai_ready": True,
+        "setup_required": False,
     }
     assert [model["key"] for model in selectable] == ["gemma_e4b", "gemma_e2b"]
+
+
+def test_system_status_marks_setup_required_when_ollama_is_missing(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    kb_dir = _knowledge_base(tmp_path)
+    monkeypatch.setattr(welfare_assistant, "ollama_is_running", lambda: False)
+    monkeypatch.setattr(welfare_assistant, "find_ollama_executable", lambda: "")
+
+    status = system_status(kb_dir)
+
+    assert status["ollama_installed"] is False
+    assert status["ollama_running"] is False
+    assert status["ai_ready"] is False
+    assert status["setup_required"] is True
+    assert all(model["available"] is False for model in status["models"])
 
 
 def test_system_status_accepts_an_empty_native_registry(tmp_path: Path) -> None:
@@ -108,3 +137,120 @@ def test_main_requires_a_question(capsys: pytest.CaptureFixture[str]) -> None:
     # Then: it prints a concise usage message instead of contacting a model.
     assert exit_code == 2
     assert "welfare_assistant.py" in capsys.readouterr().out
+
+
+def test_answer_question_runs_three_agent_pipeline(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    # Given: a local knowledge base and deterministic local-model responses.
+    kb_dir = _knowledge_base(tmp_path)
+    searched_queries: list[str] = []
+    calls: list[tuple[str, str]] = []
+
+    def fake_retrieve_context(database_path: Path, query: str) -> str:
+        assert database_path.name == "welfare.db"
+        searched_queries.append(query)
+        return "문서명: 01.[공적급여] 2026년 생계급여.md\n근거 본문"
+
+    def fake_generate(
+        model_tag: str,
+        prompt: str,
+        timeout: int = 600,
+        *,
+        system_prompt: str | None = None,
+        temperature: float = 0.2,
+    ) -> str:
+        del model_tag, timeout, temperature
+        system = system_prompt or ""
+        calls.append((system, prompt))
+        if "검색질문 정제" in system:
+            return "정제된 질문: 2026년 생계급여 기준은 무엇인가?"
+        if "품질감독" in system:
+            return "감독을 거친 최종 답변"
+        return "근거 기반 답변 초안"
+
+    monkeypatch.setattr(welfare_assistant, "retrieve_context", fake_retrieve_context)
+    monkeypatch.setattr(welfare_assistant, "_ollama_generate", fake_generate)
+
+    # When: one user question is answered.
+    answer = welfare_assistant.answer_question(kb_dir, "생계급여 기준 알려줘")
+
+    # Then: refiner -> grounded answerer -> supervisor execute in order.
+    assert searched_queries == ["생계급여 기준 알려줘\n2026년 생계급여 기준은 무엇인가?"]
+    assert answer == "감독을 거친 최종 답변"
+    assert len(calls) == 3
+    assert "검색질문 정제" in calls[0][0]
+    assert "사용자 원문 질문" in calls[1][1]
+    assert "품질감독" in calls[2][0]
+
+
+def test_answer_question_falls_back_to_original_query_when_refiner_fails(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    # Given: the refiner model call fails while answer/supervisor calls still work.
+    kb_dir = _knowledge_base(tmp_path)
+    searched_queries: list[str] = []
+    call_count = 0
+
+    def fake_retrieve_context(database_path: Path, query: str) -> str:
+        del database_path
+        searched_queries.append(query)
+        return "문서명: sample.md\n근거 본문"
+
+    def fake_generate(
+        model_tag: str,
+        prompt: str,
+        timeout: int = 600,
+        *,
+        system_prompt: str | None = None,
+        temperature: float = 0.2,
+    ) -> str:
+        nonlocal call_count
+        del model_tag, prompt, timeout, temperature
+        call_count += 1
+        if system_prompt and "검색질문 정제" in system_prompt:
+            raise RuntimeError("refiner unavailable")
+        if system_prompt and "품질감독" in system_prompt:
+            return "검수 완료 답변"
+        return "초안"
+
+    monkeypatch.setattr(welfare_assistant, "retrieve_context", fake_retrieve_context)
+    monkeypatch.setattr(welfare_assistant, "_ollama_generate", fake_generate)
+
+    # When: the pipeline runs.
+    answer = welfare_assistant.answer_question(kb_dir, "원래 질문")
+
+    # Then: retrieval safely uses the original question and the remaining agents continue.
+    assert searched_queries == ["원래 질문"]
+    assert answer == "검수 완료 답변"
+    assert call_count == 3
+
+
+def test_answer_question_returns_draft_when_supervisor_fails(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    # Given: refiner and answerer work, but supervisor is temporarily unavailable.
+    kb_dir = _knowledge_base(tmp_path)
+
+    def fake_generate(
+        model_tag: str,
+        prompt: str,
+        timeout: int = 600,
+        *,
+        system_prompt: str | None = None,
+        temperature: float = 0.2,
+    ) -> str:
+        del model_tag, prompt, timeout, temperature
+        if system_prompt and "검색질문 정제" in system_prompt:
+            return "생계급여 기준"
+        if system_prompt and "품질감독" in system_prompt:
+            raise RuntimeError("supervisor unavailable")
+        return "검수 전이지만 근거 기반인 답변 초안"
+
+    monkeypatch.setattr(welfare_assistant, "_ollama_generate", fake_generate)
+
+    # When: the supervisor stage fails.
+    answer = welfare_assistant.answer_question(kb_dir, "생계급여 기준")
+
+    # Then: the user still receives the grounded draft instead of an error.
+    assert answer == "검수 전이지만 근거 기반인 답변 초안"

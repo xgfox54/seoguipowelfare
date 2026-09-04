@@ -37,6 +37,10 @@ def _status(_: Path) -> Mapping[
             },
         ],
         "default_model": "gemma_e4b",
+        "ollama_installed": True,
+        "ollama_running": True,
+        "ai_ready": True,
+        "setup_required": False,
     }
 
 
@@ -62,6 +66,8 @@ def test_status_exposes_local_knowledge_base_health(tmp_path: Path) -> None:
     assert response.status_code == 200
     assert response.json()["model"] == "ollama/gemma4:e4b"
     assert response.json()["source_documents"] == 38
+    assert response.json()["ollama_installed"] is True
+    assert response.json()["ai_ready"] is True
     assert response.headers["x-content-type-options"] == "nosniff"
 
 
@@ -94,6 +100,17 @@ def test_showcase_is_served_as_a_real_html_page(tmp_path: Path) -> None:
     assert response.status_code == 200
     assert "디자인 시스템 점검용" in response.text
     assert "개인용 · 비공식" in response.text
+
+
+def test_homepage_includes_in_result_search_controls(tmp_path: Path) -> None:
+    with _client(tmp_path) as client:
+        response = client.get("/")
+
+    assert response.status_code == 200
+    assert 'id="result-search-input"' in response.text
+    assert 'placeholder="결과 내 검색"' in response.text
+    assert 'id="result-search-prev"' in response.text
+    assert 'id="result-search-next"' in response.text
 
 
 def test_status_lists_selectable_models(tmp_path: Path) -> None:

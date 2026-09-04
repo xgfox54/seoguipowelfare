@@ -1,10 +1,19 @@
 from __future__ import annotations
 
+import re
 import sqlite3
 from pathlib import Path
 
 from welfare_search.search import search_sections
 from welfare_search.types import SearchHit
+
+SERVICE_QUERY_PATTERN = re.compile(
+    r"[가-힣A-Za-z0-9][가-힣A-Za-z0-9·_-]{1,32}(?:서비스|급여|수당|지원|돌봄|연금|바우처|보험|보장|복지|급식|후견|보육|일자리|이용권)"
+)
+
+
+def _query_service_terms(query: str) -> tuple[str, ...]:
+    return tuple(dict.fromkeys(match.group(0) for match in SERVICE_QUERY_PATTERN.finditer(query)))
 
 
 def _fetch_evidence(
@@ -17,9 +26,9 @@ def _fetch_evidence(
     with sqlite3.connect(database_path) as connection:
         rows = connection.execute(
             "SELECT s.section_id, s.source_name, s.title, s.headings, s.original_name, "
-            "s.start_line, s.end_line, s.content, "
+            "s.start_line, s.end_line, s.content, s.service_names, "
             "COALESCE(n.heading_path, s.headings), d.document_type, d.publisher, d.edition, d.year, "
-            "d.effective_from, d.effective_to "
+            "d.effective_from, d.effective_to, d.topic, d.authority, d.source_role, d.jurisdiction "
             "FROM sections AS s "
             "JOIN documents AS d ON d.source_name = s.source_name "
             "LEFT JOIN nodes AS n ON n.node_id = s.node_id "
@@ -36,7 +45,7 @@ def _fetch_evidence(
     loaded = {
         row[0]: (
             SearchHit(*row[:8]),
-            tuple(str(value) for value in row[8:15]),
+            tuple(str(value) for value in row[8:20]),
             tuple(refs_by_id.get(str(row[0]), [])),
         )
         for row in rows
@@ -48,18 +57,52 @@ def retrieve_context(database_path: Path, query: str, limit: int = 6) -> str:
     candidates = search_sections(database_path, query, min(limit * 3, 20))
     source_counts: dict[str, int] = {}
     selected: list[SearchHit] = []
+
+    def add_hit(hit: SearchHit) -> None:
+        selected.append(hit)
+        source_counts[hit.source_name] = source_counts.get(hit.source_name, 0) + 1
+
+    if candidates:
+        add_hit(candidates[0])
+
+    for service_term in _query_service_terms(query):
+        if any(service_term in f"{hit.title} {hit.headings}" for hit in selected):
+            continue
+        for hit in candidates:
+            if hit in selected or source_counts.get(hit.source_name, 0) >= 3:
+                continue
+            if service_term in f"{hit.title} {hit.headings}":
+                add_hit(hit)
+                break
+        if len(selected) == limit:
+            break
+
     for hit in candidates:
+        if hit in selected:
+            continue
         count = source_counts.get(hit.source_name, 0)
         if count >= 3:
             continue
-        source_counts[hit.source_name] = count + 1
-        selected.append(hit)
+        add_hit(hit)
         if len(selected) == limit:
             break
 
     blocks: list[str] = []
     for hit, metadata, references in _fetch_evidence(database_path, tuple(selected)):
-        heading_path, document_type, publisher, edition, year, effective_from, effective_to = metadata
+        (
+            service_names,
+            heading_path,
+            document_type,
+            publisher,
+            edition,
+            year,
+            effective_from,
+            effective_to,
+            topic,
+            authority,
+            source_role,
+            jurisdiction,
+        ) = metadata
         validity = ""
         if effective_from or effective_to:
             validity = f"[effective_period: {effective_from or '미표기'} ~ {effective_to or '현재'}]\n"
@@ -71,6 +114,11 @@ def retrieve_context(database_path: Path, query: str, limit: int = 6) -> str:
             f"[document_type: {document_type}]\n"
             f"[publisher: {publisher}]\n"
             f"[edition: {edition or year}]\n"
+            f"[service_names: {service_names}]\n"
+            f"[topic: {topic}]\n"
+            f"[authority: {authority}]\n"
+            f"[source_role: {source_role}]\n"
+            f"[jurisdiction: {jurisdiction}]\n"
             f"{validity}"
             f"[heading_path: {heading_path}]\n"
             f"[lines: {hit.start_line}-{hit.end_line}]\n"
