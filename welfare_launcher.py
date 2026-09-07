@@ -25,12 +25,12 @@ BASE_URL = f"http://{HOST}:{PORT}"
 class DesktopApi:
     def __init__(self, server: uvicorn.Server) -> None:
         self.server = server
-        self.window: webview.Window | None = None
+        self._window: webview.Window | None = None
 
     def close_app(self) -> bool:
         self.server.should_exit = True
-        if self.window is not None:
-            self.window.destroy()
+        if self._window is not None:
+            self._window.destroy()
         return True
 
     def open_ollama_download(self) -> bool:
@@ -99,7 +99,7 @@ def _show_app_window(server: uvicorn.Server) -> None:
         text_select=True,
         js_api=api,
     )
-    api.window = window
+    api._window = window
 
     def close_server() -> None:
         server.should_exit = True

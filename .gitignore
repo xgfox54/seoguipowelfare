@@ -10,3 +10,7 @@ wiki/kb-v120/
 
 # Local environment
 .env
+
+.venv-package/
+build/
+dist/

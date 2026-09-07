@@ -4,7 +4,7 @@
 
 복지 업무자료 39개를 **로컬 SQLite FTS 검색색인**으로 검색하고, PC에 설치된 **Ollama + Gemma 4**가 검색된 원문만 근거로 답변하는 Windows용 개인 업무 도구입니다.
 
-> **2026-09-07 DB 6차 업데이트:** 소스와 검색 DB는 39개 문서로 갱신됐습니다. 기존 릴리스 EXE에는 이전 DB가 내장되어 있으므로 재빌드가 필요합니다. [변경 내용과 갱신 방법](DB_UPDATE_2026-09-07.md)을 확인하세요.
+> **v1.3.1:** 2026-09-07 DB 6차 업데이트(39개 문서, 18,868개 검색 구간)를 EXE에 내장했습니다. [v1.3.1 릴리스](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.3.1)에서 새 파일을 받아 기존 EXE를 교체하세요.
 
 `복지업무비서.exe`를 실행하고 업무에 필요한 내용을 검색하면 Gemma4 e4b, e2b가 답변해줍니다.
 
@@ -17,7 +17,7 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 
 | 항목 | 현재 구현 |
 | --- | --- |
-| 버전 | v1.3.0 |
+| 버전 | v1.3.1 |
 | 사용자 실행 파일 | `복지업무비서.exe` 단일 파일 |
 | 화면 | pywebview + Microsoft Edge WebView2 기반 독립 프로그램 창 |
 | 로컬 서버 | FastAPI / Uvicorn, `127.0.0.1:8765`에만 바인딩 |
@@ -29,6 +29,12 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 | 선택 가능 모델 | Gemma 4 E4B / Gemma 4 E2B QAT (`gemma4:e2b-it-qat`) |
 | AI 호출 방식 | Ollama 로컬 HTTP API 직접 호출 |
 | 인터넷 필요 여부 | 모델 최초 설치 시 필요, 일반 질의는 로컬 처리 |
+
+## v1.3.1 주요 변경
+
+- 복지DB 6차 업데이트 원문 39개 및 재생성된 검색색인을 EXE에 내장했습니다.
+- Windows EXE 파일·제품 버전을 1.3.1로 표시합니다.
+- [RELEASE_NOTES_v1.3.1.md](RELEASE_NOTES_v1.3.1.md)에서 변경 자료와 설치 방법을 확인할 수 있습니다.
 
 ## v1.3.0 주요 변경
 
@@ -203,7 +209,7 @@ AI 답변은 `welfare_assistant.py`가 Ollama의 로컬 HTTP API를 직접 호�
 
 ## 복지DB 기준
 
-프로그램 v1.3.0 / 2026-09-07 복지DB 6차 업데이트 기준:
+프로그램 v1.3.1 / 2026-09-07 복지DB 6차 업데이트 기준:
 
 - 원문 문서: **39개**
 - 원문 총량: **62,075,154바이트**

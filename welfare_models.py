@@ -76,7 +76,14 @@ def find_ollama_executable() -> str:
         base = os.environ.get(variable)
         if base:
             candidates.append(Path(base) / "Ollama" / "ollama.exe")
-    return next((str(path) for path in candidates if path.is_file()), "")
+
+    def _is_accessible_file(path: Path) -> bool:
+        try:
+            return path.is_file()
+        except OSError:
+            return False
+
+    return next((str(path) for path in candidates if _is_accessible_file(path)), "")
 
 
 def ollama_is_running() -> bool:
