@@ -14,6 +14,7 @@ def _status(_: Path) -> Mapping[
     return {
         "status": "정상",
         "model": "gemma4-e2b-it-qat.gguf",
+        "app_version": "1.3.2",
         "source_documents": 38,
         "search_sections": 3116,
         "native_openkb_documents": 36,
@@ -29,7 +30,7 @@ def _status(_: Path) -> Mapping[
             },
             {
                 "key": "gemma_e2b",
-                "label": "Gemma 4 E2B QAT Q4 (기본 내장)",
+                "label": "Gemma 4 E2B QAT Q4",
                 "runtime": "내장 llama.cpp",
                 "description": "로컬 모델",
                 "available": True,
@@ -131,7 +132,7 @@ def test_ask_routes_to_the_requested_model(tmp_path: Path) -> None:
     assert default["model"] == "gemma_e2b"
     assert "gemma_e2b 응답" in default["answer"]
     assert local["model"] == "gemma_e2b"
-    assert local["model_label"] == "Gemma 4 E2B QAT Q4 (기본 내장)"
+    assert local["model_label"] == "Gemma 4 E2B QAT Q4"
     assert "gemma_e2b 응답" in local["answer"]
 
 

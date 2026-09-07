@@ -18,6 +18,21 @@ def resource_path(*parts: str) -> Path:
     return bundle_root().joinpath(*parts)
 
 
+_APP_VERSION_CACHE: str | None = None
+
+
+def app_version() -> str:
+    global _APP_VERSION_CACHE
+    if _APP_VERSION_CACHE is not None:
+        return _APP_VERSION_CACHE
+    try:
+        text = resource_path("VERSION").read_text(encoding="utf-8").strip()
+    except OSError:
+        text = "0.0.0"
+    _APP_VERSION_CACHE = text
+    return text
+
+
 def knowledge_base_root() -> Path:
     return bundle_root()
 

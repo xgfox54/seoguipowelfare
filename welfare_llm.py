@@ -69,15 +69,15 @@ class GgufModel:
 MODEL_CHOICES: tuple[GgufModel, ...] = (
     GgufModel(
         key="gemma_e2b",
-        label="Gemma 4 E2B QAT Q4 (기본 내장)",
+        label="Gemma 4 E2B QAT Q4",
         filename="gemma4-e2b-it-qat.gguf",
-        description="설치 패키지에 포함된 기본 모델입니다. 인터넷 없이 동작합니다.",
+        description="빠르고 가벼운 모델입니다. 인터넷 연결 없이 동작합니다.",
     ),
     GgufModel(
         key="gemma_e4b",
-        label="Gemma 4 E4B (선택 설치)",
+        label="Gemma 4 E4B",
         filename="gemma4-e4b.gguf",
-        description="models 폴더에 파일을 넣으면 사용할 수 있는 고성능 모델입니다.",
+        description="더 정확하지만 무거운 모델입니다. 인터넷 연결 없이 동작합니다.",
     ),
 )
 DEFAULT_MODEL_KEY = MODEL_CHOICES[0].key

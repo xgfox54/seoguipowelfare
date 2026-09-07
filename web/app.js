@@ -30,6 +30,7 @@
   const setupCloseButton = document.querySelector("#setup-close-button");
   const setupDialogDoneButton = document.querySelector("#setup-dialog-done-button");
   const setupDialogRefreshButton = document.querySelector("#setup-dialog-refresh-button");
+  const appVersionLabel = document.querySelector("#app-version");
 
   const statusFields = {
     header: document.querySelector("#header-status"),
@@ -333,6 +334,9 @@
       }
       const status = await response.json();
       const healthy = status.status === "정상";
+      if (appVersionLabel && status.app_version) {
+        appVersionLabel.textContent = `v${status.app_version}`;
+      }
       const e4bAvailable = modelAvailability(status, "gemma_e4b");
       const e2bAvailable = modelAvailability(status, "gemma_e2b");
       const aiConnected = e4bAvailable || e2bAvailable;

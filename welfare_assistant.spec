@@ -15,6 +15,7 @@ a = Analysis(
         ("wiki/kb-v120/welfare.db", "wiki/kb-v120"),
         ("wiki/kb-v120/manifest.json", "wiki/kb-v120"),
         ("config.yaml.example", "."),
+        ("VERSION", "."),
     ],
     hiddenimports=hiddenimports,
     hookspath=[],

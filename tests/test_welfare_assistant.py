@@ -49,6 +49,7 @@ def test_system_status_reports_local_hybrid_index(
     assert status == {
         "status": "정상",
         "model": "gemma4-e2b-it-qat.gguf",
+        "app_version": welfare_assistant.app_version(),
         "source_documents": 1,
         "search_sections": 1,
         "native_openkb_documents": 1,

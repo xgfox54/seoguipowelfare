@@ -1,27 +1,46 @@
-#ifndef AppVersion
+﻿#ifndef AppVersion
   #define AppVersion "1.3.2"
 #endif
+#ifndef ModelVariant
+  #define ModelVariant "E2B"
+#endif
+#ifndef ExeFileName
+  #define ExeFileName "복지업무비서_v" + AppVersion + "_" + ModelVariant + ".exe"
+#endif
+#if ModelVariant == "E4B"
+#define AppName "복지톡AI 복지업무비서 E4B"
+#define InstallFolder "BokjiTalkAI_E4B"
+#define InstallId "BokjiTalkAI_E4B"
+#else
 #define AppName "복지톡AI 복지업무비서"
-#define ExeName "복지업무비서.exe"
+#define InstallFolder "BokjiTalkAI"
+#define InstallId "{{7E4B2C1A-9D3F-4A6B-8C5E-2F1D0B9A7E63}"
+#endif
+#define ExeName ExeFileName
 
 [Setup]
-AppId={{7E4B2C1A-9D3F-4A6B-8C5E-2F1D0B9A7E63}
+AppId={#InstallId}
 AppName={#AppName}
 AppVersion={#AppVersion}
-AppVerName={#AppName} v{#AppVersion}
+AppVerName={#AppName} v{#AppVersion} ({#ModelVariant})
 AppPublisher=서귀포시
-DefaultDirName={localappdata}\BokjiTalkAI
+DefaultDirName={localappdata}\{#InstallFolder}
 DefaultGroupName={#AppName}
 DisableProgramGroupPage=yes
 PrivilegesRequired=lowest
 OutputDir=dist
-OutputBaseFilename=복지톡AI_Setup_v{#AppVersion}
+OutputBaseFilename=복지톡AI_Setup_v{#AppVersion}_{#ModelVariant}
 SetupIconFile=assets\bokjitalk.ico
 UninstallDisplayIcon={app}\{#ExeName}
 Compression=lzma2/fast
 SolidCompression=no
 LZMAUseSeparateProcess=yes
+#if ModelVariant == "E4B"
+DiskSpanning=yes
+DiskSliceSize=2100000000
+#else
 DiskSpanning=no
+#endif
 WizardStyle=modern
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible

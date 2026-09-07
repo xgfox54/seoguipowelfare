@@ -19,6 +19,7 @@ from welfare_agent import (
 )
 from welfare_llm import DEFAULT_MODEL_KEY, RUNTIME, generate, resolve_choice
 from welfare_models import available_choices
+from welfare_runtime import app_version
 from welfare_search import retrieve_context
 
 
@@ -68,23 +69,32 @@ def _runtime_status() -> tuple[str, str, list[dict[str, str | bool]]]:
     return RUNTIME.state, RUNTIME.error, list(available_choices())
 
 
+def _active_model() -> tuple[str, str]:
+    loaded = RUNTIME.model
+    if loaded is None:
+        return DEFAULT_MODEL_KEY, resolve_choice(DEFAULT_MODEL_KEY).filename
+    return loaded.key, loaded.filename
+
+
 def system_status(kb_dir: Path) -> dict[str, object]:
     index_dir = _index_dir(kb_dir)
     database = index_dir / "welfare.db"
     manifest_path = index_dir / "manifest.json"
     engine_state, engine_error, models = _runtime_status()
+    active_key, active_filename = _active_model()
     ai_ready = engine_state == "ready" and any(model["available"] is True for model in models)
     setup_required = engine_state == "error"
     if not database.exists() or not manifest_path.exists():
         return {
             "status": "점검 필요",
-            "model": resolve_choice(DEFAULT_MODEL_KEY).filename,
+            "model": active_filename,
+            "app_version": app_version(),
             "source_documents": 0,
             "search_sections": 0,
             "native_openkb_documents": 0,
             "source_bytes": 0,
             "models": models,
-            "default_model": DEFAULT_MODEL_KEY,
+            "default_model": active_key,
             "engine_state": engine_state,
             "engine_error": engine_error,
             "ai_ready": ai_ready,
@@ -97,7 +107,6 @@ def system_status(kb_dir: Path) -> dict[str, object]:
         fts_sections = connection.execute("SELECT COUNT(*) FROM sections_fts").fetchone()[0]
     registry_path = kb_dir / ".openkb" / "hashes.json"
     registry = json.loads(registry_path.read_text(encoding="utf-8")) if registry_path.exists() else {}
-    config = _read_runtime_config(kb_dir)
     healthy = (
         documents == manifest["document_count"]
         and sections == manifest["section_count"]
@@ -106,13 +115,14 @@ def system_status(kb_dir: Path) -> dict[str, object]:
     )
     return {
         "status": "정상" if healthy else "점검 필요",
-        "model": config["model"],
+        "model": active_filename,
+        "app_version": app_version(),
         "source_documents": documents,
         "search_sections": sections,
         "native_openkb_documents": len(registry),
         "source_bytes": manifest["source_bytes"],
         "models": models,
-        "default_model": DEFAULT_MODEL_KEY,
+        "default_model": active_key,
         "engine_state": engine_state,
         "engine_error": engine_error,
         "ai_ready": ai_ready,

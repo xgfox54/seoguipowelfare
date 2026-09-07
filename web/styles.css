@@ -202,6 +202,13 @@ a:hover {
   line-height: 1.5;
 }
 
+.service-identity__version {
+  margin: 0;
+  color: var(--color-gray-500, var(--color-gray-600));
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
 .page-main {
   padding-block: var(--space-10) var(--space-16);
 }
