@@ -2,7 +2,9 @@
 
 # 서귀포시 복지톡(Talk) AI 업무비서(로컬PC용)
 
-복지 업무자료 38개를 **로컬 SQLite FTS 검색색인**으로 검색하고, PC에 설치된 **Ollama + Gemma 4**가 검색된 원문만 근거로 답변하는 Windows용 개인 업무 도구입니다.
+복지 업무자료 39개를 **로컬 SQLite FTS 검색색인**으로 검색하고, PC에 설치된 **Ollama + Gemma 4**가 검색된 원문만 근거로 답변하는 Windows용 개인 업무 도구입니다.
+
+> **2026-09-07 DB 6차 업데이트:** 소스와 검색 DB는 39개 문서로 갱신됐습니다. 기존 릴리스 EXE에는 이전 DB가 내장되어 있으므로 재빌드가 필요합니다. [변경 내용과 갱신 방법](DB_UPDATE_2026-09-07.md)을 확인하세요.
 
 `복지업무비서.exe`를 실행하고 업무에 필요한 내용을 검색하면 Gemma4 e4b, e2b가 답변해줍니다.
 
@@ -20,9 +22,9 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 | 화면 | pywebview + Microsoft Edge WebView2 기반 독립 프로그램 창 |
 | 로컬 서버 | FastAPI / Uvicorn, `127.0.0.1:8765`에만 바인딩 |
 | 검색 | SQLite FTS5/BM25 + 선택적 로컬 semantic hybrid 검색 |
-| 복지 업무자료 | 38개 Markdown 원문 |
-| 검색 구간 | 18,649개 |
-| 원문 총량 | 61,234,862바이트 |
+| 복지 업무자료 | 39개 Markdown 원문 |
+| 검색 구간 | 18,868개 |
+| 원문 총량 | 62,075,154바이트 |
 | 기본 AI 모델 | Gemma 4 E4B (`gemma4:e4b`) |
 | 선택 가능 모델 | Gemma 4 E4B / Gemma 4 E2B QAT (`gemma4:e2b-it-qat`) |
 | AI 호출 방식 | Ollama 로컬 HTTP API 직접 호출 |
@@ -158,7 +160,7 @@ SQLite FTS5/BM25 + 선택적 semantic hybrid 검색
 
 세 에이전트는 별도의 외부 AI 서비스를 사용하지 않고 선택한 **로컬 Ollama Gemma 모델을 역할별 프롬프트로 순차 호출**합니다. 따라서 질문과 복지DB 원문은 PC 밖으로 전송되지 않습니다.
 
-검색 DB는 기존 **38개 합본 매뉴얼**을 그대로 사용합니다. `document_metadata.yaml`에서 각 합본 문서의 주제(`topic`), 근거 우선순위(`authority`), 자료 성격(`source_role`), 적용 범위(`jurisdiction`)를 별도로 관리합니다. `primary` 원본 업무자료를 최우선으로 사용하고, `reference`·`summary`·`index` 자료는 보조 근거로 취급합니다.
+검색 DB는 **6차 업데이트 원문 39개**를 사용합니다. `document_metadata.yaml`에서 각 합본 문서의 주제(`topic`), 근거 우선순위(`authority`), 자료 성격(`source_role`), 적용 범위(`jurisdiction`)를 별도로 관리합니다. `primary` 원본 업무자료를 최우선으로 사용하고, `reference`·`summary`·`index` 자료는 보조 근거로 취급합니다.
 
 별도 로컬 법령 DB는 운영하지 않습니다. 법령명이나 조문은 검색된 매뉴얼 원문에서 실제 확인되는 범위에서만 안내하며, 로컬 모델의 일반지식으로 현행 법령 내용을 보충하지 않습니다.
 
@@ -201,12 +203,12 @@ AI 답변은 `welfare_assistant.py`가 Ollama의 로컬 HTTP API를 직접 호�
 
 ## 복지DB 기준
 
-현재 v1.3.0 검증 기준:
+프로그램 v1.3.0 / 2026-09-07 복지DB 6차 업데이트 기준:
 
-- 원문 문서: **38개**
-- 원문 총량: **61,234,862바이트**
-- 검색 구간: **18,649개**
-- 검색 인덱스 DB: **약 355.9MB**
+- 원문 문서: **39개**
+- 원문 총량: **62,075,154바이트**
+- 검색 구간: **18,868개**
+- 검색 인덱스 DB: **376,016,896바이트 (약 358.6MiB)**
 - 품질 오류: **0건**
 
 EXE 빌드 시 다음 파일이 실행 파일 내부에 함께 포함됩니다.
@@ -332,7 +334,7 @@ PyInstaller 설정은 `console=False`인 Windows 단일 EXE이며, `pywebview`�
 .\.venv-package\Scripts\python.exe -m ruff check welfare_*.py welfare_search tests
 ```
 
-현재 검증 기준은 **39개 테스트 통과**이며, 이 중 1건은 원문 61.2MB 전체를 다시 색인하는 무거운 회귀 테스트라 다른 테스트보다 오래 걸립니다.
+현재 검증 기준은 **39개 테스트 통과**이며, 이 중 1건은 원문 62.1MB 전체를 다시 색인하는 무거운 회귀 테스트라 다른 테스트보다 오래 걸립니다.
 
 ## 자료 갱신 절차
 

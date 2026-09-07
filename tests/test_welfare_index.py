@@ -279,16 +279,16 @@ def test_retrieve_context_reads_beyond_search_preview(tmp_path: Path) -> None:
 
 
 def test_release_corpus_build_is_reproducible(tmp_path: Path) -> None:
-    # Given: the 38 Markdown manuals distributed in the Git repository.
+    # Given: the 39 Markdown documents in the sixth database update.
     project_root = Path(__file__).resolve().parents[1]
 
     # When: a new user builds the search index after cloning.
     report = build_index(project_root / "source-md", tmp_path / "search")
 
     # Then: the release reproduces the verified source bytes and section count.
-    assert report.document_count == 38
+    assert report.document_count == 39
     assert report.section_count > 3116
-    assert report.source_bytes == 61234862
+    assert report.source_bytes == 62075154
 
 
 def test_v120_schema_records_hierarchy_references_and_quality(source_dir: Path, tmp_path: Path) -> None:
