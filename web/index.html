@@ -71,7 +71,7 @@
 
             <div id="privacy-warning" class="notice privacy-notice">
               <p class="notice__title">로컬 처리</p>
-              <p class="notice__body">질문과 복지DB 원문은 이 PC의 로컬 Ollama에서 처리되며 외부 AI 서비스로 전송하지 않습니다.</p>
+              <p class="notice__body">질문과 복지DB 원문은 이 PC에 내장된 AI 엔진(llama.cpp)에서 처리되며 외부 AI 서비스로 전송하지 않습니다.</p>
             </div>
 
             <fieldset class="model-group">
@@ -98,9 +98,9 @@
           </div>
           <dl class="fact-list" aria-live="polite">
             <div class="fact-list__item"><dt>AI 연결</dt><dd id="status-ai">확인 중</dd></div>
-            <div class="fact-list__item"><dt>Ollama</dt><dd id="status-ollama">확인 중</dd></div>
-            <div class="fact-list__item"><dt>Gemma 4 E4B</dt><dd id="status-e4b">확인 중</dd></div>
+            <div class="fact-list__item"><dt>AI 엔진</dt><dd id="status-engine">확인 중</dd></div>
             <div class="fact-list__item"><dt>Gemma 4 E2B</dt><dd id="status-e2b">확인 중</dd></div>
+            <div class="fact-list__item"><dt>Gemma 4 E4B</dt><dd id="status-e4b">확인 중</dd></div>
             <div class="fact-list__item"><dt>선택한 모델</dt><dd id="status-model">확인 중</dd></div>
             <div class="fact-list__item"><dt>복지 매뉴얼</dt><dd id="status-documents">확인 중</dd></div>
             <div class="fact-list__item"><dt>검색 구간</dt><dd id="status-sections">확인 중</dd></div>
@@ -110,11 +110,11 @@
             <p class="notice__body">실제 처분이나 안내 전에는 답변에 표시된 문서명과 원문 줄을 다시 확인하세요.</p>
           </div>
           <div id="setup-summary" class="notice notice--warning setup-summary" hidden>
-            <p class="notice__title">AI 실행환경 설치가 필요합니다</p>
-            <p id="setup-summary-text" class="notice__body">Ollama 또는 로컬 모델 설치 상태를 확인하세요.</p>
+            <p class="notice__title">AI 엔진 상태를 확인하세요</p>
+            <p id="setup-summary-text" class="notice__body">AI 엔진 상태를 확인하고 있습니다.</p>
             <div class="button-row setup-summary__actions">
-              <button id="setup-guide-button" class="button button--secondary" type="button">설치 안내 보기</button>
-              <button id="setup-refresh-button" class="button button--secondary" type="button">설치 상태 다시 확인</button>
+              <button id="setup-guide-button" class="button button--secondary" type="button">문제 해결 안내</button>
+              <button id="setup-refresh-button" class="button button--secondary" type="button">상태 다시 확인</button>
             </div>
           </div>
         </aside>
@@ -177,35 +177,32 @@
       <div class="setup-dialog__content">
         <div class="setup-dialog__header">
           <div>
-            <p class="eyebrow">다른 PC에서 처음 실행할 때</p>
-            <h2 id="setup-dialog-title" class="setup-dialog__title">AI 실행환경 설치 안내</h2>
+            <p class="eyebrow">AI 엔진이 준비되지 않았을 때</p>
+            <h2 id="setup-dialog-title" class="setup-dialog__title">AI 엔진 문제 해결 안내</h2>
           </div>
-          <button id="setup-close-button" class="setup-dialog__close" type="button" aria-label="설치 안내 닫기">×</button>
+          <button id="setup-close-button" class="setup-dialog__close" type="button" aria-label="안내 닫기">×</button>
         </div>
-        <p id="setup-dialog-status" class="setup-dialog__status">현재 설치 상태를 확인하고 있습니다.</p>
+        <p id="setup-dialog-status" class="setup-dialog__status">현재 상태를 확인하고 있습니다.</p>
         <ol class="setup-steps">
           <li>
-            <strong>Ollama를 설치합니다.</strong>
-            <p>인터넷이 연결된 상태에서 Ollama Windows 버전을 설치하세요. 설치가 끝난 뒤에는 복지업무비서를 오프라인으로 사용할 수 있습니다.</p>
-            <button id="ollama-download-button" class="button button--secondary" type="button">Ollama 다운로드 페이지 열기</button>
+            <strong>별도 설치가 필요 없습니다.</strong>
+            <p>복지톡 AI에는 AI 엔진(llama.cpp)과 Gemma 4 E2B 모델이 함께 설치됩니다. Ollama나 다른 프로그램을 따로 설치하지 않아도 됩니다.</p>
           </li>
           <li>
-            <strong>기본 모델 E4B를 설치합니다.</strong>
-            <p>PowerShell 또는 명령 프롬프트를 열고 아래 명령을 실행하세요. 다운로드 용량은 약 9.6GB입니다.</p>
-            <div class="command-box"><code>ollama pull gemma4:e4b</code><button class="command-copy" type="button" data-copy-command="ollama pull gemma4:e4b">복사</button></div>
+            <strong>모델을 불러오는 중이면 잠시 기다리세요.</strong>
+            <p>프로그램을 켠 직후에는 AI 모델을 메모리에 올리는 데 수십 초가 걸릴 수 있습니다. 준비가 끝나면 질문 버튼이 자동으로 활성화됩니다.</p>
           </li>
           <li>
-            <strong>E2B는 선택사항입니다.</strong>
-            <p>E2B 선택 기능도 사용하려면 아래 모델을 추가로 설치하세요. 다운로드 용량은 약 4.3GB입니다.</p>
-            <div class="command-box"><code>ollama pull gemma4:e2b-it-qat</code><button class="command-copy" type="button" data-copy-command="ollama pull gemma4:e2b-it-qat">복사</button></div>
+            <strong>모델 파일을 찾을 수 없다고 나오면 설치를 다시 확인하세요.</strong>
+            <p>설치 폴더의 <code>models</code> 폴더에 <code>gemma4-e2b-it-qat.gguf</code> 파일이 있어야 합니다. 없으면 설치 파일을 다시 실행해 주세요.</p>
           </li>
           <li>
-            <strong>설치 완료 후 상태를 다시 확인합니다.</strong>
-            <p>Ollama가 바로 인식되지 않으면 이 프로그램을 종료한 뒤 다시 실행하세요.</p>
+            <strong>메모리가 부족하다고 나오면 다른 프로그램을 종료하세요.</strong>
+            <p>E2B 모델은 약 4GB의 여유 메모리가 필요합니다. 브라우저나 대용량 프로그램을 닫은 뒤 복지톡 AI를 다시 실행해 주세요.</p>
           </li>
         </ol>
         <div class="setup-dialog__actions">
-          <button id="setup-dialog-refresh-button" class="button button--primary" type="button">설치 상태 다시 확인</button>
+          <button id="setup-dialog-refresh-button" class="button button--primary" type="button">상태 다시 확인</button>
           <button id="setup-dialog-done-button" class="button button--secondary" type="button">닫기</button>
         </div>
       </div>

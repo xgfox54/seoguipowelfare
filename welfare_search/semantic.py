@@ -8,9 +8,8 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
+from welfare_llm import LLM_BASE_URL
 from welfare_runtime import open_http_url
-
-OLLAMA_BASE_URL = "http://127.0.0.1:11434"
 
 
 def _embed(model: str, texts: list[str], timeout: int = 120) -> list[list[float]]:
@@ -18,7 +17,7 @@ def _embed(model: str, texts: list[str], timeout: int = 120) -> list[list[float]
         return []
     payload = json.dumps({"model": model, "input": texts}, ensure_ascii=False).encode("utf-8")
     request = urllib.request.Request(
-        f"{OLLAMA_BASE_URL}/api/embed",
+        f"{LLM_BASE_URL}/v1/embeddings",
         data=payload,
         headers={"Content-Type": "application/json"},
         method="POST",
@@ -28,7 +27,8 @@ def _embed(model: str, texts: list[str], timeout: int = 120) -> list[list[float]
             result = json.loads(response.read().decode("utf-8"))
     except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError):
         return []
-    vectors = result.get("embeddings", [])
+    entries = result.get("data", [])
+    vectors = [entry.get("embedding") for entry in entries if isinstance(entry, dict)]
     return [[float(value) for value in vector] for vector in vectors if isinstance(vector, list)]
 
 

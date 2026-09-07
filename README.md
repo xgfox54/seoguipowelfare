@@ -2,9 +2,9 @@
 
 # 서귀포시 복지톡(Talk) AI 업무비서(로컬PC용)
 
-복지 업무자료 39개를 **로컬 SQLite FTS 검색색인**으로 검색하고, PC에 설치된 **Ollama + Gemma 4**가 검색된 원문만 근거로 답변하는 Windows용 개인 업무 도구입니다.
+복지 업무자료 39개를 **로컬 SQLite FTS 검색색인**으로 검색하고, 프로그램에 **내장된 llama.cpp 엔진과 Gemma 4 모델**이 검색된 원문만 근거로 답변하는 Windows용 개인 업무 도구입니다. 설치 파일 하나로 AI 엔진과 모델까지 함께 설치되므로 Ollama 등 별도 프로그램 설치가 필요 없습니다.
 
-> **v1.3.1:** 2026-09-07 DB 6차 업데이트(39개 문서, 18,868개 검색 구간)를 EXE에 내장했습니다. [v1.3.1 릴리스](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.3.1)에서 새 파일을 받아 기존 EXE를 교체하세요.
+> **v1.3.2:** Ollama 의존성을 완전히 제거하고 llama.cpp 엔진과 Gemma 4 E2B 모델을 내장한 올인원 설치 패키지(복지톡AI_Setup_v1.3.2.exe)로 배포합니다. [v1.3.2 릴리스](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.3.2)에서 설치 파일 하나만 받아 실행하면 됩니다.
 
 `복지업무비서.exe`를 실행하고 업무에 필요한 내용을 검색하면 Gemma4 e4b, e2b가 답변해줍니다.
 
@@ -17,7 +17,7 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 
 | 항목 | 현재 구현 |
 | --- | --- |
-| 버전 | v1.3.1 |
+| 버전 | v1.3.2 |
 | 사용자 실행 파일 | `복지업무비서.exe` 단일 파일 |
 | 화면 | pywebview + Microsoft Edge WebView2 기반 독립 프로그램 창 |
 | 로컬 서버 | FastAPI / Uvicorn, `127.0.0.1:8765`에만 바인딩 |
@@ -25,10 +25,20 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 | 복지 업무자료 | 39개 Markdown 원문 |
 | 검색 구간 | 18,868개 |
 | 원문 총량 | 62,075,154바이트 |
-| 기본 AI 모델 | Gemma 4 E4B (`gemma4:e4b`) |
-| 선택 가능 모델 | Gemma 4 E4B / Gemma 4 E2B QAT (`gemma4:e2b-it-qat`) |
-| AI 호출 방식 | Ollama 로컬 HTTP API 직접 호출 |
+| 기본 AI 모델 | Gemma 4 E2B QAT Q4 (`gemma4-e2b-it-qat.gguf`, 설치 파일에 내장) |
+| 선택 가능 모델 | Gemma 4 E4B (`models\gemma4-e4b.gguf` 파일을 추가하면 사용) |
+| AI 호출 방식 | 내장 llama-server(llama.cpp b10834) OpenAI 호환 API, 127.0.0.1:18080 |
 | 인터넷 필요 여부 | 모델 최초 설치 시 필요, 일반 질의는 로컬 처리 |
+
+## v1.3.2 주요 변경
+
+- Ollama 의존성 제거: 설치 확인, 서비스 실행, 11434 포트, `ollama pull` 안내가 모두 사라졌습니다.
+- llama.cpp(b10834, Vulkan 빌드)와 Gemma 4 E2B QAT GGUF 모델을 설치 패키지에 내장했습니다.
+- 프로그램 실행 시 `runtime\llamacpp\llama-server.exe`를 자동 시작하고 `models\*.gguf`를 자동 탐색합니다.
+- 프로그램 종료·강제종료 시 Windows Job Object로 llama-server가 함께 정리됩니다.
+- 화면에 AI 엔진 상태(시작 중 → 모델 불러오는 중 → 실행 중)와 오류 원인을 표시합니다.
+- Inno Setup 기반 단일 설치 파일(복지톡AI_Setup_v1.3.2.exe)을 제공합니다.
+- [RELEASE_NOTES_v1.3.2.md](RELEASE_NOTES_v1.3.2.md)에서 전환 상세를 확인할 수 있습니다.
 
 ## v1.3.1 주요 변경
 
@@ -48,68 +58,50 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 
 전체 변경 이력은 [RELEASE_NOTES_v1.3.0.md](RELEASE_NOTES_v1.3.0.md)를 참고하세요.
 
-## 일반 사용자: EXE로 실행하기
+## 일반 사용자: 설치 파일 하나로 실행하기
 
-### 1. 필요한 프로그램
+### 1. 필요한 것
 
-일반 사용자는 Python, Git, 가상환경을 설치할 필요가 없습니다. 다음 두 가지만 준비하면 됩니다.
+일반 사용자는 Python, Git, Ollama 등 어떤 프로그램도 미리 설치할 필요가 없습니다.
 
-1. **Windows 10/11**
-2. **Ollama**
-
-Ollama 설치:
-
-- <https://ollama.com/download>
+1. **Windows 10/11 (64bit)**
+2. **여유 디스크 약 4GB, 여유 메모리 4GB 이상**
 
 프로그램 창은 Microsoft Edge WebView2 런타임을 사용합니다. Windows 11과 최신 Windows 10 환경에는 보통 이미 설치돼 있습니다.
 
-### 2. Gemma 모델 설치
+### 2. 설치
 
-PowerShell 또는 CMD에서 필요한 모델을 설치합니다.
+릴리스 페이지에서 `복지톡AI_Setup_v1.3.2.exe` 하나만 내려받아 실행합니다. 설치 마법사가 다음을 자동으로 설치합니다.
 
-```powershell
-ollama pull gemma4:e4b
-ollama pull gemma4:e2b-it-qat
-```
+- `복지업무비서.exe`와 웹 화면, 복지 검색 DB
+- `runtime\llamacpp\` AI 엔진(llama-server.exe와 DLL)
+- `models\gemma4-e2b-it-qat.gguf` 기본 AI 모델(약 3.3GB)
 
-두 모델을 모두 설치할 필요는 없습니다. 저장공간이나 PC 성능에 따라 하나만 설치해도 되며, 설치된 모델만 프로그램에서 사용할 수 있습니다.
+기본 설치 위치는 `%LOCALAPPDATA%\BokjiTalkAI` 이며 관리자 권한이 필요 없습니다. 인터넷 연결 없이 설치·실행이 가능합니다.
 
-설치 상태 확인:
+### 3. 실행
 
-```powershell
-ollama list
-```
-
-Ollama나 모델이 설치돼 있지 않은 상태로 프로그램을 실행하면, 화면에 설치 안내 다이얼로그가 자동으로 표시됩니다. 이 다이얼로그에서 Ollama 다운로드 페이지를 바로 열거나, 모델 설치 명령을 복사하고, 설치 완료 후 상태를 다시 확인할 수 있습니다.
-
-### 3. `복지업무비서.exe` 실행
-
-배포받은 `복지업무비서.exe`를 더블클릭합니다.
-
-실행하면 다음 과정이 자동으로 진행됩니다.
+시작 메뉴 또는 바탕화면의 **복지톡AI 복지업무비서**를 실행하면 다음이 자동으로 진행됩니다.
 
 1. 이미 프로그램이 실행 중인지 확인합니다.
 2. `127.0.0.1:8765` 포트 사용 여부를 확인합니다.
-3. Ollama가 꺼져 있고 실행 파일을 찾을 수 있으면 `ollama serve` 시작을 시도합니다.
-4. EXE 내부의 복지 검색 DB와 FastAPI 서버를 시작합니다.
-5. 별도의 **서귀포시 복지톡(Talk) AI 업무비서(로컬PC용)** 프로그램 창을 엽니다.
+3. 내장 AI 엔진(`llama-server.exe`)을 `127.0.0.1:18080`에 시작하고 `models\` 폴더의 GGUF 모델을 자동으로 불러옵니다.
+4. 복지 검색 DB와 FastAPI 서버를 시작합니다.
+5. **서귀포시 복지톡(Talk) AI 업무비서(로컬PC용)** 프로그램 창을 엽니다.
 
-기본 브라우저를 자동으로 열지 않습니다.
+모델을 메모리에 올리는 데 PC 사양에 따라 10초~1분 정도 걸립니다. 그동안 화면에 `AI 준비 중` 상태가 표시되고, 준비가 끝나면 질문 버튼이 활성화됩니다.
 
 ### 4. 화면에서 AI 상태 확인
 
 시스템 상태 영역에서 다음 항목을 바로 확인할 수 있습니다.
 
-- **AI 연결**: 사용 가능한 Gemma 모델이 하나 이상 있으면 `연결됨`
-- **Ollama**: 설치·실행 상태
-- **Gemma 4 E4B**: `설치됨` / `미설치`
-- **Gemma 4 E2B**: `설치됨` / `미설치`
-- 복지 매뉴얼 수
-- 검색 구간 수
-- 현재 선택 모델
+- **AI 연결**: 사용 가능한 모델이 있으면 `연결됨`
+- **AI 엔진**: `시작 중` / `모델 불러오는 중` / `실행 중` / `오류`
+- **Gemma 4 E2B**: 기본 내장 모델, 정상이면 `실행 중`
+- **Gemma 4 E4B**: `models\gemma4-e4b.gguf` 파일이 있을 때만 사용
+- 복지 매뉴얼 수, 검색 구간 수, 현재 선택 모델
 
-`시스템 정상`은 복지 원문과 검색색인이 정상이라는 뜻입니다. 실제 AI 답변을 생성하려면 Ollama가 실행 중이고 E4B 또는 E2B 모델이 하나 이상 설치돼 있어야 합니다.
-
+엔진이 `오류`로 표시되면 화면의 **문제 해결 안내**와 설치 폴더 `logs\llama-server.log`, `logs\welfare-app.log`를 확인하세요. 모델 파일 누락, 메모리 부족, 포트 충돌을 구분해서 안내합니다.
 ### 5. 프로그램 종료
 
 다음 두 방법 모두 내부 로컬 서버까지 함께 종료합니다.
@@ -127,7 +119,7 @@ Ollama나 모델이 설치돼 있지 않은 상태로 프로그램을 실행하�
 4. 검색된 복지DB 원문을 근거로 생성된 답변을 확인합니다. 답변이 길 경우 검색 결과 영역의 **결과 내 검색** 창으로 원하는 내용을 바로 찾을 수 있습니다.
 5. 중요한 안내, 급여 결정, 행정처분 전에는 반드시 원문 지침을 다시 확인합니다.
 
-질문과 검색 원문은 로컬 Ollama에서 처리되며 외부 AI 서비스로 전송하지 않습니다. 업무상 필요한 사례정보도 동일한 로컬 처리 경로를 사용합니다.
+질문과 검색 원문은 프로그램에 내장된 llama.cpp 엔진에서 처리되며 외부 AI 서비스로 전송하지 않습니다. 업무상 필요한 사례정보도 동일한 로컬 처리 경로를 사용합니다.
 
 ## 답변 처리 구조
 
@@ -164,7 +156,7 @@ SQLite FTS5/BM25 + 선택적 semantic hybrid 검색
 프로그램 창에 Markdown 렌더링
 ```
 
-세 에이전트는 별도의 외부 AI 서비스를 사용하지 않고 선택한 **로컬 Ollama Gemma 모델을 역할별 프롬프트로 순차 호출**합니다. 따라서 질문과 복지DB 원문은 PC 밖으로 전송되지 않습니다.
+세 에이전트는 별도의 외부 AI 서비스를 사용하지 않고 내장 llama-server의 **Gemma 모델을 역할별 프롬프트로 순차 호출**합니다. 따라서 질문과 복지DB 원문은 PC 밖으로 전송되지 않습니다.
 
 검색 DB는 **6차 업데이트 원문 39개**를 사용합니다. `document_metadata.yaml`에서 각 합본 문서의 주제(`topic`), 근거 우선순위(`authority`), 자료 성격(`source_role`), 적용 범위(`jurisdiction`)를 별도로 관리합니다. `primary` 원본 업무자료를 최우선으로 사용하고, `reference`·`summary`·`index` 자료는 보조 근거로 취급합니다.
 
@@ -178,38 +170,38 @@ SQLite FTS5/BM25 + 선택적 semantic hybrid 검색
 
 과거 버전에서 사용하던 `.venv-openkb` 가상환경 이름과 `setup-openkb.ps1` 파일명 일부는 기존 작업환경 및 스크립트 호환을 위해 남아 있지만, 현재 `requirements.txt`에는 OpenKB가 포함돼 있지 않으며 실행 시 `openkb.exe`도 필요하지 않습니다.
 
-AI 답변은 `welfare_assistant.py`가 Ollama의 로컬 HTTP API를 직접 호출해 생성합니다.
+AI 답변은 `welfare_assistant.py`가 `welfare_llm.py`를 통해 내장 llama-server의 OpenAI 호환 API(`127.0.0.1:18080/v1/chat/completions`)를 호출해 생성합니다. Gemma 4 chat template은 llama-server의 `--jinja` 옵션으로 적용하고, thinking 모드는 끕니다.
 
 ## 모델
 
-### Gemma 4 E4B
+### Gemma 4 E2B QAT Q4 (기본, 설치 파일 내장)
 
-- Ollama 태그: `gemma4:e4b`
-- 프로그램 모델 키: `gemma_e4b`
-- 현재 기본 모델
-
-### Gemma 4 E2B QAT
-
-- Ollama 태그: `gemma4:e2b-it-qat`
+- 파일: `models\gemma4-e2b-it-qat.gguf` (3,349,514,112바이트, Q4_0)
 - 프로그램 모델 키: `gemma_e2b`
-- 저사양 PC에서 선택 가능한 경량 모델
+- 저사양 업무용 PC를 기준으로 선정한 기본 모델. 모델 로딩 후 약 4GB RAM 사용
 
-두 모델 모두 로컬 Ollama에서 실행되며 별도의 OpenAI API 요금은 발생하지 않습니다. 처리 속도와 답변 품질은 CPU, RAM, GPU, 모델 로딩 상태에 따라 달라집니다.
+### Gemma 4 E4B (선택)
+
+- 파일: `models\gemma4-e4b.gguf` (약 9.6GB, 설치 파일에는 포함하지 않음)
+- 프로그램 모델 키: `gemma_e4b`
+- 이 파일을 `models` 폴더에 넣으면 다음 실행부터 자동 인식. 프로그램은 첫 번째로 발견된 모델 하나만 로드합니다.
+
+두 모델 모두 내장 llama.cpp에서 실행되며 별도의 OpenAI API 요금은 발생하지 않습니다. 처리 속도와 답변 품질은 CPU, RAM, GPU, 모델 로딩 상태에 따라 달라집니다.
 
 ## 로컬 보안 구조
 
 - FastAPI 서버는 `127.0.0.1`에만 바인딩됩니다.
 - 웹 UI의 외부 폰트, 외부 스크립트, 통계/분석 서비스 의존성이 없습니다.
 - Markdown 렌더링 시 원시 HTML은 비활성화합니다.
-- 질문과 검색 원문은 Ollama 로컬 API로 전달됩니다.
+- 질문과 검색 원문은 내장 llama-server(`127.0.0.1:18080`, loopback 전용)로만 전달됩니다.
 - 프로그램 자체는 답변 생성을 위해 외부 AI API를 호출하지 않습니다.
 - 내부 HTTP 통신은 http/https 스킴만 허용하는 헬퍼를 거쳐 이뤄지며, GitLab 저장소의 서버 측 보안 스캔(Semgrep, OSV-Scanner 등)을 통과한 상태로 배포됩니다.
 
-단, Ollama 모델을 최초 다운로드하거나 Git 저장소/패키지를 설치하는 개발 과정에서는 인터넷 연결이 필요합니다.
+단, llama.cpp 바이너리와 GGUF 모델을 준비하거나 Git 저장소/패키지를 설치하는 개발 과정에서는 인터넷 연결이 필요합니다. 완성된 설치 파일은 인터넷 없이 설치·실행됩니다.
 
 ## 복지DB 기준
 
-프로그램 v1.3.1 / 2026-09-07 복지DB 6차 업데이트 기준:
+프로그램 v1.3.2 / 2026-09-07 복지DB 6차 업데이트 기준:
 
 - 원문 문서: **39개**
 - 원문 총량: **62,075,154바이트**
@@ -237,7 +229,9 @@ config.yaml.example
 - Windows 10/11
 - Python 3.12
 - Git
-- Ollama
+- llama.cpp Windows 빌드(b10834 vulkan-x64)를 `runtime\llamacpp\`에 압축 해제
+- Gemma 4 E2B QAT GGUF 파일을 `models\gemma4-e2b-it-qat.gguf`로 배치
+- Inno Setup 6 (설치 파일 생성용, `ISCC_PATH` 환경변수로 경로 지정 가능)
 
 저장소 내려받기:
 
@@ -359,16 +353,18 @@ PyInstaller 설정은 `console=False`인 Windows 단일 EXE이며, `pywebview`�
 | --- | --- |
 | `welfare_launcher.py` | 단일 EXE 진입점, 로컬 서버 및 WebView 프로그램 창 관리 |
 | `welfare_web.py` | FastAPI API 및 정적 웹 UI 제공 |
-| `welfare_assistant.py` | 검색 근거 구성 및 Ollama 직접 호출 |
-| `welfare_models.py` | Gemma 모델 정의 및 Ollama 설치 상태 확인 |
+| `welfare_assistant.py` | 검색 근거 구성 및 LLM 호출 오케스트레이션 |
+| welfare_llm.py | llama-server 프로세스 관리, GGUF 탐색, OpenAI 호환 API 호출 |
+| welfare_models.py | 모델 선택지 상태 표시 |
 | `welfare_runtime.py` | 리소스 경로 및 http/https로 제한된 내부 HTTP 통신 헬퍼 |
 | `welfare_index.py` | SQLite 검색색인 생성 |
 | `welfare_search/` | 검색 로직 |
 | `web/` | 프로그램 UI |
 | `source-md/` | 복지 업무 원문 Markdown |
 | `setup-openkb.ps1` | 레거시 파일명을 유지한 검색 DB 초기화/재생성 스크립트 |
-| `welfare_assistant.spec` | PyInstaller 단일 EXE 설정 |
-| `build-exe.ps1` | 단일 EXE 빌드 스크립트 |
+| `welfare_assistant.spec` | PyInstaller onedir 빌드 설정 |
+| uild-exe.ps1 | PyInstaller 빌드 + runtime/models 스테이징 + Inno Setup 설치 파일 생성 |
+| installer.iss | Inno Setup 설치 스크립트 |
 | `tools/generate_bokjitalk_icon.ps1` | 원본 아이콘 PNG로부터 웹/EXE용 아이콘 자산을 생성하는 스크립트 |
 | `requirements.txt` | 실행/개발 Python 의존성 (전이 의존성 버전 고정 포함) |
 | `requirements-build.txt` | PyInstaller 빌드 의존성 (전이 의존성 버전 고정 포함) |
@@ -377,8 +373,8 @@ PyInstaller 설정은 `console=False`인 Windows 단일 EXE이며, `pywebview`�
 
 | 증상 | 확인할 사항 |
 | --- | --- |
-| `AI 연결: 연결 안 됨` | Ollama 실행 여부와 `ollama list` 확인 |
-| E4B 또는 E2B가 `미설치` | 해당 `ollama pull ...` 명령 실행, 또는 화면의 설치 안내 다이얼로그 사용 |
+| `AI 엔진: 오류` | 설치 폴더 `logs\llama-server.log` 확인. 모델 파일 누락이면 재설치, 메모리 부족이면 다른 프로그램 종료 |
+| E2B가 `미사용` | `models\gemma4-e2b-it-qat.gguf` 존재 여부 확인, 없으면 설치 파일 재실행 |
 | 프로그램 창이 열리지 않음 | Microsoft Edge WebView2 Runtime 설치 상태 확인 |
 | `포트 8765을 다른 프로그램이 사용 중입니다` | 기존 복지업무 비서 또는 다른 로컬 서버 종료 |
 | 프로그램이 이미 실행 중이라는 메시지 | 기존 프로그램 창을 사용하거나 기존 인스턴스를 종료 |

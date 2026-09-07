@@ -1,4 +1,4 @@
-model: ollama/gemma4:e4b
+model: gemma4-e2b-it-qat.gguf
 language: ko
 pageindex_threshold: 20
 concurrency: 1

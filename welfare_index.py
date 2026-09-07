@@ -34,7 +34,7 @@ def _usage() -> str:
     return (
         "사용법:\n"
         "  welfare_index.py build\n"
-        "  welfare_index.py embed <ollama-embedding-model>\n"
+        "  welfare_index.py embed <embedding-model-name>\n"
         "  welfare_index.py search <질문>\n"
         "  welfare_index.py read <section_id[,section_id]>"
     )

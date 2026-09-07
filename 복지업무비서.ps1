@@ -14,7 +14,7 @@ if (-not (Test-Path -LiteralPath $Python)) {
 }
 
 $env:PYTHONUTF8 = '1'
-$env:OLLAMA_API_BASE = 'http://127.0.0.1:11434'
+$env:WELFARE_LLM_PORT = '18080'
 Push-Location $ProjectRoot
 try {
     $ProcessExitCode = 0

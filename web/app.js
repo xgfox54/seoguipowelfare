@@ -30,13 +30,12 @@
   const setupCloseButton = document.querySelector("#setup-close-button");
   const setupDialogDoneButton = document.querySelector("#setup-dialog-done-button");
   const setupDialogRefreshButton = document.querySelector("#setup-dialog-refresh-button");
-  const ollamaDownloadButton = document.querySelector("#ollama-download-button");
 
   const statusFields = {
     header: document.querySelector("#header-status"),
     panel: document.querySelector("#panel-status"),
     ai: document.querySelector("#status-ai"),
-    ollama: document.querySelector("#status-ollama"),
+    engine: document.querySelector("#status-engine"),
     e4b: document.querySelector("#status-e4b"),
     e2b: document.querySelector("#status-e2b"),
     model: document.querySelector("#status-model"),
@@ -46,7 +45,7 @@
 
   const formatNumber = new Intl.NumberFormat("ko-KR");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let selectedModel = "gemma_e4b";
+  let selectedModel = "gemma_e2b";
   let modelLabels = new Map();
   let answerStartedAt = 0;
   let answerTimerId = null;
@@ -296,19 +295,22 @@
   }
 
   function installationStatusText(status) {
-    if (!status.ollama_installed) {
-      return "Ollama가 설치되어 있지 않습니다. Ollama 설치 후 기본 모델 E4B를 내려받아 주세요.";
+    if (status.engine_state === "loading") {
+      return "AI 모델을 불러오는 중입니다. 잠시만 기다려 주세요.";
     }
-    if (!status.ollama_running) {
-      return "Ollama는 설치되어 있지만 현재 실행되고 있지 않습니다. 프로그램을 종료한 뒤 다시 실행해 주세요.";
+    if (status.engine_state === "error") {
+      return status.engine_error || "AI 엔진을 시작하지 못했습니다. 프로그램을 다시 실행해 주세요.";
+    }
+    if (status.engine_state === "idle") {
+      return "AI 엔진을 시작하고 있습니다.";
     }
     if (!status.ai_ready) {
-      return "Ollama는 정상 실행 중이지만 사용할 수 있는 Gemma 모델이 없습니다. E4B 또는 E2B 모델을 설치해 주세요.";
+      return "AI 엔진은 실행 중이지만 사용할 수 있는 모델이 없습니다.";
     }
     const missing = status.models.filter((model) => !model.available).map((model) => model.label);
     return missing.length > 0
-      ? `AI는 사용 가능합니다. 추가로 설치하지 않은 모델: ${missing.join(", ")}`
-      : "Ollama와 로컬 모델이 정상적으로 설치되어 있습니다.";
+      ? `AI는 사용 가능합니다. 현재 실행 중이 아닌 모델: ${missing.join(", ")}`
+      : "내장 AI 엔진과 모델이 정상적으로 준비되었습니다.";
   }
 
   function updateSetupGuide(status) {
@@ -336,16 +338,17 @@
       const aiConnected = e4bAvailable || e2bAvailable;
       aiReady = status.ai_ready === true;
       const systemReady = healthy && aiReady;
-      statusBadge(statusFields.header, systemReady ? "success" : "error", systemReady ? "시스템 정상" : aiReady ? "DB 점검 필요" : "AI 설치 필요");
-      statusBadge(statusFields.panel, systemReady ? "success" : "error", systemReady ? "정상" : aiReady ? status.status : "설치 필요");
+      statusBadge(statusFields.header, systemReady ? "success" : status.engine_state === "error" ? "error" : "warning", systemReady ? "시스템 정상" : aiReady ? "DB 점검 필요" : status.engine_state === "error" ? "AI 엔진 오류" : "AI 준비 중");
+      statusBadge(statusFields.panel, systemReady ? "success" : status.engine_state === "error" ? "error" : "warning", systemReady ? "정상" : aiReady ? status.status : status.engine_state === "error" ? "오류" : "준비 중");
       statusBadge(statusFields.ai, aiConnected ? "success" : "error", aiConnected ? "연결됨" : "연결 안 됨");
-      statusBadge(
-        statusFields.ollama,
-        status.ollama_running ? "success" : status.ollama_installed ? "warning" : "error",
-        status.ollama_running ? "설치됨 · 실행 중" : status.ollama_installed ? "설치됨 · 실행 필요" : "미설치",
-      );
-      statusBadge(statusFields.e4b, e4bAvailable ? "success" : "error", e4bAvailable ? "설치됨" : "미설치");
-      statusBadge(statusFields.e2b, e2bAvailable ? "success" : "error", e2bAvailable ? "설치됨" : "미설치");
+      const engineLabel = { ready: "실행 중", loading: "모델 불러오는 중", idle: "시작 중", error: "오류" }[status.engine_state] ?? "확인 중";
+      const engineKind = status.engine_state === "ready" ? "success" : status.engine_state === "error" ? "error" : "warning";
+      statusBadge(statusFields.engine, engineKind, engineLabel);
+      if (status.engine_state === "loading" || status.engine_state === "idle") {
+        window.setTimeout(loadStatus, 2000);
+      }
+      statusBadge(statusFields.e4b, e4bAvailable ? "success" : "warning", e4bAvailable ? "실행 중" : "미사용");
+      statusBadge(statusFields.e2b, e2bAvailable ? "success" : "warning", e2bAvailable ? "실행 중" : "미사용");
       renderModelOptions(status.models, status.default_model);
       statusFields.model.textContent = selectedModelLabel();
       statusFields.documents.textContent = `${formatNumber.format(status.source_documents)}개`;
@@ -357,14 +360,14 @@
       statusBadge(statusFields.header, "error", "상태 확인 실패");
       statusBadge(statusFields.panel, "error", "확인 실패");
       statusBadge(statusFields.ai, "error", "확인 실패");
-      statusBadge(statusFields.ollama, "error", "확인 실패");
+      statusBadge(statusFields.engine, "error", "확인 실패");
       statusBadge(statusFields.e4b, "error", "확인 실패");
       statusBadge(statusFields.e2b, "error", "확인 실패");
       statusFields.model.textContent = "확인할 수 없음";
       statusFields.documents.textContent = "확인할 수 없음";
       statusFields.sections.textContent = "확인할 수 없음";
       setupSummary.hidden = false;
-      setupSummaryText.textContent = "설치 상태를 확인할 수 없습니다. 프로그램을 다시 실행해 주세요.";
+      setupSummaryText.textContent = "AI 엔진 상태를 확인할 수 없습니다. 프로그램을 다시 실행해 주세요.";
       setBusy(false);
     }
   }
@@ -384,14 +387,6 @@
       setupRefreshButton.disabled = false;
       setupDialogRefreshButton.disabled = false;
     }
-  }
-
-  async function openOllamaDownload() {
-    if (window.pywebview?.api?.open_ollama_download) {
-      await window.pywebview.api.open_ollama_download();
-      return;
-    }
-    window.open("https://ollama.com/download/windows", "_blank", "noopener");
   }
 
   async function copyCommand(button) {
@@ -519,7 +514,6 @@
   setupDialogRefreshButton.addEventListener("click", refreshSetupStatus);
   setupCloseButton.addEventListener("click", () => setupDialog.close());
   setupDialogDoneButton.addEventListener("click", () => setupDialog.close());
-  ollamaDownloadButton.addEventListener("click", openOllamaDownload);
   for (const button of document.querySelectorAll("[data-copy-command]")) {
     button.addEventListener("click", () => copyCommand(button));
   }

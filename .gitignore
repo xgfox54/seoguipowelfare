@@ -14,3 +14,7 @@ wiki/kb-v120/
 .venv-package/
 build/
 dist/
+
+runtime/
+models/
+logs/

@@ -13,7 +13,7 @@ def _status(_: Path) -> Mapping[
 ]:
     return {
         "status": "정상",
-        "model": "ollama/gemma4:e4b",
+        "model": "gemma4-e2b-it-qat.gguf",
         "source_documents": 38,
         "search_sections": 3116,
         "native_openkb_documents": 36,
@@ -22,23 +22,23 @@ def _status(_: Path) -> Mapping[
             {
                 "key": "gemma_e4b",
                 "label": "Gemma 4 E4B (로컬)",
-                "runtime": "로컬 Ollama",
+                "runtime": "내장 llama.cpp",
                 "description": "로컬 모델",
                 "available": True,
                 "unavailable_reason": "",
             },
             {
                 "key": "gemma_e2b",
-                "label": "Gemma 4 E2B QAT Q4 (로컬)",
-                "runtime": "로컬 Ollama",
+                "label": "Gemma 4 E2B QAT Q4 (기본 내장)",
+                "runtime": "내장 llama.cpp",
                 "description": "로컬 모델",
                 "available": True,
                 "unavailable_reason": "",
             },
         ],
         "default_model": "gemma_e4b",
-        "ollama_installed": True,
-        "ollama_running": True,
+        "engine_state": "ready",
+        "engine_error": "",
         "ai_ready": True,
         "setup_required": False,
     }
@@ -64,9 +64,9 @@ def test_status_exposes_local_knowledge_base_health(tmp_path: Path) -> None:
         response = client.get("/api/status")
 
     assert response.status_code == 200
-    assert response.json()["model"] == "ollama/gemma4:e4b"
+    assert response.json()["model"] == "gemma4-e2b-it-qat.gguf"
     assert response.json()["source_documents"] == 38
-    assert response.json()["ollama_installed"] is True
+    assert response.json()["engine_state"] == "ready"
     assert response.json()["ai_ready"] is True
     assert response.headers["x-content-type-options"] == "nosniff"
 
@@ -128,10 +128,10 @@ def test_ask_routes_to_the_requested_model(tmp_path: Path) -> None:
             "/api/ask", json={"question": "생계급여 기준", "model": "gemma_e2b"}
         ).json()
 
-    assert default["model"] == "gemma_e4b"
-    assert "gemma_e4b 응답" in default["answer"]
+    assert default["model"] == "gemma_e2b"
+    assert "gemma_e2b 응답" in default["answer"]
     assert local["model"] == "gemma_e2b"
-    assert local["model_label"] == "Gemma 4 E2B QAT Q4 (로컬)"
+    assert local["model_label"] == "Gemma 4 E2B QAT Q4 (기본 내장)"
     assert "gemma_e2b 응답" in local["answer"]
 
 

@@ -4,8 +4,6 @@ import io
 import json
 import sqlite3
 import sys
-import urllib.error
-import urllib.request
 from pathlib import Path
 
 import yaml
@@ -19,16 +17,8 @@ from welfare_agent import (
     build_supervisor_system_prompt,
     build_system_prompt,
 )
-from welfare_models import (
-    DEFAULT_MODEL_KEY,
-    OLLAMA_BASE_URL,
-    available_choices,
-    find_ollama_executable,
-    installed_local_models,
-    ollama_is_running,
-    resolve_choice,
-)
-from welfare_runtime import open_http_url
+from welfare_llm import DEFAULT_MODEL_KEY, RUNTIME, generate, resolve_choice
+from welfare_models import available_choices
 from welfare_search import retrieve_context
 
 
@@ -48,10 +38,10 @@ def _read_runtime_config(kb_dir: Path) -> dict[str, str]:
     if not config_path.exists():
         config_path = kb_dir / "config.yaml.example"
     if not config_path.exists():
-        return {"model": resolve_choice(DEFAULT_MODEL_KEY).model, "language": "ko"}
+        return {"model": resolve_choice(DEFAULT_MODEL_KEY).filename, "language": "ko"}
     data = yaml.safe_load(config_path.read_text(encoding="utf-8")) or {}
     return {
-        "model": str(data.get("model", resolve_choice(DEFAULT_MODEL_KEY).model)),
+        "model": str(data.get("model", resolve_choice(DEFAULT_MODEL_KEY).filename)),
         "language": str(data.get("language", "ko")),
     }
 
@@ -74,39 +64,29 @@ def _index_dir(kb_dir: Path) -> Path:
     return kb_dir / "wiki" / "search"
 
 
-def _runtime_status() -> tuple[bool, bool, frozenset[str], list[dict[str, str | bool]]]:
-    runtime_running = ollama_is_running()
-    runtime_installed = bool(find_ollama_executable()) or runtime_running
-    local_models = installed_local_models() if runtime_running else frozenset()
-    models = list(
-        available_choices(
-            local_models=local_models,
-            runtime_installed=runtime_installed,
-            runtime_running=runtime_running,
-        )
-    )
-    return runtime_installed, runtime_running, local_models, models
+def _runtime_status() -> tuple[str, str, list[dict[str, str | bool]]]:
+    return RUNTIME.state, RUNTIME.error, list(available_choices())
 
 
 def system_status(kb_dir: Path) -> dict[str, object]:
     index_dir = _index_dir(kb_dir)
     database = index_dir / "welfare.db"
     manifest_path = index_dir / "manifest.json"
-    runtime_installed, runtime_running, _local_models, models = _runtime_status()
-    ai_ready = any(model["available"] is True for model in models)
-    setup_required = not runtime_installed or not runtime_running or not ai_ready
+    engine_state, engine_error, models = _runtime_status()
+    ai_ready = engine_state == "ready" and any(model["available"] is True for model in models)
+    setup_required = engine_state == "error"
     if not database.exists() or not manifest_path.exists():
         return {
             "status": "점검 필요",
-            "model": resolve_choice(DEFAULT_MODEL_KEY).model,
+            "model": resolve_choice(DEFAULT_MODEL_KEY).filename,
             "source_documents": 0,
             "search_sections": 0,
             "native_openkb_documents": 0,
             "source_bytes": 0,
             "models": models,
             "default_model": DEFAULT_MODEL_KEY,
-            "ollama_installed": runtime_installed,
-            "ollama_running": runtime_running,
+            "engine_state": engine_state,
+            "engine_error": engine_error,
             "ai_ready": ai_ready,
             "setup_required": setup_required,
         }
@@ -133,14 +113,14 @@ def system_status(kb_dir: Path) -> dict[str, object]:
         "source_bytes": manifest["source_bytes"],
         "models": models,
         "default_model": DEFAULT_MODEL_KEY,
-        "ollama_installed": runtime_installed,
-        "ollama_running": runtime_running,
+        "engine_state": engine_state,
+        "engine_error": engine_error,
         "ai_ready": ai_ready,
         "setup_required": setup_required,
     }
 
 
-def _ollama_generate(
+def _llm_generate(
     model_tag: str,
     prompt: str,
     timeout: int = 600,
@@ -148,32 +128,13 @@ def _ollama_generate(
     system_prompt: str | None = None,
     temperature: float = 0.2,
 ) -> str:
-    payload = json.dumps(
-        {
-            "model": model_tag,
-            "system": system_prompt or build_system_prompt(),
-            "prompt": prompt,
-            "stream": False,
-            "options": {"temperature": temperature, "num_ctx": 32768},
-        },
-        ensure_ascii=False,
-    ).encode("utf-8")
-    request = urllib.request.Request(
-        f"{OLLAMA_BASE_URL}/api/generate",
-        data=payload,
-        headers={"Content-Type": "application/json"},
-        method="POST",
+    del model_tag
+    return generate(
+        prompt,
+        system_prompt=system_prompt or build_system_prompt(),
+        temperature=temperature,
+        timeout=timeout,
     )
-    try:
-        with open_http_url(request, timeout=timeout) as response:
-            result = json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as error:
-        detail = error.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"Ollama 응답 오류({error.code}): {detail}") from error
-    except (urllib.error.URLError, TimeoutError) as error:
-        raise RuntimeError("Ollama에 연결할 수 없습니다. Ollama가 실행 중인지 확인하세요.") from error
-    answer = str(result.get("response", "")).strip()
-    return answer or "답변을 생성하지 못했습니다."
 
 
 def _clean_refined_question(question: str, candidate: str) -> str:
@@ -189,7 +150,7 @@ def _clean_refined_question(question: str, candidate: str) -> str:
 
 def _refine_question(model_tag: str, question: str) -> str:
     try:
-        candidate = _ollama_generate(
+        candidate = _llm_generate(
             model_tag,
             build_refiner_prompt(question),
             timeout=300,
@@ -209,7 +170,7 @@ def _supervise_answer(
     draft_answer: str,
 ) -> str:
     try:
-        reviewed = _ollama_generate(
+        reviewed = _llm_generate(
             model_tag,
             build_supervisor_prompt(
                 original_question,
@@ -228,22 +189,22 @@ def _supervise_answer(
 
 def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_KEY) -> str:
     choice = resolve_choice(model_key)
-    refined_question = _refine_question(choice.ollama_tag, question)
+    refined_question = _refine_question(choice.filename, question)
     retrieval_query = question if refined_question == question else f"{question}\n{refined_question}"
     context = retrieve_context(_index_dir(kb_dir) / "welfare.db", retrieval_query)
     try:
-        draft_answer = _ollama_generate(
-            choice.ollama_tag,
+        draft_answer = _llm_generate(
+            choice.filename,
             build_multi_agent_answer_prompt(question, refined_question, context),
         )
     except RuntimeError:
         context = retrieve_context(_index_dir(kb_dir) / "welfare.db", question)
-        return _ollama_generate(
-            choice.ollama_tag,
+        return _llm_generate(
+            choice.filename,
             build_grounded_prompt(question, context),
         )
     return _supervise_answer(
-        choice.ollama_tag,
+        choice.filename,
         question,
         refined_question,
         context,

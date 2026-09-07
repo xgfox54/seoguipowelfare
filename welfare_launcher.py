@@ -2,18 +2,17 @@ from __future__ import annotations
 
 import ctypes
 import json
+import logging
 import socket
-import subprocess
 import threading
 import time
 import urllib.error
 import urllib.request
-import webbrowser
 
 import uvicorn
 import webview
 
-from welfare_models import OLLAMA_WINDOWS_DOWNLOAD_URL, find_ollama_executable
+from welfare_llm import RUNTIME, log_dir
 from welfare_runtime import knowledge_base_root, open_http_url, resource_path
 from welfare_web import create_app
 
@@ -32,9 +31,6 @@ class DesktopApi:
         if self._window is not None:
             self._window.destroy()
         return True
-
-    def open_ollama_download(self) -> bool:
-        return bool(webbrowser.open(OLLAMA_WINDOWS_DOWNLOAD_URL, new=2))
 
 
 def _message_box(message: str, title: str = "복지업무 비서") -> None:
@@ -58,34 +54,13 @@ def _port_is_busy() -> bool:
         return sock.connect_ex((HOST, PORT)) == 0
 
 
-def _ollama_is_running() -> bool:
-    try:
-        with open_http_url("http://127.0.0.1:11434/api/tags", timeout=1.5) as response:
-            return response.status == 200
-    except (urllib.error.URLError, TimeoutError):
-        return False
-
-
-def _try_start_ollama() -> None:
-    if _ollama_is_running():
-        return
-    ollama = find_ollama_executable()
-    if not ollama:
-        return
-    creationflags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
-    try:
-        subprocess.Popen(
-            [ollama, "serve"],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            creationflags=creationflags,
-        )
-    except OSError:
-        return
-    for _ in range(20):
-        if _ollama_is_running():
-            return
-        time.sleep(0.25)
+def _configure_logging() -> None:
+    logging.basicConfig(
+        filename=str(log_dir() / "welfare-app.log"),
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+        encoding="utf-8",
+    )
 
 
 def _show_app_window(server: uvicorn.Server) -> None:
@@ -113,6 +88,7 @@ def _show_app_window(server: uvicorn.Server) -> None:
 
 
 def main() -> int:
+    _configure_logging()
     if _app_is_running():
         _message_box("복지업무 비서가 이미 실행 중입니다.")
         return 0
@@ -123,10 +99,12 @@ def main() -> int:
         )
         return 1
 
-    _try_start_ollama()
+    engine_thread = threading.Thread(target=RUNTIME.start, daemon=True)
+    engine_thread.start()
     server_ref: dict[str, uvicorn.Server] = {}
 
     def request_shutdown() -> None:
+        RUNTIME.stop()
         server = server_ref.get("server")
         if server is not None:
             server.should_exit = True
@@ -156,9 +134,12 @@ def main() -> int:
         _message_box("로컬 서버 시작 시간이 초과되었습니다.")
         return 1
 
-    _show_app_window(server)
-    server.should_exit = True
-    server_thread.join(timeout=5)
+    try:
+        _show_app_window(server)
+    finally:
+        server.should_exit = True
+        RUNTIME.stop()
+        server_thread.join(timeout=5)
     return 0
 
 

@@ -34,7 +34,7 @@ function Get-WelfareServerProcessId {
 }
 
 $env:PYTHONUTF8 = '1'
-$env:OLLAMA_API_BASE = 'http://127.0.0.1:11434'
+$env:WELFARE_LLM_PORT = '18080'
 if (-not (Test-WelfareServer)) {
     New-Item -ItemType Directory -Path $LogDirectory -Force | Out-Null
     $Server = Start-Process `

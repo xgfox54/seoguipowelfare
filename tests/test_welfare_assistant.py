@@ -20,7 +20,7 @@ def _knowledge_base(tmp_path: Path) -> Path:
     openkb = tmp_path / ".openkb"
     openkb.mkdir()
     _ = (openkb / "config.yaml").write_text(
-        "model: ollama/gemma4:e4b\nlanguage: ko\n", encoding="utf-8"
+        "model: gemma4-e2b-it-qat.gguf\nlanguage: ko\n", encoding="utf-8"
     )
     _ = (openkb / "hashes.json").write_text(
         json.dumps({"hash": {"name": "sample"}}), encoding="utf-8"
@@ -33,13 +33,10 @@ def test_system_status_reports_local_hybrid_index(
 ) -> None:
     # Given: a complete local index and OpenKB registry.
     kb_dir = _knowledge_base(tmp_path)
-    monkeypatch.setattr(welfare_assistant, "ollama_is_running", lambda: True)
-    monkeypatch.setattr(welfare_assistant, "find_ollama_executable", lambda: "C:/Ollama/ollama.exe")
-    monkeypatch.setattr(
-        welfare_assistant,
-        "installed_local_models",
-        lambda: frozenset({"gemma4:e4b", "gemma4:e2b-it-qat"}),
-    )
+    monkeypatch.setattr(welfare_assistant.RUNTIME, "state", "ready")
+    monkeypatch.setattr(welfare_assistant.RUNTIME, "error", "")
+    monkeypatch.setattr(welfare_assistant.RUNTIME, "model", welfare_assistant.resolve_choice("gemma_e2b"))
+    monkeypatch.setattr(welfare_assistant, "available_choices", lambda: ({"key": "gemma_e2b", "label": "E2B", "runtime": "내장 llama.cpp", "description": "", "available": True, "unavailable_reason": ""}, {"key": "gemma_e4b", "label": "E4B", "runtime": "내장 llama.cpp", "description": "", "available": False, "unavailable_reason": "없음"}))
 
     # When: the user-facing health status is collected.
     status = system_status(kb_dir)
@@ -51,31 +48,32 @@ def test_system_status_reports_local_hybrid_index(
     selectable = status.pop("models")
     assert status == {
         "status": "정상",
-        "model": "ollama/gemma4:e4b",
+        "model": "gemma4-e2b-it-qat.gguf",
         "source_documents": 1,
         "search_sections": 1,
         "native_openkb_documents": 1,
         "source_bytes": source_bytes,
-        "default_model": "gemma_e4b",
-        "ollama_installed": True,
-        "ollama_running": True,
+        "default_model": "gemma_e2b",
+        "engine_state": "ready",
+        "engine_error": "",
         "ai_ready": True,
         "setup_required": False,
     }
-    assert [model["key"] for model in selectable] == ["gemma_e4b", "gemma_e2b"]
+    assert [model["key"] for model in selectable] == ["gemma_e2b", "gemma_e4b"]
 
 
-def test_system_status_marks_setup_required_when_ollama_is_missing(
+def test_system_status_marks_setup_required_when_engine_failed(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     kb_dir = _knowledge_base(tmp_path)
-    monkeypatch.setattr(welfare_assistant, "ollama_is_running", lambda: False)
-    monkeypatch.setattr(welfare_assistant, "find_ollama_executable", lambda: "")
+    monkeypatch.setattr(welfare_assistant.RUNTIME, "state", "error")
+    monkeypatch.setattr(welfare_assistant.RUNTIME, "error", "AI 모델 파일(GGUF)을 찾을 수 없습니다.")
+    monkeypatch.setattr(welfare_assistant.RUNTIME, "model", None)
 
     status = system_status(kb_dir)
 
-    assert status["ollama_installed"] is False
-    assert status["ollama_running"] is False
+    assert status["engine_state"] == "error"
+    assert "GGUF" in status["engine_error"]
     assert status["ai_ready"] is False
     assert status["setup_required"] is True
     assert all(model["available"] is False for model in status["models"])
@@ -96,7 +94,7 @@ def test_system_status_accepts_an_empty_native_registry(tmp_path: Path) -> None:
 
 def test_initialize_local_state_creates_required_openkb_files(tmp_path: Path) -> None:
     # Given: a fresh clone with only the distributed configuration template.
-    template = "model: ollama/gemma4:e4b\nlanguage: ko\n"
+    template = "model: gemma4-e2b-it-qat.gguf\nlanguage: ko\n"
     _ = (tmp_path / "config.yaml.example").write_text(template, encoding="utf-8")
 
     # When: local runtime state is initialized.
@@ -115,18 +113,18 @@ def test_initialize_local_state_creates_required_openkb_files(tmp_path: Path) ->
 def test_initialize_local_state_preserves_existing_config(tmp_path: Path) -> None:
     # Given: a user-customized local OpenKB configuration.
     _ = (tmp_path / "config.yaml.example").write_text(
-        "model: ollama/gemma4:e4b\n", encoding="utf-8"
+        "model: gemma4-e2b-it-qat.gguf\n", encoding="utf-8"
     )
     state = tmp_path / ".openkb"
     state.mkdir()
     config = state / "config.yaml"
-    _ = config.write_text("model: ollama/custom\n", encoding="utf-8")
+    _ = config.write_text("model: custom.gguf\n", encoding="utf-8")
 
     # When: setup is run again.
     welfare_assistant.initialize_local_state(tmp_path)
 
     # Then: the user's existing configuration is not overwritten.
-    assert config.read_text(encoding="utf-8") == "model: ollama/custom\n"
+    assert config.read_text(encoding="utf-8") == "model: custom.gguf\n"
 
 
 def test_main_requires_a_question(capsys: pytest.CaptureFixture[str]) -> None:
@@ -170,7 +168,7 @@ def test_answer_question_runs_three_agent_pipeline(
         return "근거 기반 답변 초안"
 
     monkeypatch.setattr(welfare_assistant, "retrieve_context", fake_retrieve_context)
-    monkeypatch.setattr(welfare_assistant, "_ollama_generate", fake_generate)
+    monkeypatch.setattr(welfare_assistant, "_llm_generate", fake_generate)
 
     # When: one user question is answered.
     answer = welfare_assistant.answer_question(kb_dir, "생계급여 기준 알려줘")
@@ -215,7 +213,7 @@ def test_answer_question_falls_back_to_original_query_when_refiner_fails(
         return "초안"
 
     monkeypatch.setattr(welfare_assistant, "retrieve_context", fake_retrieve_context)
-    monkeypatch.setattr(welfare_assistant, "_ollama_generate", fake_generate)
+    monkeypatch.setattr(welfare_assistant, "_llm_generate", fake_generate)
 
     # When: the pipeline runs.
     answer = welfare_assistant.answer_question(kb_dir, "원래 질문")
@@ -247,7 +245,7 @@ def test_answer_question_returns_draft_when_supervisor_fails(
             raise RuntimeError("supervisor unavailable")
         return "검수 전이지만 근거 기반인 답변 초안"
 
-    monkeypatch.setattr(welfare_assistant, "_ollama_generate", fake_generate)
+    monkeypatch.setattr(welfare_assistant, "_llm_generate", fake_generate)
 
     # When: the supervisor stage fails.
     answer = welfare_assistant.answer_question(kb_dir, "생계급여 기준")

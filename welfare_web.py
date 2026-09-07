@@ -67,8 +67,8 @@ class StatusResponse(BaseModel):
     source_bytes: int
     models: list[ModelOption]
     default_model: str
-    ollama_installed: bool
-    ollama_running: bool
+    engine_state: str
+    engine_error: str
     ai_ready: bool
     setup_required: bool
 
