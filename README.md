@@ -4,9 +4,9 @@
 
 복지 업무자료 39개를 **로컬 SQLite FTS 검색색인**으로 검색하고, 프로그램에 **내장된 llama.cpp 엔진과 Gemma 4 모델**이 검색된 원문만 근거로 답변하는 Windows용 개인 업무 도구입니다. 선택한 설치 패키지로 AI 엔진과 모델까지 함께 설치되므로 Ollama 등 별도 프로그램 설치가 필요 없습니다.
 
-> **v1.3.2:** E2B와 E4B 모델 내장 패키지를 각각 제공합니다. [v1.3.2 릴리스](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.3.2)에서 원하는 모델을 선택하세요. EXE 파일명과 실행 화면에 버전이 표시됩니다.
+> **v1.3.3:** E2B와 E4B 모델 내장 패키지를 각각 제공합니다. [v1.3.3 릴리스](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.3.3)에서 원하는 모델을 선택하세요. EXE 파일명과 실행 화면에 버전이 표시됩니다.
 
-`복지업무비서_v1.3.2_E2B.exe` 또는 `복지업무비서_v1.3.2_E4B.exe`를 실행하고 업무에 필요한 내용을 검색하면 Gemma4 e4b, e2b가 답변해줍니다.
+`복지업무비서_v1.3.3_E2B.exe` 또는 `복지업무비서_v1.3.3_E4B.exe`를 실행하고 업무에 필요한 내용을 검색하면 Gemma4 e4b, e2b가 답변해줍니다.
 
 OpenAI API, ChatGPT Plus, OpenKB, OpenAI Agents SDK는 실행에 필요하지 않습니다.
 
@@ -17,18 +17,28 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 
 | 항목 | 현재 구현 |
 | --- | --- |
-| 버전 | v1.3.2 |
+| 버전 | v1.3.3 |
 | 사용자 실행 파일 | `복지업무비서.exe` 단일 파일 |
 | 화면 | pywebview + Microsoft Edge WebView2 기반 독립 프로그램 창 |
 | 로컬 서버 | FastAPI / Uvicorn, `127.0.0.1:8765`에만 바인딩 |
 | 검색 | SQLite FTS5/BM25 + 선택적 로컬 semantic hybrid 검색 |
 | 복지 업무자료 | 39개 Markdown 원문 |
-| 검색 구간 | 18,868개 |
+| 검색 구간 | 21,588개 |
 | 원문 총량 | 62,075,154바이트 |
 | 기본 AI 모델 | Gemma 4 E2B QAT Q4 (`gemma4-e2b-it-qat.gguf`, 설치 파일에 내장) |
 | E4B 패키지 | Gemma 4 E4B Q4_K_M (`gemma4-e4b.gguf`, E4B 패키지에 내장) |
 | AI 호출 방식 | 내장 llama-server(llama.cpp b10834) OpenAI 호환 API, 127.0.0.1:18080 |
 | 인터넷 필요 여부 | 패키지 다운로드 후 설치와 일반 질의는 오프라인 가능 |
+
+## v1.3.3 주요 변경
+
+- 합본 문서에서 각 검색 구간이 자기 본문에 실제로 나오는 사업명만 갖도록 색인 방식을 바꿨습니다. 이전에는 파일 전체의 사업명이 모든 구간에 복사되어 다른 사업의 내용이 함께 검색됐습니다.
+- 문서 길이가 검색 순위에 유리하게 작용하던 편향을 제거하고, 질문 용어를 실제로 담은 구간을 우선합니다.
+- 원본 자료와 요약본을 구분하는 값을 잘못 읽던 오류를 고쳐 원본 매뉴얼이 먼저 근거로 쓰입니다.
+- 질문의 여러 조건을 모두 만족하는 구간을 별도로 찾아 후보에 추가합니다.
+- HTML 표와 Markdown 표가 중간에서 잘리지 않고 한 구간에 보존됩니다. 모델에 넘길 때는 표 제목·머리말과 질문 관련 행을 남기고 나머지를 생략 표시로 줄입니다.
+- 한 사업의 대상·금액·기간·신청 절차가 같은 매뉴얼에 있어도 함께 근거로 전달됩니다.
+- 같은 복지 질문 50개 기준으로, 필요한 수치까지 근거에 포함된 질문이 37개에서 50개로 늘었고 검색 시간은 평균 2.67초에서 1.00초로 줄었습니다.
 
 ## v1.3.2 주요 변경
 
@@ -38,7 +48,7 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 - 프로그램 종료·강제종료 시 Windows Job Object로 llama-server가 함께 정리됩니다.
 - 화면에 AI 엔진 상태(시작 중 → 모델 불러오는 중 → 실행 중)와 오류 원인을 표시합니다.
 - E2B는 단일 설치 EXE, E4B는 설치 EXE와 분할 데이터를 묶은 ZIP으로 제공합니다.
-- [RELEASE_NOTES_v1.3.2.md](RELEASE_NOTES_v1.3.2.md)에서 전환 상세를 확인할 수 있습니다.
+- [RELEASE_NOTES_v1.3.3.md](RELEASE_NOTES_v1.3.3.md)에서 전환 상세를 확인할 수 있습니다.
 
 ## v1.3.1 주요 변경
 
@@ -73,12 +83,12 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 
 릴리스 페이지에서 원하는 패키지를 내려받습니다.
 
-- **E2B:** `BokjiTalkAI_Setup_v1.3.2_E2B.exe`를 실행합니다.
-- **E4B:** `BokjiTalkAI_Setup_v1.3.2_E4B.zip`을 폴더에 모두 풀고, 안의 `복지톡AI_Setup_v1.3.2_E4B.exe`를 실행합니다. `.bin` 파일은 설치 EXE와 같은 폴더에 있어야 합니다.
+- **E2B:** `BokjiTalkAI_Setup_v1.3.3_E2B.exe`를 실행합니다.
+- **E4B:** `BokjiTalkAI_Setup_v1.3.3_E4B.zip`을 폴더에 모두 풀고, 안의 `복지톡AI_Setup_v1.3.3_E4B.exe`를 실행합니다. `.bin` 파일은 설치 EXE와 같은 폴더에 있어야 합니다.
 
 두 패키지 모두 AI 엔진, 해당 모델, 웹 화면, 복지 검색 DB를 포함합니다. 모델이나 Ollama를 별도로 설치할 필요가 없습니다.
 
-E2B는 `%LOCALAPPDATA%\BokjiTalkAI`, E4B는 `%LOCALAPPDATA%\BokjiTalkAI_E4B`에 설치됩니다. 관리자 권한 없이 설치할 수 있습니다. 두 버전은 한 번에 하나씩 실행하세요. 실행 화면 상단에 `v1.3.2`가 표시됩니다.
+E2B는 `%LOCALAPPDATA%\BokjiTalkAI`, E4B는 `%LOCALAPPDATA%\BokjiTalkAI_E4B`에 설치됩니다. 관리자 권한 없이 설치할 수 있습니다. 두 버전은 한 번에 하나씩 실행하세요. 실행 화면 상단에 `v1.3.3`가 표시됩니다.
 
 ### 3. 실행
 
@@ -202,12 +212,12 @@ AI 답변은 `welfare_assistant.py`가 `welfare_llm.py`를 통해 내장 llama-s
 
 ## 복지DB 기준
 
-프로그램 v1.3.2 / 2026-09-07 복지DB 6차 업데이트 기준:
+프로그램 v1.3.3 / 2026-09-07 복지DB 6차 업데이트 기준(검색 색인은 v1.3.3에서 재생성):
 
 - 원문 문서: **39개**
 - 원문 총량: **62,075,154바이트**
-- 검색 구간: **18,868개**
-- 검색 인덱스 DB: **376,016,896바이트 (약 358.6MiB)**
+- 검색 구간: **21,588개**
+- 검색 인덱스 DB: **286,445,568바이트 (약 273.2MiB)**
 - 품질 오류: **0건**
 
 EXE 빌드 시 다음 파일이 실행 파일 내부에 함께 포함됩니다.
@@ -323,9 +333,9 @@ powershell.exe -ExecutionPolicy Bypass -File .\build-exe.ps1
 결과 파일:
 
 ```text
-dist\복지톡AI_Setup_v1.3.2_E2B.exe
-dist\복지톡AI_Setup_v1.3.2_E4B.exe
-dist\복지톡AI_Setup_v1.3.2_E4B-*.bin
+dist\복지톡AI_Setup_v1.3.3_E2B.exe
+dist\복지톡AI_Setup_v1.3.3_E4B.exe
+dist\복지톡AI_Setup_v1.3.3_E4B-*.bin
 ```
 
 PyInstaller onedir 빌드에 웹 화면과 DB를 포함한 뒤, 해당 모델과 llama.cpp를 Inno Setup으로 묶습니다. 실행 파일 이름은 `복지업무비서_v{VERSION}_{E2B 또는 E4B}.exe`입니다. E4B 설치 EXE와 해당 `.bin` 파일을 하나의 ZIP으로 묶어 배포합니다.

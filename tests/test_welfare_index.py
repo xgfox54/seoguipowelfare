@@ -308,7 +308,7 @@ def test_v120_schema_records_hierarchy_references_and_quality(source_dir: Path, 
             "SELECT COUNT(*) FROM quality_issues WHERE issue_code='oversized_chunk'"
         ).fetchone()[0]
 
-    assert version == 5
+    assert version == 6
     assert node_count > 0
     assert reference_count >= 3
     assert oversized == 0

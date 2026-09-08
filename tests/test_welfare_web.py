@@ -14,7 +14,7 @@ def _status(_: Path) -> Mapping[
     return {
         "status": "정상",
         "model": "gemma4-e2b-it-qat.gguf",
-        "app_version": "1.3.2",
+        "app_version": "1.3.3",
         "source_documents": 38,
         "search_sections": 3116,
         "native_openkb_documents": 36,

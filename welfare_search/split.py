@@ -4,7 +4,15 @@ import hashlib
 import re
 from typing import Final
 
-from welfare_search.types import DocumentNode, HeadingEvent, NodeId, Section, SectionId, SourceDocument
+from welfare_search.structure import table_end_crossing, table_spans
+from welfare_search.types import (
+    DocumentNode,
+    HeadingEvent,
+    NodeId,
+    Section,
+    SectionId,
+    SourceDocument,
+)
 
 TARGET_SECTION_CHARS: Final = 1_800
 MIN_SECTION_CHARS: Final = 800
@@ -81,12 +89,10 @@ def _safe_boundaries(text: str) -> tuple[int, ...]:
         if in_table:
             boundaries.append(_start)
             in_table = False
-        if not line.strip() or line.lstrip().startswith("#"):
-            boundaries.append(end)
-        elif line.rstrip().endswith((".", "다.", "요.", ")", "]")):
+        if not line.strip() or line.lstrip().startswith("#") or line.rstrip().endswith((".", "다.", "요.", ")", "]")):
             boundaries.append(end)
     boundaries.append(len(text))
-    return tuple(sorted(set(boundary for boundary in boundaries if boundary > 0)))
+    return tuple(sorted({boundary for boundary in boundaries if boundary > 0}))
 
 
 def _choose_end(text: str, start: int, hard_end: int, boundaries: tuple[int, ...]) -> int:
@@ -101,22 +107,40 @@ def _choose_end(text: str, start: int, hard_end: int, boundaries: tuple[int, ...
     return line_end + 1 if line_end >= start + MIN_SECTION_CHARS else hard_end
 
 
+def _forced_heading_boundaries(events: tuple[HeadingEvent, ...]) -> tuple[int, ...]:
+    return tuple(
+        event.offset
+        for event in events
+        if event.offset > 0 and (event.level == 1 or ORIGINAL_PATTERN.match(event.title))
+    )
+
+
 def split_document(document: SourceDocument) -> tuple[Section, ...]:
     events = _heading_events(document.text)
     nodes = build_nodes(document)
     nodes_by_start = sorted(nodes, key=lambda node: node.start_line)
+    protected_tables = table_spans(document.text)
     boundaries = set(_safe_boundaries(document.text))
     boundaries.update(event.offset for event in events if event.offset > 0)
     safe_boundaries = tuple(sorted(boundaries))
+    forced_boundaries = _forced_heading_boundaries(events)
 
     sections: list[Section] = []
     start = 0
     ordinal = 1
     while start < len(document.text):
-        hard_end = min(start + MAX_SECTION_CHARS, len(document.text))
-        end = _choose_end(document.text, start, hard_end, safe_boundaries)
-        if end <= start:
-            end = hard_end
+        floor = start
+        while True:
+            hard_end = min(floor + MAX_SECTION_CHARS, len(document.text))
+            forced = tuple(boundary for boundary in forced_boundaries if floor < boundary <= hard_end)
+            end = forced[0] if forced else _choose_end(document.text, floor, hard_end, safe_boundaries)
+            end = table_end_crossing(protected_tables, start, end)
+            if end <= floor:
+                end = hard_end
+            chunk_has_text = bool(document.text[start:end].strip())
+            if chunk_has_text or end >= len(document.text):
+                break
+            floor = end
 
         path_events = _heading_path(events, start)
         inside_events = tuple(event for event in events if start <= event.offset < end)
@@ -143,4 +167,29 @@ def split_document(document: SourceDocument) -> tuple[Section, ...]:
         sections.append(Section(section_id, document.name, ordinal, active_node, title, headings, original_name, start_line, end_line, content, content_hash))
         start = end
         ordinal += 1
-    return tuple(sections)
+    return _merge_trailing_whitespace(tuple(sections))
+
+
+def _merge_trailing_whitespace(sections: tuple[Section, ...]) -> tuple[Section, ...]:
+    if len(sections) < 2 or sections[-1].content.strip():
+        return sections
+    previous, trailing = sections[-2], sections[-1]
+    content = previous.content + trailing.content
+    content_hash = hashlib.sha256(content.encode("utf-8")).hexdigest()
+    section_id = SectionId(
+        hashlib.sha256(f"{previous.source_name}\0{previous.ordinal}\0{content_hash}".encode()).hexdigest()[:20]
+    )
+    merged = Section(
+        section_id,
+        previous.source_name,
+        previous.ordinal,
+        previous.node_id,
+        previous.title,
+        previous.headings,
+        previous.original_name,
+        previous.start_line,
+        trailing.end_line,
+        content,
+        content_hash,
+    )
+    return (*sections[:-2], merged)

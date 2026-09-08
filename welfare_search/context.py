@@ -5,7 +5,11 @@ import sqlite3
 from pathlib import Path
 
 from welfare_search.search import search_sections
+from welfare_search.table_render import render_table_context
 from welfare_search.types import SearchHit
+
+MAX_SECTIONS_PER_HEADING: int = 2
+CONTEXT_CHAR_BUDGET: int = 14_000
 
 SERVICE_QUERY_PATTERN = re.compile(
     r"[가-힣A-Za-z0-9][가-힣A-Za-z0-9·_-]{1,32}(?:서비스|급여|수당|지원|돌봄|연금|바우처|보험|보장|복지|급식|후견|보육|일자리|이용권)"
@@ -55,12 +59,18 @@ def _fetch_evidence(
 
 def retrieve_context(database_path: Path, query: str, limit: int = 6) -> str:
     candidates = search_sections(database_path, query, min(limit * 3, 20))
-    source_counts: dict[str, int] = {}
+    heading_counts: dict[tuple[str, str], int] = {}
     selected: list[SearchHit] = []
+
+    def heading_key(hit: SearchHit) -> tuple[str, str]:
+        return (hit.source_name, hit.headings.split(" > ")[-1] if hit.headings else hit.title)
+
+    def crowded(hit: SearchHit) -> bool:
+        return heading_counts.get(heading_key(hit), 0) >= MAX_SECTIONS_PER_HEADING
 
     def add_hit(hit: SearchHit) -> None:
         selected.append(hit)
-        source_counts[hit.source_name] = source_counts.get(hit.source_name, 0) + 1
+        heading_counts[heading_key(hit)] = heading_counts.get(heading_key(hit), 0) + 1
 
     if candidates:
         add_hit(candidates[0])
@@ -69,7 +79,7 @@ def retrieve_context(database_path: Path, query: str, limit: int = 6) -> str:
         if any(service_term in f"{hit.title} {hit.headings}" for hit in selected):
             continue
         for hit in candidates:
-            if hit in selected or source_counts.get(hit.source_name, 0) >= 3:
+            if hit in selected or crowded(hit):
                 continue
             if service_term in f"{hit.title} {hit.headings}":
                 add_hit(hit)
@@ -78,16 +88,14 @@ def retrieve_context(database_path: Path, query: str, limit: int = 6) -> str:
             break
 
     for hit in candidates:
-        if hit in selected:
-            continue
-        count = source_counts.get(hit.source_name, 0)
-        if count >= 3:
+        if hit in selected or crowded(hit):
             continue
         add_hit(hit)
         if len(selected) == limit:
             break
 
     blocks: list[str] = []
+    used_chars = 0
     for hit, metadata, references in _fetch_evidence(database_path, tuple(selected)):
         (
             service_names,
@@ -107,7 +115,8 @@ def retrieve_context(database_path: Path, query: str, limit: int = 6) -> str:
         if effective_from or effective_to:
             validity = f"[effective_period: {effective_from or '미표기'} ~ {effective_to or '현재'}]\n"
         refs = f"[references: {'; '.join(references)}]\n" if references else ""
-        blocks.append(
+        body = render_table_context(hit.content.strip(), query)
+        block = (
             f"[section_id: {hit.section_id}]\n"
             f"[source_name: {hit.source_name}]\n"
             f"[original_name: {hit.original_name}]\n"
@@ -123,6 +132,10 @@ def retrieve_context(database_path: Path, query: str, limit: int = 6) -> str:
             f"[heading_path: {heading_path}]\n"
             f"[lines: {hit.start_line}-{hit.end_line}]\n"
             f"{refs}"
-            f"[title: {hit.title}]\n{hit.content.strip()}"
+            f"[title: {hit.title}]\n{body}"
         )
+        if blocks and used_chars + len(block) > CONTEXT_CHAR_BUDGET:
+            continue
+        used_chars += len(block)
+        blocks.append(block)
     return "\n\n-----\n\n".join(blocks)

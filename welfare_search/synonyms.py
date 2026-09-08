@@ -48,6 +48,8 @@ EXPANSION_RULES: Final[tuple[tuple[re.Pattern[str], tuple[str, ...]], ...]] = (
 )
 
 PROGRAM_ANCHORS: Final[tuple[str, ...]] = (
+    "위기가구신고포상금",
+    "청년월세",
     "긴급복지",
     "국민기초생활보장",
     "생계급여",
@@ -71,6 +73,15 @@ PROGRAM_ANCHORS: Final[tuple[str, ...]] = (
     "맞춤형급여안내",
     "통합사례관리",
 )
+
+PROGRAM_MANUAL_ALIASES: Final[dict[str, tuple[str, ...]]] = {
+    "생계급여": ("국민기초생활보장",),
+    "의료급여": ("국민기초생활보장",),
+    "주거급여": ("국민기초생활보장",),
+    "교육급여": ("국민기초생활보장",),
+    "위기가구신고포상금": ("위기가구", "포상금"),
+    "의료요양통합돌봄": ("통합돌봄",),
+}
 
 
 def expand_query_terms(query: str) -> tuple[str, ...]:

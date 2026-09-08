@@ -11,7 +11,12 @@ from typing import Final
 import yaml
 
 from welfare_search.split import MAX_SECTION_CHARS, build_nodes, split_document
-from welfare_search.types import IndexReport, SourceDocument, SourceEncodingError
+from welfare_search.types import (
+    IndexReport,
+    Section,
+    SourceDocument,
+    SourceEncodingError,
+)
 
 YEAR_PATTERN: Final[re.Pattern[str]] = re.compile(r"20\d{2}")
 CATEGORY_PATTERN: Final[re.Pattern[str]] = re.compile(r"\[([^\]]+)\]")
@@ -36,91 +41,7 @@ SERVICE_NAME_EXCLUDES: Final[frozenset[str]] = frozenset(
         "지원한도",
     }
 )
-SCHEMA_VERSION: Final = 5
-
-SCHEMA: Final = """
-PRAGMA synchronous = NORMAL;
-CREATE TABLE IF NOT EXISTS documents (
-    source_name TEXT PRIMARY KEY,
-    source_path TEXT NOT NULL,
-    sha256 TEXT NOT NULL,
-    byte_size INTEGER NOT NULL,
-    year TEXT NOT NULL,
-    category TEXT NOT NULL,
-    document_type TEXT NOT NULL DEFAULT '기타',
-    publisher TEXT NOT NULL DEFAULT '미표기',
-    edition TEXT NOT NULL DEFAULT '',
-    effective_from TEXT NOT NULL DEFAULT '',
-    effective_to TEXT NOT NULL DEFAULT '',
-    topic TEXT NOT NULL DEFAULT '',
-    authority TEXT NOT NULL DEFAULT 'primary',
-    source_role TEXT NOT NULL DEFAULT 'operational_manual',
-    jurisdiction TEXT NOT NULL DEFAULT 'national',
-    section_count INTEGER NOT NULL
-);
-CREATE TABLE IF NOT EXISTS nodes (
-    node_id TEXT PRIMARY KEY,
-    source_name TEXT NOT NULL REFERENCES documents(source_name) ON DELETE CASCADE,
-    parent_id TEXT NOT NULL,
-    level INTEGER NOT NULL,
-    node_type TEXT NOT NULL,
-    title TEXT NOT NULL,
-    heading_path TEXT NOT NULL,
-    start_line INTEGER NOT NULL,
-    end_line INTEGER NOT NULL
-);
-CREATE INDEX IF NOT EXISTS idx_nodes_source ON nodes(source_name, start_line);
-CREATE TABLE IF NOT EXISTS sections (
-    section_id TEXT PRIMARY KEY,
-    source_name TEXT NOT NULL REFERENCES documents(source_name) ON DELETE CASCADE,
-    ordinal INTEGER NOT NULL,
-    node_id TEXT NOT NULL DEFAULT '',
-    title TEXT NOT NULL,
-    headings TEXT NOT NULL,
-    service_names TEXT NOT NULL DEFAULT '',
-    original_name TEXT NOT NULL,
-    start_line INTEGER NOT NULL,
-    end_line INTEGER NOT NULL,
-    content TEXT NOT NULL,
-    content_hash TEXT NOT NULL,
-    UNIQUE(source_name, ordinal)
-);
-CREATE INDEX IF NOT EXISTS idx_sections_source ON sections(source_name, ordinal);
-CREATE VIRTUAL TABLE IF NOT EXISTS sections_fts USING fts5(
-    section_id UNINDEXED, source_name, title, headings, service_names, content, tokenize = 'unicode61'
-);
-CREATE TABLE IF NOT EXISTS index_state (
-    source_name TEXT PRIMARY KEY,
-    source_hash TEXT NOT NULL,
-    indexed_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    index_version INTEGER NOT NULL
-);
-CREATE TABLE IF NOT EXISTS embeddings (
-    section_id TEXT PRIMARY KEY REFERENCES sections(section_id) ON DELETE CASCADE,
-    model TEXT NOT NULL,
-    dimensions INTEGER NOT NULL,
-    vector BLOB NOT NULL,
-    content_hash TEXT NOT NULL
-);
-CREATE TABLE IF NOT EXISTS references_map (
-    section_id TEXT NOT NULL REFERENCES sections(section_id) ON DELETE CASCADE,
-    source_name TEXT NOT NULL,
-    reference_type TEXT NOT NULL,
-    target_text TEXT NOT NULL,
-    PRIMARY KEY(section_id, reference_type, target_text)
-);
-CREATE INDEX IF NOT EXISTS idx_references_source ON references_map(source_name, reference_type);
-CREATE TABLE IF NOT EXISTS quality_issues (
-    issue_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    source_name TEXT NOT NULL,
-    section_id TEXT NOT NULL DEFAULT '',
-    severity TEXT NOT NULL,
-    issue_code TEXT NOT NULL,
-    message TEXT NOT NULL
-);
-CREATE INDEX IF NOT EXISTS idx_quality_source ON quality_issues(source_name, severity);
-PRAGMA user_version = 5;
-"""
+from welfare_search.schema import SCHEMA, SCHEMA_VERSION
 
 
 def _frontmatter(text: str) -> dict[str, object]:
@@ -274,28 +195,18 @@ def _extract_references(content: str) -> tuple[tuple[str, str], ...]:
     return tuple(dict.fromkeys(found))
 
 
-def _extract_service_names(document: SourceDocument) -> tuple[str, ...]:
-    """Build a compact document-level welfare-service vocabulary for every chunk.
-
-    The source files are merged manuals, so a section about eligibility may not repeat the
-    service name locally.  Indexing the manual's service vocabulary on every section keeps
-    queries such as '제주가치돌봄 식사지원 조건' connected to the eligibility section.
-    """
+def _extract_service_names(section: Section) -> tuple[str, ...]:
     found: list[str] = []
-    search_text = f"{document.name}\n{document.text}"
-    for match in SERVICE_NAME_PATTERN.finditer(search_text):
+    for match in SERVICE_NAME_PATTERN.finditer(f"{section.title} {section.headings} {section.content}"):
         name = match.group(0).strip("_-·")
-        if name in SERVICE_NAME_EXCLUDES or name in found:
-            continue
-        found.append(name)
-        if len(found) >= 120:
-            break
+        if name not in SERVICE_NAME_EXCLUDES and name not in found:
+            found.append(name)
     return tuple(found)
 
 
 def _quality_issues(source_name: str, section_id: str, title: str, headings: str, content: str) -> tuple[tuple[str, str, str], ...]:
     issues: list[tuple[str, str, str]] = []
-    if len(content) > MAX_SECTION_CHARS:
+    if len(content) > MAX_SECTION_CHARS and "<table" not in content.lower() and not re.search(r"(?m)^\s*\|", content):
         issues.append(("error", "oversized_chunk", f"청크 길이 {len(content)}자가 최대 {MAX_SECTION_CHARS}자를 초과함"))
     if "\ufffd" in content:
         issues.append(("error", "replacement_character", "문자 인코딩 손상 가능성이 있는 U+FFFD 문자가 포함됨"))
@@ -311,7 +222,7 @@ def _quality_issues(source_name: str, section_id: str, title: str, headings: str
 def _insert_document(connection: sqlite3.Connection, document: SourceDocument) -> int:
     nodes = build_nodes(document)
     sections = split_document(document)
-    service_names = " ".join(_extract_service_names(document))
+    service_names = {section.section_id: " ".join(_extract_service_names(section)) for section in sections}
     connection.execute(
         "INSERT INTO documents(source_name, source_path, sha256, byte_size, year, category, document_type, publisher, edition, effective_from, effective_to, topic, authority, source_role, jurisdiction, section_count) "
         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -362,7 +273,7 @@ def _insert_document(connection: sqlite3.Connection, document: SourceDocument) -
                 section.node_id,
                 section.title,
                 section.headings,
-                service_names,
+                service_names[section.section_id],
                 section.original_name,
                 section.start_line,
                 section.end_line,
@@ -380,7 +291,7 @@ def _insert_document(connection: sqlite3.Connection, document: SourceDocument) -
                 section.source_name,
                 section.title,
                 section.headings,
-                service_names,
+                service_names[section.section_id],
                 section.content,
             )
             for section in sections
@@ -457,13 +368,13 @@ def build_index(source_dir: Path, output_dir: Path) -> IndexReport:
                 **asdict(report),
                 "schema_version": SCHEMA_VERSION,
                 "retrieval_architecture": "hierarchical-fts5-hybrid-ready",
-                "chunking": {"target_chars": 1800, "min_chars": 800, "max_chars": 2800},
+                "chunking": {"target_chars": 1800, "min_chars": 800, "max_chars": 2800, "tables_kept_whole": True},
                 "reference_count": reference_count,
                 "quality_issue_count": quality_issue_count,
                 "quality_error_count": error_count,
                 "metadata_catalog": "document_metadata.yaml",
                 "authority_levels": ["primary", "reference", "summary", "index"],
-                "service_name_index": "document vocabulary inherited by every section",
+                "service_name_index": "section content and ancestor headings only",
             },
             ensure_ascii=False,
             indent=2,
