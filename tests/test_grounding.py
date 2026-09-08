@@ -46,3 +46,17 @@ def test_sanitizer_keeps_equivalent_korean_amount_units() -> None:
     # Then: an equivalent amount is not removed.
     assert "5만원" in sanitized
     assert "자동 근거 검수" not in sanitized
+
+
+def test_sanitizer_collapses_degenerate_repeated_sentences() -> None:
+    # Given: the model repeats one grounded sentence many times.
+    context = "긴급복지 생계지원은 1인 783,000원이며 사실관계 확인이 필요합니다."
+    repeated = "*   사실관계 확인이 필요합니다. 사실관계 확인이 필요합니다."
+    answer = "\n".join(("*   1인 가구는 783,000원입니다.", *(repeated for _ in range(20))))
+
+    # When: the answer is validated against its evidence.
+    sanitized = sanitize_grounded_answer(answer, context, "생계지원 금액")
+
+    # Then: the grounded fact stays and the repetition appears only once.
+    assert "783,000원" in sanitized
+    assert sanitized.count("사실관계 확인이 필요합니다. 사실관계 확인이 필요합니다.") == 1

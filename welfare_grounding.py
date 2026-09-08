@@ -15,6 +15,7 @@ DOMAIN_TERM_PATTERN: Final[re.Pattern[str]] = re.compile(
     r"(?:[가-힣A-Za-z0-9·]{2,32}(?:급여|수당|연금|보험|바우처|이용권|채권)|양육비|생계비|의료비)"
 )
 NORMALIZE_PATTERN: Final[re.Pattern[str]] = re.compile(r"[^0-9A-Za-z가-힣%]+")
+REPEATABLE_LINE_MAX_CHARS: Final[int] = 12
 AMOUNT_MULTIPLIERS: Final[dict[str, Decimal]] = {
     "원": Decimal(1),
     "천원": Decimal(1_000),
@@ -77,6 +78,18 @@ def _without_empty_headings(lines: tuple[str, ...]) -> tuple[str, ...]:
     return tuple(kept)
 
 
+def _without_repeated_lines(lines: tuple[str, ...]) -> tuple[str, ...]:
+    seen: set[str] = set()
+    kept: list[str] = []
+    for line in lines:
+        key = _normalized(line)
+        if len(key) > REPEATABLE_LINE_MAX_CHARS and key in seen:
+            continue
+        seen.add(key)
+        kept.append(line)
+    return tuple(kept)
+
+
 def sanitize_grounded_answer(
     answer: str,
     context: str,
@@ -93,7 +106,7 @@ def sanitize_grounded_answer(
         for line in original_lines
         if not _unsupported_line(line, source_text, source_claims, requested_years)
     )
-    filtered_lines = _without_empty_headings(kept_lines)
+    filtered_lines = _without_empty_headings(_without_repeated_lines(kept_lines))
     cleaned = "\n".join(filtered_lines).strip()
     notices: list[str] = []
     removed_count = len(original_lines) - len(kept_lines)
