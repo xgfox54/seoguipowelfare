@@ -92,3 +92,25 @@ def test_render_table_context_keeps_header_and_query_matching_rows() -> None:
     assert "청년 가구" in rendered
     assert "[표 일부 생략" in rendered
     assert "일반 가구</td><td>79만원" not in rendered
+
+
+def test_render_table_context_selects_matching_table_and_note() -> None:
+    # Given: a long section contains an unrelated table before the requested benefit table.
+    unrelated = "<table><tr><th>주거지원</th></tr>" + (
+        "<tr><td>임차가구 기준</td></tr>" * 80
+    ) + "</table>"
+    requested = (
+        "생계지원 금액표\n<table><tr><th>가구원</th><th>지원금액</th></tr>"
+        "<tr><td>1인</td><td>783,000원</td></tr></table>\n"
+        "※ 7인 이상은 1인 증가 시 301,000원 추가"
+    )
+
+    # When: the model context is rendered for the requested benefit.
+    rendered = render_table_context(
+        f"{unrelated}\n{requested}", "생계지원 1인 금액", max_chars=500
+    )
+
+    # Then: the requested table and its note remain while the unrelated table is omitted.
+    assert "783,000원" in rendered
+    assert "301,000원 추가" in rendered
+    assert "임차가구 기준" not in rendered

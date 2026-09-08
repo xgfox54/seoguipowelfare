@@ -147,6 +147,35 @@ def test_explicit_program_outranks_expanded_alternative(tmp_path: Path) -> None:
     assert hits[0].section_id == "youth"
 
 
+def test_section_heading_outranks_omnibus_filename_for_subprogram(tmp_path: Path) -> None:
+    # Given: a merged manual filename names the requested umbrella program, while
+    # one generic section repeats query words and another section is the requested benefit.
+    database_path = tmp_path / "welfare.db"
+    with _create_index(database_path) as connection:
+        manual = "2026년 긴급복지지원 재난적의료비지원 합본.md"
+        _add_document(connection, manual)
+        _add_section(
+            connection,
+            "generic",
+            manual,
+            "긴급지원대상자 선정",
+            "긴급복지 지원 금액과 근로 기간을 검토한다. " * 20,
+        )
+        _add_section(
+            connection,
+            "benefit",
+            manual,
+            "생계지원",
+            "생계지원 가구별 지원 금액과 지원 기간을 안내한다.",
+        )
+
+    # When: the user asks about the benefit inside that merged manual.
+    hits = search_sections(database_path, "긴급복지 생계지원 지원 금액 기간", limit=2)
+
+    # Then: section-local program ownership wins over filename-wide vocabulary.
+    assert hits[0].section_id == "benefit"
+
+
 def test_search_terms_include_compound_spacing_variants() -> None:
     # Given: a locally named program is written with a space.
     # When: search terms are planned.

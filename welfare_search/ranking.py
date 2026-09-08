@@ -52,20 +52,28 @@ def rank_key(
 ) -> tuple[int | float | tuple[int, int], ...]:
     local_text = f"{hit.title} {hit.headings} {hit.content}"
     normalized_local = re.sub(r"\s+", "", local_text)
-    normalized_affiliation = re.sub(r"\s+", "", f"{hit.source_name} {hit.title} {hit.headings}")
+    normalized_section_scope = re.sub(r"\s+", "", f"{hit.title} {hit.headings}")
+    normalized_document_scope = re.sub(r"\s+", "", f"{hit.source_name} {hit.title} {hit.headings}")
     explicit_matches = sum(re.sub(r"\s+", "", term) in normalized_local for term in plan.explicit_programs)
-    affiliation_terms = tuple(
+    direct_affiliation = any(
+        re.sub(r"\s+", "", program) in normalized_section_scope
+        for program in plan.explicit_programs
+    )
+    manual_aliases = tuple(
         alias
         for program in plan.explicit_programs
-        for alias in (program, *PROGRAM_MANUAL_ALIASES.get(program, ()))
+        for alias in PROGRAM_MANUAL_ALIASES.get(program, ())
     )
-    affiliated = any(re.sub(r"\s+", "", term) in normalized_affiliation for term in affiliation_terms)
+    manual_affiliation = any(
+        re.sub(r"\s+", "", alias) in normalized_document_scope
+        for alias in manual_aliases
+    )
     lexical_matches = sum(re.sub(r"\s+", "", term) in normalized_local for term in plan.lexical_terms)
     compact_matches = sum(re.sub(r"\s+", "", term) in normalized_local for term in plan.original_terms) - lexical_matches
     expanded_matches = sum(re.sub(r"\s+", "", term) in normalized_local for term in plan.expanded_terms)
-    if not plan.explicit_programs or affiliated:
+    if not plan.explicit_programs or direct_affiliation:
         program_tier = 0
-    elif explicit_matches:
+    elif explicit_matches or manual_affiliation:
         program_tier = 1
     else:
         program_tier = 2

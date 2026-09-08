@@ -10,6 +10,10 @@ from welfare_assistant import main, system_status
 from welfare_search import build_index
 
 
+class _GenerationUnavailable(RuntimeError):
+    pass
+
+
 def _knowledge_base(tmp_path: Path) -> Path:
     source = tmp_path / "source-md"
     source.mkdir()
@@ -208,7 +212,7 @@ def test_answer_question_falls_back_to_original_query_when_refiner_fails(
         del model_tag, prompt, timeout, temperature
         call_count += 1
         if system_prompt and "검색질문 정제" in system_prompt:
-            raise RuntimeError("refiner unavailable")
+            raise _GenerationUnavailable("refiner unavailable")
         if system_prompt and "품질감독" in system_prompt:
             return "검수 완료 답변"
         return "초안"
@@ -243,7 +247,7 @@ def test_answer_question_returns_draft_when_supervisor_fails(
         if system_prompt and "검색질문 정제" in system_prompt:
             return "생계급여 기준"
         if system_prompt and "품질감독" in system_prompt:
-            raise RuntimeError("supervisor unavailable")
+            raise _GenerationUnavailable("supervisor unavailable")
         return "검수 전이지만 근거 기반인 답변 초안"
 
     monkeypatch.setattr(welfare_assistant, "_llm_generate", fake_generate)
@@ -251,5 +255,41 @@ def test_answer_question_returns_draft_when_supervisor_fails(
     # When: the supervisor stage fails.
     answer = welfare_assistant.answer_question(kb_dir, "생계급여 기준")
 
-    # Then: the user still receives the grounded draft instead of an error.
-    assert answer == "검수 전이지만 근거 기반인 답변 초안"
+    # Then: the grounded draft is returned with a visible review-status warning.
+    assert "검수 전이지만 근거 기반인 답변 초안" in answer
+    assert "자동 품질검수를 완료하지 못했습니다" in answer
+
+
+def test_answer_question_supervises_fallback_answer(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    # Given: the primary answer call fails but the fallback and supervisor work.
+    kb_dir = _knowledge_base(tmp_path)
+    answer_calls = 0
+
+    def fake_generate(
+        model_tag: str,
+        prompt: str,
+        timeout: int = 600,
+        *,
+        system_prompt: str | None = None,
+        temperature: float = 0.2,
+    ) -> str:
+        nonlocal answer_calls
+        del model_tag, prompt, timeout, temperature
+        if system_prompt and "검색질문 정제" in system_prompt:
+            return "생계급여 기준"
+        if system_prompt and "품질감독" in system_prompt:
+            return "검수된 대체 답변"
+        answer_calls += 1
+        if answer_calls == 1:
+            raise _GenerationUnavailable("primary answer failed")
+        return "대체 답변 초안"
+
+    monkeypatch.setattr(welfare_assistant, "_llm_generate", fake_generate)
+
+    # When: the complete answer pipeline runs.
+    answer = welfare_assistant.answer_question(kb_dir, "생계급여 기준")
+
+    # Then: the fallback draft also passes through the supervisor.
+    assert answer == "검수된 대체 답변"

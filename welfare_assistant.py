@@ -17,10 +17,13 @@ from welfare_agent import (
     build_supervisor_system_prompt,
     build_system_prompt,
 )
+from welfare_grounding import sanitize_grounded_answer
 from welfare_llm import DEFAULT_MODEL_KEY, RUNTIME, generate, resolve_choice
 from welfare_models import available_choices
 from welfare_runtime import app_version
 from welfare_search import retrieve_context
+
+StatusValue = str | int | bool | list[dict[str, str | bool]]
 
 
 def _configure_console() -> None:
@@ -76,7 +79,7 @@ def _active_model() -> tuple[str, str]:
     return loaded.key, loaded.filename
 
 
-def system_status(kb_dir: Path) -> dict[str, object]:
+def system_status(kb_dir: Path) -> dict[str, StatusValue]:
     index_dir = _index_dir(kb_dir)
     database = index_dir / "welfare.db"
     manifest_path = index_dir / "manifest.json"
@@ -179,6 +182,7 @@ def _supervise_answer(
     context: str,
     draft_answer: str,
 ) -> str:
+    review_complete = True
     try:
         reviewed = _llm_generate(
             model_tag,
@@ -193,8 +197,14 @@ def _supervise_answer(
             temperature=0.0,
         )
     except RuntimeError:
-        return draft_answer
-    return reviewed.strip() or draft_answer
+        reviewed = draft_answer
+        review_complete = False
+    return sanitize_grounded_answer(
+        reviewed.strip() or draft_answer,
+        context,
+        original_question,
+        review_complete=review_complete,
+    )
 
 
 def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_KEY) -> str:
@@ -209,7 +219,8 @@ def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_
         )
     except RuntimeError:
         context = retrieve_context(_index_dir(kb_dir) / "welfare.db", question)
-        return _llm_generate(
+        refined_question = question
+        draft_answer = _llm_generate(
             choice.filename,
             build_grounded_prompt(question, context),
         )
