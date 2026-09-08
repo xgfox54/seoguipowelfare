@@ -176,6 +176,37 @@ def test_section_heading_outranks_omnibus_filename_for_subprogram(tmp_path: Path
     assert hits[0].section_id == "benefit"
 
 
+def test_owning_manual_outranks_unrelated_heading_mention(tmp_path: Path) -> None:
+    # Given: the benefit lives in a manual named by its umbrella program, while an
+    # unrelated manual only mentions the benefit inside one section heading.
+    database_path = tmp_path / "welfare.db"
+    with _create_index(database_path) as connection:
+        owning = "01.[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내.md"
+        unrelated = "30.[매뉴얼-보건소] 2026년 자살예방 사업안내.md"
+        _add_document(connection, owning)
+        _add_document(connection, unrelated)
+        _add_section(
+            connection,
+            "owning",
+            owning,
+            "수급자 선정기준",
+            "생계급여 선정기준은 기준 중위소득의 32퍼센트에 해당한다.",
+        )
+        _add_section(
+            connection,
+            "unrelated",
+            unrelated,
+            "25년 국민기초생활보장 사업안내에 따른 최저생계비(생계급여) 기준",
+            "최저생계비 참고표를 첨부한다.",
+        )
+
+    # When: the benefit and its criterion are searched together.
+    hits = search_sections(database_path, "생계급여 선정기준 중위소득", limit=2)
+
+    # Then: the manual that owns the benefit ranks above the incidental mention.
+    assert hits[0].section_id == "owning"
+
+
 def test_search_terms_include_compound_spacing_variants() -> None:
     # Given: a locally named program is written with a space.
     # When: search terms are planned.

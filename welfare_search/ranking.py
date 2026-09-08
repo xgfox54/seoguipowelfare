@@ -68,12 +68,16 @@ def rank_key(
         re.sub(r"\s+", "", alias) in normalized_document_scope
         for alias in manual_aliases
     )
+    filename_affiliation = any(
+        re.sub(r"\s+", "", program) in re.sub(r"\s+", "", hit.source_name)
+        for program in plan.explicit_programs
+    )
     lexical_matches = sum(re.sub(r"\s+", "", term) in normalized_local for term in plan.lexical_terms)
     compact_matches = sum(re.sub(r"\s+", "", term) in normalized_local for term in plan.original_terms) - lexical_matches
     expanded_matches = sum(re.sub(r"\s+", "", term) in normalized_local for term in plan.expanded_terms)
-    if not plan.explicit_programs or direct_affiliation:
+    if not plan.explicit_programs or direct_affiliation or manual_affiliation:
         program_tier = 0
-    elif explicit_matches or manual_affiliation:
+    elif explicit_matches or filename_affiliation:
         program_tier = 1
     else:
         program_tier = 2
