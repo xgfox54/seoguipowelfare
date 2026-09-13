@@ -1,4 +1,4 @@
-![서귀포시 복지톡 AI 배너](docs/banner.png)
+![서귀포시 복지톡 AI 비서](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/raw/f1bcedf32157f4e6f90d4d13f89e81e1294e383e/%EC%84%9C%EA%B7%80%ED%8F%AC%EC%8B%9C_%EB%B3%B5%EC%A7%80%ED%86%A1_AI_%EB%B9%84%EC%84%9C.png)
 
 # 서귀포시 복지톡(Talk) AI 업무비서(로컬PC용)
 
