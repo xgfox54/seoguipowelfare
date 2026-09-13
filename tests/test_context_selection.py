@@ -38,3 +38,6 @@ def test_context_can_include_four_distinct_aspects_from_one_manual(tmp_path: Pat
     context = retrieve_context(tmp_path / 'index/welfare.db', '지역지원 대상 금액 기간 신청', limit=8)
     # Then: the filename quota does not remove the fourth requested aspect.
     assert all(f'근거번호 {index}' in context for index in range(1, 5))
+    assert '<EVIDENCE id="E1">' in context
+    assert '[confidence:' in context
+    assert '</EVIDENCE>' in context

@@ -15,6 +15,7 @@ from pydantic import BaseModel, ConfigDict, StringConstraints
 from starlette.middleware.base import RequestResponseEndpoint
 
 from welfare_assistant import answer_question, system_status
+from welfare_llm import configured_model_choice
 from welfare_models import DEFAULT_MODEL_KEY, resolve_choice
 from welfare_runtime import knowledge_base_root, resource_path
 
@@ -72,6 +73,7 @@ class StatusResponse(BaseModel):
     engine_error: str
     ai_ready: bool
     setup_required: bool
+    semantic_search: bool
 
 
 def _structure_answer_markdown(answer: str) -> str:
@@ -155,6 +157,10 @@ def create_app(
             raise HTTPException(
                 status_code=422, detail="선택할 수 없는 모델입니다."
             ) from None
+        if choice.key != configured_model_choice().key:
+            raise HTTPException(
+                status_code=422, detail="현재 설치본에 포함된 모델만 사용할 수 있습니다."
+            )
         with question_lock:
             answer = answerer(kb_dir, payload.question, choice.key)
         tokens = markdown.parse(

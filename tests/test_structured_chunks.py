@@ -114,3 +114,20 @@ def test_render_table_context_selects_matching_table_and_note() -> None:
     assert "783,000원" in rendered
     assert "301,000원 추가" in rendered
     assert "임차가구 기준" not in rendered
+
+
+def test_render_table_context_prioritizes_compact_household_match() -> None:
+    rows = "\n".join(
+        f"<tr><td>{count}인 가구</td><td>{count * 100:,}원</td></tr>"
+        for count in range(1, 25)
+    )
+    content = (
+        "생계지원 금액표\n<table><tr><th>가구원</th><th>지원금액</th></tr>"
+        + rows
+        + "</table>"
+    )
+
+    rendered = render_table_context(content, "생계지원 20인가구 금액", max_chars=240)
+
+    assert "20인 가구" in rendered
+    assert "2,000원" in rendered

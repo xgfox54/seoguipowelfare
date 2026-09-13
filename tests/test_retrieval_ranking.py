@@ -40,10 +40,12 @@ def _add_document(
     *,
     authority: str = "primary",
     topic: str = "",
+    year: str = "2026",
+    jurisdiction: str = "national",
 ) -> None:
     connection.execute(
-        "INSERT INTO documents VALUES (?, '2026', '업무매뉴얼', '', '', '', ?, ?, 'operational_manual', 'national')",
-        (source_name, topic, authority),
+        "INSERT INTO documents VALUES (?, ?, '업무매뉴얼', '', '', '', ?, ?, 'operational_manual', ?)",
+        (source_name, year, topic, authority, jurisdiction),
     )
 
 
@@ -214,3 +216,72 @@ def test_search_terms_include_compound_spacing_variants() -> None:
 
     # Then: the compact corpus form is searched too.
     assert "위기가구신고포상금" in terms
+
+
+def test_requested_year_excludes_other_year_documents_when_exact_year_exists(tmp_path: Path) -> None:
+    database_path = tmp_path / "welfare.db"
+    with _create_index(database_path) as connection:
+        _add_document(connection, "2025 생계급여.md", year="2025")
+        _add_document(connection, "2026 생계급여.md", year="2026")
+        _add_section(connection, "old", "2025 생계급여.md", "생계급여 선정기준", "생계급여 선정기준 2025년 자료")
+        _add_section(connection, "current", "2026 생계급여.md", "생계급여 선정기준", "생계급여 선정기준 2026년 자료")
+
+    hits = search_sections(database_path, "2026년 생계급여 선정기준", limit=5)
+
+    assert hits
+    assert all(hit.source_name == "2026 생계급여.md" for hit in hits)
+
+
+def test_requested_year_keeps_relevant_older_document_when_exact_year_is_absent(tmp_path: Path) -> None:
+    database_path = tmp_path / "welfare.db"
+    with _create_index(database_path) as connection:
+        _add_document(connection, "2025 장사업무.md", year="2025")
+        _add_document(connection, "2026 무관한사업.md", year="2026")
+        _add_section(
+            connection,
+            "funeral",
+            "2025 장사업무.md",
+            "장사업무 처리기준",
+            "장사업무 처리기준과 신청 절차",
+        )
+        _add_section(
+            connection,
+            "noise",
+            "2026 무관한사업.md",
+            "다른 사업",
+            "완전히 다른 사업 기준",
+        )
+
+    hits = search_sections(database_path, "2026년 장사업무 처리기준", limit=3)
+
+    assert hits
+    assert hits[0].section_id == "funeral"
+
+
+def test_seogwipo_question_prefers_seogwipo_then_jeju_then_national(tmp_path: Path) -> None:
+    database_path = tmp_path / "welfare.db"
+    with _create_index(database_path) as connection:
+        for section_id, source_name, jurisdiction in (
+            ("national", "국가 지침.md", "national"),
+            ("jeju", "제주 지침.md", "jeju"),
+            ("seogwipo", "서귀포 지침.md", "seogwipo"),
+        ):
+            _add_document(connection, source_name, jurisdiction=jurisdiction)
+            _add_section(connection, section_id, source_name, "긴급복지 신청 기준", "긴급복지 신청 기준과 처리 절차")
+
+    hits = search_sections(database_path, "서귀포 긴급복지 신청 기준", limit=3)
+
+    assert [hit.section_id for hit in hits] == ["seogwipo", "jeju", "national"]
+
+
+def test_jeju_question_prefers_jeju_over_national(tmp_path: Path) -> None:
+    database_path = tmp_path / "welfare.db"
+    with _create_index(database_path) as connection:
+        _add_document(connection, "국가 돌봄.md", jurisdiction="national")
+        _add_document(connection, "제주 돌봄.md", jurisdiction="jeju")
+        _add_section(connection, "national", "국가 돌봄.md", "돌봄 신청조건", "돌봄 신청조건 안내")
+        _add_section(connection, "jeju", "제주 돌봄.md", "제주가치돌봄 신청조건", "제주가치돌봄 신청조건 안내")
+
+    hits = search_sections(database_path, "제주가치돌봄 신청조건", limit=2)
+
+    assert hits[0].section_id == "jeju"

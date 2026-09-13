@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import io
 import json
+import re
 import sqlite3
 import sys
 from pathlib import Path
@@ -18,10 +19,19 @@ from welfare_agent import (
     build_system_prompt,
 )
 from welfare_grounding import sanitize_grounded_answer
-from welfare_llm import DEFAULT_MODEL_KEY, RUNTIME, generate, resolve_choice
+from welfare_llm import (
+    DEFAULT_MODEL_KEY,
+    RUNTIME,
+    configured_model_choice,
+    configured_model_variant,
+    generate,
+    resolve_choice,
+)
 from welfare_models import available_choices
 from welfare_runtime import app_version
 from welfare_search import retrieve_context
+from welfare_search.query import plan_query
+from welfare_search.search import semantic_search_enabled
 
 StatusValue = str | int | bool | list[dict[str, str | bool]]
 
@@ -75,7 +85,8 @@ def _runtime_status() -> tuple[str, str, list[dict[str, str | bool]]]:
 def _active_model() -> tuple[str, str]:
     loaded = RUNTIME.model
     if loaded is None:
-        return DEFAULT_MODEL_KEY, resolve_choice(DEFAULT_MODEL_KEY).filename
+        configured = configured_model_choice()
+        return configured.key, configured.filename
     return loaded.key, loaded.filename
 
 
@@ -85,7 +96,13 @@ def system_status(kb_dir: Path) -> dict[str, StatusValue]:
     manifest_path = index_dir / "manifest.json"
     engine_state, engine_error, models = _runtime_status()
     active_key, active_filename = _active_model()
-    ai_ready = engine_state == "ready" and any(model["available"] is True for model in models)
+    configured = configured_model_choice()
+    ai_ready = (
+        engine_state == "ready"
+        and RUNTIME.model is not None
+        and RUNTIME.model.key == configured.key
+        and any(model["available"] is True for model in models)
+    )
     setup_required = engine_state == "error"
     if not database.exists() or not manifest_path.exists():
         return {
@@ -102,6 +119,7 @@ def system_status(kb_dir: Path) -> dict[str, StatusValue]:
             "engine_error": engine_error,
             "ai_ready": ai_ready,
             "setup_required": setup_required,
+            "semantic_search": semantic_search_enabled(),
         }
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     with sqlite3.connect(database) as connection:
@@ -130,6 +148,7 @@ def system_status(kb_dir: Path) -> dict[str, StatusValue]:
         "engine_error": engine_error,
         "ai_ready": ai_ready,
         "setup_required": setup_required,
+        "semantic_search": semantic_search_enabled(),
     }
 
 
@@ -141,7 +160,16 @@ def _llm_generate(
     system_prompt: str | None = None,
     temperature: float = 0.2,
 ) -> str:
-    del model_tag
+    configured = configured_model_choice()
+    requested_filename = Path(model_tag).name
+    if requested_filename != configured.filename:
+        raise RuntimeError(
+            f"현재 {configured_model_variant()} 배포판에서는 {configured.filename}만 사용할 수 있습니다."
+        )
+    if RUNTIME.model is not None and RUNTIME.model.filename != configured.filename:
+        raise RuntimeError(
+            f"실제 로딩 모델({RUNTIME.model.filename})이 빌드 지정 모델({configured.filename})과 다릅니다."
+        )
     return generate(
         prompt,
         system_prompt=system_prompt or build_system_prompt(),
@@ -207,29 +235,59 @@ def _supervise_answer(
     )
 
 
+def _requires_supervisor(question: str, context: str) -> bool:
+    """Deterministically decide whether an E4B second pass is justified."""
+    plan = plan_query(question)
+    if re.search(r"비교|차이|둘\s*중|동시에|각각|vs\.?", question, re.IGNORECASE):
+        return True
+    if len(plan.explicit_programs) >= 2:
+        return True
+    eligibility_question = bool(re.search(r"받을\s*수|가능|대상|자격|선정|해당", question))
+    if eligibility_question and len(plan.case_conditions) >= 2:
+        return True
+    if len(plan.tasks) >= 3 and context.count("<EVIDENCE") < min(3, len(plan.tasks)):
+        return True
+    return False
+
+
 def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_KEY) -> str:
     choice = resolve_choice(model_key)
-    refined_question = _refine_question(choice.filename, question)
-    retrieval_query = question if refined_question == question else f"{question}\n{refined_question}"
-    context = retrieve_context(_index_dir(kb_dir) / "welfare.db", retrieval_query)
-    try:
-        draft_answer = _llm_generate(
-            choice.filename,
-            build_multi_agent_answer_prompt(question, refined_question, context),
+    configured = configured_model_choice()
+    if choice.key != configured.key:
+        raise RuntimeError(
+            f"현재 설치본은 {configured_model_variant()} 전용이며 {configured.label}만 사용할 수 있습니다."
         )
-    except RuntimeError:
-        context = retrieve_context(_index_dir(kb_dir) / "welfare.db", question)
-        refined_question = question
-        draft_answer = _llm_generate(
-            choice.filename,
-            build_grounded_prompt(question, context),
-        )
-    return _supervise_answer(
-        choice.filename,
+
+    is_e2b = configured_model_variant() == "E2B"
+    context = retrieve_context(
+        _index_dir(kb_dir) / "welfare.db",
         question,
-        refined_question,
-        context,
+        limit=5 if is_e2b else 7,
+        char_budget=9_000 if is_e2b else 14_000,
+    )
+    if not context.strip():
+        return "검색된 복지DB에서 질문에 직접 답할 수 있는 근거를 충분히 찾지 못했습니다."
+    confidence_labels = re.findall(r"\[confidence:\s*(high|medium|low)\]", context)
+    if confidence_labels and all(label == "low" for label in confidence_labels):
+        return "검색된 복지DB에서 질문에 직접 답할 수 있는 근거를 충분히 찾지 못했습니다."
+
+    draft_answer = _llm_generate(
+        choice.filename,
+        build_grounded_prompt(question, context),
+    )
+    if not is_e2b and _requires_supervisor(question, context):
+        return _supervise_answer(
+            choice.filename,
+            question,
+            question,
+            context,
+            draft_answer,
+        )
+    return sanitize_grounded_answer(
         draft_answer,
+        context,
+        question,
+        review_complete=True,
     )
 
 
@@ -240,7 +298,7 @@ def _usage() -> str:
         "  welfare_assistant.py status\n"
         "  welfare_assistant.py ask <질문>\n"
         "  welfare_assistant.py <질문>\n"
-        "  모델 선택: --model gemma_e4b | --model gemma_e2b"
+        f"  현재 배포판: {configured_model_variant()} ({configured_model_choice().filename})"
     )
 
 
@@ -267,8 +325,11 @@ def main(args: tuple[str, ...]) -> int:
         model_key = remaining[flag_index + 1]
         del remaining[flag_index : flag_index + 2]
     try:
-        resolve_choice(model_key)
+        choice = resolve_choice(model_key)
     except KeyError:
+        print(_usage())
+        return 2
+    if choice.key != configured_model_choice().key:
         print(_usage())
         return 2
     question_parts = remaining[1:] if remaining and remaining[0] == "ask" else remaining

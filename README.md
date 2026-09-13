@@ -4,11 +4,13 @@
 
 복지 업무자료 39개를 **로컬 SQLite FTS 검색색인**으로 검색하고, 프로그램에 **내장된 llama.cpp 엔진과 Gemma 4 모델**이 검색된 원문만 근거로 답변하는 Windows용 개인 업무 도구입니다. 선택한 설치 패키지로 AI 엔진과 모델까지 함께 설치되므로 Ollama 등 별도 프로그램 설치가 필요 없습니다.
 
-> **v1.3.4:** 합본 문서의 다른 사업 조건과 잘못된 연도가 답변에 섞이지 않도록 검색 순위와 자동 근거 검수를 강화했습니다. [v1.3.4 릴리스](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.3.4)에서 원하는 모델을 선택하세요.
+> **v1.4.0:** LLM에게 검색·검증까지 맡기던 3-Agent 기본 경로를 제거하고, 규칙 기반 Query Planner·2단계 검색·Evidence Slot·결정적 Grounding Validator를 중심으로 답변 구조를 재설계했습니다.
 
-`복지업무비서_v1.3.4_E2B.exe` 또는 `복지업무비서_v1.3.4_E4B.exe`를 실행하고 업무에 필요한 내용을 검색하면 Gemma4 e4b, e2b가 답변해줍니다.
+E2B와 E4B는 별도 설치본입니다. E2B 설치본은 E2B 모델만, E4B 설치본은 E4B 모델만 로드하며 다른 모델로 자동 대체하지 않습니다.
 
 OpenAI API, ChatGPT Plus, OpenKB, OpenAI Agents SDK는 실행에 필요하지 않습니다.
+
+최종 설치파일은 [GitLab Releases](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases)에서 내려받을 수 있습니다. v1.4.0은 E2B 단일 설치 EXE와 E4B 분할 설치파일을 묶은 ZIP을 제공합니다.
 
 (다운로드 페이지 링크)
 https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
@@ -17,18 +19,60 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 
 | 항목 | 현재 구현 |
 | --- | --- |
-| 버전 | v1.3.4 |
-| 사용자 실행 파일 | `복지업무비서.exe` 단일 파일 |
+| 버전 | v1.4.0 |
+| 사용자 실행 파일 | E2B `복지업무비서_v1.4.0_E2B.exe`, E4B `복지업무비서_v1.4.0_E4B.exe` |
 | 화면 | pywebview + Microsoft Edge WebView2 기반 독립 프로그램 창 |
 | 로컬 서버 | FastAPI / Uvicorn, `127.0.0.1:8765`에만 바인딩 |
-| 검색 | SQLite FTS5/BM25 + 선택적 로컬 semantic hybrid 검색 |
+| 검색 | SQLite FTS5/BM25 + 사업/연도/지역/authority 메타데이터 랭킹 + 2단계 검색 |
 | 복지 업무자료 | 39개 Markdown 원문 |
 | 검색 구간 | 21,588개 |
 | 원문 총량 | 62,075,154바이트 |
 | 기본 AI 모델 | Gemma 4 E2B QAT Q4 (`gemma4-e2b-it-qat.gguf`, 설치 파일에 내장) |
 | E4B 패키지 | Gemma 4 E4B Q4_K_M (`gemma4-e4b.gguf`, E4B 패키지에 내장) |
-| AI 호출 방식 | 내장 llama-server(llama.cpp b10834) OpenAI 호환 API, 127.0.0.1:18080 |
+| AI 호출 방식 | 내장 llama-server(llama.cpp b10686) OpenAI 호환 API, 127.0.0.1:18080 |
 | 인터넷 필요 여부 | 패키지 다운로드 후 설치와 일반 질의는 오프라인 가능 |
+
+## v1.4.0 최종 검증 결과
+
+v1.4.0은 소스 단위 테스트뿐 아니라 **실제 배포 설치파일을 새 경로에 무인 설치하고, 모델을 Ready 상태까지 올린 뒤 실제 질문을 1건 실행하고 제거하는 설치 E2E**까지 완료했습니다.
+
+| 검증 항목 | E2B | E4B |
+| --- | ---: | ---: |
+| 골든 QA | 200문항 | 200문항 |
+| Recall@1 | 73.00% | 83.50% |
+| Recall@3 | 86.00% | 89.00% |
+| Recall@5 | 91.00% | 90.50% |
+| Section 적중률@5 | 89.00% | 89.00% |
+| 금지 주장 포함률 | 3.00% | 0.00% |
+| 기대 숫자 누락률 | 4.00% | 4.00% |
+| 연도 혼입률 | 1.50% | 0.00% |
+| 답변 실행 오류율 | 0.00% | 0.00% |
+| 평균 검색시간 | 252.8 ms | 314.8 ms |
+| 평균 답변시간 | 9.196초 | 20.498초 |
+| 실제 설치 E2E | 통과 | 통과 |
+
+- 전체 회귀 테스트는 **92/92 통과**했고, 전체 복지DB 재색인 재현성 테스트도 통과했습니다.
+- 법령·고시 번호의 연도(예: `고시 제2024-162호`)를 정책 적용연도로 잘못 세던 평가기 오탐을 수정해 E4B Q133을 재평가했습니다.
+- E2B 설치 E2E: 설치 111.429초, AI Ready 8.709초, 실제 질문 3.207초, 제거 성공.
+- E4B 설치 E2E: 설치 129.264초, AI Ready 9.717초, 실제 질문 5.802초, 제거 성공.
+- 최종 E2B 설치파일: `BokjiTalkAI_Setup_v1.4.0_E2B.exe` — **2,621,571,530바이트**.
+- 최종 E4B 배포 ZIP: `BokjiTalkAI_Setup_v1.4.0_E4B.zip` — **4,883,383,631바이트**. ZIP 안에는 설치 EXE와 분할 데이터 `.bin` 3개가 들어 있습니다.
+
+상세 측정값과 배포 차단 기준은 [QUALITY_REPORT_v1.4.0.md](QUALITY_REPORT_v1.4.0.md)를 참고하세요.
+
+## v1.4.0 주요 변경
+
+- **사용자 질문을 Evidence에서 완전히 제외**해 질문에 잘못 적힌 금액·연도·사업명이 사실 근거로 인정되지 않게 했습니다.
+- LLM Refiner를 기본 경로에서 제거하고 제도·대상·업무단계·질문유형·연도·지역·수치조건을 Python Query Planner가 추출합니다.
+- E2B는 `Query Planner → Retrieval → Evidence Selector → Answerer 1회 → Grounding Validator` 구조로 동작합니다.
+- E4B도 일반 질문은 1회 생성하며 사례형 적격성·다사업 비교·복합조건 등 고난도 질문에서만 Supervisor를 추가 호출합니다.
+- 명시 연도가 있으면 해당 연도 문서가 존재하는 경우 다른 연도 문서를 기본 후보에서 제외합니다.
+- 검색 순위에 `Seogwipo → Jeju → National`, `primary → reference → summary → index` 우선순위를 반영합니다.
+- 질문 유형별 Evidence Slot을 구성하고 각 근거를 `<EVIDENCE>` 블록과 high/medium/low 신뢰도로 모델에 전달합니다.
+- 가구원수↔금액 결합 오류, 잘못된 사업명, 고위험 부정문 반전까지 자동 Grounding Validator가 검사합니다.
+- Semantic Search는 기본 비활성화되며 FTS5만으로 정상 동작합니다. 필요 시 명시적으로 활성화해 A/B 평가할 수 있습니다.
+- 200문항 골든 QA와 Recall@1/3/5·답변 오류율을 계산하는 `tools/quality_eval_v140.py`를 추가했습니다.
+- E2B/E4B는 설치 단계부터 서로 다른 GGUF를 강제하며 실제 llama-server 로딩 모델이 배포 변형과 다르면 Ready 상태가 되지 않습니다.
 
 ## v1.3.4 주요 변경
 
@@ -54,7 +98,7 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 ## v1.3.2 주요 변경
 
 - Ollama 의존성 제거: 설치 확인, 서비스 실행, 11434 포트, `ollama pull` 안내가 모두 사라졌습니다.
-- llama.cpp(b10834, Vulkan 빌드)와 Gemma 4 E2B QAT GGUF 모델을 설치 패키지에 내장했습니다.
+- llama.cpp(b10686, Vulkan 빌드)와 Gemma 4 E2B QAT GGUF 모델을 설치 패키지에 내장했습니다.
 - 프로그램 실행 시 `runtime\llamacpp\llama-server.exe`를 자동 시작하고 `models\*.gguf`를 자동 탐색합니다.
 - 프로그램 종료·강제종료 시 Windows Job Object로 llama-server가 함께 정리됩니다.
 - 화면에 AI 엔진 상태(시작 중 → 모델 불러오는 중 → 실행 중)와 오류 원인을 표시합니다.
@@ -86,7 +130,8 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 일반 사용자는 Python, Git, Ollama 등 어떤 프로그램도 미리 설치할 필요가 없습니다.
 
 1. **Windows 10/11 (64bit)**
-2. **여유 디스크 약 4GB, 여유 메모리 4GB 이상**
+2. **E2B 권장 RAM 8GB 이상 / E4B 권장 RAM 16GB 이상**
+3. **여유 디스크: E2B 6GB 이상, E4B는 다운로드·압축해제·설치를 위해 15GB 이상 권장**
 
 프로그램 창은 Microsoft Edge WebView2 런타임을 사용합니다. Windows 11과 최신 Windows 10 환경에는 보통 이미 설치돼 있습니다.
 
@@ -94,12 +139,12 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 
 릴리스 페이지에서 원하는 패키지를 내려받습니다.
 
-- **E2B:** `BokjiTalkAI_Setup_v1.3.4_E2B.exe`를 실행합니다.
-- **E4B:** `BokjiTalkAI_Setup_v1.3.4_E4B.zip`을 폴더에 모두 풀고, 안의 `복지톡AI_Setup_v1.3.4_E4B.exe`를 실행합니다. `.bin` 파일은 설치 EXE와 같은 폴더에 있어야 합니다.
+- **E2B:** `BokjiTalkAI_Setup_v1.4.0_E2B.exe`를 실행합니다.
+- **E4B:** `BokjiTalkAI_Setup_v1.4.0_E4B.zip`을 폴더에 모두 풀고, 안의 `BokjiTalkAI_Setup_v1.4.0_E4B.exe`를 실행합니다. `.bin` 파일은 설치 EXE와 같은 폴더에 있어야 합니다.
 
 두 패키지 모두 AI 엔진, 해당 모델, 웹 화면, 복지 검색 DB를 포함합니다. 모델이나 Ollama를 별도로 설치할 필요가 없습니다.
 
-E2B는 `%LOCALAPPDATA%\BokjiTalkAI`, E4B는 `%LOCALAPPDATA%\BokjiTalkAI_E4B`에 설치됩니다. 관리자 권한 없이 설치할 수 있습니다. 두 버전은 한 번에 하나씩 실행하세요. 실행 화면 상단에 `v1.3.4`가 표시됩니다.
+E2B는 `%LOCALAPPDATA%\BokjiTalkAI`, E4B는 `%LOCALAPPDATA%\BokjiTalkAI_E4B`에 설치됩니다. 관리자 권한 없이 설치할 수 있습니다. 두 버전은 한 번에 하나씩 실행하세요. 실행 화면 상단에 `v1.4.0`이 표시됩니다.
 
 ### 3. 실행
 
@@ -107,7 +152,7 @@ E2B는 `%LOCALAPPDATA%\BokjiTalkAI`, E4B는 `%LOCALAPPDATA%\BokjiTalkAI_E4B`에 
 
 1. 이미 프로그램이 실행 중인지 확인합니다.
 2. `127.0.0.1:8765` 포트 사용 여부를 확인합니다.
-3. 내장 AI 엔진(`llama-server.exe`)을 `127.0.0.1:18080`에 시작하고 `models\` 폴더의 GGUF 모델을 자동으로 불러옵니다.
+3. 내장 AI 엔진(`llama-server.exe`)을 `127.0.0.1:18080`에 시작하고 현재 배포판에 지정된 GGUF 하나만 불러옵니다. 지정 파일이 없거나 다른 모델이 로드되면 실행 준비를 중단합니다.
 4. 복지 검색 DB와 FastAPI 서버를 시작합니다.
 5. **서귀포시 복지톡(Talk) AI 업무비서(로컬PC용)** 프로그램 창을 엽니다.
 
@@ -136,7 +181,7 @@ E2B는 `%LOCALAPPDATA%\BokjiTalkAI`, E4B는 `%LOCALAPPDATA%\BokjiTalkAI_E4B`에 
 ## 사용 방법
 
 1. 질문란에 확인할 복지업무 내용을 입력합니다.
-2. 사용할 모델을 선택합니다.
+2. 현재 설치본(E2B 또는 E4B)에 지정된 모델 상태가 `실행 중`인지 확인합니다.
 3. `질문하기`를 누르거나 Enter를 누릅니다.
 4. 검색된 복지DB 원문을 근거로 생성된 답변을 확인합니다. 답변이 길 경우 검색 결과 영역의 **결과 내 검색** 창으로 원하는 내용을 바로 찾을 수 있습니다.
 5. 중요한 안내, 급여 결정, 행정처분 전에는 반드시 원문 지침을 다시 확인합니다.
@@ -150,41 +195,38 @@ E2B는 `%LOCALAPPDATA%\BokjiTalkAI`, E4B는 `%LOCALAPPDATA%\BokjiTalkAI_E4B`에 
 ```text
 사용자 질문
    ↓
-① 질문 정제 에이전트 (Query Refiner)
-   - 제도·대상·업무단계·조건·적용연도를 구조화
-   - 검색에 불필요한 표현 제거 및 복지업무 동의어·약칭 확장
-   - 없는 법령명·수치·조건은 생성 금지
+Rule-based Query Planner
+   - 사업·대상·업무단계·질문유형·연도·지역·수치/사례조건 추출
    ↓
-SQLite FTS5/BM25 + 선택적 semantic hybrid 검색
-   - 특정 연도 질문은 해당 연도 우선
-   - 일반 질문은 최신·현행 자료 우선
-   - 원본 업무자료(primary) 우선
+2-stage FTS5 Retrieval
+   - owning manual → 세부 section 순으로 우선
+   - 명시 연도 필터, jurisdiction/authority 랭킹
    ↓
-관련 복지 지침 구간 추출
+Evidence Selector / Evidence Slot
+   - 대상·금액·기간·신청·예외 등 필요한 근거를 종류별 선택
+   - E2B 3~5개 중심, E4B 최대 7개 중심
    ↓
-② 답변 에이전트 (Answer Agent)
-   - 사용자 원문 질문 + 정제 질문 + 검색 원문 사용
-   - 검색 원문만 근거로 답변 초안 생성
+Gemma Answerer
+   - 제공된 Evidence만 사용해 답변 생성
    ↓
-③ 품질감독 에이전트 (Supervisor)
-   - 초안과 동일한 검색 원문 대조
-   - 근거 없는 사실·수치·자격조건 검사
-   - 연도 혼합·구자료 사용·자료 간 기준충돌 검사
-   - 사례형 질문의 누락 조건 및 과도한 적격·부적격 판정 검사
-   - 필요 시 원문 범위 안에서 최종 답변 수정
+[E4B 고난도 질문만 Supervisor]
+   ↓
+Deterministic Grounding Validator
+   - 수치·연도·사업명·가구원수↔금액·조건 부정 반전 검사
+   - 원문 미지원 문장 제거
    ↓
 최종 답변
    ↓
 프로그램 창에 Markdown 렌더링
 ```
 
-세 에이전트는 별도의 외부 AI 서비스를 사용하지 않고 내장 llama-server의 **Gemma 모델을 역할별 프롬프트로 순차 호출**합니다. 따라서 질문과 복지DB 원문은 PC 밖으로 전송되지 않습니다.
+E2B의 일반 질문은 Gemma 호출을 **1회**만 수행합니다. E4B 역시 일반 질문은 1회이며 고난도 질문에서만 Supervisor를 추가합니다. 검색·연도필터·근거선택·사실검증은 가능한 범위에서 Python 코드가 결정적으로 처리합니다. 질문과 복지DB 원문은 PC 밖으로 전송되지 않습니다.
 
 검색 DB는 **6차 업데이트 원문 39개**를 사용합니다. `document_metadata.yaml`에서 각 합본 문서의 주제(`topic`), 근거 우선순위(`authority`), 자료 성격(`source_role`), 적용 범위(`jurisdiction`)를 별도로 관리합니다. `primary` 원본 업무자료를 최우선으로 사용하고, `reference`·`summary`·`index` 자료는 보조 근거로 취급합니다.
 
 별도 로컬 법령 DB는 운영하지 않습니다. 법령명이나 조문은 검색된 매뉴얼 원문에서 실제 확인되는 범위에서만 안내하며, 로컬 모델의 일반지식으로 현행 법령 내용을 보충하지 않습니다.
 
-장애 대응은 단계별 폴백으로 구성되어 있습니다. 질문 정제 단계가 실패하면 사용자 원문 질문으로 검색하고, 품질감독 단계가 실패하면 이미 복지DB 원문에 근거해 생성된 답변 초안을 반환합니다. 핵심 답변 생성 단계에서 오류가 발생하면 기존 단일 에이전트 프롬프트로 한 번 더 시도합니다.
+검색 근거가 없거나 선택된 Evidence가 모두 낮은 신뢰도이면 모델을 억지로 호출하지 않고 `검색된 복지DB에서 질문에 직접 답할 수 있는 근거를 충분히 찾지 못했습니다.`라고 반환합니다.
 
 ### OpenKB 사용 여부
 
@@ -198,7 +240,7 @@ AI 답변은 `welfare_assistant.py`가 `welfare_llm.py`를 통해 내장 llama-s
 
 ### Gemma 4 E2B QAT Q4 (기본, 설치 파일 내장)
 
-- 파일: `models\gemma4-e2b-it-qat.gguf` (3,349,514,112바이트, Q4_0)
+- 파일: `models\gemma4-e2b-it-qat.gguf` (2,620,370,976바이트, QAT Q4)
 - 프로그램 모델 키: `gemma_e2b`
 - 저사양 업무용 PC를 기준으로 선정한 기본 모델. 모델 로딩 후 약 4GB RAM 사용
 
@@ -223,7 +265,7 @@ AI 답변은 `welfare_assistant.py`가 `welfare_llm.py`를 통해 내장 llama-s
 
 ## 복지DB 기준
 
-프로그램 v1.3.4 / 2026-09-07 복지DB 6차 업데이트 기준(검색 색인은 v1.3.3에서 재생성):
+프로그램 v1.4.0 / 2026-09-07 복지DB 6차 업데이트 원문 기준:
 
 - 원문 문서: **39개**
 - 원문 총량: **62,075,154바이트**
@@ -251,7 +293,7 @@ config.yaml.example
 - Windows 10/11
 - Python 3.12
 - Git
-- llama.cpp Windows 빌드(b10834 vulkan-x64)를 `runtime\llamacpp\`에 압축 해제
+- llama.cpp Windows 빌드(b10686 vulkan-x64)를 `runtime\llamacpp\`에 압축 해제
 - Gemma 4 E2B QAT GGUF 파일을 `models\gemma4-e2b-it-qat.gguf`로 배치
 - Inno Setup 6 (설치 파일 생성용, `ISCC_PATH` 환경변수로 경로 지정 가능)
 
@@ -317,7 +359,7 @@ EXE가 아닌 개발 상태에서 FastAPI 서버만 실행하려면:
 http://127.0.0.1:8765/
 ```
 
-이 방식은 개발·디버깅용입니다. 일반 사용자 배포 방식은 `복지업무비서.exe`입니다.
+이 방식은 개발·디버깅용입니다. 일반 사용자 배포 방식은 모델별 설치 패키지이며, 설치 후 실행 파일은 `복지업무비서_v1.4.0_E2B.exe` 또는 `복지업무비서_v1.4.0_E4B.exe`입니다.
 
 ## 모델별 설치 패키지 빌드
 
@@ -344,9 +386,8 @@ powershell.exe -ExecutionPolicy Bypass -File .\build-exe.ps1
 결과 파일:
 
 ```text
-dist\복지톡AI_Setup_v1.3.4_E2B.exe
-dist\복지톡AI_Setup_v1.3.4_E4B.exe
-dist\복지톡AI_Setup_v1.3.4_E4B-*.bin
+dist\BokjiTalkAI_Setup_v1.4.0_E2B.exe
+dist\BokjiTalkAI_Setup_v1.4.0_E4B.zip
 ```
 
 PyInstaller onedir 빌드에 웹 화면과 DB를 포함한 뒤, 해당 모델과 llama.cpp를 Inno Setup으로 묶습니다. 실행 파일 이름은 `복지업무비서_v{VERSION}_{E2B 또는 E4B}.exe`입니다. E4B 설치 EXE와 해당 `.bin` 파일을 하나의 ZIP으로 묶어 배포합니다.
@@ -358,7 +399,7 @@ PyInstaller onedir 빌드에 웹 화면과 DB를 포함한 뒤, 해당 모델과
 .\.venv-package\Scripts\python.exe -m ruff check welfare_*.py welfare_search tests
 ```
 
-현재 검증 기준은 **39개 테스트 통과**이며, 이 중 1건은 원문 62.1MB 전체를 다시 색인하는 무거운 회귀 테스트라 다른 테스트보다 오래 걸립니다.
+배포 전에는 `pytest` 전체 통과, 200문항 골든 QA 평가, E2B/E4B 실제 설치본 E2E 검증을 모두 수행합니다. 검증 결과는 `QUALITY_REPORT_v1.4.0.md`에 기록하며, 실행하지 않은 항목은 통과로 간주하지 않습니다.
 
 ## 자료 갱신 절차
 

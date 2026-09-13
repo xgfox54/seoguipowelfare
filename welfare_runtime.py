@@ -1,11 +1,24 @@
 from __future__ import annotations
 
 import http.client
+import os
 import sys
 import urllib.error
 from pathlib import Path
 from urllib.parse import urlsplit
 from urllib.request import Request
+
+
+def configured_local_port(env_name: str, default: int) -> int:
+    """Read an optional loopback port override while preserving a safe default."""
+    raw = os.environ.get(env_name, "").strip()
+    if not raw:
+        return default
+    try:
+        port = int(raw)
+    except ValueError:
+        return default
+    return port if 1 <= port <= 65535 else default
 
 
 def bundle_root() -> Path:

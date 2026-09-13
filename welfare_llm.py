@@ -12,6 +12,7 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Final
 
 from welfare_runtime import bundle_root, open_http_url
 
@@ -75,13 +76,36 @@ MODEL_CHOICES: tuple[GgufModel, ...] = (
     ),
     GgufModel(
         key="gemma_e4b",
-        label="Gemma 4 E4B",
+        label="Gemma 4 E4B Q4_K_M",
         filename="gemma4-e4b.gguf",
         description="더 정확하지만 무거운 모델입니다. 인터넷 연결 없이 동작합니다.",
     ),
 )
-DEFAULT_MODEL_KEY = MODEL_CHOICES[0].key
 _CHOICES_BY_KEY = {choice.key: choice for choice in MODEL_CHOICES}
+MODEL_VARIANT_KEYS: Final[dict[str, str]] = {"E2B": "gemma_e2b", "E4B": "gemma_e4b"}
+
+
+def configured_model_variant() -> str:
+    """Return the model variant embedded in/assigned to this distribution.
+
+    Packaged executables are renamed by build-exe.ps1 to include `_E2B` or
+    `_E4B`, which gives the runtime a deterministic build identity without
+    scanning the models directory. Environment variables are supported for
+    development and automated tests.
+    """
+    for env_name in ("MODEL_VARIANT", "WELFARE_MODEL_VARIANT"):
+        configured = os.environ.get(env_name, "").strip().upper()
+        if configured in MODEL_VARIANT_KEYS:
+            return configured
+    executable_name = Path(sys.executable).name.upper()
+    if "_E4B" in executable_name:
+        return "E4B"
+    if "_E2B" in executable_name:
+        return "E2B"
+    return "E2B"
+
+
+DEFAULT_MODEL_KEY = MODEL_VARIANT_KEYS[configured_model_variant()]
 
 
 def resolve_choice(model_key: str | None) -> GgufModel:
@@ -93,11 +117,13 @@ def resolve_choice(model_key: str | None) -> GgufModel:
     return choice
 
 
+def configured_model_choice() -> GgufModel:
+    return _CHOICES_BY_KEY[MODEL_VARIANT_KEYS[configured_model_variant()]]
+
+
 def select_model() -> GgufModel | None:
-    for choice in MODEL_CHOICES:
-        if choice.exists:
-            return choice
-    return None
+    choice = configured_model_choice()
+    return choice if choice.exists else None
 
 
 def find_llama_server() -> Path | None:
@@ -207,9 +233,29 @@ class LlamaRuntime:
 
     def start(self) -> None:
         with self._lock:
+            expected_model = configured_model_choice()
+            if not expected_model.exists:
+                self.state = "error"
+                self.model = None
+                self.error = (
+                    f"현재 {configured_model_variant()} 배포판에 필요한 AI 모델 파일 "
+                    f"({expected_model.filename})을 찾을 수 없습니다. 다른 모델로 자동 대체하지 않습니다."
+                )
+                logger.error("required GGUF missing: variant=%s file=%s", configured_model_variant(), expected_model.filename)
+                return
             if server_is_ready():
+                loaded_filename = loaded_model_file()
+                if loaded_filename != expected_model.filename:
+                    self.state = "error"
+                    self.model = None
+                    self.error = (
+                        "AI 엔진에 현재 배포판과 다른 모델이 로딩되어 있습니다. "
+                        f"요청={expected_model.filename}, 로딩={loaded_filename or '확인불가'}"
+                    )
+                    logger.error("model mismatch on existing server: expected=%s loaded=%s", expected_model.filename, loaded_filename)
+                    return
                 self.state = "ready"
-                self.model = select_model()
+                self.model = expected_model
                 return
             executable = find_llama_server()
             model = select_model()
@@ -220,8 +266,11 @@ class LlamaRuntime:
                 return
             if model is None:
                 self.state = "error"
-                self.error = "AI 모델 파일(GGUF)을 찾을 수 없습니다. 복지톡 AI 설치 파일이 정상적으로 설치되었는지 확인하십시오."
-                logger.error("no GGUF model under %s", models_dir())
+                self.error = (
+                    f"현재 {configured_model_variant()} 배포판에 필요한 AI 모델 파일 "
+                    f"({expected_model.filename})을 찾을 수 없습니다. 다른 모델로 자동 대체하지 않습니다."
+                )
+                logger.error("required GGUF missing: variant=%s file=%s", configured_model_variant(), expected_model.filename)
                 return
             if _port_is_busy():
                 self.state = "error"
@@ -270,6 +319,17 @@ class LlamaRuntime:
                 self.error = self._diagnose_exit()
                 return
             if server_is_ready():
+                loaded_filename = loaded_model_file()
+                if loaded_filename != model.filename:
+                    mismatch_error = (
+                        "AI 엔진이 현재 배포판과 다른 모델을 로딩했습니다. "
+                        f"요청={model.filename}, 로딩={loaded_filename or '확인불가'}"
+                    )
+                    logger.error("model mismatch after startup: expected=%s loaded=%s", model.filename, loaded_filename)
+                    self.stop()
+                    self.state = "error"
+                    self.error = mismatch_error
+                    return
                 self.state = "ready"
                 logger.info("llama-server ready after %.1fs", time.monotonic() - started)
                 return
@@ -330,21 +390,33 @@ def generate(
         },
         ensure_ascii=False,
     ).encode("utf-8")
-    request = urllib.request.Request(
-        f"{LLM_BASE_URL}/v1/chat/completions",
-        data=payload,
-        headers={"Content-Type": "application/json"},
-        method="POST",
-    )
-    try:
-        with open_http_url(request, timeout=timeout) as response:
-            result = json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as error:
-        detail = error.read().decode("utf-8", errors="replace")
-        logger.error("llm http error %s: %s", error.code, detail[:500])
-        raise RuntimeError(f"AI 엔진 응답 오류({error.code})") from error
-    except (urllib.error.URLError, TimeoutError, OSError) as error:
-        raise RuntimeError("AI 엔진에 연결할 수 없습니다. 프로그램을 다시 실행해 주십시오.") from error
+    result: dict[str, object] | None = None
+    last_connection_error: BaseException | None = None
+    for attempt in range(2):
+        request = urllib.request.Request(
+            f"{LLM_BASE_URL}/v1/chat/completions",
+            data=payload,
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        try:
+            with open_http_url(request, timeout=timeout) as response:
+                result = json.loads(response.read().decode("utf-8"))
+            break
+        except urllib.error.HTTPError as error:
+            detail = error.read().decode("utf-8", errors="replace")
+            logger.error("llm http error %s: %s", error.code, detail[:500])
+            raise RuntimeError(f"AI 엔진 응답 오류({error.code})") from error
+        except (urllib.error.URLError, TimeoutError, OSError) as error:
+            last_connection_error = error
+            if attempt == 0:
+                logger.warning("llama-server connection lost; attempting one automatic restart")
+                RUNTIME.start()
+                if RUNTIME.state == "ready":
+                    continue
+            raise RuntimeError("AI 엔진에 연결할 수 없습니다. 프로그램을 다시 실행해 주십시오.") from error
+    if result is None:
+        raise RuntimeError("AI 엔진에 연결할 수 없습니다. 프로그램을 다시 실행해 주십시오.") from last_connection_error
     choices = result.get("choices", [])
     if not choices:
         return "답변을 생성하지 못했습니다."

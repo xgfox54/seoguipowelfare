@@ -1,0 +1,29 @@
+{
+  "variant": "E2B",
+  "model": "gemma4-e2b-it-qat.gguf",
+  "items": 200,
+  "category_counts": {
+    "simple": 30,
+    "numeric": 32,
+    "procedure": 22,
+    "exception": 20,
+    "case": 40,
+    "year_confusion": 15,
+    "program_mix": 15,
+    "wrong_premise": 10,
+    "local": 10,
+    "table": 6
+  },
+  "recall_at_1": 0.73,
+  "recall_at_3": 0.86,
+  "recall_at_5": 0.91,
+  "section_match_at_5": 0.89,
+  "mean_retrieval_ms": 252.84150000000002,
+  "mean_answer_ms": 9196.08375,
+  "forbidden_claim_rate": 0.075,
+  "missing_expected_number_rate": 0.04,
+  "wrong_year_rate": 0.055,
+  "answer_error_rate": 0.0,
+  "peak_rss_mb": 5642.2,
+  "csv": "C:\\Users\\USER\\Downloads\\seoguipowelfare-v1.3.4\\seoguipowelfare-v1.3.4\\quality\\results_v1.4.0_E2B.csv"
+}

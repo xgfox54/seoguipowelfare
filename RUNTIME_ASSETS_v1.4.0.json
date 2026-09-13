@@ -1,0 +1,36 @@
+{
+  "generated_at_utc": "2026-09-13T00:13:34.992471+00:00",
+  "e2b": {
+    "path": "models\\gemma4-e2b-it-qat.gguf",
+    "sha256": "e531007218dfab990486a5de7676a6932d6ea8dea233d1f698d7c21cf8a16889",
+    "bytes": 2620370976,
+    "source": "https://huggingface.co/unsloth/gemma-4-E2B-it-qat-GGUF/resolve/main/gemma-4-E2B-it-qat-UD-Q4_K_XL.gguf?download=true"
+  },
+  "e4b": {
+    "path": "models\\gemma4-e4b.gguf",
+    "sha256": "85a896a047553e842f25297ee5b031d64ff30147d9c4af17b1e4b394cd1fab87",
+    "bytes": 4977171584,
+    "source": "https://huggingface.co/unsloth/gemma-4-E4B-it-GGUF/resolve/main/gemma-4-E4B-it-Q4_K_M.gguf?download=true"
+  },
+  "llama_cpp": {
+    "build": "b10686",
+    "archive_sha256": "7cd08366b3a7fbbe787d4e2f27d779c07e486508b2a4c47a5d3d8394fb8c7bd7",
+    "source": "https://github.com/ggml-org/llama.cpp/releases/download/b10686/llama-b10686-bin-win-vulkan-x64.zip",
+    "server": "runtime\\llamacpp\\llama-server.exe",
+    "vulkan": "runtime\\llamacpp\\ggml-vulkan.dll",
+    "version": "version: 0.3.0-dev (build 10686, commit 3173a5647)\nbuilt with Clang 20.1.8 for Windows x86_64"
+  },
+  "build_venv": {
+    "python": ".venv-package\\Scripts\\python.exe",
+    "probe": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]\n6.16.0"
+  },
+  "psutil": "7.2.2",
+  "environment": {
+    "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+    "cpu_count": 12,
+    "ram_bytes": 33933873152,
+    "disk_free_bytes": 1167296278528,
+    "nvidia": "Failed to initialize NVML: Unknown Error",
+    "inno_setup": ""
+  }
+}

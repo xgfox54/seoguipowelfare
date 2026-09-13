@@ -52,12 +52,35 @@ try {
 
     if (-not $SkipInstaller) {
         $Iscc = $env:ISCC_PATH
-        if (-not $Iscc) { $Iscc = 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe' }
+        if (-not $Iscc) {
+            $IsccCandidates = @(
+                'C:\Program Files (x86)\Inno Setup 6\ISCC.exe',
+                'C:\Program Files\Inno Setup 6\ISCC.exe',
+                (Join-Path $env:LOCALAPPDATA 'Programs\Inno Setup 6\ISCC.exe')
+            )
+            $Iscc = $IsccCandidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
+        }
+        if (-not $Iscc) {
+            $IsccCommand = Get-Command ISCC.exe -ErrorAction SilentlyContinue
+            if ($IsccCommand) { $Iscc = $IsccCommand.Source }
+        }
         if (-not (Test-Path -LiteralPath $Iscc)) { throw "Inno Setup ISCC.exe 를 찾을 수 없습니다: $Iscc (ISCC_PATH 환경변수로 지정 가능)" }
         & $Iscc "/DAppVersion=$Version" "/DModelVariant=$ModelVariant" "/DExeFileName=$ExeName" (Join-Path $ProjectRoot 'installer.iss')
         if ($LASTEXITCODE -ne 0) { throw 'Inno Setup 빌드에 실패했습니다.' }
-        $Setup = Get-ChildItem -LiteralPath (Join-Path $ProjectRoot 'dist') -Filter "*Setup*${Version}_${ModelVariant}.exe" | Select-Object -First 1
+        $SetupBase = "BokjiTalkAI_Setup_v${Version}_${ModelVariant}"
+        $Setup = Get-ChildItem -LiteralPath (Join-Path $ProjectRoot 'dist') -Filter "${SetupBase}.exe" | Select-Object -First 1
         Write-Host ("Installer completed: {0} ({1:N0} bytes)" -f $Setup.FullName, $Setup.Length)
+        if ($ModelVariant -eq 'E4B') {
+            $ZipPath = Join-Path $ProjectRoot "dist\${SetupBase}.zip"
+            if (Test-Path -LiteralPath $ZipPath) { Remove-Item -LiteralPath $ZipPath -Force }
+            $Parts = Get-ChildItem -LiteralPath (Join-Path $ProjectRoot 'dist') -File | Where-Object {
+                $_.BaseName -eq $SetupBase -or $_.Name -like "${SetupBase}-*.bin"
+            }
+            if (-not $Parts) { throw 'E4B 설치 패키지 분할 파일을 찾을 수 없습니다.' }
+            Compress-Archive -LiteralPath $Parts.FullName -DestinationPath $ZipPath -CompressionLevel Optimal -Force
+            $Zip = Get-Item -LiteralPath $ZipPath
+            Write-Host ("E4B ZIP completed: {0} ({1:N0} bytes)" -f $Zip.FullName, $Zip.Length)
+        }
     }
 } finally {
     Pop-Location

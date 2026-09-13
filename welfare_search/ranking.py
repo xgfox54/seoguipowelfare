@@ -10,6 +10,11 @@ from welfare_search.synonyms import PROGRAM_MANUAL_ALIASES
 from welfare_search.types import SearchHit
 
 AUTHORITY_RANK: Final[dict[str, int]] = {"primary": 0, "reference": 1, "summary": 2, "index": 3}
+JURISDICTION_ORDER: Final[dict[str, tuple[str, ...]]] = {
+    "seogwipo": ("seogwipo", "jeju", "national"),
+    "jeju": ("jeju", "national", "seogwipo"),
+    "national": ("national", "jeju", "seogwipo"),
+}
 
 
 @dataclass(frozen=True, slots=True)
@@ -44,6 +49,15 @@ def freshness_rank(metadata: DocumentMetadata, requested_years: frozenset[str]) 
     return (3, 999)
 
 
+def jurisdiction_rank(metadata: DocumentMetadata, requested: str) -> int:
+    order = JURISDICTION_ORDER.get(requested, JURISDICTION_ORDER["national"])
+    normalized = metadata.jurisdiction.strip().lower() or "national"
+    try:
+        return order.index(normalized)
+    except ValueError:
+        return len(order)
+
+
 def rank_key(
     hit: SearchHit,
     bm25_score: float,
@@ -75,17 +89,24 @@ def rank_key(
     lexical_matches = sum(re.sub(r"\s+", "", term) in normalized_local for term in plan.lexical_terms)
     compact_matches = sum(re.sub(r"\s+", "", term) in normalized_local for term in plan.original_terms) - lexical_matches
     expanded_matches = sum(re.sub(r"\s+", "", term) in normalized_local for term in plan.expanded_terms)
-    if not plan.explicit_programs or direct_affiliation or manual_affiliation:
+    if not plan.explicit_programs:
         program_tier = 0
-    elif explicit_matches or filename_affiliation:
+    elif manual_affiliation:
+        program_tier = 0
+    elif direct_affiliation:
         program_tier = 1
-    else:
+    elif explicit_matches or filename_affiliation:
         program_tier = 2
+    else:
+        program_tier = 3
+    section_affiliation_rank = 0 if direct_affiliation else 1
     year_rank = 0 if not plan.requested_years or metadata.year in plan.requested_years else 1
     return (
         program_tier,
-        -lexical_matches,
+        section_affiliation_rank,
         year_rank,
+        jurisdiction_rank(metadata, plan.jurisdiction),
+        -lexical_matches,
         AUTHORITY_RANK.get(metadata.authority, 4),
         freshness_rank(metadata, plan.requested_years),
         -explicit_matches,

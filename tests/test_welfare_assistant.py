@@ -37,6 +37,7 @@ def test_system_status_reports_local_hybrid_index(
 ) -> None:
     # Given: a complete local index and OpenKB registry.
     kb_dir = _knowledge_base(tmp_path)
+    monkeypatch.delenv("WELFARE_SEMANTIC_SEARCH", raising=False)
     monkeypatch.setattr(welfare_assistant.RUNTIME, "state", "ready")
     monkeypatch.setattr(welfare_assistant.RUNTIME, "error", "")
     monkeypatch.setattr(welfare_assistant.RUNTIME, "model", welfare_assistant.resolve_choice("gemma_e2b"))
@@ -63,6 +64,7 @@ def test_system_status_reports_local_hybrid_index(
         "engine_error": "",
         "ai_ready": True,
         "setup_required": False,
+        "semantic_search": False,
     }
     assert [model["key"] for model in selectable] == ["gemma_e2b", "gemma_e4b"]
 
@@ -142,18 +144,20 @@ def test_main_requires_a_question(capsys: pytest.CaptureFixture[str]) -> None:
     assert "welfare_assistant.py" in capsys.readouterr().out
 
 
-def test_answer_question_runs_three_agent_pipeline(
+def test_e2b_answer_question_uses_one_llm_call(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    # Given: a local knowledge base and deterministic local-model responses.
+    # Given: the E2B distribution and deterministic local evidence.
     kb_dir = _knowledge_base(tmp_path)
-    searched_queries: list[str] = []
-    calls: list[tuple[str, str]] = []
+    searched: list[tuple[str, int, int]] = []
+    calls: list[str] = []
 
-    def fake_retrieve_context(database_path: Path, query: str) -> str:
+    def fake_retrieve_context(
+        database_path: Path, query: str, limit: int = 6, *, char_budget: int = 14_000
+    ) -> str:
         assert database_path.name == "welfare.db"
-        searched_queries.append(query)
-        return "문서명: 01.[공적급여] 2026년 생계급여.md\n근거 본문"
+        searched.append((query, limit, char_budget))
+        return '<EVIDENCE id="E1">\n[authority: primary]\n근거 기반 답변 초안\n</EVIDENCE>'
 
     def fake_generate(
         model_tag: str,
@@ -163,42 +167,108 @@ def test_answer_question_runs_three_agent_pipeline(
         system_prompt: str | None = None,
         temperature: float = 0.2,
     ) -> str:
-        del model_tag, timeout, temperature
-        system = system_prompt or ""
-        calls.append((system, prompt))
-        if "검색질문 정제" in system:
-            return "정제된 질문: 2026년 생계급여 기준은 무엇인가?"
-        if "품질감독" in system:
-            return "감독을 거친 최종 답변"
+        del model_tag, timeout, system_prompt, temperature
+        calls.append(prompt)
         return "근거 기반 답변 초안"
 
     monkeypatch.setattr(welfare_assistant, "retrieve_context", fake_retrieve_context)
     monkeypatch.setattr(welfare_assistant, "_llm_generate", fake_generate)
 
-    # When: one user question is answered.
+    # When: one ordinary question is answered.
     answer = welfare_assistant.answer_question(kb_dir, "생계급여 기준 알려줘")
 
-    # Then: refiner -> grounded answerer -> supervisor execute in order.
-    assert searched_queries == ["생계급여 기준 알려줘\n2026년 생계급여 기준은 무엇인가?"]
-    assert answer == "감독을 거친 최종 답변"
-    assert len(calls) == 3
-    assert "검색질문 정제" in calls[0][0]
-    assert "사용자 원문 질문" in calls[1][1]
-    assert "품질감독" in calls[2][0]
+    # Then: query planning/retrieval are deterministic and the LLM is called once.
+    assert searched == [("생계급여 기준 알려줘", 5, 9_000)]
+    assert answer == "근거 기반 답변 초안"
+    assert len(calls) == 1
+    assert "검색질문 정제" not in calls[0]
 
 
-def test_answer_question_falls_back_to_original_query_when_refiner_fails(
+def test_e2b_does_not_call_llm_without_evidence(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    # Given: the refiner model call fails while answer/supervisor calls still work.
     kb_dir = _knowledge_base(tmp_path)
-    searched_queries: list[str] = []
-    call_count = 0
+    monkeypatch.setattr(welfare_assistant, "retrieve_context", lambda *args, **kwargs: "")
 
-    def fake_retrieve_context(database_path: Path, query: str) -> str:
-        del database_path
-        searched_queries.append(query)
-        return "문서명: sample.md\n근거 본문"
+    def fail_generate(*args: object, **kwargs: object) -> str:
+        raise AssertionError("LLM must not run without evidence")
+
+    monkeypatch.setattr(welfare_assistant, "_llm_generate", fail_generate)
+
+    answer = welfare_assistant.answer_question(kb_dir, "DB에 없는 질문")
+
+    assert "근거를 충분히 찾지 못했습니다" in answer
+
+
+def test_e2b_does_not_call_llm_when_all_evidence_is_low_confidence(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    kb_dir = _knowledge_base(tmp_path)
+    monkeypatch.setattr(
+        welfare_assistant,
+        "retrieve_context",
+        lambda *args, **kwargs: '<EVIDENCE id="E1">\n[confidence: low]\n간접 언급\n</EVIDENCE>',
+    )
+
+    def fail_generate(*args: object, **kwargs: object) -> str:
+        raise AssertionError("LLM must not run on uniformly low-confidence evidence")
+
+    monkeypatch.setattr(welfare_assistant, "_llm_generate", fail_generate)
+
+    answer = welfare_assistant.answer_question(kb_dir, "근거가 약한 질문")
+
+    assert "근거를 충분히 찾지 못했습니다" in answer
+
+
+def test_answer_question_rejects_other_distribution_model(tmp_path: Path) -> None:
+    kb_dir = _knowledge_base(tmp_path)
+
+    with pytest.raises(RuntimeError, match="E2B 전용"):
+        welfare_assistant.answer_question(kb_dir, "생계급여 기준", "gemma_e4b")
+
+
+def test_e4b_ordinary_question_uses_one_llm_call(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    kb_dir = _knowledge_base(tmp_path)
+    calls = 0
+    e4b = welfare_assistant.resolve_choice("gemma_e4b")
+    monkeypatch.setattr(welfare_assistant, "configured_model_variant", lambda: "E4B")
+    monkeypatch.setattr(welfare_assistant, "configured_model_choice", lambda: e4b)
+    monkeypatch.setattr(
+        welfare_assistant,
+        "retrieve_context",
+        lambda *args, **kwargs: '<EVIDENCE id="E1">일반 안내</EVIDENCE>',
+    )
+
+    def fake_generate(*args: object, **kwargs: object) -> str:
+        nonlocal calls
+        calls += 1
+        return "일반 안내"
+
+    monkeypatch.setattr(welfare_assistant, "_llm_generate", fake_generate)
+
+    answer = welfare_assistant.answer_question(kb_dir, "기초연금 신청방법 알려줘", "gemma_e4b")
+
+    assert answer == "일반 안내"
+    assert calls == 1
+
+
+def test_e4b_complex_case_adds_supervisor_once(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    kb_dir = _knowledge_base(tmp_path)
+    calls: list[str] = []
+    e4b = welfare_assistant.resolve_choice("gemma_e4b")
+    monkeypatch.setattr(welfare_assistant, "configured_model_variant", lambda: "E4B")
+    monkeypatch.setattr(welfare_assistant, "configured_model_choice", lambda: e4b)
+    monkeypatch.setattr(
+        welfare_assistant,
+        "retrieve_context",
+        lambda *args, **kwargs: (
+            '<EVIDENCE id="E1">65세 소득 월 80만원 사례의 판단에는 재산 확인이 필요하다.</EVIDENCE>'
+        ),
+    )
 
     def fake_generate(
         model_tag: str,
@@ -208,88 +278,20 @@ def test_answer_question_falls_back_to_original_query_when_refiner_fails(
         system_prompt: str | None = None,
         temperature: float = 0.2,
     ) -> str:
-        nonlocal call_count
         del model_tag, prompt, timeout, temperature
-        call_count += 1
-        if system_prompt and "검색질문 정제" in system_prompt:
-            raise _GenerationUnavailable("refiner unavailable")
+        calls.append(system_prompt or "answerer")
         if system_prompt and "품질감독" in system_prompt:
-            return "검수 완료 답변"
-        return "초안"
-
-    monkeypatch.setattr(welfare_assistant, "retrieve_context", fake_retrieve_context)
-    monkeypatch.setattr(welfare_assistant, "_llm_generate", fake_generate)
-
-    # When: the pipeline runs.
-    answer = welfare_assistant.answer_question(kb_dir, "원래 질문")
-
-    # Then: retrieval safely uses the original question and the remaining agents continue.
-    assert searched_queries == ["원래 질문"]
-    assert answer == "검수 완료 답변"
-    assert call_count == 3
-
-
-def test_answer_question_returns_draft_when_supervisor_fails(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
-) -> None:
-    # Given: refiner and answerer work, but supervisor is temporarily unavailable.
-    kb_dir = _knowledge_base(tmp_path)
-
-    def fake_generate(
-        model_tag: str,
-        prompt: str,
-        timeout: int = 600,
-        *,
-        system_prompt: str | None = None,
-        temperature: float = 0.2,
-    ) -> str:
-        del model_tag, prompt, timeout, temperature
-        if system_prompt and "검색질문 정제" in system_prompt:
-            return "생계급여 기준"
-        if system_prompt and "품질감독" in system_prompt:
-            raise _GenerationUnavailable("supervisor unavailable")
-        return "검수 전이지만 근거 기반인 답변 초안"
+            return "재산 확인이 필요합니다."
+        return "재산 확인이 필요합니다."
 
     monkeypatch.setattr(welfare_assistant, "_llm_generate", fake_generate)
 
-    # When: the supervisor stage fails.
-    answer = welfare_assistant.answer_question(kb_dir, "생계급여 기준")
+    answer = welfare_assistant.answer_question(
+        kb_dir,
+        "65세 혼자 살고 소득이 월 80만원인데 기초연금 받을 수 있어?",
+        "gemma_e4b",
+    )
 
-    # Then: the grounded draft is returned with a visible review-status warning.
-    assert "검수 전이지만 근거 기반인 답변 초안" in answer
-    assert "자동 품질검수를 완료하지 못했습니다" in answer
-
-
-def test_answer_question_supervises_fallback_answer(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
-) -> None:
-    # Given: the primary answer call fails but the fallback and supervisor work.
-    kb_dir = _knowledge_base(tmp_path)
-    answer_calls = 0
-
-    def fake_generate(
-        model_tag: str,
-        prompt: str,
-        timeout: int = 600,
-        *,
-        system_prompt: str | None = None,
-        temperature: float = 0.2,
-    ) -> str:
-        nonlocal answer_calls
-        del model_tag, prompt, timeout, temperature
-        if system_prompt and "검색질문 정제" in system_prompt:
-            return "생계급여 기준"
-        if system_prompt and "품질감독" in system_prompt:
-            return "검수된 대체 답변"
-        answer_calls += 1
-        if answer_calls == 1:
-            raise _GenerationUnavailable("primary answer failed")
-        return "대체 답변 초안"
-
-    monkeypatch.setattr(welfare_assistant, "_llm_generate", fake_generate)
-
-    # When: the complete answer pipeline runs.
-    answer = welfare_assistant.answer_question(kb_dir, "생계급여 기준")
-
-    # Then: the fallback draft also passes through the supervisor.
-    assert answer == "검수된 대체 답변"
+    assert answer == "재산 확인이 필요합니다."
+    assert len(calls) == 2
+    assert "품질감독" in calls[1]

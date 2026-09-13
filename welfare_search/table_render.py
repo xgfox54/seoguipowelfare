@@ -34,8 +34,17 @@ def _notes_after(content: str, table_end: int) -> tuple[str, ...]:
 
 
 def _matching_rows(rows: tuple[str, ...], tokens: tuple[str, ...]) -> tuple[str, ...]:
-    matching = tuple(row for row in rows if any(token in row.casefold() for token in tokens))
-    return matching or rows[:1]
+    compact_tokens = tuple(re.sub(r"\s+", "", token).casefold() for token in tokens if token)
+    scored: list[tuple[int, int, str]] = []
+    for index, row in enumerate(rows):
+        compact_row = re.sub(r"\s+", "", row).casefold()
+        score = sum(token in compact_row for token in compact_tokens)
+        if score:
+            scored.append((score, index, row))
+    if not scored:
+        return rows[:1]
+    scored.sort(key=lambda item: (-item[0], item[1]))
+    return tuple(row for _score, _index, row in scored)
 
 
 def _fit(parts: tuple[str, ...], max_chars: int) -> str:

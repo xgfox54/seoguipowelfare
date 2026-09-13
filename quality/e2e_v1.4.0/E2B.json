@@ -1,0 +1,85 @@
+{
+  "variant": "E2B",
+  "version": "1.4.0",
+  "app_port": 18765,
+  "started_at": "2026-09-13T13:04:20.312664+00:00",
+  "state": "succeeded",
+  "install_dir": "quality\\e2e-install-v1.4.0\\E2B",
+  "setup": "dist\\BokjiTalkAI_Setup_v1.4.0_E2B.exe",
+  "installer_exit_code": 0,
+  "install_seconds": 111.429,
+  "installed_files": {
+    "app_exe_bytes": 8299446,
+    "model_bytes": 2620370976,
+    "llama_server_bytes": 9216,
+    "database_bytes": 286441472,
+    "manifest_bytes": 602
+  },
+  "opposite_model_absent": true,
+  "startup_seconds": 8.709,
+  "status_samples": [
+    {
+      "at": "2026-09-13T13:06:15.964015+00:00",
+      "engine_state": "idle",
+      "ai_ready": false,
+      "model": "gemma4-e2b-it-qat.gguf",
+      "engine_error": ""
+    },
+    {
+      "at": "2026-09-13T13:06:18.215587+00:00",
+      "engine_state": "loading",
+      "ai_ready": false,
+      "model": "gemma4-e2b-it-qat.gguf",
+      "engine_error": ""
+    },
+    {
+      "at": "2026-09-13T13:06:21.476298+00:00",
+      "engine_state": "ready",
+      "ai_ready": true,
+      "model": "gemma4-e2b-it-qat.gguf",
+      "engine_error": ""
+    }
+  ],
+  "status": {
+    "status": "정상",
+    "model": "gemma4-e2b-it-qat.gguf",
+    "app_version": "1.4.0",
+    "source_documents": 39,
+    "search_sections": 21588,
+    "native_openkb_documents": 0,
+    "source_bytes": 62075154,
+    "models": [
+      {
+        "key": "gemma_e2b",
+        "label": "Gemma 4 E2B QAT Q4",
+        "runtime": "내장 llama.cpp",
+        "description": "빠르고 가벼운 모델입니다. 인터넷 연결 없이 동작합니다.",
+        "available": true,
+        "unavailable_reason": ""
+      },
+      {
+        "key": "gemma_e4b",
+        "label": "Gemma 4 E4B Q4_K_M",
+        "runtime": "내장 llama.cpp",
+        "description": "더 정확하지만 무거운 모델입니다. 인터넷 연결 없이 동작합니다.",
+        "available": false,
+        "unavailable_reason": "현재 설치본은 E2B 전용입니다. 이 모델은 다른 배포판에서 사용합니다."
+      }
+    ],
+    "default_model": "gemma_e2b",
+    "engine_state": "ready",
+    "engine_error": "",
+    "ai_ready": true,
+    "setup_required": false,
+    "semantic_search": false
+  },
+  "ask_seconds": 3.207,
+  "ask_model": "gemma_e2b",
+  "answer_chars": 326,
+  "answer_preview": "기초생활보장 생계급여 신청에 대한 구체적인 신청 장소에 대한 정보는 제공된 복지DB 원문에서 확인되지 않았습니다.\n\n## ✅ 요약\n*   제공된 Evidence에는 기초생활보장 생계급여를 **어디에서 신청해야 하는지에 대한 정보가 포함되어 있지 않습니다.**\n\n## 📋 상세 내용\n*   제공된 Evidence에는 생계급여의 신청 장소에 대한 구체적인 안내가 없습니다.\n\n## 📚 근거 지침\n*   01.[매뉴얼-공적급여] 2026년도+국민기초생활보장+사업안내★.md\n\n## 🔎 추가 확인사항\n*   기초생활보장 생계급여 신청 장소에 대",
+  "app_log": "quality\\e2e_v1.4.0\\E2B-welfare-app.log",
+  "uninstaller_exit_code": 0,
+  "uninstall_seconds": 2.069,
+  "install_dir_removed": true,
+  "finished_at": "2026-09-13T13:06:30.725539+00:00"
+}

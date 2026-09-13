@@ -13,11 +13,11 @@ import uvicorn
 import webview
 
 from welfare_llm import RUNTIME, log_dir
-from welfare_runtime import knowledge_base_root, open_http_url, resource_path
+from welfare_runtime import configured_local_port, knowledge_base_root, open_http_url, resource_path
 from welfare_web import create_app
 
 HOST = "127.0.0.1"
-PORT = 8765
+PORT = configured_local_port("BOKJITALK_PORT", 8765)
 BASE_URL = f"http://{HOST}:{PORT}"
 
 

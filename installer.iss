@@ -1,5 +1,5 @@
 ﻿#ifndef AppVersion
-  #define AppVersion "1.3.4"
+  #define AppVersion "1.4.0"
 #endif
 #ifndef ModelVariant
   #define ModelVariant "E2B"
@@ -29,7 +29,7 @@ DefaultGroupName={#AppName}
 DisableProgramGroupPage=yes
 PrivilegesRequired=lowest
 OutputDir=dist
-OutputBaseFilename=복지톡AI_Setup_v{#AppVersion}_{#ModelVariant}
+OutputBaseFilename=BokjiTalkAI_Setup_v{#AppVersion}_{#ModelVariant}
 SetupIconFile=assets\bokjitalk.ico
 UninstallDisplayIcon={app}\{#ExeName}
 Compression=lzma2/fast
@@ -37,7 +37,7 @@ SolidCompression=no
 LZMAUseSeparateProcess=yes
 #if ModelVariant == "E4B"
 DiskSpanning=yes
-DiskSliceSize=2100000000
+DiskSliceSize=1900000000
 #else
 DiskSpanning=no
 #endif
