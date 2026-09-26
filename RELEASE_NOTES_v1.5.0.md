@@ -1,5 +1,12 @@
 # 서귀포시 복지톡 AI 업무비서 v1.5.0
 
+## 설치 파일 받기
+
+- **E2B (기본 권장, 메모리 8GB 이상 PC):** 아래 Assets의 `BokjiTalkAI_v1.5.0_E2B_Download.cmd`를 받아 더블클릭합니다.
+- **E4B (메모리 16GB 이상 PC):** 아래 Assets의 `BokjiTalkAI_v1.5.0_E4B_Download.cmd`를 받아 더블클릭합니다.
+
+받기 도우미가 400MB 이하 조각을 받아 SHA-256을 확인하고 원래 설치 파일로 합친 뒤 설치 창을 엽니다. 도중에 끊겼다면 다시 실행하세요. 받은 조각은 건너뛰고 이어서 받습니다. 브라우저나 Windows가 경고하면 "유지", "추가 정보 → 실행"을 누릅니다. 단계별 안내, 도우미 없이 조각을 직접 받아 합치는 방법, 문제 해결은 [README 설치 가이드](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/blob/main/README.md#설치-가이드)에 있습니다.
+
 ## 개요
 
 v1.5.0은 v1.4.0 정식판의 다음 정식 버전입니다. v1.4.0.Beta에서 개발·검증한 검색·질의분석 개선, E4B Supervisor 제거, 복지제도100 기반 사업 사전(서귀포시 전용), 최종 검증에서 찾은 문제 수정, 웹 보안 수정을 모두 포함합니다. 포트(8765/18080)와 설치 ID·설치 폴더는 v1.4.0 정식판과 같아서, v1.4.0이 설치된 PC에 설치하면 v1.5.0으로 업그레이드됩니다.
@@ -34,30 +41,25 @@ v1.5.0은 v1.4.0 정식판의 다음 정식 버전입니다. v1.4.0.Beta에서 �
 
 ## 배포 파일
 
-설치 파일은 [GitLab Releases v1.5.0](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.5.0)에서 받습니다. GitLab 서버의 단일 파일 업로드 제한 때문에 E2B 설치 EXE와 E4B ZIP은 45MB 이하 조각으로 보관합니다. 릴리스 자산의 복원 스크립트(`RESTORE_BokjiTalkAI_v1.5.0.ps1`)를 내려받은 폴더에서 실행하면 필요한 조각을 받아 SHA-256을 확인한 뒤 원본 설치 파일로 합칩니다. 내부 공유용 사본은 구글 드라이브 `BokjiTalkAI_v1.5.0_설치파일` 폴더에도 있습니다.
+설치 파일은 [GitLab Releases v1.5.0](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.5.0)에서 받습니다. 이 GitLab 서버는 파일 하나를 400MB 남짓까지만 받기 때문에(시험 결과 400MB 통과, 500MB는 "File is too large"로 거절), 설치 파일을 400,000,000바이트 이하 조각으로 나눠 패키지 `bokjitalk-ai-release/1.5.0`에 올렸습니다. 받기 도우미(`BokjiTalkAI_v1.5.0_E2B_Download.cmd`, `BokjiTalkAI_v1.5.0_E4B_Download.cmd`, 본체 `GET_BokjiTalkAI_v1.5.0.ps1`)가 조각을 받아 검증하고 합칩니다. E4B는 ZIP을 거치지 않고 설치 EXE와 `.bin` 3개를 바로 만듭니다. 서귀포시 내부 공유용 사본(E2B EXE, E4B ZIP)은 구글 드라이브 `BokjiTalkAI_v1.5.0_설치파일` 폴더에도 있습니다.
 
-```powershell
-powershell -ExecutionPolicy Bypass -File .\RESTORE_BokjiTalkAI_v1.5.0.ps1 E2B
-powershell -ExecutionPolicy Bypass -File .\RESTORE_BokjiTalkAI_v1.5.0.ps1 E4B
-```
+| 파일 | 크기(바이트) | SHA-256 | GitLab 조각 |
+|---|---:|---|---|
+| `BokjiTalkAI_Setup_v1.5.0_E2B.exe` | 2,620,334,863 | `d387bac2a7254468fd88cd63d9a57d8044cc8f57b06155e01ae46883b8188a36` | `.001`~`.007` (7개) |
+| `BokjiTalkAI_Setup_v1.5.0_E4B.exe` | 2,410,620 | `5e816e23c7ac0a863a4a60b5184e33eec802dbd7fee74c88bfa31937fe9c86f0` | 나누지 않음 |
+| `BokjiTalkAI_Setup_v1.5.0_E4B-1.bin` | 1,897,588,992 | `a5a27d8137c8c268434f1a0bfc8553b4b3c10a2856807cce6cf342ee456fd62b` | `.001`~`.005` (5개) |
+| `BokjiTalkAI_Setup_v1.5.0_E4B-2.bin` | 1,900,000,000 | `bb42ddd440623b81b7e3ebccc55dbaa6830644e46d1aea79381e61014ab08f0d` | `.001`~`.005` (5개) |
+| `BokjiTalkAI_Setup_v1.5.0_E4B-3.bin` | 1,082,537,216 | `f82dc10c6201afa801c8256e7d8a8ec3d0d15d1aa098b84c96c08045b9d8be02` | `.001`~`.003` (3개) |
+| `BokjiTalkAI_Setup_v1.5.0_E4B.zip` (구글 드라이브 사본, 위 E4B 4개 묶음) | 4,882,146,045 | `6538c6d3539f9d483e15f3b2d4042dd7718ea8ddf9e684e0150906c2835f2270` | GitLab에는 없음 |
 
-| 파일 | 크기(바이트) | SHA-256 |
-|---|---:|---|
-| `BokjiTalkAI_Setup_v1.5.0_E2B.exe` (GitLab 조각 59개) | 2,620,334,863 | `d387bac2a7254468fd88cd63d9a57d8044cc8f57b06155e01ae46883b8188a36` |
-| `BokjiTalkAI_Setup_v1.5.0_E4B.zip` (GitLab 조각 109개, 아래 4개 묶음) | 4,882,146,045 | `6538c6d3539f9d483e15f3b2d4042dd7718ea8ddf9e684e0150906c2835f2270` |
-| `BokjiTalkAI_Setup_v1.5.0_E4B.exe` | 2,410,620 | `5e816e23c7ac0a863a4a60b5184e33eec802dbd7fee74c88bfa31937fe9c86f0` |
-| `BokjiTalkAI_Setup_v1.5.0_E4B-1.bin` | 1,897,588,992 | `a5a27d8137c8c268434f1a0bfc8553b4b3c10a2856807cce6cf342ee456fd62b` |
-| `BokjiTalkAI_Setup_v1.5.0_E4B-2.bin` | 1,900,000,000 | `bb42ddd440623b81b7e3ebccc55dbaa6830644e46d1aea79381e61014ab08f0d` |
-| `BokjiTalkAI_Setup_v1.5.0_E4B-3.bin` | 1,082,537,216 | `f82dc10c6201afa801c8256e7d8a8ec3d0d15d1aa098b84c96c08045b9d8be02` |
-
-조각 파일까지 포함한 전체 검증값은 `SHA256SUMS_RELEASE_v1.5.0.txt`, 조각 목록은 `RELEASE_ASSETS_v1.5.0.json`에 있습니다.
+조각과 도우미의 검증값은 릴리스 자산 `SHA256SUMS_GITLAB_v1.5.0.txt`에 있습니다. 처음 올렸던 45MB 조각과 복원 스크립트(패키지 `1.5.0-parts45m`)는 이 방식으로 대체했습니다.
 
 설치 방법:
 
-- **E2B**: `BokjiTalkAI_Setup_v1.5.0_E2B.exe`를 실행합니다.
-- **E4B**: ZIP을 한 폴더에 모두 풀고 `BokjiTalkAI_Setup_v1.5.0_E4B.exe`를 실행합니다. `.bin` 파일 3개가 같은 폴더에 있어야 합니다.
+- **E2B**: 받기 도우미가 준비를 마치면 설치 창을 엽니다. 파일을 직접 받아 합쳤다면 `BokjiTalkAI_Setup_v1.5.0_E2B.exe`를 실행합니다.
+- **E4B**: `BokjiTalkAI_Setup_v1.5.0_E4B.exe`를 실행합니다. `.bin` 파일 3개가 같은 폴더에 있어야 합니다. 구글 드라이브 ZIP을 받았다면 한 폴더에 모두 푼 뒤 실행합니다.
 - **v1.4.0에서 업그레이드**: 프로그램을 "프로그램 종료" 버튼이나 창 닫기로 끈 뒤 같은 모델(E2B/E4B)의 v1.5.0 설치 파일을 실행합니다. 기존 v1.4.0을 먼저 제거할 필요는 없습니다.
-- 설치 파일에 코드 서명이 없어 Windows SmartScreen 경고가 나오면 "추가 정보 → 실행"을 누릅니다.
+- 받기 도우미와 설치 파일에 코드 서명이 없어 Windows SmartScreen 경고가 나오면 "추가 정보 → 실행"을 누릅니다.
 
 ## 검증 결과
 
