@@ -71,9 +71,12 @@ def open_http_url(request: Request | str, timeout: float) -> http.client.HTTPRes
     parts = urlsplit(url)
     if parts.scheme not in ("http", "https"):
         raise ValueError(f"Refusing to open non-HTTP(S) URL scheme: {parts.scheme!r}")
+    if parts.hostname not in {"127.0.0.1", "::1", "localhost"} or parts.username or parts.password:
+        raise ValueError("Runtime permits only literal loopback destinations")
 
     connection_cls = http.client.HTTPSConnection if parts.scheme == "https" else http.client.HTTPConnection
-    connection = connection_cls(parts.hostname, parts.port, timeout=timeout)
+    hostname = "127.0.0.1" if parts.hostname == "localhost" else parts.hostname
+    connection = connection_cls(hostname, parts.port, timeout=timeout)
     path = parts.path or "/"
     if parts.query:
         path = f"{path}?{parts.query}"

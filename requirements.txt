@@ -7,6 +7,7 @@ bottle==0.13.4
 PyYAML==6.0.3
 pytest==9.1.1
 ruff==0.16.2
+defusedxml==0.7.1
 uvicorn==0.52.2
 
 # Transitive dependencies pinned to the exact tested/verified versions so

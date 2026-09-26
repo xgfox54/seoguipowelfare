@@ -1,0 +1,60 @@
+{
+ "status_wait_s": 15.6,
+ "answers": [
+  {
+   "q": "2026년 긴급복지 생계지원 1인 가구 금액은 얼마야?",
+   "http": 200,
+   "s": 148.7,
+   "answer_head": "2026년 긴급복지 생계지원 1인 가구 금액은 월 **783,000원**입니다. [E2]",
+   "quality": "COMPLETE_CANDIDATE",
+   "numeric_render": {
+    "mode": "single_amount",
+    "chars": 49,
+    "table_fallback": true
+   },
+   "notice": null,
+   "evidence_top1": "18.[매뉴얼-긴급복지] 2026년 긴급복지지원, 재난적의료비지원사업 안내(합본).md"
+  },
+  {
+   "q": "2025년 긴급복지 소득기준",
+   "http": 200,
+   "s": 0.6,
+   "answer_head": "로컬 DB에는 2025년 긴급복지 자료가 없습니다. 확인되는 자료는 2026년판입니다.\n\n요청한 2025년 자료가 없으므로 다른 연도 자료로 대신 답하지 않았습니다. 2026년판 내용이 필요하면 연도를 2026년으로 바꾸거나 연도 없이 다시 질문해 주세요.\n\n## 📚 확인되는 원문\n- 18.[매뉴얼-긴급복지] 2026년 긴급복지지원, 재난적의료비지원사업 안내(합본).md",
+   "quality": "COMPLETE_CANDIDATE",
+   "numeric_render": null,
+   "notice": {
+    "kind": "year_mismatch",
+    "requested": [
+     "2025"
+    ],
+    "available": [
+     "2026"
+    ]
+   },
+   "evidence_top1": null
+  },
+  {
+   "q": "지역사회보장협의체 업무 기준을 간단히 정리해줘",
+   "http": 200,
+   "s": 207.5,
+   "answer_head": "지역사회보장협의체는 읍·면·동 단위에서 민관협력을 바탕으로 지역 단위 보호망을 구축하고 운영하는 것을 목적으로 합니다.\n\n## ✅ 핵심 기준\n*   읍·면·동 단위 협의체는 관할 지역의 도움이 필요한 주민을 발굴하고 사회보장 자원을 발굴 및 연계하는 업무를 지원합니다 [E5, E4].\n*   협의체는 지역사회보호체계 구축 및 운영 업무를 지원하며, 지역복지 컨트롤타워로서의 역할을 수행합니다 [E5].\n*   협의체는 지역 특성을 반영한 자체 복지사업(특화사업)을",
+   "quality": "COMPLETE_CANDIDATE",
+   "numeric_render": null,
+   "notice": null,
+   "evidence_top1": "27.[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내지침(제주도 지침 포함).md"
+  }
+ ],
+ "security": {},
+ "status": {
+  "status": "정상",
+  "model": "gemma4-e4b.gguf",
+  "app_version": "1.4.0.Beta",
+  "source_documents": 39,
+  "search_sections": 21588,
+  "engine_state": "ready",
+  "engine_error": "",
+  "ai_ready": true,
+  "setup_required": false,
+  "semantic_search": false
+ }
+}

@@ -1,0 +1,28 @@
+{
+ "answers": [
+  {
+   "q": "2026년 긴급복지 생계지원 4인 가구 금액은 얼마야?",
+   "http": 200,
+   "s": 172.0,
+   "answer_head": "2026년 긴급복지 생계지원 4인 가구 금액은 월 **1,994,600원**입니다. [E2]"
+  },
+  {
+   "q": "2025년 긴급복지 소득기준",
+   "http": 200,
+   "s": 0.3,
+   "answer_head": "로컬 DB에는 2025년 긴급복지 자료가 없습니다. 확인되는 자료는 2026년판입니다.\n\n요청한 2025년 자료가 없으므로 다른 연도 자료로 대신 답하지 않았습니다. 2026년판 내용이 필요하면 연도를 2026년으로"
+  }
+ ],
+ "security": {
+  "host_evil_get": 400,
+  "ask_evil_origin": 403,
+  "shutdown_evil_origin_textplain": 403,
+  "alive_after_evil": 200,
+  "shutdown_textplain_no_origin": 422,
+  "shutdown_cross_site_json": 403,
+  "alive_after_all": 200,
+  "shutdown_same_origin_json": 200,
+  "after_shutdown_status": null
+ },
+ "ready_s": 12.7
+}

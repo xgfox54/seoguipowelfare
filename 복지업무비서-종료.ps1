@@ -31,6 +31,7 @@ $IsWelfareServer = (
     $null -ne $HealthResponse -and
     $null -ne $HealthResponse.status -and
     $null -ne $HealthResponse.model -and
+    $HealthResponse.app_version -eq '1.5.0' -and
     $null -ne $HealthResponse.source_documents -and
     $null -ne $HealthResponse.search_sections
 )

@@ -17,7 +17,7 @@ from typing import Final
 from welfare_runtime import bundle_root, open_http_url
 
 LLM_HOST = "127.0.0.1"
-LLM_PORT = 18080
+LLM_PORT = 18080  # 정식판 모델 서버 포트 (v1.4.0 정식판과 같음)
 LLM_BASE_URL = f"http://{LLM_HOST}:{LLM_PORT}"
 DEFAULT_CONTEXT_SIZE = 16384
 STARTUP_TIMEOUT_SECONDS = 180
@@ -43,7 +43,9 @@ def models_dir() -> Path:
 
 
 def log_dir() -> Path:
-    target = install_root() / "logs"
+    # A read-only model/runtime asset override must not redirect app logs.
+    target = (Path(sys.executable).resolve().parent if getattr(sys, 'frozen', False)
+              else bundle_root()) / "logs"
     target.mkdir(parents=True, exist_ok=True)
     return target
 
@@ -375,21 +377,24 @@ def generate(
     temperature: float = 0.2,
     timeout: int = 600,
     max_tokens: int = 2048,
+    grammar: str | None = None,
 ) -> str:
-    payload = json.dumps(
-        {
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": prompt},
-            ],
-            "temperature": temperature,
-            "max_tokens": max_tokens,
-            "stream": False,
-            "chat_template_kwargs": {"enable_thinking": False},
-            "reasoning_format": "none",
-        },
-        ensure_ascii=False,
-    ).encode("utf-8")
+    body: dict[str, object] = {
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": prompt},
+        ],
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+        "stream": False,
+        "chat_template_kwargs": {"enable_thinking": False},
+        "reasoning_format": "none",
+    }
+    if grammar:
+        # llama.cpp GBNF: constrains output structure only; facts are still
+        # validated by welfare_grounding after generation.
+        body["grammar"] = grammar
+    payload = json.dumps(body, ensure_ascii=False).encode("utf-8")
     result: dict[str, object] | None = None
     last_connection_error: BaseException | None = None
     for attempt in range(2):
@@ -404,8 +409,8 @@ def generate(
                 result = json.loads(response.read().decode("utf-8"))
             break
         except urllib.error.HTTPError as error:
-            detail = error.read().decode("utf-8", errors="replace")
-            logger.error("llm http error %s: %s", error.code, detail[:500])
+            error.close()
+            logger.error("llm http error %s (response body omitted)", error.code)
             raise RuntimeError(f"AI 엔진 응답 오류({error.code})") from error
         except (urllib.error.URLError, TimeoutError, OSError) as error:
             last_connection_error = error
@@ -418,6 +423,9 @@ def generate(
     if result is None:
         raise RuntimeError("AI 엔진에 연결할 수 없습니다. 프로그램을 다시 실행해 주십시오.") from last_connection_error
     choices = result.get("choices", [])
+    from welfare_telemetry import note
+    note('generation', {'finish_reason': choices[0].get('finish_reason') if choices else 'empty',
+                        'truncated': bool(choices and choices[0].get('finish_reason') == 'length')})
     if not choices:
         return "답변을 생성하지 못했습니다."
     answer = str(choices[0].get("message", {}).get("content", "")).strip()

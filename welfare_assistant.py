@@ -5,20 +5,28 @@ import json
 import re
 import sqlite3
 import sys
+from datetime import date
 from pathlib import Path
 
 import yaml
 
-from welfare_agent import (
-    build_grounded_prompt,
-    build_multi_agent_answer_prompt,
-    build_refiner_prompt,
-    build_refiner_system_prompt,
-    build_supervisor_prompt,
-    build_supervisor_system_prompt,
-    build_system_prompt,
+from welfare_agent import build_grounded_prompt, build_system_prompt
+from welfare_answer_format import (
+    OwnerDocument,
+    directory_scope_answer,
+    is_numeric_overview_question,
+    is_numeric_triplet_question,
+    is_single_amount_question,
+    normalize_single_amount,
+    numeric_triplet_grammar,
+    render_table_single_amount,
+    render_numeric_triplet,
+    single_amount_grammar,
+    single_amount_draft_missing,
+    table_single_amount,
 )
-from welfare_grounding import sanitize_grounded_answer
+from welfare_evidence import parse_evidence, prompt_evidence
+from welfare_grounding import grounded_line_checker, sanitize_grounded_answer
 from welfare_llm import (
     DEFAULT_MODEL_KEY,
     RUNTIME,
@@ -28,12 +36,16 @@ from welfare_llm import (
     resolve_choice,
 )
 from welfare_models import available_choices
+from welfare_program_dictionary import ProgramEntry, evidence_mentions, no_source_answer
 from welfare_runtime import app_version
 from welfare_search import retrieve_context
-from welfare_search.query import plan_query
-from welfare_search.search import semantic_search_enabled
+from welfare_search.query import QueryPlan, plan_query
+from welfare_search.search import YearScope, describe_sources, owner_scope, semantic_search_enabled, year_scope
+from welfare_decision import database_version, read_policy, run_gate
+from welfare_telemetry import note, timed_call, track_answer
 
 StatusValue = str | int | bool | list[dict[str, str | bool]]
+NOT_FOUND_ANSWER = "검색된 복지DB에서 질문에 직접 답할 수 있는 근거를 충분히 찾지 못했습니다."
 
 
 def _configure_console() -> None:
@@ -159,6 +171,7 @@ def _llm_generate(
     *,
     system_prompt: str | None = None,
     temperature: float = 0.2,
+    grammar: str | None = None,
 ) -> str:
     configured = configured_model_choice()
     requested_filename = Path(model_tag).name
@@ -175,81 +188,131 @@ def _llm_generate(
         system_prompt=system_prompt or build_system_prompt(),
         temperature=temperature,
         timeout=timeout,
+        grammar=grammar,
     )
 
 
-def _clean_refined_question(question: str, candidate: str) -> str:
-    refined = candidate.strip().strip("`").strip()
-    for prefix in ("정제된 질문:", "검색 질문:", "검색질문:", "질문:"):
-        if refined.startswith(prefix):
-            refined = refined[len(prefix) :].strip()
-            break
-    if not refined or len(refined) > 2000:
-        return question
-    return refined
-
-
-def _refine_question(model_tag: str, question: str) -> str:
+def _generate_structured(model_filename: str, prompt: str, grammar: str) -> str:
+    """Grammar-constrained generation with one plain fallback on engine rejection."""
     try:
-        candidate = _llm_generate(
-            model_tag,
-            build_refiner_prompt(question),
-            timeout=300,
-            system_prompt=build_refiner_system_prompt(),
-            temperature=0.0,
-        )
-    except RuntimeError:
-        return question
-    return _clean_refined_question(question, candidate)
+        return _llm_generate(model_filename, prompt, grammar=grammar)
+    except RuntimeError as error:
+        if "응답 오류" not in str(error):
+            raise
+        return _llm_generate(model_filename, prompt)
 
 
-def _supervise_answer(
-    model_tag: str,
-    original_question: str,
-    refined_question: str,
-    context: str,
-    draft_answer: str,
-) -> str:
-    review_complete = True
-    try:
-        reviewed = _llm_generate(
-            model_tag,
-            build_supervisor_prompt(
-                original_question,
-                refined_question,
-                context,
-                draft_answer,
-            ),
-            timeout=600,
-            system_prompt=build_supervisor_system_prompt(),
-            temperature=0.0,
+def _directory_owner_answer(database: Path, question: str, context: str) -> str | None:
+    """Numeric overview whose owning source is a facility directory.
+
+    Used when the evidence is empty or consists only of that directory: a
+    directory lists facilities, it does not define amounts/counts/periods.
+    """
+    owner = owner_scope(database, question)
+    if not owner.directory_sources:
+        return None
+    blocks = parse_evidence(context) if context.strip() else ()
+    if context.strip() and not blocks:
+        return None
+    if any(block.metadata.get('source_name', '') not in owner.directory_sources for block in blocks):
+        return None
+    owners = tuple(
+        OwnerDocument(
+            source_name=str(item["source_name"]), original_name=str(item["original_name"]),
+            source_role=str(item["source_role"]), topic=str(item["topic"]),
+            start_line=int(item["start_line"]), end_line=int(item["end_line"]),
         )
-    except RuntimeError:
-        reviewed = draft_answer
-        review_complete = False
-    return sanitize_grounded_answer(
-        reviewed.strip() or draft_answer,
-        context,
-        original_question,
-        review_complete=review_complete,
+        for item in describe_sources(database, owner.directory_sources)
     )
+    note('numeric_render', {'mode': 'directory_scope', 'owners': len(owners)})
+    return sanitize_grounded_answer(directory_scope_answer(owners, question), "", question,
+                                    review_complete=True, generation_truncated=False)
 
 
-def _requires_supervisor(question: str, context: str) -> bool:
-    """Deterministically decide whether an E4B second pass is justified."""
-    plan = plan_query(question)
-    if re.search(r"비교|차이|둘\s*중|동시에|각각|vs\.?", question, re.IGNORECASE):
-        return True
-    if len(plan.explicit_programs) >= 2:
-        return True
-    eligibility_question = bool(re.search(r"받을\s*수|가능|대상|자격|선정|해당", question))
-    if eligibility_question and len(plan.case_conditions) >= 2:
-        return True
-    if len(plan.tasks) >= 3 and context.count("<EVIDENCE") < min(3, len(plan.tasks)):
-        return True
-    return False
+def _current_year() -> int:
+    return date.today().year
 
 
+def _plan_diagnostics(plan: QueryPlan) -> dict[str, object]:
+    """Decision log of the query plan: fixed-vocabulary labels only, never question text."""
+    return {
+        "explicit_programs": list(plan.explicit_programs), "tasks": list(plan.tasks),
+        "case_conditions": list(plan.case_conditions), "requested_years": sorted(plan.requested_years),
+        "excluded_programs": list(plan.excluded_programs), "excluded_years": list(plan.excluded_years),
+        "jurisdiction": plan.jurisdiction,
+    }
+
+
+def _evidence_summary(context: str) -> dict[str, object]:
+    blocks = parse_evidence(context) if context.strip() else ()
+    return {
+        "blocks": len(blocks),
+        "top1_source": blocks[0].metadata.get("source_name", "") if blocks else "",
+        "sources": len({block.metadata.get("source_name", "") for block in blocks}),
+        "years": sorted({block.metadata.get("year", "") for block in blocks if block.metadata.get("year", "")}),
+    }
+
+
+def _program_label(plan: QueryPlan, owners: tuple[dict[str, object], ...]) -> str:
+    if plan.explicit_programs:
+        names = [p for p in plan.explicit_programs if not any(p != o and p in o for o in plan.explicit_programs)]
+        return " ".join(names)
+    if plan.program_match.status == "matched":
+        return "·".join(program.name for program in plan.program_match.programs)
+    topics = tuple(dict.fromkeys(str(item["topic"]) for item in owners if item.get("topic")))
+    return "·".join(topics) if topics else "해당"
+
+
+def _year_mismatch_answer(database: Path, plan: QueryPlan, years: YearScope) -> str:
+    """Requested year has no edition in the owning documents: say so, answer nothing else."""
+    owners = describe_sources(database, years.owner_sources) if years.owner_sources else ()
+    requested = "·".join(sorted(years.requested))
+    available = "·".join(years.available)
+    lines = [
+        f"로컬 DB에는 {requested}년 {_program_label(plan, owners)} 자료가 없습니다. 확인되는 자료는 {available}년판입니다.",
+        "",
+        f"요청한 {requested}년 자료가 없으므로 다른 연도 자료로 대신 답하지 않았습니다. "
+        f"{available}년판 내용이 필요하면 연도를 {available}년으로 바꾸거나 연도 없이 다시 질문해 주세요.",
+    ]
+    if owners:
+        lines += ["", "## 📚 확인되는 원문"]
+        lines += [f"- {item['original_name'] or item['source_name']}" for item in owners]
+    note("notice", {"kind": "year_mismatch", "requested": sorted(years.requested), "available": list(years.available)})
+    return "\n".join(lines)
+
+
+def _programs_without_source(plan: QueryPlan, context: str) -> tuple[ProgramEntry, ...]:
+    """Dictionary-matched programmes that the 복지톡 DB has no source for.
+
+    Only when no explicit programme anchor was recognised, every matched
+    programme has no source in the whole 복지톡 DB (build-time search), and no
+    retrieved evidence names it by what the user typed or by its full name.
+    """
+    match = plan.program_match
+    if plan.explicit_programs or match.status != "matched" or not match.programs:
+        return ()
+    if any(program.source_status != "none" for program in match.programs):
+        return ()
+    texts = [f"{block.metadata.get('title', '')} {block.metadata.get('heading_path', '')} {block.body}"
+             for block in (parse_evidence(context) if context.strip() else ())]
+    if evidence_mentions(match.programs, texts, match.evidence_terms):
+        return ()
+    return match.programs
+
+
+def _with_edition_notice(answer: str, plan: QueryPlan, context: str) -> str:
+    """No year asked and the newest evidence edition predates this year: say which edition."""
+    if plan.requested_years:
+        return answer
+    years = [int(block.metadata.get("year", "")) for block in parse_evidence(context)
+             if str(block.metadata.get("year", "")).isdigit()]
+    if not years or max(years) >= _current_year():
+        return answer
+    note("notice", {"kind": "latest_edition", "year": str(max(years))})
+    return f"※ 확인되는 최신 자료는 {max(years)}년판입니다.\n\n{answer}"
+
+
+@track_answer
 def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_KEY) -> str:
     choice = resolve_choice(model_key)
     configured = configured_model_choice()
@@ -259,36 +322,86 @@ def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_
         )
 
     is_e2b = configured_model_variant() == "E2B"
-    context = retrieve_context(
-        _index_dir(kb_dir) / "welfare.db",
+    note('model_key', configured.key)
+    database = _index_dir(kb_dir) / 'welfare.db'
+    plan = plan_query(question)
+    note('program_match', plan.program_match.diagnostics())
+    note('query_plan', _plan_diagnostics(plan))
+    years = timed_call('year_scope', year_scope, database, question)
+    note('year_scope', years.diagnostics())
+    if years.mismatch:
+        return _year_mismatch_answer(database, plan, years)
+    context = timed_call('retrieval', retrieve_context,
+        database,
         question,
         limit=5 if is_e2b else 7,
         char_budget=9_000 if is_e2b else 14_000,
     )
+    note('evidence_summary', _evidence_summary(context))
+    missing_programs = _programs_without_source(plan, context)
+    if missing_programs:
+        note('notice', {'kind': 'no_source', 'programs': [program.id for program in missing_programs]})
+        return no_source_answer(missing_programs)
+    numeric_overview = is_numeric_overview_question(question)
+    if numeric_overview:
+        directory_answer = _directory_owner_answer(database, question, context)
+        if directory_answer is not None:
+            return directory_answer
     if not context.strip():
-        return "검색된 복지DB에서 질문에 직접 답할 수 있는 근거를 충분히 찾지 못했습니다."
+        return NOT_FOUND_ANSWER
     confidence_labels = re.findall(r"\[confidence:\s*(high|medium|low)\]", context)
     if confidence_labels and all(label == "low" for label in confidence_labels):
-        return "검색된 복지DB에서 질문에 직접 답할 수 있는 근거를 충분히 찾지 못했습니다."
+        return NOT_FOUND_ANSWER
 
-    draft_answer = _llm_generate(
-        choice.filename,
-        build_grounded_prompt(question, context),
-    )
-    if not is_e2b and _requires_supervisor(question, context):
-        return _supervise_answer(
-            choice.filename,
-            question,
-            question,
-            context,
-            draft_answer,
+    policy = read_policy(kb_dir)
+    db_version = 'OFF' if str(policy['decision_mode']).upper() == 'OFF' else database_version(database)
+    context, gate_report = timed_call('decision', run_gate,
+        question, context, configured.key, db_version, policy,
+        version_reader=lambda: database_version(database))
+    note('gate', gate_report)
+    # The model sees a trimmed evidence rendering; validators below keep the
+    # full EvidenceContext (all provenance metadata) returned by retrieval.
+    prompt = build_grounded_prompt(question, prompt_evidence(context))
+    prior_removed = 0
+    if is_numeric_triplet_question(question):
+        draft = timed_call('generation', _generate_structured,
+            choice.filename, prompt, numeric_triplet_grammar())
+        rendered = render_numeric_triplet(
+            draft,
+            {block.evidence_id for block in parse_evidence(context)},
+            grounded_line_checker(context, question),
         )
-    return sanitize_grounded_answer(
+        note('numeric_render', {'mode': 'triplet', **rendered.diagnostics()})
+        draft_answer = rendered.text
+        prior_removed = rendered.removed_items
+    elif is_single_amount_question(question):
+        draft_answer = normalize_single_amount(timed_call('generation', _generate_structured,
+            choice.filename, prompt, single_amount_grammar()))
+        # The model declined although a bound evidence table pins exactly one
+        # value for this household (E4B locked-200 r1, Q057-Q062): answer from
+        # that table.  No extra model call; the line is validated below.
+        table_amount = None
+        if single_amount_draft_missing(draft_answer):
+            table_amount = table_single_amount(question, parse_evidence(context),
+                                               plan.explicit_programs, plan.requested_years)
+            if table_amount is not None:
+                draft_answer = render_table_single_amount(table_amount, plan.explicit_programs)
+        note('numeric_render', {'mode': 'single_amount', 'chars': len(draft_answer),
+                                'table_fallback': table_amount is not None})
+    else:
+        draft_answer = timed_call('generation', _llm_generate,
+            choice.filename,
+            prompt,
+        )
+    # E2B and E4B builds share one path: a single generation, then validation.
+    answer = timed_call('validation', sanitize_grounded_answer,
         draft_answer,
         context,
         question,
         review_complete=True,
+        prior_removed=prior_removed,
     )
+    return _with_edition_notice(answer, plan, context)
 
 
 def _usage() -> str:

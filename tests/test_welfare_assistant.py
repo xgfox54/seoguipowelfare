@@ -238,7 +238,10 @@ def test_e4b_ordinary_question_uses_one_llm_call(
     monkeypatch.setattr(
         welfare_assistant,
         "retrieve_context",
-        lambda *args, **kwargs: '<EVIDENCE id="E1">일반 안내</EVIDENCE>',
+        lambda *args, **kwargs: (
+            '<EVIDENCE id="E1">\n[authority: primary]\n'
+            '[title: 시험용 신청 절차]\n신청 절차 일반 안내\n</EVIDENCE>'
+        ),
     )
 
     def fake_generate(*args: object, **kwargs: object) -> str:
@@ -250,13 +253,19 @@ def test_e4b_ordinary_question_uses_one_llm_call(
 
     answer = welfare_assistant.answer_question(kb_dir, "기초연금 신청방법 알려줘", "gemma_e4b")
 
-    assert answer == "일반 안내"
+    assert answer.startswith("일반 안내")
+    assert "부분 답변" in answer
     assert calls == 1
 
 
-def test_e4b_complex_case_adds_supervisor_once(
+def test_e4b_complex_case_uses_single_generation_without_supervisor(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
+    """v1.4.0.Beta contract change (2026-09-25, user decision): the E4B
+    Supervisor second pass was removed.  E2B and E4B are separate single-model
+    builds that both answer with exactly one generation, so a complex E4B case
+    question must no longer trigger a second (supervisor) call.  This replaces
+    the former `test_e4b_complex_case_adds_supervisor_once`."""
     kb_dir = _knowledge_base(tmp_path)
     calls: list[str] = []
     e4b = welfare_assistant.resolve_choice("gemma_e4b")
@@ -266,7 +275,10 @@ def test_e4b_complex_case_adds_supervisor_once(
         welfare_assistant,
         "retrieve_context",
         lambda *args, **kwargs: (
-            '<EVIDENCE id="E1">65세 소득 월 80만원 사례의 판단에는 재산 확인이 필요하다.</EVIDENCE>'
+            '<EVIDENCE id="E1">\n[authority: primary]\n'
+            '[title: 시험용 대상 검토]\n'
+            '65세 소득 월 80만원 사례의 판단에는 재산 확인이 필요하다. '
+            '대상 요건과 예외·제외 조건도 추가 확인이 필요하다.\n</EVIDENCE>'
         ),
     )
 
@@ -292,6 +304,8 @@ def test_e4b_complex_case_adds_supervisor_once(
         "gemma_e4b",
     )
 
-    assert answer == "재산 확인이 필요합니다."
-    assert len(calls) == 2
-    assert "품질감독" in calls[1]
+    assert answer.startswith("재산 확인이 필요합니다.")
+    assert "부분 답변" in answer
+    assert calls == ["answerer"]
+    assert not hasattr(welfare_assistant, "_supervise_answer")
+    assert not hasattr(welfare_assistant, "_requires_supervisor")

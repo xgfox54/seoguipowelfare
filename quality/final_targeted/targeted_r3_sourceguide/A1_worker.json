@@ -1,0 +1,10 @@
+{
+  "arm": "A1",
+  "source_root": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-v1.4.0.Beta\\quality\\final_targeted\\targeted_r3_sourceguide\\source_snapshot",
+  "db": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-v1.4.0.Beta\\quality\\real_ab\\20260920T140405942320Z\\common_db\\welfare.db",
+  "asset_root": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-runtime-assets",
+  "model_path": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-runtime-assets\\models\\gemma4-e2b-it-qat.gguf",
+  "port": 50550,
+  "max_tokens": 1024,
+  "request_timeout": 240
+}

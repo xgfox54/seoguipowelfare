@@ -1,0 +1,10 @@
+{
+  "arm": "A1",
+  "source_root": "C:\\Users\\USER\\Documents\\Codex\\seoguipowelfare-v1.4.0.Beta",
+  "db": "C:\\Users\\USER\\Documents\\Codex\\seoguipowelfare-v1.4.0.Beta\\quality\\real_ab\\20260920T140405942320Z\\common_db\\welfare.db",
+  "asset_root": "C:\\Users\\USER\\Downloads\\seoguipowelfare-v1.3.4\\seoguipowelfare-v1.3.4",
+  "model_path": "C:\\Users\\USER\\Downloads\\seoguipowelfare-v1.3.4\\seoguipowelfare-v1.3.4\\models\\gemma4-e2b-it-qat.gguf",
+  "port": 63209,
+  "max_tokens": 1024,
+  "request_timeout": 150
+}

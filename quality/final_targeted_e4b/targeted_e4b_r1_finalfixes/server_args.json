@@ -1,0 +1,21 @@
+[
+  "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-runtime-assets\\runtime\\llamacpp\\llama-server.exe",
+  "-m",
+  "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-runtime-assets\\models\\gemma4-e4b.gguf",
+  "--host",
+  "127.0.0.1",
+  "--port",
+  "57782",
+  "-c",
+  "16384",
+  "-t",
+  "8",
+  "-np",
+  "1",
+  "-ngl",
+  "99",
+  "--jinja",
+  "--no-webui",
+  "--log-timestamps",
+  "--offline"
+]

@@ -16,6 +16,8 @@ a = Analysis(
         ("wiki/kb-v120/manifest.json", "wiki/kb-v120"),
         ("config.yaml.example", "."),
         ("VERSION", "."),
+        ("beta-policy.json", "."),
+        ("resources/program_dictionary.json", "resources"),
     ],
     hiddenimports=hiddenimports,
     hookspath=[],

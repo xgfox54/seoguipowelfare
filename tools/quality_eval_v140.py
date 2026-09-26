@@ -20,16 +20,42 @@ from welfare_llm import configured_model_choice, configured_model_variant  # noq
 from welfare_search.search import search_sections  # noqa: E402
 
 YEAR_PATTERN = re.compile(r"(?<!\d)20\d{2}(?!\d)")
+# Policy-year detection counts only explicit year expressions.  A bare 20xx
+# token can be a source line range (2053-2075), phone/code fragment, notice
+# number or amount digit group and is not treated as a policy year.
+EXPLICIT_YEAR_PATTERN = re.compile(
+    r"(?<![\d,.])(?P<full>20\d{2})\s*(?:학년도|년도|년)"
+    r"|[’'‘](?P<short>\d{2})\s*년"
+    r"|(?<![\d,.\-])(?P<date>20\d{2})\s*[.\-/]\s*(?:1[0-2]|0?[1-9])\s*[.\-/]\s*(?:3[01]|[12]\d|0?[1-9])(?!\d)"
+)
 AMOUNT_PATTERN = re.compile(r"(?<!\d)\d[\d,]*(?:\.\d+)?\s*(?:만원|천원|원)")
-NEGATED_FORBIDDEN_PATTERN = re.compile(r"아니|아닙|아니다|않|잘못|오해|정정")
+# "받을 수 없습니다" corrects a wrong premise just like "아닙니다" (final r1 Q177/Q178).
+NEGATED_FORBIDDEN_PATTERN = re.compile(r"아니|아닙|아니다|않|잘못|오해|정정|수\s*없")
 LEGAL_NOTICE_YEAR_PATTERN = re.compile(
     r"(?:고시|공고|훈령|예규)\s*제?\s*(20\d{2})(?=[-.]\d+\s*호?)"
 )
+SOURCE_PROVENANCE_LINE_PATTERN = re.compile(r"^.*확인할\s*원문:.*$", re.MULTILINE)
+SOURCE_LINE_RANGE_PATTERN = re.compile(r"원문\s*행\s*\d{1,6}(?:\s*[-~]\s*\d{1,6})?")
+
+
+def _explicit_years(text: str) -> set[str]:
+    years: set[str] = set()
+    for match in EXPLICIT_YEAR_PATTERN.finditer(text):
+        if match.group("full"):
+            years.add(match.group("full"))
+        elif match.group("short"):
+            years.add("20" + match.group("short"))
+        elif match.group("date"):
+            years.add(match.group("date"))
+    return years
 
 
 def _forbidden_claims(answer: str, item: dict[str, Any]) -> list[str]:
     forbidden_values = [str(value) for value in item.get("must_not_include", []) if str(value)]
     category = str(item.get("category", ""))
+    # A `확인할 원문:` provenance line lists source file names; a programme
+    # name inside a file name is not a claim (final r1 Q172/Q174 false positives).
+    answer = SOURCE_PROVENANCE_LINE_PATTERN.sub("", answer)
     if category != "wrong_premise":
         return [value for value in forbidden_values if value in answer]
 
@@ -54,11 +80,16 @@ def _wrong_years(answer: str, item: dict[str, Any]) -> list[str]:
     # 고시·공고 번호의 선두 연도는 적용 기준연도가 아니라 문서 식별자의 일부다.
     # 예: "보건복지부 고시 제2024-162호"를 2026년 지침이 인용하더라도
     # 이를 정책 연도 혼입으로 판정하지 않는다.
+    # 감사용 출처 표기의 원문 행번호(예: 2053-2075)는 정책 연도가 아니다.
+    # `확인할 원문:` 행과 명시적 `원문 행 N-N` 표기를 연도 검사에서 제외하고,
+    # 남은 본문에서도 `2026년`·`2025년도`·`'26년`·날짜처럼 명시적인 연도 표현만 판정한다.
+    year_scan_text = SOURCE_PROVENANCE_LINE_PATTERN.sub("", answer)
+    year_scan_text = SOURCE_LINE_RANGE_PATTERN.sub("", year_scan_text)
     year_scan_text = LEGAL_NOTICE_YEAR_PATTERN.sub(
         lambda match: match.group(0).replace(match.group(1), "____"),
-        answer,
+        year_scan_text,
     )
-    years = set(YEAR_PATTERN.findall(year_scan_text))
+    years = _explicit_years(year_scan_text)
     candidates = sorted(year for year in years if year != expected_year)
     category = str(item.get("category", ""))
     if category not in {"year_confusion", "program_mix", "simple", "procedure", "wrong_premise"}:

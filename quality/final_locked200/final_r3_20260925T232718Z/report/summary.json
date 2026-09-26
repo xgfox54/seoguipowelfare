@@ -1,0 +1,881 @@
+{
+  "run_id": "final_r3_20260925T232718Z",
+  "kind": "locked200",
+  "run_status": {
+    "status": "COMPLETED",
+    "done": 200,
+    "total": 200,
+    "original_v140_unchanged": true,
+    "finished_utc": "2026-09-26T04:25:21.575761+00:00",
+    "source_snapshot_sha256": "059569201ed99d7bc811f79a3f9cf66c094fd4d035099cbf5fe094d6ef2bfefe"
+  },
+  "preflight": {
+    "run_id": "final_r3_20260925T232718Z",
+    "kind": "locked200",
+    "variant": "E2B",
+    "started_utc": "2026-09-25T23:27:20.838332+00:00",
+    "items": 200,
+    "item_ids": "Q001-Q200",
+    "source_root": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-v1.4.0.Beta",
+    "frozen_source": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-v1.4.0.Beta\\quality\\final_locked200\\final_r3_20260925T232718Z\\source_snapshot",
+    "source_snapshot_sha256": "059569201ed99d7bc811f79a3f9cf66c094fd4d035099cbf5fe094d6ef2bfefe",
+    "source_code_sha256": "7991a7690b37d59d8d0e6cd37155bab5524c428b575d0374afa4e1c521006464",
+    "source_code_files": 46,
+    "source_md_files": 39,
+    "live_code_matches_snapshot": true,
+    "evaluator_sha256": "70e54871ef99c916149891a5cd3a819c9206d82b90074776a397b2d11db8218f",
+    "evaluator_files": {
+      "tools/benchmark_ab_worker.py": "ca9b7e966bcd23af7afdb19f4bf4738d14e4caffc3b0a637f6455ade9f68dd79",
+      "tools/benchmark_ab_controller.py": "7e43868968792b227abffefb282d03c4386f237fe3a3b11590a8fb8746539b7e",
+      "tools/quality_eval_v140.py": "587a8084484e9490c42f5d976698b5df84ecf3c10bfd94ecc8134c4c6ee939d5",
+      "tools/run_final_locked200.py": "a140fdb963ff3309142e9f7f5b0c3e7001114291dfa7499a04226a0438ec1753"
+    },
+    "golden": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-v1.4.0.Beta\\quality\\golden_qa_v1.4.0.json",
+    "golden_sha256": "a6dc8748f522a956476c02e751d99727f477d1dd54f707cbf30b0c44836b55ca",
+    "db": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-v1.4.0.Beta\\quality\\real_ab\\20260920T140405942320Z\\common_db\\welfare.db",
+    "db_sha256": "695f7ae17be32f8abc6b4503e92a23528c39f1611aa497b33bb7847ede5c1d02",
+    "program_dictionary_sha256": "71c890eda860722af368bedb48181b863bf6b0b51d98b85e71989c85e389c22d",
+    "model": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-runtime-assets\\models\\gemma4-e2b-it-qat.gguf",
+    "model_sha256": "e531007218dfab990486a5de7676a6932d6ea8dea233d1f698d7c21cf8a16889",
+    "server": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-runtime-assets\\runtime\\llamacpp\\llama-server.exe",
+    "server_sha256": "79f9eee912d76bdc7062c89813cd2fc4452a90bbfcae591bfaf4c88ecb3ea735",
+    "server_version": "version: 0.3.0-dev (build 10686, commit 3173a5647)\nbuilt with Clang 20.1.8 for Windows x86_64",
+    "decision_mode": "OFF",
+    "external_fallback": false,
+    "raw_query_logging": false,
+    "max_retrieval_retries": 1,
+    "python_executable": "C:\\Users\\xgfox\\Documents\\Codex\\2026-09-24\\new-chat-2\\work\\venv-bokji\\Scripts\\python.exe",
+    "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "original_v140_files": 156,
+    "original_v140_sha256": "d394bf990c67800bad9cbcefdf24079642ce4cfc8c7579722aa2e893e909f9b3",
+    "max_tokens": 1024,
+    "request_timeout": 240,
+    "seed_rule": "20260920 + numeric id",
+    "temperature": 0.0
+  },
+  "hardware": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "logical_cpus": 12,
+    "processor": "AMD Ryzen 5 7530U with Radeon Graphics",
+    "system_memory": {
+      "total_bytes": 14877257728,
+      "available_bytes": 7845404672,
+      "commit_used_bytes": 16378228736,
+      "commit_limit_bytes": 32960458752
+    },
+    "gpu_inventory": {
+      "Name": "AMD Radeon (TM) Graphics",
+      "AdapterRAM": 2147483648
+    }
+  },
+  "overall": {
+    "items": 200,
+    "retrieval": {
+      "recall_at_1": 0.92,
+      "recall_at_3": 0.965,
+      "recall_at_5": 0.98,
+      "section_hit_at_5": 0.97
+    },
+    "answer_status": {
+      "COMPLETE_CANDIDATE": 132,
+      "PARTIAL": 61,
+      "ABSTAIN": 7
+    },
+    "answer_reasons": {
+      "CLAIMS_REMOVED": 39,
+      "GENERATION_TRUNCATED": 17,
+      "MISSING_REQUESTED_CONTENT": 25,
+      "NO_SUBSTANTIVE_ANSWER": 7,
+      "REVIEW_INCOMPLETE": 0
+    },
+    "safety": {
+      "forbidden_claim": 0,
+      "wrong_year": 0,
+      "program_mix": 7,
+      "wrong_premise_adopted": 0,
+      "invalid_citation": 0,
+      "unsupported_numeric_claim": 0,
+      "error": 0,
+      "truncated": 17
+    },
+    "source_guide_numeric_lines_excluded": 152,
+    "performance_ms": {
+      "total_answer": {
+        "n": 200,
+        "mean": 88805.1,
+        "p50": 93195.9,
+        "p95": 128578.5,
+        "max": 143426.2
+      },
+      "eval_search_top5": {
+        "n": 200,
+        "mean": 529.0,
+        "p50": 444.9,
+        "p95": 1224.7,
+        "max": 3056.5
+      },
+      "pipeline_retrieval": {
+        "n": 200,
+        "mean": 1354.7,
+        "p50": 1366.7,
+        "p95": 2267.3,
+        "max": 5082.4
+      },
+      "generation": {
+        "n": 200,
+        "mean": 87149.4,
+        "p50": 91214.8,
+        "p95": 127034.3,
+        "max": 141441.4
+      }
+    },
+    "memory_mb": {
+      "peak_sampled_rss": 5542.246,
+      "peak_sampled_private": 11553.652
+    },
+    "gold_numbers": {
+      "items": 8,
+      "expected_number_present": 8,
+      "ids_missing": [],
+      "wrong_premise_adopted": []
+    },
+    "correctness": "UNREVIEWED (human review required; COMPLETE_CANDIDATE is not a correctness label)"
+  },
+  "by_category": {
+    "simple": {
+      "items": 30,
+      "retrieval": {
+        "recall_at_1": 0.9333,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "section_hit_at_5": 0.9667
+      },
+      "answer_status": {
+        "COMPLETE_CANDIDATE": 29,
+        "PARTIAL": 1
+      },
+      "answer_reasons": {
+        "CLAIMS_REMOVED": 0,
+        "GENERATION_TRUNCATED": 0,
+        "MISSING_REQUESTED_CONTENT": 1,
+        "NO_SUBSTANTIVE_ANSWER": 0,
+        "REVIEW_INCOMPLETE": 0
+      },
+      "safety": {
+        "forbidden_claim": 0,
+        "wrong_year": 0,
+        "program_mix": 1,
+        "wrong_premise_adopted": 0,
+        "invalid_citation": 0,
+        "unsupported_numeric_claim": 0,
+        "error": 0,
+        "truncated": 0
+      },
+      "source_guide_numeric_lines_excluded": 0,
+      "performance_ms": {
+        "total_answer": {
+          "n": 30,
+          "mean": 59105.1,
+          "p50": 63919.8,
+          "p95": 81968.6,
+          "max": 89797.1
+        },
+        "eval_search_top5": {
+          "n": 30,
+          "mean": 280.5,
+          "p50": 266.2,
+          "p95": 404.9,
+          "max": 473.6
+        },
+        "pipeline_retrieval": {
+          "n": 30,
+          "mean": 962.7,
+          "p50": 726.1,
+          "p95": 1816.6,
+          "max": 2051.4
+        },
+        "generation": {
+          "n": 30,
+          "mean": 57935.9,
+          "p50": 62522.8,
+          "p95": 80418.2,
+          "max": 88417.3
+        }
+      },
+      "memory_mb": {
+        "peak_sampled_rss": 3216.008,
+        "peak_sampled_private": 4556.594
+      },
+      "gold_numbers": {
+        "items": 0,
+        "expected_number_present": 0,
+        "ids_missing": [],
+        "wrong_premise_adopted": []
+      },
+      "correctness": "UNREVIEWED (human review required; COMPLETE_CANDIDATE is not a correctness label)"
+    },
+    "numeric": {
+      "items": 32,
+      "retrieval": {
+        "recall_at_1": 0.9375,
+        "recall_at_3": 0.9688,
+        "recall_at_5": 1.0,
+        "section_hit_at_5": 1.0
+      },
+      "answer_status": {
+        "COMPLETE_CANDIDATE": 17,
+        "PARTIAL": 14,
+        "ABSTAIN": 1
+      },
+      "answer_reasons": {
+        "CLAIMS_REMOVED": 6,
+        "GENERATION_TRUNCATED": 0,
+        "MISSING_REQUESTED_CONTENT": 12,
+        "NO_SUBSTANTIVE_ANSWER": 1,
+        "REVIEW_INCOMPLETE": 0
+      },
+      "safety": {
+        "forbidden_claim": 0,
+        "wrong_year": 0,
+        "program_mix": 0,
+        "wrong_premise_adopted": 0,
+        "invalid_citation": 0,
+        "unsupported_numeric_claim": 0,
+        "error": 0,
+        "truncated": 0
+      },
+      "source_guide_numeric_lines_excluded": 9,
+      "performance_ms": {
+        "total_answer": {
+          "n": 32,
+          "mean": 69773.8,
+          "p50": 66703.9,
+          "p95": 119981.6,
+          "max": 122965.6
+        },
+        "eval_search_top5": {
+          "n": 32,
+          "mean": 339.5,
+          "p50": 322.5,
+          "p95": 535.4,
+          "max": 571.2
+        },
+        "pipeline_retrieval": {
+          "n": 32,
+          "mean": 730.4,
+          "p50": 737.4,
+          "p95": 1119.4,
+          "max": 1169.8
+        },
+        "generation": {
+          "n": 32,
+          "mean": 68776.9,
+          "p50": 66149.7,
+          "p95": 119045.2,
+          "max": 121931.1
+        }
+      },
+      "memory_mb": {
+        "peak_sampled_rss": 4660.676,
+        "peak_sampled_private": 6006.309
+      },
+      "gold_numbers": {
+        "items": 6,
+        "expected_number_present": 6,
+        "ids_missing": [],
+        "wrong_premise_adopted": []
+      },
+      "correctness": "UNREVIEWED (human review required; COMPLETE_CANDIDATE is not a correctness label)"
+    },
+    "procedure": {
+      "items": 22,
+      "retrieval": {
+        "recall_at_1": 0.9545,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "section_hit_at_5": 1.0
+      },
+      "answer_status": {
+        "COMPLETE_CANDIDATE": 19,
+        "PARTIAL": 3
+      },
+      "answer_reasons": {
+        "CLAIMS_REMOVED": 2,
+        "GENERATION_TRUNCATED": 2,
+        "MISSING_REQUESTED_CONTENT": 0,
+        "NO_SUBSTANTIVE_ANSWER": 0,
+        "REVIEW_INCOMPLETE": 0
+      },
+      "safety": {
+        "forbidden_claim": 0,
+        "wrong_year": 0,
+        "program_mix": 1,
+        "wrong_premise_adopted": 0,
+        "invalid_citation": 0,
+        "unsupported_numeric_claim": 0,
+        "error": 0,
+        "truncated": 2
+      },
+      "source_guide_numeric_lines_excluded": 24,
+      "performance_ms": {
+        "total_answer": {
+          "n": 22,
+          "mean": 102810.3,
+          "p50": 107130.6,
+          "p95": 131437.9,
+          "max": 139389.1
+        },
+        "eval_search_top5": {
+          "n": 22,
+          "mean": 583.0,
+          "p50": 460.0,
+          "p95": 1576.4,
+          "max": 2064.2
+        },
+        "pipeline_retrieval": {
+          "n": 22,
+          "mean": 1746.8,
+          "p50": 1601.0,
+          "p95": 2649.7,
+          "max": 3037.3
+        },
+        "generation": {
+          "n": 22,
+          "mean": 100708.1,
+          "p50": 105288.3,
+          "p95": 129458.9,
+          "max": 136974.9
+        }
+      },
+      "memory_mb": {
+        "peak_sampled_rss": 5542.246,
+        "peak_sampled_private": 7088.434
+      },
+      "gold_numbers": {
+        "items": 0,
+        "expected_number_present": 0,
+        "ids_missing": [],
+        "wrong_premise_adopted": []
+      },
+      "correctness": "UNREVIEWED (human review required; COMPLETE_CANDIDATE is not a correctness label)"
+    },
+    "exception": {
+      "items": 20,
+      "retrieval": {
+        "recall_at_1": 0.9,
+        "recall_at_3": 0.95,
+        "recall_at_5": 1.0,
+        "section_hit_at_5": 0.95
+      },
+      "answer_status": {
+        "PARTIAL": 4,
+        "COMPLETE_CANDIDATE": 16
+      },
+      "answer_reasons": {
+        "CLAIMS_REMOVED": 3,
+        "GENERATION_TRUNCATED": 1,
+        "MISSING_REQUESTED_CONTENT": 0,
+        "NO_SUBSTANTIVE_ANSWER": 0,
+        "REVIEW_INCOMPLETE": 0
+      },
+      "safety": {
+        "forbidden_claim": 0,
+        "wrong_year": 0,
+        "program_mix": 0,
+        "wrong_premise_adopted": 0,
+        "invalid_citation": 0,
+        "unsupported_numeric_claim": 0,
+        "error": 0,
+        "truncated": 1
+      },
+      "source_guide_numeric_lines_excluded": 19,
+      "performance_ms": {
+        "total_answer": {
+          "n": 20,
+          "mean": 100973.5,
+          "p50": 107770.4,
+          "p95": 127938.4,
+          "max": 128227.8
+        },
+        "eval_search_top5": {
+          "n": 20,
+          "mean": 587.8,
+          "p50": 470.4,
+          "p95": 1243.0,
+          "max": 1690.8
+        },
+        "pipeline_retrieval": {
+          "n": 20,
+          "mean": 1494.1,
+          "p50": 1539.8,
+          "p95": 2319.0,
+          "max": 2640.5
+        },
+        "generation": {
+          "n": 20,
+          "mean": 99219.1,
+          "p50": 105669.7,
+          "p95": 125991.7,
+          "max": 126469.2
+        }
+      },
+      "memory_mb": {
+        "peak_sampled_rss": 5396.918,
+        "peak_sampled_private": 8110.242
+      },
+      "gold_numbers": {
+        "items": 0,
+        "expected_number_present": 0,
+        "ids_missing": [],
+        "wrong_premise_adopted": []
+      },
+      "correctness": "UNREVIEWED (human review required; COMPLETE_CANDIDATE is not a correctness label)"
+    },
+    "case": {
+      "items": 40,
+      "retrieval": {
+        "recall_at_1": 0.875,
+        "recall_at_3": 0.95,
+        "recall_at_5": 0.95,
+        "section_hit_at_5": 0.95
+      },
+      "answer_status": {
+        "PARTIAL": 18,
+        "COMPLETE_CANDIDATE": 22
+      },
+      "answer_reasons": {
+        "CLAIMS_REMOVED": 12,
+        "GENERATION_TRUNCATED": 4,
+        "MISSING_REQUESTED_CONTENT": 7,
+        "NO_SUBSTANTIVE_ANSWER": 0,
+        "REVIEW_INCOMPLETE": 0
+      },
+      "safety": {
+        "forbidden_claim": 0,
+        "wrong_year": 0,
+        "program_mix": 4,
+        "wrong_premise_adopted": 0,
+        "invalid_citation": 0,
+        "unsupported_numeric_claim": 0,
+        "error": 0,
+        "truncated": 4
+      },
+      "source_guide_numeric_lines_excluded": 46,
+      "performance_ms": {
+        "total_answer": {
+          "n": 40,
+          "mean": 107014.5,
+          "p50": 108702.8,
+          "p95": 134189.4,
+          "max": 143426.2
+        },
+        "eval_search_top5": {
+          "n": 40,
+          "mean": 695.8,
+          "p50": 574.0,
+          "p95": 1359.2,
+          "max": 3056.5
+        },
+        "pipeline_retrieval": {
+          "n": 40,
+          "mean": 1812.9,
+          "p50": 1739.5,
+          "p95": 2231.7,
+          "max": 5082.4
+        },
+        "generation": {
+          "n": 40,
+          "mean": 104836.6,
+          "p50": 107070.0,
+          "p95": 132321.6,
+          "max": 141441.4
+        }
+      },
+      "memory_mb": {
+        "peak_sampled_rss": 4147.238,
+        "peak_sampled_private": 10218.934
+      },
+      "gold_numbers": {
+        "items": 0,
+        "expected_number_present": 0,
+        "ids_missing": [],
+        "wrong_premise_adopted": []
+      },
+      "correctness": "UNREVIEWED (human review required; COMPLETE_CANDIDATE is not a correctness label)"
+    },
+    "year_confusion": {
+      "items": 15,
+      "retrieval": {
+        "recall_at_1": 0.9333,
+        "recall_at_3": 0.9333,
+        "recall_at_5": 0.9333,
+        "section_hit_at_5": 0.9333
+      },
+      "answer_status": {
+        "COMPLETE_CANDIDATE": 9,
+        "PARTIAL": 3,
+        "ABSTAIN": 3
+      },
+      "answer_reasons": {
+        "CLAIMS_REMOVED": 3,
+        "GENERATION_TRUNCATED": 1,
+        "MISSING_REQUESTED_CONTENT": 0,
+        "NO_SUBSTANTIVE_ANSWER": 3,
+        "REVIEW_INCOMPLETE": 0
+      },
+      "safety": {
+        "forbidden_claim": 0,
+        "wrong_year": 0,
+        "program_mix": 0,
+        "wrong_premise_adopted": 0,
+        "invalid_citation": 0,
+        "unsupported_numeric_claim": 0,
+        "error": 0,
+        "truncated": 1
+      },
+      "source_guide_numeric_lines_excluded": 19,
+      "performance_ms": {
+        "total_answer": {
+          "n": 15,
+          "mean": 82837.5,
+          "p50": 81613.2,
+          "p95": 128292.6,
+          "max": 138609.5
+        },
+        "eval_search_top5": {
+          "n": 15,
+          "mean": 691.5,
+          "p50": 576.5,
+          "p95": 1144.8,
+          "max": 1699.6
+        },
+        "pipeline_retrieval": {
+          "n": 15,
+          "mean": 1335.0,
+          "p50": 1256.7,
+          "p95": 1946.0,
+          "max": 2024.0
+        },
+        "generation": {
+          "n": 15,
+          "mean": 81041.0,
+          "p50": 79341.3,
+          "p95": 126731.5,
+          "max": 137274.9
+        }
+      },
+      "memory_mb": {
+        "peak_sampled_rss": 2186.203,
+        "peak_sampled_private": 10947.082
+      },
+      "gold_numbers": {
+        "items": 0,
+        "expected_number_present": 0,
+        "ids_missing": [],
+        "wrong_premise_adopted": []
+      },
+      "correctness": "UNREVIEWED (human review required; COMPLETE_CANDIDATE is not a correctness label)"
+    },
+    "program_mix": {
+      "items": 15,
+      "retrieval": {
+        "recall_at_1": 0.8667,
+        "recall_at_3": 0.8667,
+        "recall_at_5": 0.9333,
+        "section_hit_at_5": 0.9333
+      },
+      "answer_status": {
+        "PARTIAL": 7,
+        "COMPLETE_CANDIDATE": 7,
+        "ABSTAIN": 1
+      },
+      "answer_reasons": {
+        "CLAIMS_REMOVED": 5,
+        "GENERATION_TRUNCATED": 2,
+        "MISSING_REQUESTED_CONTENT": 4,
+        "NO_SUBSTANTIVE_ANSWER": 1,
+        "REVIEW_INCOMPLETE": 0
+      },
+      "safety": {
+        "forbidden_claim": 0,
+        "wrong_year": 0,
+        "program_mix": 1,
+        "wrong_premise_adopted": 0,
+        "invalid_citation": 0,
+        "unsupported_numeric_claim": 0,
+        "error": 0,
+        "truncated": 2
+      },
+      "source_guide_numeric_lines_excluded": 15,
+      "performance_ms": {
+        "total_answer": {
+          "n": 15,
+          "mean": 92902.9,
+          "p50": 107434.7,
+          "p95": 126469.4,
+          "max": 132426.1
+        },
+        "eval_search_top5": {
+          "n": 15,
+          "mean": 428.1,
+          "p50": 383.1,
+          "p95": 747.6,
+          "max": 784.9
+        },
+        "pipeline_retrieval": {
+          "n": 15,
+          "mean": 1653.5,
+          "p50": 1439.1,
+          "p95": 2348.2,
+          "max": 2550.9
+        },
+        "generation": {
+          "n": 15,
+          "mean": 91020.5,
+          "p50": 105511.3,
+          "p95": 124694.7,
+          "max": 130412.3
+        }
+      },
+      "memory_mb": {
+        "peak_sampled_rss": 2549.508,
+        "peak_sampled_private": 11550.004
+      },
+      "gold_numbers": {
+        "items": 0,
+        "expected_number_present": 0,
+        "ids_missing": [],
+        "wrong_premise_adopted": []
+      },
+      "correctness": "UNREVIEWED (human review required; COMPLETE_CANDIDATE is not a correctness label)"
+    },
+    "wrong_premise": {
+      "items": 10,
+      "retrieval": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "section_hit_at_5": 1.0
+      },
+      "answer_status": {
+        "PARTIAL": 3,
+        "COMPLETE_CANDIDATE": 7
+      },
+      "answer_reasons": {
+        "CLAIMS_REMOVED": 3,
+        "GENERATION_TRUNCATED": 1,
+        "MISSING_REQUESTED_CONTENT": 0,
+        "NO_SUBSTANTIVE_ANSWER": 0,
+        "REVIEW_INCOMPLETE": 0
+      },
+      "safety": {
+        "forbidden_claim": 0,
+        "wrong_year": 0,
+        "program_mix": 0,
+        "wrong_premise_adopted": 0,
+        "invalid_citation": 0,
+        "unsupported_numeric_claim": 0,
+        "error": 0,
+        "truncated": 1
+      },
+      "source_guide_numeric_lines_excluded": 9,
+      "performance_ms": {
+        "total_answer": {
+          "n": 10,
+          "mean": 97417.7,
+          "p50": 107807.1,
+          "p95": 125627.2,
+          "max": 130729.6
+        },
+        "eval_search_top5": {
+          "n": 10,
+          "mean": 651.2,
+          "p50": 506.8,
+          "p95": 1273.3,
+          "max": 1703.7
+        },
+        "pipeline_retrieval": {
+          "n": 10,
+          "mean": 1585.4,
+          "p50": 1600.6,
+          "p95": 2162.3,
+          "max": 2266.8
+        },
+        "generation": {
+          "n": 10,
+          "mean": 95480.8,
+          "p50": 106206.7,
+          "p95": 123646.9,
+          "max": 128640.3
+        }
+      },
+      "memory_mb": {
+        "peak_sampled_rss": 2525.586,
+        "peak_sampled_private": 11553.328
+      },
+      "gold_numbers": {
+        "items": 2,
+        "expected_number_present": 2,
+        "ids_missing": [],
+        "wrong_premise_adopted": []
+      },
+      "correctness": "UNREVIEWED (human review required; COMPLETE_CANDIDATE is not a correctness label)"
+    },
+    "local": {
+      "items": 10,
+      "retrieval": {
+        "recall_at_1": 0.9,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "section_hit_at_5": 1.0
+      },
+      "answer_status": {
+        "PARTIAL": 3,
+        "ABSTAIN": 2,
+        "COMPLETE_CANDIDATE": 5
+      },
+      "answer_reasons": {
+        "CLAIMS_REMOVED": 1,
+        "GENERATION_TRUNCATED": 3,
+        "MISSING_REQUESTED_CONTENT": 1,
+        "NO_SUBSTANTIVE_ANSWER": 2,
+        "REVIEW_INCOMPLETE": 0
+      },
+      "safety": {
+        "forbidden_claim": 0,
+        "wrong_year": 0,
+        "program_mix": 0,
+        "wrong_premise_adopted": 0,
+        "invalid_citation": 0,
+        "unsupported_numeric_claim": 0,
+        "error": 0,
+        "truncated": 3
+      },
+      "source_guide_numeric_lines_excluded": 6,
+      "performance_ms": {
+        "total_answer": {
+          "n": 10,
+          "mean": 92294.2,
+          "p50": 95382.6,
+          "p95": 127254.6,
+          "max": 128554.8
+        },
+        "eval_search_top5": {
+          "n": 10,
+          "mean": 877.6,
+          "p50": 730.9,
+          "p95": 1826.8,
+          "max": 1888.8
+        },
+        "pipeline_retrieval": {
+          "n": 10,
+          "mean": 1305.7,
+          "p50": 1034.3,
+          "p95": 2672.4,
+          "max": 2966.5
+        },
+        "generation": {
+          "n": 10,
+          "mean": 90710.5,
+          "p50": 94314.5,
+          "p95": 126130.7,
+          "max": 127025.0
+        }
+      },
+      "memory_mb": {
+        "peak_sampled_rss": 2810.016,
+        "peak_sampled_private": 11553.652
+      },
+      "gold_numbers": {
+        "items": 0,
+        "expected_number_present": 0,
+        "ids_missing": [],
+        "wrong_premise_adopted": []
+      },
+      "correctness": "UNREVIEWED (human review required; COMPLETE_CANDIDATE is not a correctness label)"
+    },
+    "table": {
+      "items": 6,
+      "retrieval": {
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "section_hit_at_5": 1.0
+      },
+      "answer_status": {
+        "PARTIAL": 5,
+        "COMPLETE_CANDIDATE": 1
+      },
+      "answer_reasons": {
+        "CLAIMS_REMOVED": 4,
+        "GENERATION_TRUNCATED": 3,
+        "MISSING_REQUESTED_CONTENT": 0,
+        "NO_SUBSTANTIVE_ANSWER": 0,
+        "REVIEW_INCOMPLETE": 0
+      },
+      "safety": {
+        "forbidden_claim": 0,
+        "wrong_year": 0,
+        "program_mix": 0,
+        "wrong_premise_adopted": 0,
+        "invalid_citation": 0,
+        "unsupported_numeric_claim": 0,
+        "error": 0,
+        "truncated": 3
+      },
+      "source_guide_numeric_lines_excluded": 5,
+      "performance_ms": {
+        "total_answer": {
+          "n": 6,
+          "mean": 109998.6,
+          "p50": 117412.4,
+          "p95": 125793.5,
+          "max": 126416.4
+        },
+        "eval_search_top5": {
+          "n": 6,
+          "mean": 337.2,
+          "p50": 321.0,
+          "p95": 565.4,
+          "max": 627.8
+        },
+        "pipeline_retrieval": {
+          "n": 6,
+          "mean": 686.6,
+          "p50": 584.5,
+          "p95": 983.6,
+          "max": 1010.6
+        },
+        "generation": {
+          "n": 6,
+          "mean": 109113.0,
+          "p50": 116442.0,
+          "p95": 125002.9,
+          "max": 125575.3
+        }
+      },
+      "memory_mb": {
+        "peak_sampled_rss": 3111.566,
+        "peak_sampled_private": 11545.148
+      },
+      "gold_numbers": {
+        "items": 0,
+        "expected_number_present": 0,
+        "ids_missing": [],
+        "wrong_premise_adopted": []
+      },
+      "correctness": "UNREVIEWED (human review required; COMPLETE_CANDIDATE is not a correctness label)"
+    }
+  },
+  "failure_count": 76,
+  "failure_reason_counts": {
+    "program_mix": 7,
+    "partial": 61,
+    "section_fail": 6,
+    "abstain": 7,
+    "truncated": 17,
+    "recall5_fail": 4
+  }
+}

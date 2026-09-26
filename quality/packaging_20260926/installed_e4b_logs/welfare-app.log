@@ -1,0 +1,4 @@
+2026-09-26 16:44:48,012 INFO welfare.llm: starting llama-server: model=gemma4-e4b.gguf size=4977171584 gpu_layers=99 threads=8
+2026-09-26 16:45:01,015 INFO welfare.llm: llama-server ready after 12.8s
+2026-09-26 16:45:04,327 INFO welfare.search: semantic search enabled=False (FTS5 fallback always available)
+2026-09-26 16:47:54,828 INFO welfare.llm: llama-server stopped (exit=1)

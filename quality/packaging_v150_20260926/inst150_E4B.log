@@ -1,0 +1,1249 @@
+﻿2026-09-26 17:49:11.844   Log opened. (Time zone: UTC+09:00)
+2026-09-26 17:49:11.845   Setup version: Inno Setup version 6.7.3
+2026-09-26 17:49:11.845   Original Setup EXE: D:\BokjiTalk_upgrade_test\v1.5.0_E4B_zip\BokjiTalkAI_Setup_v1.5.0_E4B.exe
+2026-09-26 17:49:11.845   Setup command line: /SL5="$160BE0,1015296,0,D:\BokjiTalk_upgrade_test\v1.5.0_E4B_zip\BokjiTalkAI_Setup_v1.5.0_E4B.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /LOG=C:\Users\xgfox\Documents\Codex\2026-09-24\new-chat-2\work\inst150_E4B.log 
+2026-09-26 17:49:11.845   Windows version: 10.0.26200
+2026-09-26 17:49:11.845   Windows architecture: x64 (64-bit)
+2026-09-26 17:49:11.845   Machine types supported by system: x86 x64
+2026-09-26 17:49:11.845   User privileges: None
+2026-09-26 17:49:11.848   Administrative install mode: No
+2026-09-26 17:49:11.848   Install mode root key: HKEY_CURRENT_USER
+2026-09-26 17:49:11.848   64-bit install mode: Yes
+2026-09-26 17:49:11.848   RedirectionGuard status for current process: Enabled in enforcing mode
+2026-09-26 17:49:11.850   Created temporary directory: C:\Users\xgfox\AppData\Local\Temp\is-JYRK9RHLDL.tmp
+2026-09-26 17:49:12.051   Found 165 files to register with RestartManager.
+2026-09-26 17:49:12.051   Calling RestartManager's RmGetList.
+2026-09-26 17:49:12.111   RmGetList finished successfully.
+2026-09-26 17:49:12.111   RestartManager found no applications using one of our files.
+2026-09-26 17:49:12.117   Starting the installation process.
+2026-09-26 17:49:12.120   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B
+2026-09-26 17:49:12.121   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\logs
+2026-09-26 17:49:12.121   Directory for uninstall files: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B
+2026-09-26 17:49:12.122   Creating new uninstall log: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\unins000.dat
+2026-09-26 17:49:12.135   -- File entry --
+2026-09-26 17:49:12.136   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\unins000.exe
+2026-09-26 17:49:12.136   Non-default bitness: 32-bit
+2026-09-26 17:49:12.148   Time stamp of our file: 2026-09-26 17:49:11.540
+2026-09-26 17:49:12.148   Installing the file.
+2026-09-26 17:49:12.294   Successfully installed the file.
+2026-09-26 17:49:12.295   -- File entry --
+2026-09-26 17:49:12.295   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\복지업무비서_v1.5.0_E4B.exe
+2026-09-26 17:49:12.297   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:49:12.297   Installing the file.
+2026-09-26 17:49:12.529   Successfully installed the file.
+2026-09-26 17:49:12.529   -- File entry --
+2026-09-26 17:49:12.529   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\models\gemma4-e4b.gguf
+2026-09-26 17:49:12.530   Time stamp of our file: 2026-09-25 18:07:54.000
+2026-09-26 17:49:12.530   Installing the file.
+2026-09-26 17:49:12.531   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\models
+2026-09-26 17:51:46.870   Successfully installed the file.
+2026-09-26 17:51:46.870   -- File entry --
+2026-09-26 17:51:46.870   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-base.dll
+2026-09-26 17:51:46.870   Time stamp of our file: 2026-08-29 16:35:40.000
+2026-09-26 17:51:46.870   Installing the file.
+2026-09-26 17:51:46.872   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime
+2026-09-26 17:51:46.872   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp
+2026-09-26 17:51:46.937   Successfully installed the file.
+2026-09-26 17:51:46.937   -- File entry --
+2026-09-26 17:51:46.937   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-cpu-alderlake.dll
+2026-09-26 17:51:46.938   Time stamp of our file: 2026-08-29 16:35:54.000
+2026-09-26 17:51:46.938   Installing the file.
+2026-09-26 17:51:47.003   Successfully installed the file.
+2026-09-26 17:51:47.003   -- File entry --
+2026-09-26 17:51:47.003   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-cpu-cannonlake.dll
+2026-09-26 17:51:47.004   Time stamp of our file: 2026-08-29 16:35:54.000
+2026-09-26 17:51:47.004   Installing the file.
+2026-09-26 17:51:47.074   Successfully installed the file.
+2026-09-26 17:51:47.074   -- File entry --
+2026-09-26 17:51:47.075   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-cpu-cascadelake.dll
+2026-09-26 17:51:47.075   Time stamp of our file: 2026-08-29 16:35:54.000
+2026-09-26 17:51:47.076   Installing the file.
+2026-09-26 17:51:47.152   Successfully installed the file.
+2026-09-26 17:51:47.152   -- File entry --
+2026-09-26 17:51:47.152   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-cpu-cooperlake.dll
+2026-09-26 17:51:47.153   Time stamp of our file: 2026-08-29 16:35:54.000
+2026-09-26 17:51:47.153   Installing the file.
+2026-09-26 17:51:47.222   Successfully installed the file.
+2026-09-26 17:51:47.223   -- File entry --
+2026-09-26 17:51:47.223   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-cpu-haswell.dll
+2026-09-26 17:51:47.223   Time stamp of our file: 2026-08-29 16:35:52.000
+2026-09-26 17:51:47.223   Installing the file.
+2026-09-26 17:51:47.288   Successfully installed the file.
+2026-09-26 17:51:47.288   -- File entry --
+2026-09-26 17:51:47.288   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-cpu-icelake.dll
+2026-09-26 17:51:47.289   Time stamp of our file: 2026-08-29 16:35:54.000
+2026-09-26 17:51:47.289   Installing the file.
+2026-09-26 17:51:47.359   Successfully installed the file.
+2026-09-26 17:51:47.359   -- File entry --
+2026-09-26 17:51:47.359   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-cpu-ivybridge.dll
+2026-09-26 17:51:47.360   Time stamp of our file: 2026-08-29 16:35:52.000
+2026-09-26 17:51:47.360   Installing the file.
+2026-09-26 17:51:47.432   Successfully installed the file.
+2026-09-26 17:51:47.432   -- File entry --
+2026-09-26 17:51:47.432   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-cpu-piledriver.dll
+2026-09-26 17:51:47.433   Time stamp of our file: 2026-08-29 16:35:52.000
+2026-09-26 17:51:47.433   Installing the file.
+2026-09-26 17:51:47.500   Successfully installed the file.
+2026-09-26 17:51:47.500   -- File entry --
+2026-09-26 17:51:47.500   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-cpu-sandybridge.dll
+2026-09-26 17:51:47.500   Time stamp of our file: 2026-08-29 16:35:52.000
+2026-09-26 17:51:47.502   Installing the file.
+2026-09-26 17:51:47.566   Successfully installed the file.
+2026-09-26 17:51:47.566   -- File entry --
+2026-09-26 17:51:47.566   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-cpu-sapphirerapids.dll
+2026-09-26 17:51:47.567   Time stamp of our file: 2026-08-29 16:35:54.000
+2026-09-26 17:51:47.567   Installing the file.
+2026-09-26 17:51:47.668   Successfully installed the file.
+2026-09-26 17:51:47.668   -- File entry --
+2026-09-26 17:51:47.668   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-cpu-skylakex.dll
+2026-09-26 17:51:47.669   Time stamp of our file: 2026-08-29 16:35:54.000
+2026-09-26 17:51:47.669   Installing the file.
+2026-09-26 17:51:47.742   Successfully installed the file.
+2026-09-26 17:51:47.742   -- File entry --
+2026-09-26 17:51:47.742   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-cpu-sse42.dll
+2026-09-26 17:51:47.743   Time stamp of our file: 2026-08-29 16:35:52.000
+2026-09-26 17:51:47.743   Installing the file.
+2026-09-26 17:51:47.802   Successfully installed the file.
+2026-09-26 17:51:47.802   -- File entry --
+2026-09-26 17:51:47.802   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-cpu-x64.dll
+2026-09-26 17:51:47.802   Time stamp of our file: 2026-08-29 16:35:52.000
+2026-09-26 17:51:47.802   Installing the file.
+2026-09-26 17:51:47.867   Successfully installed the file.
+2026-09-26 17:51:47.868   -- File entry --
+2026-09-26 17:51:47.868   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-cpu-zen4.dll
+2026-09-26 17:51:47.868   Time stamp of our file: 2026-08-29 16:35:54.000
+2026-09-26 17:51:47.868   Installing the file.
+2026-09-26 17:51:47.951   Successfully installed the file.
+2026-09-26 17:51:47.951   -- File entry --
+2026-09-26 17:51:47.951   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-rpc-server.exe
+2026-09-26 17:51:47.952   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:47.952   Installing the file.
+2026-09-26 17:51:47.988   Successfully installed the file.
+2026-09-26 17:51:47.988   -- File entry --
+2026-09-26 17:51:47.988   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-rpc.dll
+2026-09-26 17:51:47.988   Time stamp of our file: 2026-08-29 16:35:54.000
+2026-09-26 17:51:47.988   Installing the file.
+2026-09-26 17:51:48.029   Successfully installed the file.
+2026-09-26 17:51:48.029   -- File entry --
+2026-09-26 17:51:48.029   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml-vulkan.dll
+2026-09-26 17:51:48.029   Time stamp of our file: 2026-08-29 16:35:40.000
+2026-09-26 17:51:48.029   Installing the file.
+2026-09-26 17:51:49.288   Successfully installed the file.
+2026-09-26 17:51:49.289   -- File entry --
+2026-09-26 17:51:49.289   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\ggml.dll
+2026-09-26 17:51:49.289   Time stamp of our file: 2026-08-29 16:35:54.000
+2026-09-26 17:51:49.289   Installing the file.
+2026-09-26 17:51:49.321   Successfully installed the file.
+2026-09-26 17:51:49.321   -- File entry --
+2026-09-26 17:51:49.321   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\libomp.dll
+2026-09-26 17:51:49.321   Time stamp of our file: 2026-08-29 16:35:34.000
+2026-09-26 17:51:49.321   Installing the file.
+2026-09-26 17:51:49.352   Successfully installed the file.
+2026-09-26 17:51:49.352   -- File entry --
+2026-09-26 17:51:49.352   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\LICENSE-LLVM-OpenMP
+2026-09-26 17:51:49.353   Time stamp of our file: 2026-08-29 16:35:34.000
+2026-09-26 17:51:49.353   Installing the file.
+2026-09-26 17:51:49.356   Successfully installed the file.
+2026-09-26 17:51:49.356   -- File entry --
+2026-09-26 17:51:49.356   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-batched-bench-impl.dll
+2026-09-26 17:51:49.357   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:49.357   Installing the file.
+2026-09-26 17:51:49.388   Successfully installed the file.
+2026-09-26 17:51:49.389   -- File entry --
+2026-09-26 17:51:49.389   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-batched-bench.exe
+2026-09-26 17:51:49.389   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:49.389   Installing the file.
+2026-09-26 17:51:49.413   Successfully installed the file.
+2026-09-26 17:51:49.413   -- File entry --
+2026-09-26 17:51:49.413   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-bench-impl.dll
+2026-09-26 17:51:49.413   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:49.414   Installing the file.
+2026-09-26 17:51:49.452   Successfully installed the file.
+2026-09-26 17:51:49.452   -- File entry --
+2026-09-26 17:51:49.452   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-bench.exe
+2026-09-26 17:51:49.453   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:49.453   Installing the file.
+2026-09-26 17:51:49.486   Successfully installed the file.
+2026-09-26 17:51:49.486   -- File entry --
+2026-09-26 17:51:49.486   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-cli-impl.dll
+2026-09-26 17:51:49.487   Time stamp of our file: 2026-08-29 16:36:38.000
+2026-09-26 17:51:49.487   Installing the file.
+2026-09-26 17:51:49.597   Successfully installed the file.
+2026-09-26 17:51:49.598   -- File entry --
+2026-09-26 17:51:49.598   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-cli.exe
+2026-09-26 17:51:49.598   Time stamp of our file: 2026-08-29 16:36:38.000
+2026-09-26 17:51:49.598   Installing the file.
+2026-09-26 17:51:49.621   Successfully installed the file.
+2026-09-26 17:51:49.621   -- File entry --
+2026-09-26 17:51:49.621   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-common.dll
+2026-09-26 17:51:49.622   Time stamp of our file: 2026-08-29 16:36:24.000
+2026-09-26 17:51:49.622   Installing the file.
+2026-09-26 17:51:49.885   Successfully installed the file.
+2026-09-26 17:51:49.886   -- File entry --
+2026-09-26 17:51:49.886   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-completion-impl.dll
+2026-09-26 17:51:49.886   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:49.886   Installing the file.
+2026-09-26 17:51:49.913   Successfully installed the file.
+2026-09-26 17:51:49.913   -- File entry --
+2026-09-26 17:51:49.913   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-completion.exe
+2026-09-26 17:51:49.914   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:49.914   Installing the file.
+2026-09-26 17:51:49.935   Successfully installed the file.
+2026-09-26 17:51:49.935   -- File entry --
+2026-09-26 17:51:49.935   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-fit-params-impl.dll
+2026-09-26 17:51:49.936   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:49.936   Installing the file.
+2026-09-26 17:51:49.965   Successfully installed the file.
+2026-09-26 17:51:49.965   -- File entry --
+2026-09-26 17:51:49.965   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-fit-params.exe
+2026-09-26 17:51:49.965   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:49.965   Installing the file.
+2026-09-26 17:51:49.987   Successfully installed the file.
+2026-09-26 17:51:49.987   -- File entry --
+2026-09-26 17:51:49.987   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-gemma3-cli.exe
+2026-09-26 17:51:49.988   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:49.988   Installing the file.
+2026-09-26 17:51:50.013   Successfully installed the file.
+2026-09-26 17:51:50.013   -- File entry --
+2026-09-26 17:51:50.013   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-gguf-split.exe
+2026-09-26 17:51:50.013   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:50.013   Installing the file.
+2026-09-26 17:51:50.040   Successfully installed the file.
+2026-09-26 17:51:50.042   -- File entry --
+2026-09-26 17:51:50.042   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-imatrix.exe
+2026-09-26 17:51:50.042   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:50.042   Installing the file.
+2026-09-26 17:51:50.073   Successfully installed the file.
+2026-09-26 17:51:50.073   -- File entry --
+2026-09-26 17:51:50.073   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-llava-cli.exe
+2026-09-26 17:51:50.075   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:50.075   Installing the file.
+2026-09-26 17:51:50.102   Successfully installed the file.
+2026-09-26 17:51:50.102   -- File entry --
+2026-09-26 17:51:50.102   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-minicpmv-cli.exe
+2026-09-26 17:51:50.103   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:50.103   Installing the file.
+2026-09-26 17:51:50.132   Successfully installed the file.
+2026-09-26 17:51:50.132   -- File entry --
+2026-09-26 17:51:50.132   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-mtmd-cli.exe
+2026-09-26 17:51:50.133   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:50.133   Installing the file.
+2026-09-26 17:51:50.161   Successfully installed the file.
+2026-09-26 17:51:50.161   -- File entry --
+2026-09-26 17:51:50.161   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-mtmd-debug.exe
+2026-09-26 17:51:50.162   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:50.162   Installing the file.
+2026-09-26 17:51:50.187   Successfully installed the file.
+2026-09-26 17:51:50.188   -- File entry --
+2026-09-26 17:51:50.188   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-perplexity-impl.dll
+2026-09-26 17:51:50.188   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:50.188   Installing the file.
+2026-09-26 17:51:50.218   Successfully installed the file.
+2026-09-26 17:51:50.218   -- File entry --
+2026-09-26 17:51:50.218   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-perplexity.exe
+2026-09-26 17:51:50.220   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:50.220   Installing the file.
+2026-09-26 17:51:50.243   Successfully installed the file.
+2026-09-26 17:51:50.243   -- File entry --
+2026-09-26 17:51:50.243   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-quantize-impl.dll
+2026-09-26 17:51:50.244   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:50.244   Installing the file.
+2026-09-26 17:51:50.276   Successfully installed the file.
+2026-09-26 17:51:50.276   -- File entry --
+2026-09-26 17:51:50.276   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-quantize.exe
+2026-09-26 17:51:50.277   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:50.277   Installing the file.
+2026-09-26 17:51:50.298   Successfully installed the file.
+2026-09-26 17:51:50.298   -- File entry --
+2026-09-26 17:51:50.298   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-qwen2vl-cli.exe
+2026-09-26 17:51:50.300   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:50.300   Installing the file.
+2026-09-26 17:51:50.326   Successfully installed the file.
+2026-09-26 17:51:50.326   -- File entry --
+2026-09-26 17:51:50.326   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-results.exe
+2026-09-26 17:51:50.327   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:50.327   Installing the file.
+2026-09-26 17:51:50.354   Successfully installed the file.
+2026-09-26 17:51:50.354   -- File entry --
+2026-09-26 17:51:50.354   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-server-impl.dll
+2026-09-26 17:51:50.355   Time stamp of our file: 2026-08-29 16:36:38.000
+2026-09-26 17:51:50.355   Installing the file.
+2026-09-26 17:51:50.609   Successfully installed the file.
+2026-09-26 17:51:50.609   -- File entry --
+2026-09-26 17:51:50.609   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-server.exe
+2026-09-26 17:51:50.610   Time stamp of our file: 2026-08-29 16:36:38.000
+2026-09-26 17:51:50.610   Installing the file.
+2026-09-26 17:51:50.633   Successfully installed the file.
+2026-09-26 17:51:50.633   -- File entry --
+2026-09-26 17:51:50.633   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-tokenize.exe
+2026-09-26 17:51:50.634   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:50.634   Installing the file.
+2026-09-26 17:51:50.658   Successfully installed the file.
+2026-09-26 17:51:50.658   -- File entry --
+2026-09-26 17:51:50.658   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama-tts.exe
+2026-09-26 17:51:50.659   Time stamp of our file: 2026-08-29 16:36:26.000
+2026-09-26 17:51:50.659   Installing the file.
+2026-09-26 17:51:50.685   Successfully installed the file.
+2026-09-26 17:51:50.685   -- File entry --
+2026-09-26 17:51:50.685   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama.dll
+2026-09-26 17:51:50.686   Time stamp of our file: 2026-08-29 16:36:20.000
+2026-09-26 17:51:50.686   Installing the file.
+2026-09-26 17:51:50.812   Successfully installed the file.
+2026-09-26 17:51:50.812   -- File entry --
+2026-09-26 17:51:50.812   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\llama.exe
+2026-09-26 17:51:50.813   Time stamp of our file: 2026-08-29 16:36:38.000
+2026-09-26 17:51:50.813   Installing the file.
+2026-09-26 17:51:50.842   Successfully installed the file.
+2026-09-26 17:51:50.842   -- File entry --
+2026-09-26 17:51:50.842   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\runtime\llamacpp\mtmd.dll
+2026-09-26 17:51:50.843   Time stamp of our file: 2026-08-29 16:36:24.000
+2026-09-26 17:51:50.843   Installing the file.
+2026-09-26 17:51:50.919   Successfully installed the file.
+2026-09-26 17:51:50.919   -- File entry --
+2026-09-26 17:51:50.920   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\base_library.zip
+2026-09-26 17:51:50.920   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:50.920   Installing the file.
+2026-09-26 17:51:50.922   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal
+2026-09-26 17:51:50.952   Successfully installed the file.
+2026-09-26 17:51:50.952   -- File entry --
+2026-09-26 17:51:50.952   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\beta-policy.json
+2026-09-26 17:51:50.953   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:50.953   Installing the file.
+2026-09-26 17:51:50.955   Successfully installed the file.
+2026-09-26 17:51:50.955   -- File entry --
+2026-09-26 17:51:50.955   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\config.yaml.example
+2026-09-26 17:51:50.956   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:50.956   Installing the file.
+2026-09-26 17:51:50.959   Successfully installed the file.
+2026-09-26 17:51:50.959   -- File entry --
+2026-09-26 17:51:50.959   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\libcrypto-3.dll
+2026-09-26 17:51:50.959   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:50.959   Installing the file.
+2026-09-26 17:51:51.112   Successfully installed the file.
+2026-09-26 17:51:51.112   -- File entry --
+2026-09-26 17:51:51.112   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\libffi-8.dll
+2026-09-26 17:51:51.112   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.112   Installing the file.
+2026-09-26 17:51:51.120   Successfully installed the file.
+2026-09-26 17:51:51.120   -- File entry --
+2026-09-26 17:51:51.120   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\libssl-3.dll
+2026-09-26 17:51:51.121   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.121   Installing the file.
+2026-09-26 17:51:51.155   Successfully installed the file.
+2026-09-26 17:51:51.155   -- File entry --
+2026-09-26 17:51:51.155   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pyexpat.pyd
+2026-09-26 17:51:51.156   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.156   Installing the file.
+2026-09-26 17:51:51.169   Successfully installed the file.
+2026-09-26 17:51:51.169   -- File entry --
+2026-09-26 17:51:51.170   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\python312.dll
+2026-09-26 17:51:51.170   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.170   Installing the file.
+2026-09-26 17:51:51.386   Successfully installed the file.
+2026-09-26 17:51:51.386   -- File entry --
+2026-09-26 17:51:51.386   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\select.pyd
+2026-09-26 17:51:51.387   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.387   Installing the file.
+2026-09-26 17:51:51.392   Successfully installed the file.
+2026-09-26 17:51:51.392   -- File entry --
+2026-09-26 17:51:51.392   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\sqlite3.dll
+2026-09-26 17:51:51.392   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.393   Installing the file.
+2026-09-26 17:51:51.458   Successfully installed the file.
+2026-09-26 17:51:51.458   -- File entry --
+2026-09-26 17:51:51.458   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\unicodedata.pyd
+2026-09-26 17:51:51.459   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.459   Installing the file.
+2026-09-26 17:51:51.499   Successfully installed the file.
+2026-09-26 17:51:51.499   -- File entry --
+2026-09-26 17:51:51.500   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\VCRUNTIME140.dll
+2026-09-26 17:51:51.500   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.500   Installing the file.
+2026-09-26 17:51:51.509   Successfully installed the file.
+2026-09-26 17:51:51.509   -- File entry --
+2026-09-26 17:51:51.509   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\VCRUNTIME140_1.dll
+2026-09-26 17:51:51.510   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.510   Installing the file.
+2026-09-26 17:51:51.517   Successfully installed the file.
+2026-09-26 17:51:51.517   -- File entry --
+2026-09-26 17:51:51.517   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\VERSION
+2026-09-26 17:51:51.517   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.517   Installing the file.
+2026-09-26 17:51:51.520   Successfully installed the file.
+2026-09-26 17:51:51.520   -- File entry --
+2026-09-26 17:51:51.520   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_asyncio.pyd
+2026-09-26 17:51:51.522   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.522   Installing the file.
+2026-09-26 17:51:51.529   Successfully installed the file.
+2026-09-26 17:51:51.530   -- File entry --
+2026-09-26 17:51:51.530   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_bz2.pyd
+2026-09-26 17:51:51.530   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.530   Installing the file.
+2026-09-26 17:51:51.538   Successfully installed the file.
+2026-09-26 17:51:51.540   -- File entry --
+2026-09-26 17:51:51.540   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_cffi_backend.cp312-win_amd64.pyd
+2026-09-26 17:51:51.540   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.540   Installing the file.
+2026-09-26 17:51:51.553   Successfully installed the file.
+2026-09-26 17:51:51.553   -- File entry --
+2026-09-26 17:51:51.554   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_ctypes.pyd
+2026-09-26 17:51:51.554   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.554   Installing the file.
+2026-09-26 17:51:51.564   Successfully installed the file.
+2026-09-26 17:51:51.564   -- File entry --
+2026-09-26 17:51:51.564   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_decimal.pyd
+2026-09-26 17:51:51.565   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.565   Installing the file.
+2026-09-26 17:51:51.583   Successfully installed the file.
+2026-09-26 17:51:51.583   -- File entry --
+2026-09-26 17:51:51.583   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_elementtree.pyd
+2026-09-26 17:51:51.583   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.583   Installing the file.
+2026-09-26 17:51:51.594   Successfully installed the file.
+2026-09-26 17:51:51.594   -- File entry --
+2026-09-26 17:51:51.594   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_hashlib.pyd
+2026-09-26 17:51:51.595   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.595   Installing the file.
+2026-09-26 17:51:51.603   Successfully installed the file.
+2026-09-26 17:51:51.603   -- File entry --
+2026-09-26 17:51:51.603   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_lzma.pyd
+2026-09-26 17:51:51.604   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.604   Installing the file.
+2026-09-26 17:51:51.618   Successfully installed the file.
+2026-09-26 17:51:51.618   -- File entry --
+2026-09-26 17:51:51.618   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_multiprocessing.pyd
+2026-09-26 17:51:51.619   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.619   Installing the file.
+2026-09-26 17:51:51.626   Successfully installed the file.
+2026-09-26 17:51:51.626   -- File entry --
+2026-09-26 17:51:51.626   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_overlapped.pyd
+2026-09-26 17:51:51.627   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.627   Installing the file.
+2026-09-26 17:51:51.636   Successfully installed the file.
+2026-09-26 17:51:51.636   -- File entry --
+2026-09-26 17:51:51.636   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_queue.pyd
+2026-09-26 17:51:51.637   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.637   Installing the file.
+2026-09-26 17:51:51.644   Successfully installed the file.
+2026-09-26 17:51:51.644   -- File entry --
+2026-09-26 17:51:51.644   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_socket.pyd
+2026-09-26 17:51:51.645   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.645   Installing the file.
+2026-09-26 17:51:51.657   Successfully installed the file.
+2026-09-26 17:51:51.657   -- File entry --
+2026-09-26 17:51:51.657   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_sqlite3.pyd
+2026-09-26 17:51:51.658   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.658   Installing the file.
+2026-09-26 17:51:51.669   Successfully installed the file.
+2026-09-26 17:51:51.669   -- File entry --
+2026-09-26 17:51:51.670   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_ssl.pyd
+2026-09-26 17:51:51.670   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.671   Installing the file.
+2026-09-26 17:51:51.683   Successfully installed the file.
+2026-09-26 17:51:51.683   -- File entry --
+2026-09-26 17:51:51.683   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_uuid.pyd
+2026-09-26 17:51:51.684   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.684   Installing the file.
+2026-09-26 17:51:51.691   Successfully installed the file.
+2026-09-26 17:51:51.691   -- File entry --
+2026-09-26 17:51:51.691   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_wmi.pyd
+2026-09-26 17:51:51.692   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.692   Installing the file.
+2026-09-26 17:51:51.699   Successfully installed the file.
+2026-09-26 17:51:51.699   -- File entry --
+2026-09-26 17:51:51.699   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\_zoneinfo.pyd
+2026-09-26 17:51:51.700   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.700   Installing the file.
+2026-09-26 17:51:51.709   Successfully installed the file.
+2026-09-26 17:51:51.709   -- File entry --
+2026-09-26 17:51:51.709   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\assets\bokjitalk.ico
+2026-09-26 17:51:51.710   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.710   Installing the file.
+2026-09-26 17:51:51.710   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\assets
+2026-09-26 17:51:51.722   Successfully installed the file.
+2026-09-26 17:51:51.722   -- File entry --
+2026-09-26 17:51:51.722   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\click-8.5.0.dist-info\INSTALLER
+2026-09-26 17:51:51.724   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.724   Installing the file.
+2026-09-26 17:51:51.725   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\click-8.5.0.dist-info
+2026-09-26 17:51:51.728   Successfully installed the file.
+2026-09-26 17:51:51.728   -- File entry --
+2026-09-26 17:51:51.728   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\click-8.5.0.dist-info\METADATA
+2026-09-26 17:51:51.729   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.729   Installing the file.
+2026-09-26 17:51:51.732   Successfully installed the file.
+2026-09-26 17:51:51.732   -- File entry --
+2026-09-26 17:51:51.732   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\click-8.5.0.dist-info\RECORD
+2026-09-26 17:51:51.734   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.734   Installing the file.
+2026-09-26 17:51:51.737   Successfully installed the file.
+2026-09-26 17:51:51.737   -- File entry --
+2026-09-26 17:51:51.737   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\click-8.5.0.dist-info\REQUESTED
+2026-09-26 17:51:51.738   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.738   Installing the file.
+2026-09-26 17:51:51.741   Successfully installed the file.
+2026-09-26 17:51:51.741   -- File entry --
+2026-09-26 17:51:51.741   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\click-8.5.0.dist-info\WHEEL
+2026-09-26 17:51:51.742   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.742   Installing the file.
+2026-09-26 17:51:51.744   Successfully installed the file.
+2026-09-26 17:51:51.744   -- File entry --
+2026-09-26 17:51:51.744   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\click-8.5.0.dist-info\licenses\LICENSE.txt
+2026-09-26 17:51:51.746   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.746   Installing the file.
+2026-09-26 17:51:51.746   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\click-8.5.0.dist-info\licenses
+2026-09-26 17:51:51.750   Successfully installed the file.
+2026-09-26 17:51:51.750   -- File entry --
+2026-09-26 17:51:51.750   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\clr_loader\ffi\dlls\amd64\ClrLoader.dll
+2026-09-26 17:51:51.751   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.751   Installing the file.
+2026-09-26 17:51:51.752   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\clr_loader
+2026-09-26 17:51:51.753   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\clr_loader\ffi
+2026-09-26 17:51:51.753   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\clr_loader\ffi\dlls
+2026-09-26 17:51:51.754   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\clr_loader\ffi\dlls\amd64
+2026-09-26 17:51:51.759   Successfully installed the file.
+2026-09-26 17:51:51.759   -- File entry --
+2026-09-26 17:51:51.759   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\clr_loader\ffi\dlls\x86\ClrLoader.dll
+2026-09-26 17:51:51.760   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.760   Installing the file.
+2026-09-26 17:51:51.760   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\clr_loader\ffi\dlls\x86
+2026-09-26 17:51:51.766   Successfully installed the file.
+2026-09-26 17:51:51.766   -- File entry --
+2026-09-26 17:51:51.766   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pydantic-2.13.4.dist-info\INSTALLER
+2026-09-26 17:51:51.767   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.767   Installing the file.
+2026-09-26 17:51:51.767   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pydantic-2.13.4.dist-info
+2026-09-26 17:51:51.771   Successfully installed the file.
+2026-09-26 17:51:51.771   -- File entry --
+2026-09-26 17:51:51.771   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pydantic-2.13.4.dist-info\METADATA
+2026-09-26 17:51:51.772   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.772   Installing the file.
+2026-09-26 17:51:51.778   Successfully installed the file.
+2026-09-26 17:51:51.778   -- File entry --
+2026-09-26 17:51:51.778   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pydantic-2.13.4.dist-info\RECORD
+2026-09-26 17:51:51.779   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.779   Installing the file.
+2026-09-26 17:51:51.782   Successfully installed the file.
+2026-09-26 17:51:51.782   -- File entry --
+2026-09-26 17:51:51.782   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pydantic-2.13.4.dist-info\REQUESTED
+2026-09-26 17:51:51.783   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.783   Installing the file.
+2026-09-26 17:51:51.786   Successfully installed the file.
+2026-09-26 17:51:51.786   -- File entry --
+2026-09-26 17:51:51.786   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pydantic-2.13.4.dist-info\WHEEL
+2026-09-26 17:51:51.787   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.787   Installing the file.
+2026-09-26 17:51:51.790   Successfully installed the file.
+2026-09-26 17:51:51.790   -- File entry --
+2026-09-26 17:51:51.790   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pydantic-2.13.4.dist-info\licenses\LICENSE
+2026-09-26 17:51:51.791   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.791   Installing the file.
+2026-09-26 17:51:51.791   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pydantic-2.13.4.dist-info\licenses
+2026-09-26 17:51:51.795   Successfully installed the file.
+2026-09-26 17:51:51.795   -- File entry --
+2026-09-26 17:51:51.795   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pydantic_core\_pydantic_core.cp312-win_amd64.pyd
+2026-09-26 17:51:51.796   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.796   Installing the file.
+2026-09-26 17:51:51.797   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pydantic_core
+2026-09-26 17:51:51.984   Successfully installed the file.
+2026-09-26 17:51:51.984   -- File entry --
+2026-09-26 17:51:51.984   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\Microsoft.Win32.Primitives.dll
+2026-09-26 17:51:51.985   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.985   Installing the file.
+2026-09-26 17:51:51.985   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet
+2026-09-26 17:51:51.986   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime
+2026-09-26 17:51:51.993   Successfully installed the file.
+2026-09-26 17:51:51.993   -- File entry --
+2026-09-26 17:51:51.993   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\netstandard.dll
+2026-09-26 17:51:51.994   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:51.994   Installing the file.
+2026-09-26 17:51:52.000   Successfully installed the file.
+2026-09-26 17:51:52.000   -- File entry --
+2026-09-26 17:51:52.000   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\Python.Runtime.deps.json
+2026-09-26 17:51:52.001   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.001   Installing the file.
+2026-09-26 17:51:52.006   Successfully installed the file.
+2026-09-26 17:51:52.006   -- File entry --
+2026-09-26 17:51:52.006   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\Python.Runtime.dll
+2026-09-26 17:51:52.007   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.007   Installing the file.
+2026-09-26 17:51:52.027   Successfully installed the file.
+2026-09-26 17:51:52.027   -- File entry --
+2026-09-26 17:51:52.027   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\Python.Runtime.xml
+2026-09-26 17:51:52.027   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.027   Installing the file.
+2026-09-26 17:51:52.033   Successfully installed the file.
+2026-09-26 17:51:52.033   -- File entry --
+2026-09-26 17:51:52.033   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.AppContext.dll
+2026-09-26 17:51:52.033   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.033   Installing the file.
+2026-09-26 17:51:52.041   Successfully installed the file.
+2026-09-26 17:51:52.041   -- File entry --
+2026-09-26 17:51:52.041   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Collections.Concurrent.dll
+2026-09-26 17:51:52.042   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.042   Installing the file.
+2026-09-26 17:51:52.049   Successfully installed the file.
+2026-09-26 17:51:52.049   -- File entry --
+2026-09-26 17:51:52.049   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Collections.dll
+2026-09-26 17:51:52.050   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.050   Installing the file.
+2026-09-26 17:51:52.056   Successfully installed the file.
+2026-09-26 17:51:52.056   -- File entry --
+2026-09-26 17:51:52.056   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Collections.NonGeneric.dll
+2026-09-26 17:51:52.057   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.057   Installing the file.
+2026-09-26 17:51:52.063   Successfully installed the file.
+2026-09-26 17:51:52.063   -- File entry --
+2026-09-26 17:51:52.063   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Collections.Specialized.dll
+2026-09-26 17:51:52.063   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.063   Installing the file.
+2026-09-26 17:51:52.069   Successfully installed the file.
+2026-09-26 17:51:52.070   -- File entry --
+2026-09-26 17:51:52.070   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.ComponentModel.dll
+2026-09-26 17:51:52.071   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.071   Installing the file.
+2026-09-26 17:51:52.077   Successfully installed the file.
+2026-09-26 17:51:52.077   -- File entry --
+2026-09-26 17:51:52.077   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.ComponentModel.EventBasedAsync.dll
+2026-09-26 17:51:52.079   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.079   Installing the file.
+2026-09-26 17:51:52.085   Successfully installed the file.
+2026-09-26 17:51:52.085   -- File entry --
+2026-09-26 17:51:52.085   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.ComponentModel.Primitives.dll
+2026-09-26 17:51:52.086   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.086   Installing the file.
+2026-09-26 17:51:52.092   Successfully installed the file.
+2026-09-26 17:51:52.092   -- File entry --
+2026-09-26 17:51:52.092   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.ComponentModel.TypeConverter.dll
+2026-09-26 17:51:52.093   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.093   Installing the file.
+2026-09-26 17:51:52.099   Successfully installed the file.
+2026-09-26 17:51:52.099   -- File entry --
+2026-09-26 17:51:52.099   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Console.dll
+2026-09-26 17:51:52.100   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.100   Installing the file.
+2026-09-26 17:51:52.116   Successfully installed the file.
+2026-09-26 17:51:52.116   -- File entry --
+2026-09-26 17:51:52.116   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Data.Common.dll
+2026-09-26 17:51:52.117   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.117   Installing the file.
+2026-09-26 17:51:52.132   Successfully installed the file.
+2026-09-26 17:51:52.132   -- File entry --
+2026-09-26 17:51:52.132   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Diagnostics.Contracts.dll
+2026-09-26 17:51:52.134   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.134   Installing the file.
+2026-09-26 17:51:52.148   Successfully installed the file.
+2026-09-26 17:51:52.148   -- File entry --
+2026-09-26 17:51:52.148   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Diagnostics.Debug.dll
+2026-09-26 17:51:52.149   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.149   Installing the file.
+2026-09-26 17:51:52.155   Successfully installed the file.
+2026-09-26 17:51:52.155   -- File entry --
+2026-09-26 17:51:52.156   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Diagnostics.FileVersionInfo.dll
+2026-09-26 17:51:52.156   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.157   Installing the file.
+2026-09-26 17:51:52.164   Successfully installed the file.
+2026-09-26 17:51:52.165   -- File entry --
+2026-09-26 17:51:52.165   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Diagnostics.Process.dll
+2026-09-26 17:51:52.165   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.165   Installing the file.
+2026-09-26 17:51:52.174   Successfully installed the file.
+2026-09-26 17:51:52.174   -- File entry --
+2026-09-26 17:51:52.174   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Diagnostics.StackTrace.dll
+2026-09-26 17:51:52.175   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.175   Installing the file.
+2026-09-26 17:51:52.182   Successfully installed the file.
+2026-09-26 17:51:52.183   -- File entry --
+2026-09-26 17:51:52.183   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Diagnostics.TextWriterTraceListener.dll
+2026-09-26 17:51:52.185   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.185   Installing the file.
+2026-09-26 17:51:52.192   Successfully installed the file.
+2026-09-26 17:51:52.192   -- File entry --
+2026-09-26 17:51:52.192   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Diagnostics.Tools.dll
+2026-09-26 17:51:52.193   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.193   Installing the file.
+2026-09-26 17:51:52.200   Successfully installed the file.
+2026-09-26 17:51:52.200   -- File entry --
+2026-09-26 17:51:52.200   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Diagnostics.TraceSource.dll
+2026-09-26 17:51:52.201   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.201   Installing the file.
+2026-09-26 17:51:52.209   Successfully installed the file.
+2026-09-26 17:51:52.209   -- File entry --
+2026-09-26 17:51:52.209   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Diagnostics.Tracing.dll
+2026-09-26 17:51:52.210   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.210   Installing the file.
+2026-09-26 17:51:52.217   Successfully installed the file.
+2026-09-26 17:51:52.217   -- File entry --
+2026-09-26 17:51:52.219   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Drawing.Primitives.dll
+2026-09-26 17:51:52.219   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.219   Installing the file.
+2026-09-26 17:51:52.225   Successfully installed the file.
+2026-09-26 17:51:52.225   -- File entry --
+2026-09-26 17:51:52.225   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Dynamic.Runtime.dll
+2026-09-26 17:51:52.226   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.226   Installing the file.
+2026-09-26 17:51:52.232   Successfully installed the file.
+2026-09-26 17:51:52.232   -- File entry --
+2026-09-26 17:51:52.232   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Globalization.Calendars.dll
+2026-09-26 17:51:52.233   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.233   Installing the file.
+2026-09-26 17:51:52.241   Successfully installed the file.
+2026-09-26 17:51:52.241   -- File entry --
+2026-09-26 17:51:52.241   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Globalization.dll
+2026-09-26 17:51:52.242   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.242   Installing the file.
+2026-09-26 17:51:52.247   Successfully installed the file.
+2026-09-26 17:51:52.247   -- File entry --
+2026-09-26 17:51:52.247   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Globalization.Extensions.dll
+2026-09-26 17:51:52.249   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.249   Installing the file.
+2026-09-26 17:51:52.255   Successfully installed the file.
+2026-09-26 17:51:52.255   -- File entry --
+2026-09-26 17:51:52.255   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.IO.Compression.dll
+2026-09-26 17:51:52.256   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.256   Installing the file.
+2026-09-26 17:51:52.303   Successfully installed the file.
+2026-09-26 17:51:52.304   -- File entry --
+2026-09-26 17:51:52.304   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.IO.Compression.ZipFile.dll
+2026-09-26 17:51:52.304   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.304   Installing the file.
+2026-09-26 17:51:52.309   Successfully installed the file.
+2026-09-26 17:51:52.311   -- File entry --
+2026-09-26 17:51:52.311   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.IO.dll
+2026-09-26 17:51:52.311   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.312   Installing the file.
+2026-09-26 17:51:52.316   Successfully installed the file.
+2026-09-26 17:51:52.316   -- File entry --
+2026-09-26 17:51:52.316   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.IO.FileSystem.dll
+2026-09-26 17:51:52.317   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.317   Installing the file.
+2026-09-26 17:51:52.333   Successfully installed the file.
+2026-09-26 17:51:52.333   -- File entry --
+2026-09-26 17:51:52.333   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.IO.FileSystem.DriveInfo.dll
+2026-09-26 17:51:52.333   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.333   Installing the file.
+2026-09-26 17:51:52.339   Successfully installed the file.
+2026-09-26 17:51:52.339   -- File entry --
+2026-09-26 17:51:52.339   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.IO.FileSystem.Primitives.dll
+2026-09-26 17:51:52.340   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.340   Installing the file.
+2026-09-26 17:51:52.346   Successfully installed the file.
+2026-09-26 17:51:52.346   -- File entry --
+2026-09-26 17:51:52.346   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.IO.FileSystem.Watcher.dll
+2026-09-26 17:51:52.346   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.346   Installing the file.
+2026-09-26 17:51:52.352   Successfully installed the file.
+2026-09-26 17:51:52.352   -- File entry --
+2026-09-26 17:51:52.352   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.IO.IsolatedStorage.dll
+2026-09-26 17:51:52.353   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.353   Installing the file.
+2026-09-26 17:51:52.357   Successfully installed the file.
+2026-09-26 17:51:52.358   -- File entry --
+2026-09-26 17:51:52.358   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.IO.MemoryMappedFiles.dll
+2026-09-26 17:51:52.358   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.360   Installing the file.
+2026-09-26 17:51:52.366   Successfully installed the file.
+2026-09-26 17:51:52.366   -- File entry --
+2026-09-26 17:51:52.366   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.IO.Pipes.dll
+2026-09-26 17:51:52.366   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.366   Installing the file.
+2026-09-26 17:51:52.372   Successfully installed the file.
+2026-09-26 17:51:52.372   -- File entry --
+2026-09-26 17:51:52.372   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.IO.UnmanagedMemoryStream.dll
+2026-09-26 17:51:52.373   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.373   Installing the file.
+2026-09-26 17:51:52.379   Successfully installed the file.
+2026-09-26 17:51:52.379   -- File entry --
+2026-09-26 17:51:52.380   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Linq.dll
+2026-09-26 17:51:52.380   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.380   Installing the file.
+2026-09-26 17:51:52.386   Successfully installed the file.
+2026-09-26 17:51:52.386   -- File entry --
+2026-09-26 17:51:52.386   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Linq.Expressions.dll
+2026-09-26 17:51:52.387   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.387   Installing the file.
+2026-09-26 17:51:52.392   Successfully installed the file.
+2026-09-26 17:51:52.392   -- File entry --
+2026-09-26 17:51:52.392   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Linq.Parallel.dll
+2026-09-26 17:51:52.393   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.393   Installing the file.
+2026-09-26 17:51:52.399   Successfully installed the file.
+2026-09-26 17:51:52.400   -- File entry --
+2026-09-26 17:51:52.400   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Linq.Queryable.dll
+2026-09-26 17:51:52.400   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.401   Installing the file.
+2026-09-26 17:51:52.406   Successfully installed the file.
+2026-09-26 17:51:52.406   -- File entry --
+2026-09-26 17:51:52.406   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Net.Http.dll
+2026-09-26 17:51:52.406   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.407   Installing the file.
+2026-09-26 17:51:52.435   Successfully installed the file.
+2026-09-26 17:51:52.435   -- File entry --
+2026-09-26 17:51:52.435   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Net.NameResolution.dll
+2026-09-26 17:51:52.436   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.436   Installing the file.
+2026-09-26 17:51:52.441   Successfully installed the file.
+2026-09-26 17:51:52.441   -- File entry --
+2026-09-26 17:51:52.441   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Net.NetworkInformation.dll
+2026-09-26 17:51:52.442   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.442   Installing the file.
+2026-09-26 17:51:52.448   Successfully installed the file.
+2026-09-26 17:51:52.448   -- File entry --
+2026-09-26 17:51:52.449   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Net.Ping.dll
+2026-09-26 17:51:52.449   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.449   Installing the file.
+2026-09-26 17:51:52.454   Successfully installed the file.
+2026-09-26 17:51:52.455   -- File entry --
+2026-09-26 17:51:52.455   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Net.Primitives.dll
+2026-09-26 17:51:52.455   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.456   Installing the file.
+2026-09-26 17:51:52.461   Successfully installed the file.
+2026-09-26 17:51:52.461   -- File entry --
+2026-09-26 17:51:52.461   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Net.Requests.dll
+2026-09-26 17:51:52.461   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.462   Installing the file.
+2026-09-26 17:51:52.467   Successfully installed the file.
+2026-09-26 17:51:52.467   -- File entry --
+2026-09-26 17:51:52.468   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Net.Security.dll
+2026-09-26 17:51:52.468   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.468   Installing the file.
+2026-09-26 17:51:52.473   Successfully installed the file.
+2026-09-26 17:51:52.474   -- File entry --
+2026-09-26 17:51:52.474   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Net.Sockets.dll
+2026-09-26 17:51:52.474   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.474   Installing the file.
+2026-09-26 17:51:52.481   Successfully installed the file.
+2026-09-26 17:51:52.481   -- File entry --
+2026-09-26 17:51:52.481   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Net.WebHeaderCollection.dll
+2026-09-26 17:51:52.482   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.482   Installing the file.
+2026-09-26 17:51:52.488   Successfully installed the file.
+2026-09-26 17:51:52.488   -- File entry --
+2026-09-26 17:51:52.488   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Net.WebSockets.Client.dll
+2026-09-26 17:51:52.489   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.489   Installing the file.
+2026-09-26 17:51:52.495   Successfully installed the file.
+2026-09-26 17:51:52.495   -- File entry --
+2026-09-26 17:51:52.495   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Net.WebSockets.dll
+2026-09-26 17:51:52.496   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.496   Installing the file.
+2026-09-26 17:51:52.501   Successfully installed the file.
+2026-09-26 17:51:52.501   -- File entry --
+2026-09-26 17:51:52.502   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.ObjectModel.dll
+2026-09-26 17:51:52.503   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.503   Installing the file.
+2026-09-26 17:51:52.509   Successfully installed the file.
+2026-09-26 17:51:52.509   -- File entry --
+2026-09-26 17:51:52.509   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Reflection.dll
+2026-09-26 17:51:52.510   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.510   Installing the file.
+2026-09-26 17:51:52.516   Successfully installed the file.
+2026-09-26 17:51:52.516   -- File entry --
+2026-09-26 17:51:52.516   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Reflection.Extensions.dll
+2026-09-26 17:51:52.518   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.518   Installing the file.
+2026-09-26 17:51:52.525   Successfully installed the file.
+2026-09-26 17:51:52.525   -- File entry --
+2026-09-26 17:51:52.525   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Reflection.Primitives.dll
+2026-09-26 17:51:52.526   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.526   Installing the file.
+2026-09-26 17:51:52.562   Successfully installed the file.
+2026-09-26 17:51:52.562   -- File entry --
+2026-09-26 17:51:52.562   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Resources.Reader.dll
+2026-09-26 17:51:52.563   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.563   Installing the file.
+2026-09-26 17:51:52.568   Successfully installed the file.
+2026-09-26 17:51:52.568   -- File entry --
+2026-09-26 17:51:52.568   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Resources.ResourceManager.dll
+2026-09-26 17:51:52.570   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.570   Installing the file.
+2026-09-26 17:51:52.576   Successfully installed the file.
+2026-09-26 17:51:52.576   -- File entry --
+2026-09-26 17:51:52.576   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Resources.Writer.dll
+2026-09-26 17:51:52.577   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.577   Installing the file.
+2026-09-26 17:51:52.582   Successfully installed the file.
+2026-09-26 17:51:52.582   -- File entry --
+2026-09-26 17:51:52.583   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Runtime.CompilerServices.VisualC.dll
+2026-09-26 17:51:52.583   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.583   Installing the file.
+2026-09-26 17:51:52.590   Successfully installed the file.
+2026-09-26 17:51:52.590   -- File entry --
+2026-09-26 17:51:52.590   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Runtime.dll
+2026-09-26 17:51:52.591   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.591   Installing the file.
+2026-09-26 17:51:52.601   Successfully installed the file.
+2026-09-26 17:51:52.601   -- File entry --
+2026-09-26 17:51:52.602   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Runtime.Extensions.dll
+2026-09-26 17:51:52.602   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.602   Installing the file.
+2026-09-26 17:51:52.609   Successfully installed the file.
+2026-09-26 17:51:52.610   -- File entry --
+2026-09-26 17:51:52.610   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Runtime.Handles.dll
+2026-09-26 17:51:52.611   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.611   Installing the file.
+2026-09-26 17:51:52.615   Successfully installed the file.
+2026-09-26 17:51:52.616   -- File entry --
+2026-09-26 17:51:52.616   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Runtime.InteropServices.dll
+2026-09-26 17:51:52.616   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.616   Installing the file.
+2026-09-26 17:51:52.622   Successfully installed the file.
+2026-09-26 17:51:52.622   -- File entry --
+2026-09-26 17:51:52.622   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Runtime.InteropServices.RuntimeInformation.dll
+2026-09-26 17:51:52.622   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.624   Installing the file.
+2026-09-26 17:51:52.630   Successfully installed the file.
+2026-09-26 17:51:52.630   -- File entry --
+2026-09-26 17:51:52.631   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Runtime.Numerics.dll
+2026-09-26 17:51:52.631   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.631   Installing the file.
+2026-09-26 17:51:52.636   Successfully installed the file.
+2026-09-26 17:51:52.636   -- File entry --
+2026-09-26 17:51:52.637   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Runtime.Serialization.Formatters.dll
+2026-09-26 17:51:52.637   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.637   Installing the file.
+2026-09-26 17:51:52.644   Successfully installed the file.
+2026-09-26 17:51:52.644   -- File entry --
+2026-09-26 17:51:52.644   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Runtime.Serialization.Json.dll
+2026-09-26 17:51:52.646   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.646   Installing the file.
+2026-09-26 17:51:52.651   Successfully installed the file.
+2026-09-26 17:51:52.651   -- File entry --
+2026-09-26 17:51:52.651   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Runtime.Serialization.Primitives.dll
+2026-09-26 17:51:52.652   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.652   Installing the file.
+2026-09-26 17:51:52.658   Successfully installed the file.
+2026-09-26 17:51:52.658   -- File entry --
+2026-09-26 17:51:52.658   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Runtime.Serialization.Xml.dll
+2026-09-26 17:51:52.659   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.659   Installing the file.
+2026-09-26 17:51:52.668   Successfully installed the file.
+2026-09-26 17:51:52.668   -- File entry --
+2026-09-26 17:51:52.668   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Security.Claims.dll
+2026-09-26 17:51:52.669   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.669   Installing the file.
+2026-09-26 17:51:52.675   Successfully installed the file.
+2026-09-26 17:51:52.675   -- File entry --
+2026-09-26 17:51:52.675   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Security.Cryptography.Algorithms.dll
+2026-09-26 17:51:52.676   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.676   Installing the file.
+2026-09-26 17:51:52.682   Successfully installed the file.
+2026-09-26 17:51:52.682   -- File entry --
+2026-09-26 17:51:52.682   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Security.Cryptography.Csp.dll
+2026-09-26 17:51:52.683   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.683   Installing the file.
+2026-09-26 17:51:52.689   Successfully installed the file.
+2026-09-26 17:51:52.689   -- File entry --
+2026-09-26 17:51:52.689   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Security.Cryptography.Encoding.dll
+2026-09-26 17:51:52.689   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.690   Installing the file.
+2026-09-26 17:51:52.695   Successfully installed the file.
+2026-09-26 17:51:52.695   -- File entry --
+2026-09-26 17:51:52.695   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Security.Cryptography.Primitives.dll
+2026-09-26 17:51:52.696   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.696   Installing the file.
+2026-09-26 17:51:52.702   Successfully installed the file.
+2026-09-26 17:51:52.702   -- File entry --
+2026-09-26 17:51:52.703   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Security.Cryptography.X509Certificates.dll
+2026-09-26 17:51:52.703   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.703   Installing the file.
+2026-09-26 17:51:52.709   Successfully installed the file.
+2026-09-26 17:51:52.709   -- File entry --
+2026-09-26 17:51:52.709   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Security.Principal.dll
+2026-09-26 17:51:52.710   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.710   Installing the file.
+2026-09-26 17:51:52.715   Successfully installed the file.
+2026-09-26 17:51:52.715   -- File entry --
+2026-09-26 17:51:52.716   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Security.SecureString.dll
+2026-09-26 17:51:52.716   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.716   Installing the file.
+2026-09-26 17:51:52.722   Successfully installed the file.
+2026-09-26 17:51:52.723   -- File entry --
+2026-09-26 17:51:52.723   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Text.Encoding.dll
+2026-09-26 17:51:52.723   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.723   Installing the file.
+2026-09-26 17:51:52.728   Successfully installed the file.
+2026-09-26 17:51:52.728   -- File entry --
+2026-09-26 17:51:52.729   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Text.Encoding.Extensions.dll
+2026-09-26 17:51:52.729   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.729   Installing the file.
+2026-09-26 17:51:52.735   Successfully installed the file.
+2026-09-26 17:51:52.735   -- File entry --
+2026-09-26 17:51:52.736   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Text.RegularExpressions.dll
+2026-09-26 17:51:52.736   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.736   Installing the file.
+2026-09-26 17:51:52.741   Successfully installed the file.
+2026-09-26 17:51:52.741   -- File entry --
+2026-09-26 17:51:52.741   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Threading.dll
+2026-09-26 17:51:52.743   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.743   Installing the file.
+2026-09-26 17:51:52.748   Successfully installed the file.
+2026-09-26 17:51:52.749   -- File entry --
+2026-09-26 17:51:52.749   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Threading.Overlapped.dll
+2026-09-26 17:51:52.750   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.750   Installing the file.
+2026-09-26 17:51:52.756   Successfully installed the file.
+2026-09-26 17:51:52.757   -- File entry --
+2026-09-26 17:51:52.757   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Threading.Tasks.dll
+2026-09-26 17:51:52.757   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.757   Installing the file.
+2026-09-26 17:51:52.787   Successfully installed the file.
+2026-09-26 17:51:52.787   -- File entry --
+2026-09-26 17:51:52.787   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Threading.Tasks.Parallel.dll
+2026-09-26 17:51:52.788   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.788   Installing the file.
+2026-09-26 17:51:52.793   Successfully installed the file.
+2026-09-26 17:51:52.793   -- File entry --
+2026-09-26 17:51:52.793   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Threading.Thread.dll
+2026-09-26 17:51:52.794   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.794   Installing the file.
+2026-09-26 17:51:52.799   Successfully installed the file.
+2026-09-26 17:51:52.799   -- File entry --
+2026-09-26 17:51:52.799   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Threading.ThreadPool.dll
+2026-09-26 17:51:52.800   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.800   Installing the file.
+2026-09-26 17:51:52.805   Successfully installed the file.
+2026-09-26 17:51:52.805   -- File entry --
+2026-09-26 17:51:52.805   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Threading.Timer.dll
+2026-09-26 17:51:52.806   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.806   Installing the file.
+2026-09-26 17:51:52.812   Successfully installed the file.
+2026-09-26 17:51:52.812   -- File entry --
+2026-09-26 17:51:52.812   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.ValueTuple.dll
+2026-09-26 17:51:52.812   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.812   Installing the file.
+2026-09-26 17:51:52.820   Successfully installed the file.
+2026-09-26 17:51:52.820   -- File entry --
+2026-09-26 17:51:52.820   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Xml.ReaderWriter.dll
+2026-09-26 17:51:52.821   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.821   Installing the file.
+2026-09-26 17:51:52.826   Successfully installed the file.
+2026-09-26 17:51:52.827   -- File entry --
+2026-09-26 17:51:52.827   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Xml.XDocument.dll
+2026-09-26 17:51:52.827   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.827   Installing the file.
+2026-09-26 17:51:52.832   Successfully installed the file.
+2026-09-26 17:51:52.832   -- File entry --
+2026-09-26 17:51:52.832   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Xml.XmlDocument.dll
+2026-09-26 17:51:52.834   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.834   Installing the file.
+2026-09-26 17:51:52.840   Successfully installed the file.
+2026-09-26 17:51:52.840   -- File entry --
+2026-09-26 17:51:52.840   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Xml.XmlSerializer.dll
+2026-09-26 17:51:52.840   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.841   Installing the file.
+2026-09-26 17:51:52.846   Successfully installed the file.
+2026-09-26 17:51:52.846   -- File entry --
+2026-09-26 17:51:52.846   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Xml.XPath.dll
+2026-09-26 17:51:52.847   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.847   Installing the file.
+2026-09-26 17:51:52.853   Successfully installed the file.
+2026-09-26 17:51:52.853   -- File entry --
+2026-09-26 17:51:52.854   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\pythonnet\runtime\System.Xml.XPath.XDocument.dll
+2026-09-26 17:51:52.854   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.855   Installing the file.
+2026-09-26 17:51:52.860   Successfully installed the file.
+2026-09-26 17:51:52.860   -- File entry --
+2026-09-26 17:51:52.860   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\resources\program_dictionary.json
+2026-09-26 17:51:52.861   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.861   Installing the file.
+2026-09-26 17:51:52.861   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\resources
+2026-09-26 17:51:52.887   Successfully installed the file.
+2026-09-26 17:51:52.887   -- File entry --
+2026-09-26 17:51:52.888   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\setuptools\_vendor\importlib_metadata-8.7.1.dist-info\INSTALLER
+2026-09-26 17:51:52.888   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.888   Installing the file.
+2026-09-26 17:51:52.890   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\setuptools
+2026-09-26 17:51:52.890   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\setuptools\_vendor
+2026-09-26 17:51:52.891   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\setuptools\_vendor\importlib_metadata-8.7.1.dist-info
+2026-09-26 17:51:52.894   Successfully installed the file.
+2026-09-26 17:51:52.894   -- File entry --
+2026-09-26 17:51:52.894   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\setuptools\_vendor\importlib_metadata-8.7.1.dist-info\METADATA
+2026-09-26 17:51:52.895   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.895   Installing the file.
+2026-09-26 17:51:52.898   Successfully installed the file.
+2026-09-26 17:51:52.898   -- File entry --
+2026-09-26 17:51:52.898   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\setuptools\_vendor\importlib_metadata-8.7.1.dist-info\RECORD
+2026-09-26 17:51:52.898   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.898   Installing the file.
+2026-09-26 17:51:52.909   Successfully installed the file.
+2026-09-26 17:51:52.909   -- File entry --
+2026-09-26 17:51:52.909   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\setuptools\_vendor\importlib_metadata-8.7.1.dist-info\REQUESTED
+2026-09-26 17:51:52.909   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.909   Installing the file.
+2026-09-26 17:51:52.912   Successfully installed the file.
+2026-09-26 17:51:52.912   -- File entry --
+2026-09-26 17:51:52.912   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\setuptools\_vendor\importlib_metadata-8.7.1.dist-info\top_level.txt
+2026-09-26 17:51:52.913   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.913   Installing the file.
+2026-09-26 17:51:52.915   Successfully installed the file.
+2026-09-26 17:51:52.915   -- File entry --
+2026-09-26 17:51:52.915   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\setuptools\_vendor\importlib_metadata-8.7.1.dist-info\WHEEL
+2026-09-26 17:51:52.916   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.916   Installing the file.
+2026-09-26 17:51:52.919   Successfully installed the file.
+2026-09-26 17:51:52.919   -- File entry --
+2026-09-26 17:51:52.919   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\setuptools\_vendor\importlib_metadata-8.7.1.dist-info\licenses\LICENSE
+2026-09-26 17:51:52.920   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.920   Installing the file.
+2026-09-26 17:51:52.921   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\setuptools\_vendor\importlib_metadata-8.7.1.dist-info\licenses
+2026-09-26 17:51:52.924   Successfully installed the file.
+2026-09-26 17:51:52.924   -- File entry --
+2026-09-26 17:51:52.925   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\setuptools\_vendor\jaraco\text\Lorem ipsum.txt
+2026-09-26 17:51:52.926   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.926   Installing the file.
+2026-09-26 17:51:52.927   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\setuptools\_vendor\jaraco
+2026-09-26 17:51:52.927   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\setuptools\_vendor\jaraco\text
+2026-09-26 17:51:52.930   Successfully installed the file.
+2026-09-26 17:51:52.931   -- File entry --
+2026-09-26 17:51:52.931   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\web\app.js
+2026-09-26 17:51:52.931   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.931   Installing the file.
+2026-09-26 17:51:52.932   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\web
+2026-09-26 17:51:52.953   Successfully installed the file.
+2026-09-26 17:51:52.954   -- File entry --
+2026-09-26 17:51:52.954   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\web\bokjitalk.ico
+2026-09-26 17:51:52.954   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.954   Installing the file.
+2026-09-26 17:51:52.964   Successfully installed the file.
+2026-09-26 17:51:52.964   -- File entry --
+2026-09-26 17:51:52.964   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\web\bokjitalk.png
+2026-09-26 17:51:52.964   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.964   Installing the file.
+2026-09-26 17:51:52.989   Successfully installed the file.
+2026-09-26 17:51:52.989   -- File entry --
+2026-09-26 17:51:52.989   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\web\index.html
+2026-09-26 17:51:52.990   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:52.990   Installing the file.
+2026-09-26 17:51:53.026   Successfully installed the file.
+2026-09-26 17:51:53.026   -- File entry --
+2026-09-26 17:51:53.027   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\web\showcase.html
+2026-09-26 17:51:53.027   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.027   Installing the file.
+2026-09-26 17:51:53.031   Successfully installed the file.
+2026-09-26 17:51:53.031   -- File entry --
+2026-09-26 17:51:53.031   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\web\styles.css
+2026-09-26 17:51:53.032   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.032   Installing the file.
+2026-09-26 17:51:53.035   Successfully installed the file.
+2026-09-26 17:51:53.036   -- File entry --
+2026-09-26 17:51:53.036   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\js\api.js
+2026-09-26 17:51:53.036   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.036   Installing the file.
+2026-09-26 17:51:53.037   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview
+2026-09-26 17:51:53.038   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\js
+2026-09-26 17:51:53.041   Successfully installed the file.
+2026-09-26 17:51:53.041   -- File entry --
+2026-09-26 17:51:53.041   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\js\customize.js
+2026-09-26 17:51:53.042   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.042   Installing the file.
+2026-09-26 17:51:53.044   Successfully installed the file.
+2026-09-26 17:51:53.044   -- File entry --
+2026-09-26 17:51:53.044   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\js\finish.js
+2026-09-26 17:51:53.044   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.044   Installing the file.
+2026-09-26 17:51:53.048   Successfully installed the file.
+2026-09-26 17:51:53.049   -- File entry --
+2026-09-26 17:51:53.049   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\js\state.js
+2026-09-26 17:51:53.049   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.050   Installing the file.
+2026-09-26 17:51:53.052   Successfully installed the file.
+2026-09-26 17:51:53.052   -- File entry --
+2026-09-26 17:51:53.052   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\js\lib\dom_json.js
+2026-09-26 17:51:53.053   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.053   Installing the file.
+2026-09-26 17:51:53.054   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\js\lib
+2026-09-26 17:51:53.058   Successfully installed the file.
+2026-09-26 17:51:53.058   -- File entry --
+2026-09-26 17:51:53.058   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\js\lib\polyfill.js
+2026-09-26 17:51:53.059   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.059   Installing the file.
+2026-09-26 17:51:53.063   Successfully installed the file.
+2026-09-26 17:51:53.063   -- File entry --
+2026-09-26 17:51:53.063   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\Microsoft.Web.WebView2.Core.dll
+2026-09-26 17:51:53.064   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.064   Installing the file.
+2026-09-26 17:51:53.064   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib
+2026-09-26 17:51:53.088   Successfully installed the file.
+2026-09-26 17:51:53.088   -- File entry --
+2026-09-26 17:51:53.088   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\Microsoft.Web.WebView2.WinForms.dll
+2026-09-26 17:51:53.089   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.089   Installing the file.
+2026-09-26 17:51:53.094   Successfully installed the file.
+2026-09-26 17:51:53.094   -- File entry --
+2026-09-26 17:51:53.094   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\pywebview-android.jar
+2026-09-26 17:51:53.095   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.095   Installing the file.
+2026-09-26 17:51:53.125   Successfully installed the file.
+2026-09-26 17:51:53.125   -- File entry --
+2026-09-26 17:51:53.125   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\WebBrowserInterop.x64.dll
+2026-09-26 17:51:53.126   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.126   Installing the file.
+2026-09-26 17:51:53.131   Successfully installed the file.
+2026-09-26 17:51:53.131   -- File entry --
+2026-09-26 17:51:53.131   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\WebBrowserInterop.x86.dll
+2026-09-26 17:51:53.132   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.132   Installing the file.
+2026-09-26 17:51:53.137   Successfully installed the file.
+2026-09-26 17:51:53.137   -- File entry --
+2026-09-26 17:51:53.137   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\runtimes\win-arm64\native\WebView2Loader.dll
+2026-09-26 17:51:53.139   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.139   Installing the file.
+2026-09-26 17:51:53.140   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\runtimes
+2026-09-26 17:51:53.141   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\runtimes\win-arm64
+2026-09-26 17:51:53.141   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\runtimes\win-arm64\native
+2026-09-26 17:51:53.153   Successfully installed the file.
+2026-09-26 17:51:53.154   -- File entry --
+2026-09-26 17:51:53.154   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\runtimes\win-x64\native\WebView2Loader.dll
+2026-09-26 17:51:53.155   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.155   Installing the file.
+2026-09-26 17:51:53.157   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\runtimes\win-x64
+2026-09-26 17:51:53.157   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\runtimes\win-x64\native
+2026-09-26 17:51:53.169   Successfully installed the file.
+2026-09-26 17:51:53.169   -- File entry --
+2026-09-26 17:51:53.171   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\runtimes\win-x86\native\WebView2Loader.dll
+2026-09-26 17:51:53.172   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.172   Installing the file.
+2026-09-26 17:51:53.172   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\runtimes\win-x86
+2026-09-26 17:51:53.173   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\webview\lib\runtimes\win-x86\native
+2026-09-26 17:51:53.185   Successfully installed the file.
+2026-09-26 17:51:53.185   -- File entry --
+2026-09-26 17:51:53.185   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\wiki\kb-v120\manifest.json
+2026-09-26 17:51:53.185   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.185   Installing the file.
+2026-09-26 17:51:53.186   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\wiki
+2026-09-26 17:51:53.187   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\wiki\kb-v120
+2026-09-26 17:51:53.190   Successfully installed the file.
+2026-09-26 17:51:53.190   -- File entry --
+2026-09-26 17:51:53.190   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\wiki\kb-v120\welfare.db
+2026-09-26 17:51:53.191   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:53.191   Installing the file.
+2026-09-26 17:51:58.907   Successfully installed the file.
+2026-09-26 17:51:58.907   -- File entry --
+2026-09-26 17:51:58.907   Dest filename: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\yaml\_yaml.cp312-win_amd64.pyd
+2026-09-26 17:51:58.908   Time stamp of our file: 2026-09-26 17:26:56.000
+2026-09-26 17:51:58.908   Installing the file.
+2026-09-26 17:51:58.908   Creating directory: C:\Users\xgfox\AppData\Local\BokjiTalkAI_E4B\_internal\yaml
+2026-09-26 17:51:58.922   Successfully installed the file.
+2026-09-26 17:51:58.926   -- Icon entry --
+2026-09-26 17:51:58.926   Dest filename: C:\Users\xgfox\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\복지톡AI 복지업무비서 E4B\복지톡AI 복지업무비서 E4B.lnk
+2026-09-26 17:51:58.927   Creating directory: C:\Users\xgfox\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\복지톡AI 복지업무비서 E4B
+2026-09-26 17:51:59.022   Creating the icon.
+2026-09-26 17:51:59.254   Successfully created the icon.
+2026-09-26 17:51:59.263   -- Icon entry --
+2026-09-26 17:51:59.263   Dest filename: C:\Users\xgfox\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\복지톡AI 복지업무비서 E4B\복지톡AI 복지업무비서 E4B 제거.lnk
+2026-09-26 17:51:59.265   Creating the icon.
+2026-09-26 17:51:59.290   Successfully created the icon.
+2026-09-26 17:51:59.299   -- Icon entry --
+2026-09-26 17:51:59.299   Dest filename: D:\바탕화면\복지톡AI 복지업무비서 E4B.lnk
+2026-09-26 17:51:59.300   Creating the icon.
+2026-09-26 17:51:59.315   Successfully created the icon.
+2026-09-26 17:51:59.338   Saving uninstall information.
+2026-09-26 17:51:59.338   Creating new uninstall key: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Uninstall\BokjiTalkAI_E4B_is1
+2026-09-26 17:51:59.338   Writing uninstall key values.
+2026-09-26 17:51:59.340   Detected previous administrative 64-bit install? No
+2026-09-26 17:51:59.340   Detected previous administrative 32-bit install? No
+2026-09-26 17:51:59.345   Installation process succeeded.
+2026-09-26 17:51:59.345   Need to restart Windows? No
+2026-09-26 17:51:59.353   Deinitializing Setup.
+2026-09-26 17:51:59.364   Log closed.

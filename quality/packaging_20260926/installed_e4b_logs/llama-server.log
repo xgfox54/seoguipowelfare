@@ -1,0 +1,29 @@
+0.00.682.205 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.682.483 I srv          init: The UI is disabled
+0.00.682.487 I srv          init: Use --ui/--no-ui (or deprecated --webui/--no-webui) to enable/disable
+0.00.682.727 W srv  llama_server: -----------------
+0.00.682.731 W srv  llama_server: CORS is set to allow all origins ('*') and no API key is set
+0.00.682.732 W srv  llama_server: this can be a security risk (cross-origin attacks)
+0.00.682.732 W srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655
+0.00.682.733 W srv  llama_server: -----------------
+0.00.686.352 I srv    load_model: loading model 'C:\Users\xgfox\AppData\Local\Packages\OpenAI.Codex_2p2nqsd0c76g0\LocalCache\Local\BokjiTalkAI_Beta_E4B\models\gemma4-e4b.gguf'
+0.02.607.571 W load: control-looking token:      1 '<eos>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.02.607.967 W load: control-looking token:     50 '<|tool_response>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.02.608.554 W load: control-looking token:    212 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.02.673.493 W load: special_eog_ids contains '<|tool_response>', removing '</s>' token from EOG list
+0.09.746.367 I cmn          init: llama threadpool init, n_threads = 8
+0.12.353.693 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 16384, kv_unified = 'false'
+0.12.392.802 I srv  llama_server: model loaded
+0.12.392.813 I srv  llama_server: listening on http://127.0.0.1:18081
+0.16.037.853 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+0.16.038.548 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.45.064.990 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   2140, progress = 0.29, t =  29.03 s / 73.73 tokens per second
+1.24.193.385 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   4188, progress = 0.57, t =  68.15 s / 61.45 tokens per second
+2.13.258.920 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   6236, progress = 0.86, t = 117.22 s / 53.20 tokens per second
+2.44.374.730 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   6770, progress = 0.93, t = 148.34 s / 45.64 tokens per second
+2.46.018.732 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =   7282, progress = 1.00, t = 149.98 s / 48.55 tokens per second
+3.05.429.374 I slot print_timing: id  0 | task 0 | prompt eval time =  166806.69 ms /  7286 tokens (   22.89 ms per token,    43.68 tokens per second)
+3.05.429.397 I slot print_timing: id  0 | task 0 |        eval time =    2578.78 ms /    18 tokens (  151.69 ms per token,     6.59 tokens per second)
+3.05.429.399 I slot print_timing: id  0 | task 0 |       total time =  169385.47 ms /  7304 tokens
+3.05.429.401 I slot print_timing: id  0 | task 0 |    graphs reused =         17
+3.05.429.987 I slot      release: id  0 | task 0 | stop processing: n_tokens = 7303, truncated = 0

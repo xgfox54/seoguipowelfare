@@ -1,0 +1,11 @@
+{
+  "arm": "A1",
+  "variant": "E4B",
+  "source_root": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-v1.4.0.Beta\\quality\\final_targeted_e4b\\targeted_e4b_r1_finalfixes\\source_snapshot",
+  "db": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-v1.4.0.Beta\\quality\\real_ab\\20260920T140405942320Z\\common_db\\welfare.db",
+  "asset_root": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-runtime-assets",
+  "model_path": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-runtime-assets\\models\\gemma4-e4b.gguf",
+  "port": 57782,
+  "max_tokens": 1024,
+  "request_timeout": 900
+}

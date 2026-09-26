@@ -1,0 +1,1366 @@
+{
+  "stage": "completed",
+  "kind": "SAVED_DRAFT_REPLAY_NOT_NEW_INFERENCE",
+  "model_inference_run": false,
+  "original_files": 156,
+  "run_dir": "C:\\Users\\xgfox\\Documents\\Codex\\seoguipowelfare-v1.5.0\\quality\\p0_repair\\20260926T081617875726Z",
+  "source_fixture_sha256": "e13f8e956e186f594fe92845934c0fce985018a26639ef0da02759910eb813df",
+  "started_utc": "2026-09-26T08:16:18.000929+00:00",
+  "decision_mode": "OFF",
+  "results": [
+    {
+      "index": 0,
+      "id": "Q057",
+      "arm": "A0",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 586,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 769,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 118.2184000062989,
+      "new_inference": false
+    },
+    {
+      "index": 1,
+      "id": "Q057",
+      "arm": "A1",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "MISSING_REQUESTED_CONTENT",
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [
+          "금액"
+        ],
+        "substantive_chars": 371,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 916,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 129.88639999821316,
+      "new_inference": false
+    },
+    {
+      "index": 2,
+      "id": "Q060",
+      "arm": "A1",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "MISSING_REQUESTED_CONTENT",
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [
+          "금액"
+        ],
+        "substantive_chars": 331,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 671,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 115.09770000702702,
+      "new_inference": false
+    },
+    {
+      "index": 3,
+      "id": "Q060",
+      "arm": "A0",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 629,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 770,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 109.0120000008028,
+      "new_inference": false
+    },
+    {
+      "index": 4,
+      "id": "Q175",
+      "arm": "A0",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 183,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "COMPLETE_CANDIDATE",
+        "reasons": [],
+        "missing_slots": [],
+        "substantive_chars": 362,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 53.62510000122711,
+      "new_inference": false
+    },
+    {
+      "index": 5,
+      "id": "Q175",
+      "arm": "A1",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": false,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": false,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 120,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "COMPLETE_CANDIDATE",
+        "reasons": [],
+        "missing_slots": [],
+        "substantive_chars": 564,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 39.470200004871,
+      "new_inference": false
+    },
+    {
+      "index": 6,
+      "id": "Q063",
+      "arm": "A1",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1401,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED",
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1401,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 72.24029999633785,
+      "new_inference": false
+    },
+    {
+      "index": 7,
+      "id": "Q063",
+      "arm": "A0",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1362,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED",
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1362,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 90.51799999724608,
+      "new_inference": false
+    },
+    {
+      "index": 8,
+      "id": "Q088",
+      "arm": "A0",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "COMPLETE_CANDIDATE",
+        "reasons": [],
+        "missing_slots": [],
+        "substantive_chars": 947,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "COMPLETE_CANDIDATE",
+        "reasons": [],
+        "missing_slots": [],
+        "substantive_chars": 947,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 48.592199993436225,
+      "new_inference": false
+    },
+    {
+      "index": 9,
+      "id": "Q088",
+      "arm": "A1",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED",
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1116,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED",
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1116,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 56.53980000352021,
+      "new_inference": false
+    },
+    {
+      "index": 10,
+      "id": "Q108",
+      "arm": "A1",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "COMPLETE_CANDIDATE",
+        "reasons": [],
+        "missing_slots": [],
+        "substantive_chars": 985,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "COMPLETE_CANDIDATE",
+        "reasons": [],
+        "missing_slots": [],
+        "substantive_chars": 985,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 30.779299995629117,
+      "new_inference": false
+    },
+    {
+      "index": 11,
+      "id": "Q108",
+      "arm": "A0",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1171,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED",
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1171,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 33.0081000138307,
+      "new_inference": false
+    },
+    {
+      "index": 12,
+      "id": "Q145",
+      "arm": "A0",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "ABSTAIN",
+        "reasons": [
+          "NO_SUBSTANTIVE_ANSWER"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 175,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "ABSTAIN",
+        "reasons": [
+          "NO_SUBSTANTIVE_ANSWER"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 175,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 14.667699986603111,
+      "new_inference": false
+    },
+    {
+      "index": 13,
+      "id": "Q145",
+      "arm": "A1",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "ABSTAIN",
+        "reasons": [
+          "NO_SUBSTANTIVE_ANSWER",
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 0,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "ABSTAIN",
+        "reasons": [
+          "NO_SUBSTANTIVE_ANSWER"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 170,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 9.183600006508641,
+      "new_inference": false
+    },
+    {
+      "index": 14,
+      "id": "Q188",
+      "arm": "A1",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 491,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 491,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 45.3208000108134,
+      "new_inference": false
+    },
+    {
+      "index": 15,
+      "id": "Q188",
+      "arm": "A0",
+      "repeat": 1,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 993,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 993,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 85.38240000780206,
+      "new_inference": false
+    },
+    {
+      "index": 16,
+      "id": "Q057",
+      "arm": "A1",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "MISSING_REQUESTED_CONTENT",
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [
+          "금액"
+        ],
+        "substantive_chars": 371,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 916,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 120.14640000415966,
+      "new_inference": false
+    },
+    {
+      "index": 17,
+      "id": "Q057",
+      "arm": "A0",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 586,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 769,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 90.67430000868626,
+      "new_inference": false
+    },
+    {
+      "index": 18,
+      "id": "Q060",
+      "arm": "A0",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 629,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 770,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 79.43589999922551,
+      "new_inference": false
+    },
+    {
+      "index": 19,
+      "id": "Q060",
+      "arm": "A1",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "MISSING_REQUESTED_CONTENT",
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [
+          "금액"
+        ],
+        "substantive_chars": 331,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 671,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 70.42139999975916,
+      "new_inference": false
+    },
+    {
+      "index": 20,
+      "id": "Q175",
+      "arm": "A1",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": false,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": false,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 120,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "COMPLETE_CANDIDATE",
+        "reasons": [],
+        "missing_slots": [],
+        "substantive_chars": 564,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 28.74829999927897,
+      "new_inference": false
+    },
+    {
+      "index": 21,
+      "id": "Q175",
+      "arm": "A0",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 183,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "COMPLETE_CANDIDATE",
+        "reasons": [],
+        "missing_slots": [],
+        "substantive_chars": 362,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 44.00579999492038,
+      "new_inference": false
+    },
+    {
+      "index": 22,
+      "id": "Q063",
+      "arm": "A0",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1362,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED",
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1362,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 56.22720000974368,
+      "new_inference": false
+    },
+    {
+      "index": 23,
+      "id": "Q063",
+      "arm": "A1",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1401,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED",
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1401,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 61.25100000645034,
+      "new_inference": false
+    },
+    {
+      "index": 24,
+      "id": "Q088",
+      "arm": "A1",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED",
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1116,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED",
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1116,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 37.819999997736886,
+      "new_inference": false
+    },
+    {
+      "index": 25,
+      "id": "Q088",
+      "arm": "A0",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "COMPLETE_CANDIDATE",
+        "reasons": [],
+        "missing_slots": [],
+        "substantive_chars": 947,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "COMPLETE_CANDIDATE",
+        "reasons": [],
+        "missing_slots": [],
+        "substantive_chars": 947,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 33.16379999159835,
+      "new_inference": false
+    },
+    {
+      "index": 26,
+      "id": "Q108",
+      "arm": "A0",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1171,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED",
+          "GENERATION_TRUNCATED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 1171,
+        "truncated": true,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 25.108699992415495,
+      "new_inference": false
+    },
+    {
+      "index": 27,
+      "id": "Q108",
+      "arm": "A1",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "COMPLETE_CANDIDATE",
+        "reasons": [],
+        "missing_slots": [],
+        "substantive_chars": 985,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "COMPLETE_CANDIDATE",
+        "reasons": [],
+        "missing_slots": [],
+        "substantive_chars": 985,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 23.111800008337013,
+      "new_inference": false
+    },
+    {
+      "index": 28,
+      "id": "Q145",
+      "arm": "A1",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "ABSTAIN",
+        "reasons": [
+          "NO_SUBSTANTIVE_ANSWER",
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 0,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "ABSTAIN",
+        "reasons": [
+          "NO_SUBSTANTIVE_ANSWER"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 170,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 12.23300000128802,
+      "new_inference": false
+    },
+    {
+      "index": 29,
+      "id": "Q145",
+      "arm": "A0",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "ABSTAIN",
+        "reasons": [
+          "NO_SUBSTANTIVE_ANSWER"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 175,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "ABSTAIN",
+        "reasons": [
+          "NO_SUBSTANTIVE_ANSWER"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 175,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 8.515900000929832,
+      "new_inference": false
+    },
+    {
+      "index": 30,
+      "id": "Q188",
+      "arm": "A0",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 993,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 993,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 68.54149998980574,
+      "new_inference": false
+    },
+    {
+      "index": 31,
+      "id": "Q188",
+      "arm": "A1",
+      "repeat": 2,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": null,
+      "gold_in_old_final": null,
+      "gold_in_replayed_final": null,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 491,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 491,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 29.413400014163926,
+      "new_inference": false
+    },
+    {
+      "index": 32,
+      "id": "Q057",
+      "arm": "A0",
+      "repeat": 3,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 586,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 769,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 81.66850000270642,
+      "new_inference": false
+    },
+    {
+      "index": 33,
+      "id": "Q057",
+      "arm": "A1",
+      "repeat": 3,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "MISSING_REQUESTED_CONTENT",
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [
+          "금액"
+        ],
+        "substantive_chars": 371,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 916,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 101.48589999880642,
+      "new_inference": false
+    },
+    {
+      "index": 34,
+      "id": "Q060",
+      "arm": "A1",
+      "repeat": 3,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "MISSING_REQUESTED_CONTENT",
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [
+          "금액"
+        ],
+        "substantive_chars": 331,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 671,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 69.17909999901894,
+      "new_inference": false
+    },
+    {
+      "index": 35,
+      "id": "Q060",
+      "arm": "A0",
+      "repeat": 3,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 629,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 770,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 79.66610000585206,
+      "new_inference": false
+    },
+    {
+      "index": 36,
+      "id": "Q175",
+      "arm": "A0",
+      "repeat": 3,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": true,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": true,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 183,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "COMPLETE_CANDIDATE",
+        "reasons": [],
+        "missing_slots": [],
+        "substantive_chars": 362,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 40.11980000359472,
+      "new_inference": false
+    },
+    {
+      "index": 37,
+      "id": "Q175",
+      "arm": "A1",
+      "repeat": 3,
+      "metadata_ok": true,
+      "roundtrip_ok": true,
+      "gold_in_draft": false,
+      "gold_in_old_final": false,
+      "gold_in_replayed_final": false,
+      "old_quality": {
+        "status": "PARTIAL",
+        "reasons": [
+          "CLAIMS_REMOVED"
+        ],
+        "missing_slots": [],
+        "substantive_chars": 120,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "replayed_quality": {
+        "status": "COMPLETE_CANDIDATE",
+        "reasons": [],
+        "missing_slots": [],
+        "substantive_chars": 564,
+        "truncated": false,
+        "correctness": "UNREVIEWED",
+        "scope": "structural_completeness_not_semantic_proof"
+      },
+      "validator_only_ms": 29.402999993180856,
+      "new_inference": false
+    }
+  ],
+  "errors": [],
+  "syntax_ok": true,
+  "pytest_exit_code": 0,
+  "tests": {
+    "total": 302,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "fixture_records": 38,
+  "original_unchanged": true,
+  "fixture_unchanged": true,
+  "numeric_replay": {
+    "evaluated": 18,
+    "gold_in_draft": 15,
+    "gold_in_old_final": 0,
+    "gold_in_replayed_final": 15
+  },
+  "whole_answer_correctness": "UNREVIEWED",
+  "new_inference_speedup": "NOT_MEASURED",
+  "finished_utc": "2026-09-26T08:20:48.618626+00:00",
+  "passed": true
+}

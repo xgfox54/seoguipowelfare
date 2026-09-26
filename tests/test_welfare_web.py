@@ -7,6 +7,10 @@ from fastapi.testclient import TestClient
 
 from welfare_web import Answerer, StatusReader, create_app
 
+# The app answers only requests addressed to this PC (see welfare_web
+# LOOPBACK_HOSTS); the test client uses the real app address.
+APP_URL = "http://127.0.0.1:8765"
+
 
 def _status(_: Path) -> Mapping[
     str, str | int | bool | list[dict[str, str | bool]]
@@ -57,7 +61,8 @@ def _client(tmp_path: Path) -> TestClient:
     answerer: Answerer = _answer
     status_reader: StatusReader = _status
     return TestClient(
-        create_app(tmp_path, answerer=answerer, status_reader=status_reader)
+        create_app(tmp_path, answerer=answerer, status_reader=status_reader),
+        base_url=APP_URL,
     )
 
 
@@ -168,7 +173,8 @@ def test_line_break_tags_render_while_other_html_stays_escaped(tmp_path: Path) -
     answerer: Answerer = table_answer
     status_reader: StatusReader = _status
     with TestClient(
-        create_app(tmp_path, answerer=answerer, status_reader=status_reader)
+        create_app(tmp_path, answerer=answerer, status_reader=status_reader),
+        base_url=APP_URL,
     ) as client:
         payload = client.post("/api/ask", json={"question": "위기사유"}).json()
 
@@ -187,9 +193,12 @@ def test_shutdown_endpoint_invokes_launcher_callback(tmp_path: Path) -> None:
             answerer=answerer,
             status_reader=status_reader,
             shutdowner=lambda: calls.append("shutdown"),
-        )
+        ),
+        base_url=APP_URL,
     ) as client:
-        response = client.post("/api/shutdown")
+        # Contract (2026-09-26): shutdown takes an empty JSON object so that a
+        # cross-site form/text post cannot trigger it without a CORS preflight.
+        response = client.post("/api/shutdown", json={})
 
     assert response.status_code == 200
     assert response.json() == {"ok": True}

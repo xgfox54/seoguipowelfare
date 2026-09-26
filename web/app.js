@@ -31,6 +31,7 @@
   const setupDialogDoneButton = document.querySelector("#setup-dialog-done-button");
   const setupDialogRefreshButton = document.querySelector("#setup-dialog-refresh-button");
   const appVersionLabel = document.querySelector("#app-version");
+  const manualCountEyebrow = document.querySelector("#manual-count-eyebrow");
 
   const statusFields = {
     header: document.querySelector("#header-status"),
@@ -356,6 +357,9 @@
       renderModelOptions(status.models, status.default_model);
       statusFields.model.textContent = selectedModelLabel();
       statusFields.documents.textContent = `${formatNumber.format(status.source_documents)}개`;
+      if (manualCountEyebrow && Number.isFinite(status.source_documents)) {
+        manualCountEyebrow.textContent = `${formatNumber.format(status.source_documents)}개 복지 매뉴얼 통합 검색`;
+      }
       statusFields.sections.textContent = `${formatNumber.format(status.search_sections)}개`;
       updateSetupGuide(status);
       setBusy(false);
@@ -438,6 +442,28 @@
       const payload = await response.json();
       stopElapsedTimer();
       answerDocument.innerHTML = payload.answer_html;
+      if (payload.diagnostics && payload.diagnostics.stage_ms) {
+        const detail = document.createElement("details");
+        const summary = document.createElement("summary");
+        summary.textContent = "답변 처리 내역";
+        detail.appendChild(summary);
+        const stageNames = {
+          retrieval: "근거 검색", decision: "선택적 판단",
+          generation: "답변 생성", validation: "최종 근거 검사",
+        };
+        for (const [key, label] of Object.entries(stageNames)) {
+          const ms = Number(payload.diagnostics.stage_ms[key]);
+          if (!Number.isFinite(ms)) continue;
+          const row = document.createElement("p");
+          row.textContent = `${label}: ${(ms / 1000).toFixed(2)}초`;
+          detail.appendChild(row);
+        }
+        const gate = payload.diagnostics.gate || {};
+        const gateNote = document.createElement("p");
+        gateNote.textContent = `선택적 판단: ${gate.mode || "OFF"} / ${gate.status || "미실행"}. 수치·출처 검사는 의미 전체의 정확성을 보증하지 않습니다.`;
+        detail.appendChild(gateNote);
+        answerDocument.appendChild(detail);
+      }
       resetResultSearch({ disabled: false });
       statusFields.model.textContent = payload.model_label;
       showOnly(answerDocument);
@@ -473,7 +499,11 @@
     shutdownButton.disabled = true;
     shutdownButton.textContent = "종료 중";
     try {
-      await fetch("/api/shutdown", { method: "POST" });
+      await fetch("/api/shutdown", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: "{}",
+      });
       if (window.pywebview?.api?.close_app) {
         await window.pywebview.api.close_app();
         return;

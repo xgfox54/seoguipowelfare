@@ -1,8 +1,14 @@
 ![서귀포시 복지톡 AI 비서](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/raw/f1bcedf32157f4e6f90d4d13f89e81e1294e383e/%EC%84%9C%EA%B7%80%ED%8F%AC%EC%8B%9C_%EB%B3%B5%EC%A7%80%ED%86%A1_AI_%EB%B9%84%EC%84%9C.png)
 
-# 서귀포시 복지톡(Talk) AI 업무비서(로컬PC용)
+# 서귀포시 복지톡(Talk) AI 업무비서 v1.5.0
+
+**v1.5.0 (2026-09-26):** v1.4.0 정식판의 다음 버전입니다. 검색·질의분석 개선(사업 먼저 연도 처리, 제외 표현 분리, 사례 조건 보완검색), E4B Supervisor 제거, 복지제도100 기반 사업 사전(서귀포시 전용), 단일 금액 표 복구, 로컬 웹 보안 강화를 담았습니다. 잠금 200문항 E2B 평가에서 Recall@5 98.0%, 금지 주장·연도 혼입 0, 금액 골드 8/8입니다. 변경 내용과 검증 결과는 [RELEASE_NOTES_v1.5.0.md](RELEASE_NOTES_v1.5.0.md), 최종 판정은 [A1_READY_FINAL_20260926.md](A1_READY_FINAL_20260926.md)를 확인하세요.
+
+> **업그레이드:** v1.5.0은 v1.4.0 정식판과 같은 설치 ID·설치 폴더·포트(8765/18080)를 씁니다. v1.4.0이 설치된 PC에서 v1.5.0 설치 파일을 실행하면 v1.5.0으로 업그레이드됩니다. v1.4.0.Beta 개발 기록은 [README_BETA.md](README_BETA.md)에 보존했습니다.
 
 복지 업무자료 39개를 **로컬 SQLite FTS 검색색인**으로 검색하고, 프로그램에 **내장된 llama.cpp 엔진과 Gemma 4 모델**이 검색된 원문만 근거로 답변하는 Windows용 개인 업무 도구입니다. 선택한 설치 패키지로 AI 엔진과 모델까지 함께 설치되므로 Ollama 등 별도 프로그램 설치가 필요 없습니다.
+
+> **v1.5.0:** 요청 연도판이 없으면 다른 연도·다른 사업 자료로 대신 답하지 않고 안내하며, E2B·E4B 모두 질문당 모델 1회 호출 후 결정론적 검증을 거칩니다. 사용자가 쓴 사업명은 복지제도100 사전으로 찾아 검색 범위를 정하되, 답변 근거는 언제나 복지톡 원문 DB입니다.
 
 > **v1.4.0:** LLM에게 검색·검증까지 맡기던 3-Agent 기본 경로를 제거하고, 규칙 기반 Query Planner·2단계 검색·Evidence Slot·결정적 Grounding Validator를 중심으로 답변 구조를 재설계했습니다.
 
@@ -10,7 +16,7 @@ E2B와 E4B는 별도 설치본입니다. E2B 설치본은 E2B 모델만, E4B 설
 
 OpenAI API, ChatGPT Plus, OpenKB, OpenAI Agents SDK는 실행에 필요하지 않습니다.
 
-최종 설치파일은 [GitLab Releases](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases)에서 내려받을 수 있습니다. v1.4.0은 E2B 단일 설치 EXE와 E4B 분할 설치파일을 묶은 ZIP을 제공합니다.
+v1.5.0 설치 파일은 [GitLab Releases v1.5.0](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.5.0)에서 복원 스크립트로 내려받습니다(서버의 단일 파일 업로드 제한 때문에 45MB 조각으로 보관, 받는 방법은 [RELEASE_NOTES_v1.5.0.md](RELEASE_NOTES_v1.5.0.md) 참고). 내부 공유용 사본은 구글 드라이브 `BokjiTalkAI_v1.5.0_설치파일` 폴더에도 있습니다. E2B는 설치 EXE 하나, E4B는 설치 EXE와 분할 데이터 3개를 묶은 ZIP입니다. 이전 버전 설치파일은 [GitLab Releases](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases)에서 내려받을 수 있습니다.
 
 (다운로드 페이지 링크)
 https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
@@ -19,8 +25,8 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 
 | 항목 | 현재 구현 |
 | --- | --- |
-| 버전 | v1.4.0 |
-| 사용자 실행 파일 | E2B `복지업무비서_v1.4.0_E2B.exe`, E4B `복지업무비서_v1.4.0_E4B.exe` |
+| 버전 | v1.5.0 |
+| 사용자 실행 파일 | E2B `복지업무비서_v1.5.0_E2B.exe`, E4B `복지업무비서_v1.5.0_E4B.exe` |
 | 화면 | pywebview + Microsoft Edge WebView2 기반 독립 프로그램 창 |
 | 로컬 서버 | FastAPI / Uvicorn, `127.0.0.1:8765`에만 바인딩 |
 | 검색 | SQLite FTS5/BM25 + 사업/연도/지역/authority 메타데이터 랭킹 + 2단계 검색 |
@@ -32,7 +38,19 @@ https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases
 | AI 호출 방식 | 내장 llama-server(llama.cpp b10686) OpenAI 호환 API, 127.0.0.1:18080 |
 | 인터넷 필요 여부 | 패키지 다운로드 후 설치와 일반 질의는 오프라인 가능 |
 
-## v1.4.0 최종 검증 결과
+## v1.5.0 검증 결과
+
+| 검증 항목 | 결과 |
+| --- | --- |
+| 잠금 200문항 E2B (최종 코드, `quality/final_locked200/final_r3_20260925T232718Z`) | Recall@5 98.0%, 연도 혼동 Recall@5 93.3%, 금지 주장·연도 혼입·잘못된 전제 채택·근거 없는 수치 0, 금액 골드 8/8, 추론 오류 0 |
+| E4B | 잠금 200문항 안전성 위반 0, 수정 영향 19문항 재실행에서 보류 0·금액 골드 8/8 |
+| 전체 테스트 | 302 passed |
+| P0 저장 초안 재생 | 통과(금액 골드 15/15) |
+| 설치 시험 | E2B: v1.4.0 위 업그레이드 설치·실행·보안 점검 통과. E4B: 분할 설치 파일로 새 설치·실행·보안 점검·제거 통과([PACKAGING_REPORT_v1.5.0.md](PACKAGING_REPORT_v1.5.0.md)) |
+
+자동 판정은 형식 판정이며 정답 여부는 사람 검수 대상입니다. 이 검증 PC(AMD Ryzen 5 7530U, 내장 GPU)에서 E2B 평균 답변 시간은 88.8초, E4B는 218.0초입니다. 코드 서명, 8GB·16GB 업무용 PC 인수는 남아 있습니다.
+
+## v1.4.0 최종 검증 결과 (이전 버전)
 
 v1.4.0은 소스 단위 테스트뿐 아니라 **실제 배포 설치파일을 새 경로에 무인 설치하고, 모델을 Ready 상태까지 올린 뒤 실제 질문을 1건 실행하고 제거하는 설치 E2E**까지 완료했습니다.
 
@@ -60,13 +78,24 @@ v1.4.0은 소스 단위 테스트뿐 아니라 **실제 배포 설치파일을 �
 
 상세 측정값과 배포 차단 기준은 [QUALITY_REPORT_v1.4.0.md](QUALITY_REPORT_v1.4.0.md)를 참고하세요.
 
+## v1.5.0 주요 변경
+
+- 사업 먼저, 연도는 그다음: 소유 문서에 요청 연도판이 없으면 모델 호출 없이 "로컬 DB에는 ○○년 ○○ 자료가 없습니다"를 안내합니다.
+- "2025년 기준과 섞지 말고"(연도 제외)와 "○○ 조건을 섞지 마"(사업 제외)를 구분하고, 제외한 사업의 매뉴얼은 근거에서 뺍니다.
+- 자동차·재산·소득 사례 질문은 소유 매뉴얼 안에서 해당 기준을 1회 보완검색합니다.
+- 복지제도100 사업명·사업내용 사전(서귀포시 전용, 571개)으로 사용자가 쓴 사업을 찾습니다. 사전은 검색 안내에만 쓰고 근거로 쓰지 않습니다.
+- E4B Supervisor를 제거했습니다. E2B·E4B 모두 질문당 모델 1회입니다.
+- 단일 가구 금액 질문에서 모델이 금액을 내지 못하면 근거 표 값으로 답합니다.
+- 로컬 웹서버가 다른 사이트에서 보낸 요청과 127.0.0.1·localhost가 아닌 Host를 거절합니다.
+- 자세한 내용: [RELEASE_NOTES_v1.5.0.md](RELEASE_NOTES_v1.5.0.md)
+
 ## v1.4.0 주요 변경
 
 - **사용자 질문을 Evidence에서 완전히 제외**해 질문에 잘못 적힌 금액·연도·사업명이 사실 근거로 인정되지 않게 했습니다.
 - LLM Refiner를 기본 경로에서 제거하고 제도·대상·업무단계·질문유형·연도·지역·수치조건을 Python Query Planner가 추출합니다.
 - E2B는 `Query Planner → Retrieval → Evidence Selector → Answerer 1회 → Grounding Validator` 구조로 동작합니다.
-- E4B도 일반 질문은 1회 생성하며 사례형 적격성·다사업 비교·복합조건 등 고난도 질문에서만 Supervisor를 추가 호출합니다.
-- 명시 연도가 있으면 해당 연도 문서가 존재하는 경우 다른 연도 문서를 기본 후보에서 제외합니다.
+- E4B도 E2B와 같은 경로로 질문당 1회만 생성합니다. v1.4.0.Beta(2026-09-25)에서 E4B Supervisor를 제거했고, E2B·E4B는 설치 모델로 결정되는 별도 단독 빌드입니다.
+- 명시 연도가 있으면 먼저 질문한 사업의 소유 매뉴얼을 정하고, 그 매뉴얼에 해당 연도판이 있을 때만 연도 필터를 적용합니다. 없으면 다른 연도로 대신 답하지 않고 "로컬 DB에는 ○○년 ○○ 자료가 없습니다" 안내를 반환합니다(v1.4.0.Beta).
 - 검색 순위에 `Seogwipo → Jeju → National`, `primary → reference → summary → index` 우선순위를 반영합니다.
 - 질문 유형별 Evidence Slot을 구성하고 각 근거를 `<EVIDENCE>` 블록과 high/medium/low 신뢰도로 모델에 전달합니다.
 - 가구원수↔금액 결합 오류, 잘못된 사업명, 고위험 부정문 반전까지 자동 Grounding Validator가 검사합니다.
@@ -139,12 +168,12 @@ v1.4.0은 소스 단위 테스트뿐 아니라 **실제 배포 설치파일을 �
 
 릴리스 페이지에서 원하는 패키지를 내려받습니다.
 
-- **E2B:** `BokjiTalkAI_Setup_v1.4.0_E2B.exe`를 실행합니다.
-- **E4B:** `BokjiTalkAI_Setup_v1.4.0_E4B.zip`을 폴더에 모두 풀고, 안의 `BokjiTalkAI_Setup_v1.4.0_E4B.exe`를 실행합니다. `.bin` 파일은 설치 EXE와 같은 폴더에 있어야 합니다.
+- **E2B:** `BokjiTalkAI_Setup_v1.5.0_E2B.exe`를 실행합니다.
+- **E4B:** `BokjiTalkAI_Setup_v1.5.0_E4B.zip`을 폴더에 모두 풀고, 안의 `BokjiTalkAI_Setup_v1.5.0_E4B.exe`를 실행합니다. `.bin` 파일은 설치 EXE와 같은 폴더에 있어야 합니다.
 
 두 패키지 모두 AI 엔진, 해당 모델, 웹 화면, 복지 검색 DB를 포함합니다. 모델이나 Ollama를 별도로 설치할 필요가 없습니다.
 
-E2B는 `%LOCALAPPDATA%\BokjiTalkAI`, E4B는 `%LOCALAPPDATA%\BokjiTalkAI_E4B`에 설치됩니다. 관리자 권한 없이 설치할 수 있습니다. 두 버전은 한 번에 하나씩 실행하세요. 실행 화면 상단에 `v1.4.0`이 표시됩니다.
+E2B는 `%LOCALAPPDATA%\BokjiTalkAI`, E4B는 `%LOCALAPPDATA%\BokjiTalkAI_E4B`에 설치됩니다. 관리자 권한 없이 설치할 수 있습니다. 두 버전은 한 번에 하나씩 실행하세요. 실행 화면 상단에 `v1.5.0`이 표시됩니다. v1.4.0이 설치된 PC에서는 같은 폴더에 v1.5.0으로 업그레이드됩니다.
 
 ### 3. 실행
 
@@ -209,8 +238,6 @@ Evidence Selector / Evidence Slot
 Gemma Answerer
    - 제공된 Evidence만 사용해 답변 생성
    ↓
-[E4B 고난도 질문만 Supervisor]
-   ↓
 Deterministic Grounding Validator
    - 수치·연도·사업명·가구원수↔금액·조건 부정 반전 검사
    - 원문 미지원 문장 제거
@@ -220,7 +247,7 @@ Deterministic Grounding Validator
 프로그램 창에 Markdown 렌더링
 ```
 
-E2B의 일반 질문은 Gemma 호출을 **1회**만 수행합니다. E4B 역시 일반 질문은 1회이며 고난도 질문에서만 Supervisor를 추가합니다. 검색·연도필터·근거선택·사실검증은 가능한 범위에서 Python 코드가 결정적으로 처리합니다. 질문과 복지DB 원문은 PC 밖으로 전송되지 않습니다.
+E2B와 E4B 모두 Gemma 호출을 질문당 **1회**만 수행합니다(v1.4.0.Beta에서 E4B Supervisor 제거). 연도 불일치 안내, 복지톡 원문이 없는 사업 안내, 시설 현황 목록 안내는 모델을 호출하지 않습니다. 검색·연도필터·근거선택·사실검증은 가능한 범위에서 Python 코드가 결정적으로 처리합니다. 질문과 복지DB 원문은 PC 밖으로 전송되지 않습니다. 사업명·사업내용 사전(복지제도100 기반, 서귀포시 전용)은 질문의 사업을 찾는 데만 쓰며 답변 근거로 쓰지 않습니다(`quality/program_dictionary/README.md`).
 
 검색 DB는 **6차 업데이트 원문 39개**를 사용합니다. `document_metadata.yaml`에서 각 합본 문서의 주제(`topic`), 근거 우선순위(`authority`), 자료 성격(`source_role`), 적용 범위(`jurisdiction`)를 별도로 관리합니다. `primary` 원본 업무자료를 최우선으로 사용하고, `reference`·`summary`·`index` 자료는 보조 근거로 취급합니다.
 
@@ -265,7 +292,7 @@ AI 답변은 `welfare_assistant.py`가 `welfare_llm.py`를 통해 내장 llama-s
 
 ## 복지DB 기준
 
-프로그램 v1.4.0 / 2026-09-07 복지DB 6차 업데이트 원문 기준:
+프로그램 v1.5.0 / 2026-09-07 복지DB 6차 업데이트 원문 기준:
 
 - 원문 문서: **39개**
 - 원문 총량: **62,075,154바이트**
@@ -359,7 +386,7 @@ EXE가 아닌 개발 상태에서 FastAPI 서버만 실행하려면:
 http://127.0.0.1:8765/
 ```
 
-이 방식은 개발·디버깅용입니다. 일반 사용자 배포 방식은 모델별 설치 패키지이며, 설치 후 실행 파일은 `복지업무비서_v1.4.0_E2B.exe` 또는 `복지업무비서_v1.4.0_E4B.exe`입니다.
+이 방식은 개발·디버깅용입니다. 일반 사용자 배포 방식은 모델별 설치 패키지이며, 설치 후 실행 파일은 `복지업무비서_v1.5.0_E2B.exe` 또는 `복지업무비서_v1.5.0_E4B.exe`입니다.
 
 ## 모델별 설치 패키지 빌드
 
@@ -386,8 +413,8 @@ powershell.exe -ExecutionPolicy Bypass -File .\build-exe.ps1
 결과 파일:
 
 ```text
-dist\BokjiTalkAI_Setup_v1.4.0_E2B.exe
-dist\BokjiTalkAI_Setup_v1.4.0_E4B.zip
+dist\BokjiTalkAI_Setup_v1.5.0_E2B.exe
+dist\BokjiTalkAI_Setup_v1.5.0_E4B.zip
 ```
 
 PyInstaller onedir 빌드에 웹 화면과 DB를 포함한 뒤, 해당 모델과 llama.cpp를 Inno Setup으로 묶습니다. 실행 파일 이름은 `복지업무비서_v{VERSION}_{E2B 또는 E4B}.exe`입니다. E4B 설치 EXE와 해당 `.bin` 파일을 하나의 ZIP으로 묶어 배포합니다.
@@ -399,7 +426,7 @@ PyInstaller onedir 빌드에 웹 화면과 DB를 포함한 뒤, 해당 모델과
 .\.venv-package\Scripts\python.exe -m ruff check welfare_*.py welfare_search tests
 ```
 
-배포 전에는 `pytest` 전체 통과, 200문항 골든 QA 평가, E2B/E4B 실제 설치본 E2E 검증을 모두 수행합니다. 검증 결과는 `QUALITY_REPORT_v1.4.0.md`에 기록하며, 실행하지 않은 항목은 통과로 간주하지 않습니다.
+배포 전에는 `pytest` 전체 통과, 200문항 골든 QA 평가, E2B/E4B 실제 설치본 E2E 검증을 모두 수행합니다. v1.5.0 검증 결과는 `A1_READY_FINAL_20260926.md`와 `PACKAGING_REPORT_v1.5.0.md`에 기록하며, 실행하지 않은 항목은 통과로 간주하지 않습니다.
 
 ## 자료 갱신 절차
 

@@ -54,3 +54,9 @@ def test_query_planner_preserves_happyeum_target() -> None:
 
     assert "행복이음" in plan.explicit_programs
     assert "부모급여" not in plan.explicit_programs
+
+
+def test_query_planner_excludes_year_named_only_as_mixing_distractor() -> None:
+    plan = plan_query("2026년 생계급여 기준을 알려줘. 2025년 기준과 섞지 말고 2026년 자료만 사용해줘")
+    assert plan.requested_years == frozenset({"2026"})
+    assert "2025년" not in plan.lexical_terms

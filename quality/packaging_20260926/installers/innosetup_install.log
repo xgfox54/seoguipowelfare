@@ -1,0 +1,671 @@
+﻿2026-09-26 16:21:08.352   Log opened. (Time zone: UTC+09:00)
+2026-09-26 16:21:08.352   Setup version: Inno Setup version 6.7.3
+2026-09-26 16:21:08.352   Original Setup EXE: C:\Users\xgfox\Documents\Codex\2026-09-24\new-chat-2\work\innosetup-6.7.3.exe
+2026-09-26 16:21:08.352   Setup command line: /SL5="$9103E6,8990482,950272,C:\Users\xgfox\Documents\Codex\2026-09-24\new-chat-2\work\innosetup-6.7.3.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /CURRENTUSER /LOG=C:\Users\xgfox\Documents\Codex\2026-09-24\new-chat-2\work\innosetup_install.log 
+2026-09-26 16:21:08.352   Windows version: 10.0.26200
+2026-09-26 16:21:08.353   Windows architecture: x64 (64-bit)
+2026-09-26 16:21:08.353   Machine types supported by system: x86 x64
+2026-09-26 16:21:08.353   User privileges: None
+2026-09-26 16:21:08.357   Administrative install mode: No
+2026-09-26 16:21:08.357   Install mode root key: HKEY_CURRENT_USER
+2026-09-26 16:21:08.357   64-bit install mode: No
+2026-09-26 16:21:08.357   RedirectionGuard status for current process: Enabled in enforcing mode
+2026-09-26 16:21:08.359   Created temporary directory: C:\Users\xgfox\AppData\Local\Temp\is-KC1YCA5H3X.tmp
+2026-09-26 16:21:08.738   Found 23 files to register with RestartManager.
+2026-09-26 16:21:08.738   Calling RestartManager's RmGetList.
+2026-09-26 16:21:08.754   RmGetList finished successfully.
+2026-09-26 16:21:08.754   RestartManager found no applications using one of our files.
+2026-09-26 16:21:08.760   Starting the installation process.
+2026-09-26 16:21:08.766   Creating directory: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6
+2026-09-26 16:21:08.767   Directory for uninstall files: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6
+2026-09-26 16:21:08.767   Creating new uninstall log: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\unins000.dat
+2026-09-26 16:21:08.782   -- File entry --
+2026-09-26 16:21:08.783   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\unins000.exe
+2026-09-26 16:21:08.794   Time stamp of our file: 2026-09-26 16:21:08.082
+2026-09-26 16:21:08.794   Installing the file.
+2026-09-26 16:21:08.829   Successfully installed the file.
+2026-09-26 16:21:08.829   -- File entry --
+2026-09-26 16:21:08.830   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\license.txt
+2026-09-26 16:21:08.830   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:08.830   Installing the file.
+2026-09-26 16:21:08.833   Successfully installed the file.
+2026-09-26 16:21:08.833   -- File entry --
+2026-09-26 16:21:08.833   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\ISetup.chm
+2026-09-26 16:21:08.833   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:08.833   Installing the file.
+2026-09-26 16:21:08.845   Successfully installed the file.
+2026-09-26 16:21:08.845   -- File entry --
+2026-09-26 16:21:08.845   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\ISetup-dark.chm
+2026-09-26 16:21:08.846   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:08.846   Installing the file.
+2026-09-26 16:21:08.860   Successfully installed the file.
+2026-09-26 16:21:08.860   -- File entry --
+2026-09-26 16:21:08.860   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Compil32.exe
+2026-09-26 16:21:08.861   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:08.861   Installing the file.
+2026-09-26 16:21:09.092   Successfully installed the file.
+2026-09-26 16:21:09.092   -- File entry --
+2026-09-26 16:21:09.092   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\isscint.dll
+2026-09-26 16:21:09.093   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.093   Installing the file.
+2026-09-26 16:21:09.204   Successfully installed the file.
+2026-09-26 16:21:09.204   -- File entry --
+2026-09-26 16:21:09.205   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\isscint.dll.issig
+2026-09-26 16:21:09.205   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.205   Installing the file.
+2026-09-26 16:21:09.207   Successfully installed the file.
+2026-09-26 16:21:09.207   -- File entry --
+2026-09-26 16:21:09.207   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\ISCC.exe
+2026-09-26 16:21:09.208   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.208   Installing the file.
+2026-09-26 16:21:09.315   Successfully installed the file.
+2026-09-26 16:21:09.316   -- File entry --
+2026-09-26 16:21:09.316   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\ISCmplr.dll
+2026-09-26 16:21:09.316   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.316   Installing the file.
+2026-09-26 16:21:09.415   Successfully installed the file.
+2026-09-26 16:21:09.415   -- File entry --
+2026-09-26 16:21:09.415   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\ISCmplr.dll.issig
+2026-09-26 16:21:09.416   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.416   Installing the file.
+2026-09-26 16:21:09.418   Successfully installed the file.
+2026-09-26 16:21:09.418   -- File entry --
+2026-09-26 16:21:09.418   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Setup.e32
+2026-09-26 16:21:09.419   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.419   Installing the file.
+2026-09-26 16:21:09.588   Successfully installed the file.
+2026-09-26 16:21:09.588   -- File entry --
+2026-09-26 16:21:09.588   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Setup.e32.issig
+2026-09-26 16:21:09.589   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.589   Installing the file.
+2026-09-26 16:21:09.592   Successfully installed the file.
+2026-09-26 16:21:09.592   -- File entry --
+2026-09-26 16:21:09.592   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\SetupCustomStyle.e32
+2026-09-26 16:21:09.593   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.593   Installing the file.
+2026-09-26 16:21:09.782   Successfully installed the file.
+2026-09-26 16:21:09.782   -- File entry --
+2026-09-26 16:21:09.782   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\SetupCustomStyle.e32.issig
+2026-09-26 16:21:09.783   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.783   Installing the file.
+2026-09-26 16:21:09.785   Successfully installed the file.
+2026-09-26 16:21:09.785   -- File entry --
+2026-09-26 16:21:09.785   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\SetupLdr.e32
+2026-09-26 16:21:09.786   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.786   Installing the file.
+2026-09-26 16:21:09.900   Successfully installed the file.
+2026-09-26 16:21:09.900   -- File entry --
+2026-09-26 16:21:09.900   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\SetupLdr.e32.issig
+2026-09-26 16:21:09.901   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.901   Installing the file.
+2026-09-26 16:21:09.903   Successfully installed the file.
+2026-09-26 16:21:09.903   -- File entry --
+2026-09-26 16:21:09.903   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\SetupLdr.e64
+2026-09-26 16:21:09.904   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.904   Installing the file.
+2026-09-26 16:21:09.980   Successfully installed the file.
+2026-09-26 16:21:09.980   -- File entry --
+2026-09-26 16:21:09.980   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\SetupLdr.e64.issig
+2026-09-26 16:21:09.981   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.981   Installing the file.
+2026-09-26 16:21:09.983   Successfully installed the file.
+2026-09-26 16:21:09.983   -- File entry --
+2026-09-26 16:21:09.983   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Default.isl
+2026-09-26 16:21:09.983   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.983   Installing the file.
+2026-09-26 16:21:09.986   Successfully installed the file.
+2026-09-26 16:21:09.986   -- File entry --
+2026-09-26 16:21:09.986   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Arabic.isl
+2026-09-26 16:21:09.987   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.987   Installing the file.
+2026-09-26 16:21:09.987   Creating directory: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages
+2026-09-26 16:21:09.990   Successfully installed the file.
+2026-09-26 16:21:09.990   -- File entry --
+2026-09-26 16:21:09.990   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Armenian.isl
+2026-09-26 16:21:09.991   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.991   Installing the file.
+2026-09-26 16:21:09.993   Successfully installed the file.
+2026-09-26 16:21:09.993   -- File entry --
+2026-09-26 16:21:09.993   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\BrazilianPortuguese.isl
+2026-09-26 16:21:09.995   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.995   Installing the file.
+2026-09-26 16:21:09.997   Successfully installed the file.
+2026-09-26 16:21:09.997   -- File entry --
+2026-09-26 16:21:09.997   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Bulgarian.isl
+2026-09-26 16:21:09.998   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:09.998   Installing the file.
+2026-09-26 16:21:10.001   Successfully installed the file.
+2026-09-26 16:21:10.001   -- File entry --
+2026-09-26 16:21:10.001   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Catalan.isl
+2026-09-26 16:21:10.001   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.001   Installing the file.
+2026-09-26 16:21:10.005   Successfully installed the file.
+2026-09-26 16:21:10.005   -- File entry --
+2026-09-26 16:21:10.005   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Corsican.isl
+2026-09-26 16:21:10.005   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.005   Installing the file.
+2026-09-26 16:21:10.008   Successfully installed the file.
+2026-09-26 16:21:10.008   -- File entry --
+2026-09-26 16:21:10.008   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Czech.isl
+2026-09-26 16:21:10.008   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.008   Installing the file.
+2026-09-26 16:21:10.010   Successfully installed the file.
+2026-09-26 16:21:10.010   -- File entry --
+2026-09-26 16:21:10.011   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Danish.isl
+2026-09-26 16:21:10.011   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.011   Installing the file.
+2026-09-26 16:21:10.013   Successfully installed the file.
+2026-09-26 16:21:10.013   -- File entry --
+2026-09-26 16:21:10.013   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Dutch.isl
+2026-09-26 16:21:10.014   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.014   Installing the file.
+2026-09-26 16:21:10.016   Successfully installed the file.
+2026-09-26 16:21:10.016   -- File entry --
+2026-09-26 16:21:10.016   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Finnish.isl
+2026-09-26 16:21:10.017   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.017   Installing the file.
+2026-09-26 16:21:10.019   Successfully installed the file.
+2026-09-26 16:21:10.019   -- File entry --
+2026-09-26 16:21:10.019   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\French.isl
+2026-09-26 16:21:10.019   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.019   Installing the file.
+2026-09-26 16:21:10.022   Successfully installed the file.
+2026-09-26 16:21:10.022   -- File entry --
+2026-09-26 16:21:10.022   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\German.isl
+2026-09-26 16:21:10.022   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.022   Installing the file.
+2026-09-26 16:21:10.025   Successfully installed the file.
+2026-09-26 16:21:10.025   -- File entry --
+2026-09-26 16:21:10.025   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Hebrew.isl
+2026-09-26 16:21:10.025   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.025   Installing the file.
+2026-09-26 16:21:10.028   Successfully installed the file.
+2026-09-26 16:21:10.028   -- File entry --
+2026-09-26 16:21:10.028   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Hungarian.isl
+2026-09-26 16:21:10.028   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.028   Installing the file.
+2026-09-26 16:21:10.032   Successfully installed the file.
+2026-09-26 16:21:10.032   -- File entry --
+2026-09-26 16:21:10.032   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Italian.isl
+2026-09-26 16:21:10.033   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.033   Installing the file.
+2026-09-26 16:21:10.035   Successfully installed the file.
+2026-09-26 16:21:10.035   -- File entry --
+2026-09-26 16:21:10.035   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Japanese.isl
+2026-09-26 16:21:10.036   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.036   Installing the file.
+2026-09-26 16:21:10.038   Successfully installed the file.
+2026-09-26 16:21:10.038   -- File entry --
+2026-09-26 16:21:10.038   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Korean.isl
+2026-09-26 16:21:10.039   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.039   Installing the file.
+2026-09-26 16:21:10.041   Successfully installed the file.
+2026-09-26 16:21:10.041   -- File entry --
+2026-09-26 16:21:10.041   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Norwegian.isl
+2026-09-26 16:21:10.042   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.042   Installing the file.
+2026-09-26 16:21:10.045   Successfully installed the file.
+2026-09-26 16:21:10.045   -- File entry --
+2026-09-26 16:21:10.045   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Polish.isl
+2026-09-26 16:21:10.045   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.045   Installing the file.
+2026-09-26 16:21:10.048   Successfully installed the file.
+2026-09-26 16:21:10.048   -- File entry --
+2026-09-26 16:21:10.048   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Portuguese.isl
+2026-09-26 16:21:10.049   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.049   Installing the file.
+2026-09-26 16:21:10.051   Successfully installed the file.
+2026-09-26 16:21:10.051   -- File entry --
+2026-09-26 16:21:10.051   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Russian.isl
+2026-09-26 16:21:10.052   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.052   Installing the file.
+2026-09-26 16:21:10.054   Successfully installed the file.
+2026-09-26 16:21:10.054   -- File entry --
+2026-09-26 16:21:10.054   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Slovak.isl
+2026-09-26 16:21:10.055   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.055   Installing the file.
+2026-09-26 16:21:10.057   Successfully installed the file.
+2026-09-26 16:21:10.057   -- File entry --
+2026-09-26 16:21:10.057   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Slovenian.isl
+2026-09-26 16:21:10.058   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.058   Installing the file.
+2026-09-26 16:21:10.060   Successfully installed the file.
+2026-09-26 16:21:10.060   -- File entry --
+2026-09-26 16:21:10.060   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Spanish.isl
+2026-09-26 16:21:10.061   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.061   Installing the file.
+2026-09-26 16:21:10.063   Successfully installed the file.
+2026-09-26 16:21:10.063   -- File entry --
+2026-09-26 16:21:10.063   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Swedish.isl
+2026-09-26 16:21:10.064   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.064   Installing the file.
+2026-09-26 16:21:10.066   Successfully installed the file.
+2026-09-26 16:21:10.067   -- File entry --
+2026-09-26 16:21:10.067   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Tamil.isl
+2026-09-26 16:21:10.067   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.067   Installing the file.
+2026-09-26 16:21:10.070   Successfully installed the file.
+2026-09-26 16:21:10.070   -- File entry --
+2026-09-26 16:21:10.070   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Thai.isl
+2026-09-26 16:21:10.070   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.070   Installing the file.
+2026-09-26 16:21:10.074   Successfully installed the file.
+2026-09-26 16:21:10.074   -- File entry --
+2026-09-26 16:21:10.074   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Turkish.isl
+2026-09-26 16:21:10.074   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.074   Installing the file.
+2026-09-26 16:21:10.077   Successfully installed the file.
+2026-09-26 16:21:10.077   -- File entry --
+2026-09-26 16:21:10.077   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Languages\Ukrainian.isl
+2026-09-26 16:21:10.078   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.078   Installing the file.
+2026-09-26 16:21:10.080   Successfully installed the file.
+2026-09-26 16:21:10.082   -- File entry --
+2026-09-26 16:21:10.082   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\SetupClassicIcon.ico
+2026-09-26 16:21:10.082   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.082   Installing the file.
+2026-09-26 16:21:10.085   Successfully installed the file.
+2026-09-26 16:21:10.085   -- File entry --
+2026-09-26 16:21:10.085   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\WizClassicImage.bmp
+2026-09-26 16:21:10.085   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.085   Installing the file.
+2026-09-26 16:21:10.087   Successfully installed the file.
+2026-09-26 16:21:10.087   -- File entry --
+2026-09-26 16:21:10.087   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\WizClassicImage-IS.bmp
+2026-09-26 16:21:10.088   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.088   Installing the file.
+2026-09-26 16:21:10.092   Successfully installed the file.
+2026-09-26 16:21:10.092   -- File entry --
+2026-09-26 16:21:10.092   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\WizClassicSmallImage.bmp
+2026-09-26 16:21:10.092   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.092   Installing the file.
+2026-09-26 16:21:10.095   Successfully installed the file.
+2026-09-26 16:21:10.095   -- File entry --
+2026-09-26 16:21:10.095   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\WizClassicSmallImage-IS.bmp
+2026-09-26 16:21:10.095   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.096   Installing the file.
+2026-09-26 16:21:10.098   Successfully installed the file.
+2026-09-26 16:21:10.098   -- File entry --
+2026-09-26 16:21:10.098   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\is7z.dll
+2026-09-26 16:21:10.099   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.099   Installing the file.
+2026-09-26 16:21:10.212   Successfully installed the file.
+2026-09-26 16:21:10.213   -- File entry --
+2026-09-26 16:21:10.213   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\is7z.dll.issig
+2026-09-26 16:21:10.213   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.213   Installing the file.
+2026-09-26 16:21:10.216   Successfully installed the file.
+2026-09-26 16:21:10.216   -- File entry --
+2026-09-26 16:21:10.216   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\is7zxa.dll
+2026-09-26 16:21:10.216   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.216   Installing the file.
+2026-09-26 16:21:10.279   Successfully installed the file.
+2026-09-26 16:21:10.279   -- File entry --
+2026-09-26 16:21:10.279   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\is7zxa.dll.issig
+2026-09-26 16:21:10.279   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.279   Installing the file.
+2026-09-26 16:21:10.282   Successfully installed the file.
+2026-09-26 16:21:10.282   -- File entry --
+2026-09-26 16:21:10.282   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\is7zxr.dll
+2026-09-26 16:21:10.282   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.282   Installing the file.
+2026-09-26 16:21:10.347   Successfully installed the file.
+2026-09-26 16:21:10.347   -- File entry --
+2026-09-26 16:21:10.347   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\is7zxr.dll.issig
+2026-09-26 16:21:10.348   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.348   Installing the file.
+2026-09-26 16:21:10.350   Successfully installed the file.
+2026-09-26 16:21:10.350   -- File entry --
+2026-09-26 16:21:10.350   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\iszlib.dll
+2026-09-26 16:21:10.350   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.350   Installing the file.
+2026-09-26 16:21:10.360   Successfully installed the file.
+2026-09-26 16:21:10.360   -- File entry --
+2026-09-26 16:21:10.360   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\iszlib.dll.issig
+2026-09-26 16:21:10.361   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.361   Installing the file.
+2026-09-26 16:21:10.364   Successfully installed the file.
+2026-09-26 16:21:10.364   -- File entry --
+2026-09-26 16:21:10.364   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\isunzlib.dll
+2026-09-26 16:21:10.365   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.365   Installing the file.
+2026-09-26 16:21:10.375   Successfully installed the file.
+2026-09-26 16:21:10.375   -- File entry --
+2026-09-26 16:21:10.375   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\isunzlib.dll.issig
+2026-09-26 16:21:10.375   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.375   Installing the file.
+2026-09-26 16:21:10.378   Successfully installed the file.
+2026-09-26 16:21:10.378   -- File entry --
+2026-09-26 16:21:10.378   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\isbzip.dll
+2026-09-26 16:21:10.379   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.379   Installing the file.
+2026-09-26 16:21:10.389   Successfully installed the file.
+2026-09-26 16:21:10.390   -- File entry --
+2026-09-26 16:21:10.390   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\isbzip.dll.issig
+2026-09-26 16:21:10.390   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.390   Installing the file.
+2026-09-26 16:21:10.393   Successfully installed the file.
+2026-09-26 16:21:10.393   -- File entry --
+2026-09-26 16:21:10.393   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\isbunzip.dll
+2026-09-26 16:21:10.393   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.393   Installing the file.
+2026-09-26 16:21:10.404   Successfully installed the file.
+2026-09-26 16:21:10.404   -- File entry --
+2026-09-26 16:21:10.404   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\isbunzip.dll.issig
+2026-09-26 16:21:10.405   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.405   Installing the file.
+2026-09-26 16:21:10.407   Successfully installed the file.
+2026-09-26 16:21:10.407   -- File entry --
+2026-09-26 16:21:10.407   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\islzma.dll
+2026-09-26 16:21:10.408   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.408   Installing the file.
+2026-09-26 16:21:10.462   Successfully installed the file.
+2026-09-26 16:21:10.462   -- File entry --
+2026-09-26 16:21:10.462   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\islzma.dll.issig
+2026-09-26 16:21:10.463   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.463   Installing the file.
+2026-09-26 16:21:10.465   Successfully installed the file.
+2026-09-26 16:21:10.465   -- File entry --
+2026-09-26 16:21:10.465   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\islzma32.exe
+2026-09-26 16:21:10.466   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.466   Installing the file.
+2026-09-26 16:21:10.527   Successfully installed the file.
+2026-09-26 16:21:10.528   -- File entry --
+2026-09-26 16:21:10.528   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\islzma32.exe.issig
+2026-09-26 16:21:10.528   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.529   Installing the file.
+2026-09-26 16:21:10.531   Successfully installed the file.
+2026-09-26 16:21:10.531   -- File entry --
+2026-09-26 16:21:10.531   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\islzma64.exe
+2026-09-26 16:21:10.531   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.531   Installing the file.
+2026-09-26 16:21:10.576   Successfully installed the file.
+2026-09-26 16:21:10.576   -- File entry --
+2026-09-26 16:21:10.576   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\islzma64.exe.issig
+2026-09-26 16:21:10.577   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.577   Installing the file.
+2026-09-26 16:21:10.580   Successfully installed the file.
+2026-09-26 16:21:10.580   -- File entry --
+2026-09-26 16:21:10.580   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\ISPP.dll
+2026-09-26 16:21:10.580   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.580   Installing the file.
+2026-09-26 16:21:10.713   Successfully installed the file.
+2026-09-26 16:21:10.713   -- File entry --
+2026-09-26 16:21:10.713   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\ISPP.dll.issig
+2026-09-26 16:21:10.714   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.714   Installing the file.
+2026-09-26 16:21:10.716   Successfully installed the file.
+2026-09-26 16:21:10.716   -- File entry --
+2026-09-26 16:21:10.716   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\ISPPBuiltins.iss
+2026-09-26 16:21:10.716   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.716   Installing the file.
+2026-09-26 16:21:10.720   Successfully installed the file.
+2026-09-26 16:21:10.720   -- File entry --
+2026-09-26 16:21:10.720   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\ISSigTool.exe
+2026-09-26 16:21:10.720   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.720   Installing the file.
+2026-09-26 16:21:10.808   Successfully installed the file.
+2026-09-26 16:21:10.808   -- File entry --
+2026-09-26 16:21:10.808   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\whatsnew.htm
+2026-09-26 16:21:10.808   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.808   Installing the file.
+2026-09-26 16:21:10.812   Successfully installed the file.
+2026-09-26 16:21:10.812   -- File entry --
+2026-09-26 16:21:10.812   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\64Bit.iss
+2026-09-26 16:21:10.813   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.813   Installing the file.
+2026-09-26 16:21:10.813   Creating directory: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples
+2026-09-26 16:21:10.815   Successfully installed the file.
+2026-09-26 16:21:10.815   -- File entry --
+2026-09-26 16:21:10.815   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\64BitTwoArch.iss
+2026-09-26 16:21:10.816   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.816   Installing the file.
+2026-09-26 16:21:10.818   Successfully installed the file.
+2026-09-26 16:21:10.818   -- File entry --
+2026-09-26 16:21:10.818   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\64BitThreeArch.iss
+2026-09-26 16:21:10.818   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.818   Installing the file.
+2026-09-26 16:21:10.821   Successfully installed the file.
+2026-09-26 16:21:10.821   -- File entry --
+2026-09-26 16:21:10.821   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\AllPagesExample.iss
+2026-09-26 16:21:10.821   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.821   Installing the file.
+2026-09-26 16:21:10.824   Successfully installed the file.
+2026-09-26 16:21:10.824   -- File entry --
+2026-09-26 16:21:10.824   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\CodeAutomation.iss
+2026-09-26 16:21:10.825   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.825   Installing the file.
+2026-09-26 16:21:10.827   Successfully installed the file.
+2026-09-26 16:21:10.827   -- File entry --
+2026-09-26 16:21:10.827   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\CodeAutomation2.iss
+2026-09-26 16:21:10.827   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.827   Installing the file.
+2026-09-26 16:21:10.829   Successfully installed the file.
+2026-09-26 16:21:10.829   -- File entry --
+2026-09-26 16:21:10.829   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\CodeClasses.iss
+2026-09-26 16:21:10.830   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.830   Installing the file.
+2026-09-26 16:21:10.832   Successfully installed the file.
+2026-09-26 16:21:10.832   -- File entry --
+2026-09-26 16:21:10.832   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\CodeDlg.iss
+2026-09-26 16:21:10.833   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.833   Installing the file.
+2026-09-26 16:21:10.835   Successfully installed the file.
+2026-09-26 16:21:10.835   -- File entry --
+2026-09-26 16:21:10.835   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\CodeDll.iss
+2026-09-26 16:21:10.835   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.835   Installing the file.
+2026-09-26 16:21:10.837   Successfully installed the file.
+2026-09-26 16:21:10.838   -- File entry --
+2026-09-26 16:21:10.838   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\CodeDownloadFiles.iss
+2026-09-26 16:21:10.838   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.838   Installing the file.
+2026-09-26 16:21:10.840   Successfully installed the file.
+2026-09-26 16:21:10.840   -- File entry --
+2026-09-26 16:21:10.840   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\CodeExample1.iss
+2026-09-26 16:21:10.841   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.841   Installing the file.
+2026-09-26 16:21:10.843   Successfully installed the file.
+2026-09-26 16:21:10.843   -- File entry --
+2026-09-26 16:21:10.843   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\CodePrepareToInstall.iss
+2026-09-26 16:21:10.843   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.843   Installing the file.
+2026-09-26 16:21:10.845   Successfully installed the file.
+2026-09-26 16:21:10.845   -- File entry --
+2026-09-26 16:21:10.846   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\Components.iss
+2026-09-26 16:21:10.846   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.846   Installing the file.
+2026-09-26 16:21:10.848   Successfully installed the file.
+2026-09-26 16:21:10.848   -- File entry --
+2026-09-26 16:21:10.848   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\DownloadFiles.iss
+2026-09-26 16:21:10.848   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.848   Installing the file.
+2026-09-26 16:21:10.851   Successfully installed the file.
+2026-09-26 16:21:10.851   -- File entry --
+2026-09-26 16:21:10.851   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\Example1.iss
+2026-09-26 16:21:10.851   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.851   Installing the file.
+2026-09-26 16:21:10.853   Successfully installed the file.
+2026-09-26 16:21:10.853   -- File entry --
+2026-09-26 16:21:10.853   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\Example2.iss
+2026-09-26 16:21:10.853   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.853   Installing the file.
+2026-09-26 16:21:10.855   Successfully installed the file.
+2026-09-26 16:21:10.855   -- File entry --
+2026-09-26 16:21:10.855   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\Example3.iss
+2026-09-26 16:21:10.856   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.856   Installing the file.
+2026-09-26 16:21:10.858   Successfully installed the file.
+2026-09-26 16:21:10.858   -- File entry --
+2026-09-26 16:21:10.858   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\ISPPExample1.iss
+2026-09-26 16:21:10.858   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.858   Installing the file.
+2026-09-26 16:21:10.861   Successfully installed the file.
+2026-09-26 16:21:10.861   -- File entry --
+2026-09-26 16:21:10.861   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\ISPPExample1License.txt
+2026-09-26 16:21:10.861   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.861   Installing the file.
+2026-09-26 16:21:10.863   Successfully installed the file.
+2026-09-26 16:21:10.863   -- File entry --
+2026-09-26 16:21:10.863   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\License.txt
+2026-09-26 16:21:10.864   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.864   Installing the file.
+2026-09-26 16:21:10.866   Successfully installed the file.
+2026-09-26 16:21:10.866   -- File entry --
+2026-09-26 16:21:10.866   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\Languages.iss
+2026-09-26 16:21:10.866   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.866   Installing the file.
+2026-09-26 16:21:10.868   Successfully installed the file.
+2026-09-26 16:21:10.868   -- File entry --
+2026-09-26 16:21:10.868   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll.dll
+2026-09-26 16:21:10.869   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.869   Installing the file.
+2026-09-26 16:21:10.879   Successfully installed the file.
+2026-09-26 16:21:10.880   -- File entry --
+2026-09-26 16:21:10.880   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyProg.chm
+2026-09-26 16:21:10.880   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.880   Installing the file.
+2026-09-26 16:21:10.883   Successfully installed the file.
+2026-09-26 16:21:10.883   -- File entry --
+2026-09-26 16:21:10.883   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyProg.exe
+2026-09-26 16:21:10.884   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.884   Installing the file.
+2026-09-26 16:21:10.908   Successfully installed the file.
+2026-09-26 16:21:10.909   -- File entry --
+2026-09-26 16:21:10.909   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyProg-Arm64.exe
+2026-09-26 16:21:10.909   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.909   Installing the file.
+2026-09-26 16:21:10.928   Successfully installed the file.
+2026-09-26 16:21:10.929   -- File entry --
+2026-09-26 16:21:10.929   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyProg-x64.exe
+2026-09-26 16:21:10.929   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.929   Installing the file.
+2026-09-26 16:21:10.953   Successfully installed the file.
+2026-09-26 16:21:10.953   -- File entry --
+2026-09-26 16:21:10.953   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\PowerShell.iss
+2026-09-26 16:21:10.954   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.954   Installing the file.
+2026-09-26 16:21:10.957   Successfully installed the file.
+2026-09-26 16:21:10.957   -- File entry --
+2026-09-26 16:21:10.957   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\Readme.txt
+2026-09-26 16:21:10.957   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.957   Installing the file.
+2026-09-26 16:21:10.960   Successfully installed the file.
+2026-09-26 16:21:10.960   -- File entry --
+2026-09-26 16:21:10.960   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\Readme-Dutch.txt
+2026-09-26 16:21:10.960   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.960   Installing the file.
+2026-09-26 16:21:10.964   Successfully installed the file.
+2026-09-26 16:21:10.964   -- File entry --
+2026-09-26 16:21:10.964   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\Readme-German.txt
+2026-09-26 16:21:10.964   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.964   Installing the file.
+2026-09-26 16:21:10.967   Successfully installed the file.
+2026-09-26 16:21:10.967   -- File entry --
+2026-09-26 16:21:10.967   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\UnicodeExample1.iss
+2026-09-26 16:21:10.967   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.967   Installing the file.
+2026-09-26 16:21:10.969   Successfully installed the file.
+2026-09-26 16:21:10.969   -- File entry --
+2026-09-26 16:21:10.969   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\UninstallCodeExample1.iss
+2026-09-26 16:21:10.970   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.970   Installing the file.
+2026-09-26 16:21:10.972   Successfully installed the file.
+2026-09-26 16:21:10.972   -- File entry --
+2026-09-26 16:21:10.972   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll\C\MyDll.c
+2026-09-26 16:21:10.973   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.973   Installing the file.
+2026-09-26 16:21:10.974   Creating directory: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll
+2026-09-26 16:21:10.974   Creating directory: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll\C
+2026-09-26 16:21:10.977   Successfully installed the file.
+2026-09-26 16:21:10.977   -- File entry --
+2026-09-26 16:21:10.977   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll\C\MyDll.def
+2026-09-26 16:21:10.977   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.977   Installing the file.
+2026-09-26 16:21:10.981   Successfully installed the file.
+2026-09-26 16:21:10.981   -- File entry --
+2026-09-26 16:21:10.981   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll\C\MyDll.dsp
+2026-09-26 16:21:10.982   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.982   Installing the file.
+2026-09-26 16:21:10.984   Successfully installed the file.
+2026-09-26 16:21:10.985   -- File entry --
+2026-09-26 16:21:10.985   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll\C#\MyDll.cs
+2026-09-26 16:21:10.985   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.985   Installing the file.
+2026-09-26 16:21:10.985   Creating directory: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll\C#
+2026-09-26 16:21:10.988   Successfully installed the file.
+2026-09-26 16:21:10.988   -- File entry --
+2026-09-26 16:21:10.988   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll\C#\MyDll.csproj
+2026-09-26 16:21:10.989   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.989   Installing the file.
+2026-09-26 16:21:10.991   Successfully installed the file.
+2026-09-26 16:21:10.991   -- File entry --
+2026-09-26 16:21:10.991   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll\C#\MyDll.sln
+2026-09-26 16:21:10.992   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.992   Installing the file.
+2026-09-26 16:21:10.994   Successfully installed the file.
+2026-09-26 16:21:10.994   -- File entry --
+2026-09-26 16:21:10.994   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll\C#\packages.config
+2026-09-26 16:21:10.994   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.994   Installing the file.
+2026-09-26 16:21:10.996   Successfully installed the file.
+2026-09-26 16:21:10.996   -- File entry --
+2026-09-26 16:21:10.997   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll\C#\Properties\AssemblyInfo.cs
+2026-09-26 16:21:10.997   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:10.997   Installing the file.
+2026-09-26 16:21:10.998   Creating directory: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll\C#\Properties
+2026-09-26 16:21:11.001   Successfully installed the file.
+2026-09-26 16:21:11.001   -- File entry --
+2026-09-26 16:21:11.001   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll\Delphi\MyDll.dpr
+2026-09-26 16:21:11.001   Time stamp of our file: 2026-05-22 09:00:00.000
+2026-09-26 16:21:11.001   Installing the file.
+2026-09-26 16:21:11.002   Creating directory: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Examples\MyDll\Delphi
+2026-09-26 16:21:11.004   Successfully installed the file.
+2026-09-26 16:21:11.005   -- Icon entry --
+2026-09-26 16:21:11.005   Dest filename: C:\Users\xgfox\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Inno Setup 6\Inno Setup Compiler.lnk
+2026-09-26 16:21:11.005   Creating directory: C:\Users\xgfox\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Inno Setup 6
+2026-09-26 16:21:11.027   Creating the icon.
+2026-09-26 16:21:11.353   Successfully created the icon.
+2026-09-26 16:21:11.361   -- Icon entry --
+2026-09-26 16:21:11.361   Dest filename: C:\Users\xgfox\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Inno Setup 6\Inno Setup Documentation.lnk
+2026-09-26 16:21:11.363   Creating the icon.
+2026-09-26 16:21:11.386   Successfully created the icon.
+2026-09-26 16:21:11.392   -- Icon entry --
+2026-09-26 16:21:11.393   Dest filename: C:\Users\xgfox\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Inno Setup 6\Inno Setup Documentation (Dark).lnk
+2026-09-26 16:21:11.395   Creating the icon.
+2026-09-26 16:21:11.412   Successfully created the icon.
+2026-09-26 16:21:11.419   -- Icon entry --
+2026-09-26 16:21:11.420   Dest filename: C:\Users\xgfox\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Inno Setup 6\Inno Setup Example Scripts.lnk
+2026-09-26 16:21:11.422   Creating the icon.
+2026-09-26 16:21:11.439   Successfully created the icon.
+2026-09-26 16:21:11.445   -- Icon entry --
+2026-09-26 16:21:11.446   Dest filename: C:\Users\xgfox\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Inno Setup 6\Inno Setup FAQ.lnk
+2026-09-26 16:21:11.448   Creating the icon.
+2026-09-26 16:21:11.456   Successfully created the icon.
+2026-09-26 16:21:11.464   -- Icon entry --
+2026-09-26 16:21:11.464   Dest filename: C:\Users\xgfox\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Inno Setup 6\Inno Setup Revision History.lnk
+2026-09-26 16:21:11.466   Creating the icon.
+2026-09-26 16:21:11.483   Successfully created the icon.
+2026-09-26 16:21:11.490   -- INI entry --
+2026-09-26 16:21:11.490   Dest filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\isfaq.url
+2026-09-26 16:21:11.490   Section: InternetShortcut
+2026-09-26 16:21:11.490   Entry: URL
+2026-09-26 16:21:11.490   Value: https://jrsoftware.org/isfaq.php
+2026-09-26 16:21:11.490   Updating the .INI file.
+2026-09-26 16:21:11.491   Successfully updated the .INI file.
+2026-09-26 16:21:11.491   Saving uninstall information.
+2026-09-26 16:21:11.491   Writing uninstaller messages: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\unins000.msg
+2026-09-26 16:21:11.494   Creating new uninstall key: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Uninstall\Inno Setup 6_is1
+2026-09-26 16:21:11.494   Writing uninstall key values.
+2026-09-26 16:21:11.494   Detected previous administrative 32-bit install? No
+2026-09-26 16:21:11.494   Detected previous administrative 64-bit install? No
+2026-09-26 16:21:11.500   Installation process succeeded.
+2026-09-26 16:21:11.503   -- Run entry --
+2026-09-26 16:21:11.503   Run as: Current user
+2026-09-26 16:21:11.503   Type: Exec
+2026-09-26 16:21:11.503   Filename: C:\Users\xgfox\AppData\Local\Programs\Inno Setup 6\Compil32.exe
+2026-09-26 16:21:11.503   Parameters: /ASSOC
+2026-09-26 16:21:11.762   Process exit code: 0
+2026-09-26 16:21:11.764   Need to restart Windows? No
+2026-09-26 16:21:11.771   Deinitializing Setup.
+2026-09-26 16:21:11.782   Log closed.

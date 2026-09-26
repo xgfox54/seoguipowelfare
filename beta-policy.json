@@ -1,0 +1,14 @@
+{
+  "project_name": "v1.5.0",
+  "decision_mode": "OFF",
+  "backend": "gemma_label",
+  "timeout_seconds": 8.0,
+  "max_extra_decisions": 1,
+  "max_retrieval_retries": 1,
+  "external_fallback": false,
+  "raw_query_logging": false,
+  "gemma_label_status": "B1_shadow_comparison_ready",
+  "gemma_logits_status": "B2_shadow_probe_only_requires_runtime_logprob_verification",
+  "laya_multilingual_status": "C0_shadow_zero_shot_uncalibrated_isolated_env",
+  "trained_backend_status": "not_implemented_no_reviewed_training_data"
+}

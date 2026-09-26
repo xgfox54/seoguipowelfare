@@ -1,0 +1,14 @@
+{
+  "started_utc": "2026-09-20T22:34:46.266622+00:00",
+  "golden_items": 200,
+  "golden_sha256": "a6dc8748f522a956476c02e751d99727f477d1dd54f707cbf30b0c44836b55ca",
+  "db": "C:\\Users\\USER\\Documents\\Codex\\seoguipowelfare-v1.4.0.Beta\\quality\\real_ab\\20260920T140405942320Z\\common_db\\welfare.db",
+  "db_sha256": "695f7ae17be32f8abc6b4503e92a23528c39f1611aa497b33bb7847ede5c1d02",
+  "model": "C:\\Users\\USER\\Downloads\\seoguipowelfare-v1.3.4\\seoguipowelfare-v1.3.4\\models\\gemma4-e2b-it-qat.gguf",
+  "model_sha256": "e531007218dfab990486a5de7676a6932d6ea8dea233d1f698d7c21cf8a16889",
+  "server": "C:\\Users\\USER\\Downloads\\seoguipowelfare-v1.3.4\\seoguipowelfare-v1.3.4\\runtime\\llamacpp\\llama-server.exe",
+  "server_sha256": "79f9eee912d76bdc7062c89813cd2fc4452a90bbfcae591bfaf4c88ecb3ea735",
+  "completed_before_batch": 0,
+  "batch_size": 80,
+  "decision_mode": "OFF"
+}

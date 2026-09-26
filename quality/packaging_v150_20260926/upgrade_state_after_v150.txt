@@ -1,0 +1,9 @@
+v1.4.0 E2B -> v1.5.0 E2B 업그레이드 후 상태 (2026-09-26 17:43, state150.ps1 출력 요약)
+설치 폴더 %LOCALAPPDATA%\BokjiTalkAI 최상위: logs, models, runtime, _internal, unins000.dat, unins000.exe, 복지업무비서_v1.5.0_E2B.exe
+이전 실행 파일 복지업무비서_v1.4.0_E2B.exe: 없음([InstallDelete]로 삭제)
+_internal\VERSION: 1.5.0
+welfare.db SHA-256: 695F7AE17BE32F8ABC6B4503E92A23528C39F1611AA497B33BB7847EDE5C1D02
+제거 목록(복지톡): 1건 {7E4B2C1A-9D3F-4A6B-8C5E-2F1D0B9A7E63}_is1 | 복지톡AI 복지업무비서 v1.5.0 (E2B) | 1.5.0
+바탕화면 바로가기 -> ...\BokjiTalkAI\복지업무비서_v1.5.0_E2B.exe
+시작 메뉴 바로가기 -> ...\BokjiTalkAI\복지업무비서_v1.5.0_E2B.exe, 제거 -> unins000.exe
+_internal 안에서 빌드 시각(17:00) 이전 파일(DB 제외): 0개

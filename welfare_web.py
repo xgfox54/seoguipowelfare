@@ -5,19 +5,21 @@ from collections.abc import Callable, Mapping
 from pathlib import Path
 from threading import Lock
 from typing import Annotated
+from urllib.parse import urlsplit
 
 import uvicorn
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import FileResponse, Response
+from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from markdown_it import MarkdownIt
-from pydantic import BaseModel, ConfigDict, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 from starlette.middleware.base import RequestResponseEndpoint
 
 from welfare_assistant import answer_question, system_status
 from welfare_llm import configured_model_choice
 from welfare_models import DEFAULT_MODEL_KEY, resolve_choice
 from welfare_runtime import knowledge_base_root, resource_path
+from welfare_telemetry import diagnostics
 
 Answerer = Callable[[Path, str, str], str]
 StatusReader = Callable[[Path], Mapping[str, object]]
@@ -34,6 +36,27 @@ NONBREAKING_WELFARE_TERMS = (
 )
 LINE_BREAK_TAG_PATTERN = re.compile(r"<\s*br\s*/?\s*>", re.IGNORECASE)
 ESCAPED_LINE_BREAK = "&lt;br&gt;"
+# The app serves only this PC.  A request addressed to any other host name
+# (DNS rebinding) or a state-changing request from another site (CSRF, e.g. a
+# web page posting to /api/shutdown) is refused before it reaches a route.
+LOOPBACK_HOSTS = frozenset({"127.0.0.1", "localhost"})
+STATE_CHANGING_METHODS = frozenset({"POST", "PUT", "PATCH", "DELETE"})
+
+
+def _host_name(authority: str) -> str:
+    authority = authority.strip().lower()
+    if authority.startswith("["):
+        return authority[1:].split("]", 1)[0]
+    return authority.split(":", 1)[0]
+
+
+def _same_origin(origin: str, host: str) -> bool:
+    parts = urlsplit(origin.strip())
+    return (
+        parts.scheme == "http"
+        and (parts.hostname or "") in LOOPBACK_HOSTS
+        and parts.netloc.lower() == host.strip().lower()
+    )
 
 
 class QuestionRequest(BaseModel):
@@ -43,11 +66,19 @@ class QuestionRequest(BaseModel):
     model: str = DEFAULT_MODEL_KEY
 
 
+class ShutdownRequest(BaseModel):
+    """Empty JSON object.  Requiring a JSON body makes a cross-site form or
+    text/plain post (which needs no CORS preflight) fail validation."""
+
+    model_config = ConfigDict(extra="forbid")
+
+
 class AnswerResponse(BaseModel):
     answer: str
     answer_html: str
     model: str
     model_label: str
+    diagnostics: dict = Field(default_factory=dict)
 
 
 class ModelOption(BaseModel):
@@ -121,6 +152,28 @@ def create_app(
     )
     application.mount("/static", StaticFiles(directory=web_dir), name="static")
 
+    # Registered before the security-header middleware so that its refusals
+    # also carry those headers (the last registered middleware runs outermost).
+    @application.middleware("http")
+    async def reject_foreign_requests(
+        request: Request, call_next: RequestResponseEndpoint
+    ) -> Response:
+        host = request.headers.get("host", "")
+        if _host_name(host) not in LOOPBACK_HOSTS:
+            return JSONResponse(
+                {"detail": "이 PC 주소(127.0.0.1)로 보낸 요청만 처리합니다."},
+                status_code=400,
+            )
+        if request.method in STATE_CHANGING_METHODS:
+            origin = request.headers.get("origin")
+            cross_site = request.headers.get("sec-fetch-site", "").lower() == "cross-site"
+            if cross_site or (origin is not None and not _same_origin(origin, host)):
+                return JSONResponse(
+                    {"detail": "다른 사이트에서 보낸 요청은 처리하지 않습니다."},
+                    status_code=403,
+                )
+        return await call_next(request)
+
     @application.middleware("http")
     async def add_security_headers(
         request: Request, call_next: RequestResponseEndpoint
@@ -184,10 +237,11 @@ def create_app(
             answer_html=answer_html,
             model=choice.key,
             model_label=choice.label,
+            diagnostics=diagnostics() if answerer is answer_question else {},
         )
 
     @application.post("/api/shutdown", include_in_schema=False)
-    def shutdown() -> dict[str, bool]:
+    def shutdown(_: ShutdownRequest) -> dict[str, bool]:
         if shutdowner is not None:
             shutdowner()
         return {"ok": True}

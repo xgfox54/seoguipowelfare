@@ -1,0 +1,85 @@
+{
+ "status_wait_s": 0.1,
+ "answers": [
+  {
+   "q": "2026년 긴급복지 생계지원 4인 가구 금액은 얼마야?",
+   "http": 200,
+   "s": 53.4,
+   "answer_head": "2026년 긴급복지 생계지원 4인 가구 금액은 1,994,600원입니다. [E2]",
+   "quality": "COMPLETE_CANDIDATE",
+   "numeric_render": {
+    "mode": "single_amount",
+    "chars": 45,
+    "table_fallback": false
+   },
+   "notice": null,
+   "evidence_top1": "18.[매뉴얼-긴급복지] 2026년 긴급복지지원, 재난적의료비지원사업 안내(합본).md"
+  },
+  {
+   "q": "지역사회보장협의체 업무 기준을 간단히 정리해줘",
+   "http": 200,
+   "s": 68.4,
+   "answer_head": "지역사회보장협의체는 사무국 및 전담직원을 통해 일반 행정 업무, 회의 지원, 심의·자문 관련 업무, 기관 간 조정 및 연계 활동, 내부 회의 개최·운영 등의 역할을 수행합니다.\n\n## ✅ 핵심 기준\n*   **일반 행정 관련 업무:** 지역사회보장협의체의 예산 관리 및 운영, 홈페이지 운영 및 홍보 관리, 사업 및 활동 내용의 지역사회 안내와 홍보를 수행합니다 [E3].\n*   **회의 지원:** 시·군·구 협의체, 실무협의체, 전문위원회 등 회의에 필요한 자료",
+   "quality": "COMPLETE_CANDIDATE",
+   "numeric_render": null,
+   "notice": null,
+   "evidence_top1": "27.[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내지침(제주도 지침 포함).md"
+  },
+  {
+   "q": "기초연금 신청 절차 알려줘",
+   "http": 200,
+   "s": 96.3,
+   "answer_head": "기초연금 신청은 방문 신청 또는 온라인 신청을 통해 가능하며, 신청 기간 및 구비 서류 등에 대한 세부 사항이 있습니다.\n\n## ✅ 요약\n*   **신청 방법:** 전국 읍･면･동 주민센터 또는 행정복지센터, 국민연금공단 지사에서 **방문 신청**하거나 **온라인 신청**이 가능합니다 [E2].\n*   **온라인 신청 시 필요 사항:** **본인인증**(금융인증서공동인증서(구 공인인증서), 간편인증 중 택1)이 필요합니다 [E2].\n*   **신청 가능 시점:*",
+   "quality": "PARTIAL",
+   "numeric_render": null,
+   "notice": null,
+   "evidence_top1": "05.[매뉴얼-공적급여] 2026년+기초연금+사업안내(개정)★.md"
+  },
+  {
+   "q": "2025년 긴급복지 소득기준",
+   "http": 200,
+   "s": 0.2,
+   "answer_head": "로컬 DB에는 2025년 긴급복지 자료가 없습니다. 확인되는 자료는 2026년판입니다.\n\n요청한 2025년 자료가 없으므로 다른 연도 자료로 대신 답하지 않았습니다. 2026년판 내용이 필요하면 연도를 2026년으로 바꾸거나 연도 없이 다시 질문해 주세요.\n\n## 📚 확인되는 원문\n- 18.[매뉴얼-긴급복지] 2026년 긴급복지지원, 재난적의료비지원사업 안내(합본).md",
+   "quality": "COMPLETE_CANDIDATE",
+   "numeric_render": null,
+   "notice": {
+    "kind": "year_mismatch",
+    "requested": [
+     "2025"
+    ],
+    "available": [
+     "2026"
+    ]
+   },
+   "evidence_top1": null
+  },
+  {
+   "q": "노숙인 복지 신청 절차 알려줘",
+   "http": 200,
+   "s": 114.8,
+   "answer_head": "노숙인 복지 신청 절차는 사업 운영 체제 및 실행기관 선정 절차, 그리고 노숙인 관련 시설 설치 및 운영 신고 절차 등에 따라 달라집니다.\n\n## ✅ 요약\n*   **노숙인 복지사업 운영 절차:** 접수(추천·발굴) → 초기면접 → 통합사례관리계획수립 → 프로그램(3종) 운영 → 점검 및 종결(참여자 성과지표 관리) 순으로 진행됩니다.[E1]\n*   **실행기관 선정 절차:** 실행기관은 **공모 신청 심사 및 선정**을 거치며, 선정 시 **협약체결 및 지원금",
+   "quality": "COMPLETE_CANDIDATE",
+   "numeric_render": null,
+   "notice": null,
+   "evidence_top1": "26.[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md"
+  }
+ ],
+ "security": {
+  "host_spoof_status": 200,
+  "origin_spoof_status": 200,
+  "ask_text_plain": 422,
+  "ask_preflight": 405
+ },
+ "status": {
+  "status": "정상",
+  "model": "gemma4-e2b-it-qat.gguf",
+  "app_version": "1.4.0.Beta",
+  "source_documents": 39,
+  "search_sections": 21588,
+  "engine_state": "ready",
+  "engine_error": "",
+  "ai_ready": true,
+  "setup_required": false,
+  "semantic_search": false
+ }
+}

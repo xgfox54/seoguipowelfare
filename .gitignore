@@ -26,4 +26,6 @@ logs/
 # Release/E2E local working directories
 quality/background_v1.4.0/
 quality/e2e-install-v1.4.0/
+quality/shadow_env/
+quality/shadow_models/
 .release-v1.4.0/

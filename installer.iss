@@ -1,5 +1,5 @@
 ﻿#ifndef AppVersion
-  #define AppVersion "1.4.0"
+  #define AppVersion "1.5.0"
 #endif
 #ifndef ModelVariant
   #define ModelVariant "E2B"
@@ -22,6 +22,7 @@
 AppId={#InstallId}
 AppName={#AppName}
 AppVersion={#AppVersion}
+VersionInfoVersion=1.5.0.0
 AppVerName={#AppName} v{#AppVersion} ({#ModelVariant})
 AppPublisher=서귀포시
 DefaultDirName={localappdata}\{#InstallFolder}
@@ -55,6 +56,10 @@ Name: "desktopicon"; Description: "바탕화면에 바로가기 만들기"; Grou
 
 [Files]
 Source: "dist\welfare_assistant\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+
+[InstallDelete]
+Type: files; Name: "{app}\복지업무비서_v*.exe"
+Type: filesandordirs; Name: "{app}\_internal"
 
 [Dirs]
 Name: "{app}\logs"
