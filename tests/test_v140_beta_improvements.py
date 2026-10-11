@@ -330,17 +330,17 @@ def test_bundled_dictionary_is_seogwipo_scoped_navigation_data() -> None:
 def test_dictionary_matches_by_name_partial_name_and_content() -> None:
     by_name = match_program("문화누리카드 신청 방법")
     assert by_name.status == "matched" and by_name.method == "name"
-    assert any(name.startswith("17.") for name in by_name.owner_sources)
-    partial = match_program("행복택시 이용 대상")
+    assert "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md" in by_name.owner_sources
+    partial = match_program("100세 장수축하금 대상")
     assert partial.status == "matched" and partial.method == "partial"
-    # 복지톡 DB is the 서귀포 authority: 38번 서귀포시 노인복지 종합안내서 mentions
-    # "어르신 행복택시", so the province-wide programme is 서귀포-confirmed.
-    taxi = partial.programs[0]
-    assert taxi.source_status == "mention_only" and taxi.region_status == "seogwipo_confirmed"
-    assert any(name.startswith("38.") for name in taxi.source_names)
+    # 복지톡 DB is the 서귀포 authority: the 서귀포시 노인복지 종합안내서 mentions
+    # "100세 장수축하금", so the province-wide programme is 서귀포-confirmed.
+    longevity = partial.programs[0]
+    assert longevity.source_status == "mention_only" and longevity.region_status == "seogwipo_confirmed"
+    assert "[서귀포시업무-종합자료] 2026년 서귀포시 노인복지 종합안내서.md" in longevity.source_names
     content = match_program("동네 가게에서 위기가구 제보하면 생필품 교환권 주는 사업")
     assert content.method == "content" and [p.name for p in content.programs] == ["서귀포 온정가게"]
-    assert any(name.startswith("37.") for name in content.owner_sources)
+    assert "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md" in content.owner_sources
 
 
 def test_dictionary_owner_steers_retrieval_only_without_an_explicit_anchor() -> None:

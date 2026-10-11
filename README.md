@@ -1,12 +1,16 @@
 ![서귀포시 복지톡 AI 업무비서](welfare_talk_title.png){width=100%}
 
-# 서귀포시 복지톡(Talk) AI 업무비서 v1.5.0
+# 서귀포시 복지톡(Talk) AI 업무비서 v1.5.1
+
+**v1.5.1 (2026-10-11):** 복지DB를 개별 매뉴얼 113개로 교체한 버전입니다. 아래 v1.5.0 설명의 기능·설치 방식은 그대로입니다.
 
 **v1.5.0 (2026-09-26):** v1.4.0 정식판의 다음 버전입니다. 검색·질의분석 개선(사업 먼저 연도 처리, 제외 표현 분리, 사례 조건 보완검색), E4B Supervisor 제거, 복지제도100 기반 사업 사전(서귀포시 전용), 단일 금액 표 복구, 로컬 웹 보안 강화를 담았습니다. 잠금 200문항 E2B 평가에서 Recall@5 98.0%, 금지 주장·연도 혼입 0, 금액 골드 8/8입니다. 변경 내용과 검증 결과는 [RELEASE_NOTES_v1.5.0.md](RELEASE_NOTES_v1.5.0.md), 최종 판정은 [A1_READY_FINAL_20260926.md](A1_READY_FINAL_20260926.md)를 확인하세요.
 
 > **업그레이드:** v1.5.0은 v1.4.0 정식판과 같은 설치 ID·설치 폴더·포트(8765/18080)를 씁니다. v1.4.0이 설치된 PC에서 v1.5.0 설치 파일을 실행하면 v1.5.0으로 업그레이드됩니다. v1.4.0.Beta 개발 기록은 [README_BETA.md](README_BETA.md)에 보존했습니다.
 
-복지 업무자료 39개를 **로컬 SQLite FTS 검색색인**으로 검색하고, 프로그램에 **내장된 llama.cpp 엔진과 Gemma 4 모델**이 검색된 원문만 근거로 답변하는 Windows용 개인 업무 도구입니다. 선택한 설치 패키지로 AI 엔진과 모델까지 함께 설치되므로 Ollama 등 별도 프로그램 설치가 필요 없습니다.
+복지 업무 매뉴얼 113개를 **로컬 SQLite FTS 검색색인**으로 검색하고, 프로그램에 **내장된 llama.cpp 엔진과 Gemma 4 모델**이 검색된 원문만 근거로 답변하는 Windows용 개인 업무 도구입니다. 선택한 설치 패키지로 AI 엔진과 모델까지 함께 설치되므로 Ollama 등 별도 프로그램 설치가 필요 없습니다.
+
+> **v1.5.1 (2026-10-11):** 검색 DB를 39개 병합본에서 6차 업데이트 원본 113개를 한 문서씩 넣은 개별 매뉴얼 DB로 바꿨습니다. 사업 전용 매뉴얼이 근거로 먼저 나오고, 금액 표 답변은 v1.5.0과 같이 정확합니다(금액 골드 8/8). 프로그램 기능은 v1.5.0과 같습니다. [변경 내용과 검증](DB_UPDATE_2026-10-11.md), [릴리스 노트](RELEASE_NOTES_v1.5.1.md)
 
 > **v1.5.0:** 요청 연도판이 없으면 다른 연도·다른 사업 자료로 대신 답하지 않고 안내하며, E2B·E4B 모두 질문당 모델 1회 호출 후 결정론적 검증을 거칩니다. 사용자가 쓴 사업명은 복지제도100 사전으로 찾아 검색 범위를 정하되, 답변 근거는 언제나 복지톡 원문 DB입니다.
 
@@ -16,7 +20,7 @@ E2B와 E4B는 별도 설치본입니다. E2B 설치본은 E2B 모델만, E4B 설
 
 OpenAI API, ChatGPT Plus, OpenKB, OpenAI Agents SDK는 실행에 필요하지 않습니다.
 
-**설치 파일 받기:** [v1.5.0 릴리스 페이지](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.5.0)에서 받기 도우미(`.cmd`) 하나를 내려받아 더블클릭하면, 설치 파일을 받아 검증한 뒤 설치 창까지 열어 줍니다. 처음 설치한다면 아래 [설치 가이드](#설치-가이드)를 순서대로 따라 하세요. 서귀포시 내부 공유용 사본은 구글 드라이브 `BokjiTalkAI_v1.5.0_설치파일` 폴더에도 있습니다. 이전 버전은 [GitLab Releases](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases)에서 받을 수 있습니다.
+**설치 파일 받기:** [v1.5.1 릴리스 페이지](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.5.1)에서 받기 도우미(`.cmd`) 하나를 내려받아 더블클릭하면, 설치 파일을 받아 검증한 뒤 설치 창까지 열어 줍니다. 처음 설치한다면 아래 [설치 가이드](#설치-가이드)를 순서대로 따라 하세요. 이전 버전은 [GitLab Releases](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases)에서 받을 수 있습니다.
 
 ## 설치 가이드
 
@@ -48,9 +52,9 @@ OpenAI API, ChatGPT Plus, OpenKB, OpenAI Agents SDK는 실행에 필요하지 �
 
 설치 파일은 서버 제한 때문에 400MB 이하 조각으로 나뉘어 있습니다. 조각을 하나씩 받을 필요 없이, 받기 도우미 하나만 내려받아 실행하면 됩니다.
 
-1. 고른 버전의 받기 도우미를 누릅니다. [v1.5.0 릴리스 페이지](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.5.0)의 **Assets** 목록에도 같은 파일이 있습니다.
-   - **E2B:** [BokjiTalkAI_v1.5.0_E2B_Download.cmd](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.5.0/downloads/BokjiTalkAI_v1.5.0_E2B_Download.cmd)
-   - **E4B:** [BokjiTalkAI_v1.5.0_E4B_Download.cmd](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.5.0/downloads/BokjiTalkAI_v1.5.0_E4B_Download.cmd)
+1. 고른 버전의 받기 도우미를 누릅니다. [v1.5.1 릴리스 페이지](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.5.1)의 **Assets** 목록에도 같은 파일이 있습니다.
+   - **E2B:** [BokjiTalkAI_v1.5.1_E2B_Download.cmd](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.5.1/downloads/BokjiTalkAI_v1.5.1_E2B_Download.cmd)
+   - **E4B:** [BokjiTalkAI_v1.5.1_E4B_Download.cmd](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.5.1/downloads/BokjiTalkAI_v1.5.1_E4B_Download.cmd)
 2. 브라우저가 "일반적으로 다운로드되지 않는 파일"이라거나 "장치에 손상을 줄 수 있다"고 경고하면, 다운로드 목록에서 파일 옆 **⋯** 메뉴를 눌러 **유지**를 고릅니다. Edge에서 한 번 더 물으면 **추가 정보 표시 → 그래도 계속**을 누릅니다. 코드 서명이 없는 파일이라 나오는 경고입니다.
 3. 받은 도우미는 그대로 **다운로드** 폴더에 둬도 됩니다. 설치 파일은 도우미와 같은 폴더에 만들어지므로, 그 드라이브에 공간이 부족하면 도우미를 여유 공간이 많은 곳의 새 폴더(예: `D:\복지톡설치`)로 옮기세요.
 
@@ -74,7 +78,7 @@ OpenAI API, ChatGPT Plus, OpenKB, OpenAI Agents SDK는 실행에 필요하지 �
 3. **설치 준비 완료**: **설치**를 누릅니다. 설치는 3분 안팎 걸립니다.
 4. 마지막 화면에서 "지금 … 실행"이 체크된 채로 **마침**을 누르면 프로그램이 바로 열립니다.
 
-설치 창을 다시 열어야 하면 도우미 폴더의 `BokjiTalkAI_Setup_v1.5.0_E2B.exe`(E4B는 `BokjiTalkAI_Setup_v1.5.0_E4B.exe`)를 더블클릭합니다. E4B는 같은 폴더에 `BokjiTalkAI_Setup_v1.5.0_E4B-1.bin`, `-2.bin`, `-3.bin`이 함께 있어야 합니다. 설치 중 "디스크를 넣으라"는 창이 나오면 이 `.bin` 파일이 설치 EXE와 같은 폴더에 없다는 뜻이니, 취소하고 받기 도우미를 다시 실행하세요.
+설치 창을 다시 열어야 하면 도우미 폴더의 `BokjiTalkAI_Setup_v1.5.1_E2B.exe`(E4B는 `BokjiTalkAI_Setup_v1.5.1_E4B.exe`)를 더블클릭합니다. E4B는 같은 폴더에 `BokjiTalkAI_Setup_v1.5.1_E4B-1.bin`, `-2.bin`, `-3.bin`이 함께 있어야 합니다. 설치 중 "디스크를 넣으라"는 창이 나오면 이 `.bin` 파일이 설치 EXE와 같은 폴더에 없다는 뜻이니, 취소하고 받기 도우미를 다시 실행하세요.
 
 설치가 끝나면 도우미 폴더의 설치 파일은 지워도 됩니다. 다른 PC에도 설치할 계획이라면 폴더째 USB 등에 복사해 두면 그 PC에서는 인터넷 없이 4단계부터 설치할 수 있습니다.
 
@@ -82,7 +86,7 @@ OpenAI API, ChatGPT Plus, OpenKB, OpenAI Agents SDK는 실행에 필요하지 �
 
 1. 바탕화면이나 시작 메뉴에서 **복지톡AI 복지업무비서**(E4B는 **복지톡AI 복지업무비서 E4B**)를 엽니다.
 2. 처음에는 AI 모델을 메모리에 올리느라 10초~1분 동안 **AI 준비 중**이 표시됩니다.
-3. 화면 위쪽에 `v1.5.0`이, 시스템 상태에 **AI 엔진: 실행 중**이 보이면 준비가 끝났습니다.
+3. 화면 위쪽에 `v1.5.1`이, 시스템 상태에 **AI 엔진: 실행 중**이 보이면 준비가 끝났습니다.
 4. 질문란에 "긴급복지 생계지원 신청 절차 알려줘"처럼 궁금한 업무를 입력하고 **질문하기**를 누릅니다. 답변은 PC에 따라 1~4분 걸립니다.
 5. 끝낼 때는 창을 닫거나 오른쪽 위 **프로그램 종료**를 누릅니다.
 
@@ -90,41 +94,41 @@ OpenAI API, ChatGPT Plus, OpenKB, OpenAI Agents SDK는 실행에 필요하지 �
 
 Windows 10이거나 기관 보안 정책으로 받기 도우미가 파일을 받지 못하면, 웹 브라우저로 파일을 직접 받아 설치할 수 있습니다.
 
-1. [v1.5.0 릴리스 페이지](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.5.0)의 **Assets**에서 필요한 파일을 **모두 같은 폴더**에 받습니다. 파일 이름은 바꾸지 마세요.
-   - **E2B (7개):** `BokjiTalkAI_Setup_v1.5.0_E2B.exe.001` ~ `.007`
-   - **E4B (14개):** `BokjiTalkAI_Setup_v1.5.0_E4B.exe`, `BokjiTalkAI_Setup_v1.5.0_E4B-1.bin.001` ~ `.005`, `BokjiTalkAI_Setup_v1.5.0_E4B-2.bin.001` ~ `.005`, `BokjiTalkAI_Setup_v1.5.0_E4B-3.bin.001` ~ `.003`
+1. [v1.5.1 릴리스 페이지](https://gitlab.aigov.go.kr/memory365/seoguipowelfare/-/releases/v1.5.1)의 **Assets**에서 필요한 파일을 **모두 같은 폴더**에 받습니다. 파일 이름은 바꾸지 마세요.
+   - **E2B (7개):** `BokjiTalkAI_Setup_v1.5.1_E2B.exe.001` ~ `.007`
+   - **E4B (14개):** `BokjiTalkAI_Setup_v1.5.1_E4B.exe`, `BokjiTalkAI_Setup_v1.5.1_E4B-1.bin.001` ~ `.005`, `BokjiTalkAI_Setup_v1.5.1_E4B-2.bin.001` ~ `.005`, `BokjiTalkAI_Setup_v1.5.1_E4B-3.bin.001` ~ `.003`
 2. 조각을 합칩니다. 둘 중 편한 방법을 쓰세요.
-   - **방법 1 (권장): 받기 도우미로 합치기.** 같은 폴더에 받기 도우미(`BokjiTalkAI_v1.5.0_E2B_Download.cmd` 또는 `_E4B_Download.cmd`)와 도우미 본체 `GET_BokjiTalkAI_v1.5.0.ps1`도 받아 두고 도우미를 더블클릭합니다. 필요한 파일이 모두 있으면 인터넷에 연결하지 않고 조각을 검증해 합친 뒤 설치 창을 엽니다. Windows 10에서도 이 방법은 동작합니다.
+   - **방법 1 (권장): 받기 도우미로 합치기.** 같은 폴더에 받기 도우미(`BokjiTalkAI_v1.5.1_E2B_Download.cmd` 또는 `_E4B_Download.cmd`)와 도우미 본체 `GET_BokjiTalkAI_v1.5.1.ps1`도 받아 두고 도우미를 더블클릭합니다. 필요한 파일이 모두 있으면 인터넷에 연결하지 않고 조각을 검증해 합친 뒤 설치 창을 엽니다. Windows 10에서도 이 방법은 동작합니다.
    - **방법 2: 명령 프롬프트로 합치기.** `.cmd` 실행이 막혀 있을 때 씁니다. 파일을 받은 폴더의 주소 표시줄에 `cmd`를 입력하고 Enter를 누르면 그 폴더에서 명령 프롬프트가 열립니다. 아래 명령을 붙여 넣습니다.
 
      ```bat
      rem E2B
-     copy /b "BokjiTalkAI_Setup_v1.5.0_E2B.exe.0*" "BokjiTalkAI_Setup_v1.5.0_E2B.exe"
+     copy /b "BokjiTalkAI_Setup_v1.5.1_E2B.exe.0*" "BokjiTalkAI_Setup_v1.5.1_E2B.exe"
 
      rem E4B
-     copy /b "BokjiTalkAI_Setup_v1.5.0_E4B-1.bin.0*" "BokjiTalkAI_Setup_v1.5.0_E4B-1.bin"
-     copy /b "BokjiTalkAI_Setup_v1.5.0_E4B-2.bin.0*" "BokjiTalkAI_Setup_v1.5.0_E4B-2.bin"
-     copy /b "BokjiTalkAI_Setup_v1.5.0_E4B-3.bin.0*" "BokjiTalkAI_Setup_v1.5.0_E4B-3.bin"
+     copy /b "BokjiTalkAI_Setup_v1.5.1_E4B-1.bin.0*" "BokjiTalkAI_Setup_v1.5.1_E4B-1.bin"
+     copy /b "BokjiTalkAI_Setup_v1.5.1_E4B-2.bin.0*" "BokjiTalkAI_Setup_v1.5.1_E4B-2.bin"
+     copy /b "BokjiTalkAI_Setup_v1.5.1_E4B-3.bin.0*" "BokjiTalkAI_Setup_v1.5.1_E4B-3.bin"
      ```
 
-     7-Zip이 설치되어 있다면 `.001` 파일을 오른쪽 클릭하고 **7-Zip → 파일 합치기**를 눌러도 됩니다. 방법 2로 합쳤다면 같은 명령 프롬프트에서 `certutil -hashfile BokjiTalkAI_Setup_v1.5.0_E2B.exe SHA256`을 실행해, 나온 값이 아래 표와 같은지 확인하세요.
+     7-Zip이 설치되어 있다면 `.001` 파일을 오른쪽 클릭하고 **7-Zip → 파일 합치기**를 눌러도 됩니다. 방법 2로 합쳤다면 같은 명령 프롬프트에서 `certutil -hashfile BokjiTalkAI_Setup_v1.5.1_E2B.exe SHA256`을 실행해, 나온 값이 아래 표와 같은지 확인하세요.
 3. 합치고 나면 조각 파일(`.001` 등)은 지워도 됩니다. 4단계부터 이어서 설치합니다.
 
 | 설치에 쓰는 파일 | 크기(바이트) | SHA-256 |
 | --- | ---: | --- |
-| `BokjiTalkAI_Setup_v1.5.0_E2B.exe` | 2,620,334,863 | `d387bac2a7254468fd88cd63d9a57d8044cc8f57b06155e01ae46883b8188a36` |
-| `BokjiTalkAI_Setup_v1.5.0_E4B.exe` | 2,410,620 | `5e816e23c7ac0a863a4a60b5184e33eec802dbd7fee74c88bfa31937fe9c86f0` |
-| `BokjiTalkAI_Setup_v1.5.0_E4B-1.bin` | 1,897,588,992 | `a5a27d8137c8c268434f1a0bfc8553b4b3c10a2856807cce6cf342ee456fd62b` |
-| `BokjiTalkAI_Setup_v1.5.0_E4B-2.bin` | 1,900,000,000 | `bb42ddd440623b81b7e3ebccc55dbaa6830644e46d1aea79381e61014ab08f0d` |
-| `BokjiTalkAI_Setup_v1.5.0_E4B-3.bin` | 1,082,537,216 | `f82dc10c6201afa801c8256e7d8a8ec3d0d15d1aa098b84c96c08045b9d8be02` |
+| `BokjiTalkAI_Setup_v1.5.1_E2B.exe` | 2,636,045,677 | `db08485a8360528f5d23b515b60d4bcaaffc3b91bcea71113653c304a173b3ad` |
+| `BokjiTalkAI_Setup_v1.5.1_E4B.exe` | 2,414,929 | `67dad322c427771b076271518552777176c6519fa07d6e43c9b4837e00128a9b` |
+| `BokjiTalkAI_Setup_v1.5.1_E4B-1.bin` | 1,897,584,896 | `b88ecb3ff60cf4321819cade40091a8eb6da88ea0141018ac698c943cd9425c7` |
+| `BokjiTalkAI_Setup_v1.5.1_E4B-2.bin` | 1,900,000,000 | `ee8ee7f3646adbe1726b8c0624b8ff77d71f9aedc8a4a8946de1b50a7eaec0c9` |
+| `BokjiTalkAI_Setup_v1.5.1_E4B-3.bin` | 1,098,250,736 | `7c6135c34d877baabc1460a8232959f6ac7c8f462141c960dfe73976448eba52` |
 
-조각 파일과 도우미의 검증값은 릴리스 자산 `SHA256SUMS_GITLAB_v1.5.0.txt`에 있습니다.
+조각 파일과 도우미의 검증값은 릴리스 자산 `SHA256SUMS_GITLAB_v1.5.1.txt`에 있습니다.
 
 ### 업그레이드, 버전 바꾸기, 제거
 
-- **v1.4.0에서 올리기:** 프로그램을 끈 뒤(창 닫기 또는 **프로그램 종료**) 같은 모델의 v1.5.0을 위 순서대로 설치합니다. v1.4.0을 먼저 지울 필요가 없고, 같은 폴더에서 v1.5.0으로 바뀝니다. E2B 업그레이드는 시험을 마쳤고, E4B 업그레이드는 설치 방식이 같지만 아직 시험하지 않았습니다.
+- **v1.4.0·v1.5.0에서 올리기:** 프로그램을 끈 뒤(창 닫기 또는 **프로그램 종료**) 같은 모델의 v1.5.1을 위 순서대로 설치합니다. 이전 버전을 먼저 지울 필요가 없고, 같은 폴더에서 v1.5.1로 바뀝니다. 설치 ID·설치 폴더는 v1.4.0·v1.5.0과 같습니다.
 - **E2B와 E4B 바꾸기:** 원하는 버전을 새로 설치하면 됩니다. 설치 폴더가 달라 서로 덮어쓰지 않습니다. 필요 없는 버전은 아래 방법으로 제거합니다.
-- **제거:** 먼저 프로그램을 끕니다. **시작 → 설정 → 앱 → 설치된 앱**에서 "복지톡AI 복지업무비서 v1.5.0 (E2B)" 또는 "복지톡AI 복지업무비서 E4B v1.5.0 (E4B)"를 찾아 **제거**를 누릅니다. 시작 메뉴의 "… 제거" 바로가기를 써도 됩니다. 프로그램을 켠 채 제거하면 사용 중인 파일이 남으니, 그때는 프로그램을 끄고 설치 폴더를 직접 지우세요.
+- **제거:** 먼저 프로그램을 끕니다. **시작 → 설정 → 앱 → 설치된 앱**에서 "복지톡AI 복지업무비서 v1.5.1 (E2B)" 또는 "복지톡AI 복지업무비서 E4B v1.5.1 (E4B)"를 찾아 **제거**를 누릅니다. 시작 메뉴의 "… 제거" 바로가기를 써도 됩니다. 프로그램을 켠 채 제거하면 사용 중인 파일이 남으니, 그때는 프로그램을 끄고 설치 폴더를 직접 지우세요.
 
 ### 설치할 때 자주 겪는 문제
 
@@ -144,14 +148,14 @@ Windows 10이거나 기관 보안 정책으로 받기 도우미가 파일을 받
 
 | 항목 | 현재 구현 |
 | --- | --- |
-| 버전 | v1.5.0 |
-| 사용자 실행 파일 | E2B `복지업무비서_v1.5.0_E2B.exe`, E4B `복지업무비서_v1.5.0_E4B.exe` |
+| 버전 | v1.5.1 |
+| 사용자 실행 파일 | E2B `복지업무비서_v1.5.1_E2B.exe`, E4B `복지업무비서_v1.5.1_E4B.exe` |
 | 화면 | pywebview + Microsoft Edge WebView2 기반 독립 프로그램 창 |
 | 로컬 서버 | FastAPI / Uvicorn, `127.0.0.1:8765`에만 바인딩 |
 | 검색 | SQLite FTS5/BM25 + 사업/연도/지역/authority 메타데이터 랭킹 + 2단계 검색 |
-| 복지 업무자료 | 39개 Markdown 원문 |
-| 검색 구간 | 21,588개 |
-| 원문 총량 | 62,075,154바이트 |
+| 복지 업무자료 | 113개 Markdown 원문 (개별 매뉴얼 112개 + 제주 사회복지시설 목록) |
+| 검색 구간 | 22,007개 |
+| 원문 총량 | 61,854,776바이트 |
 | 기본 AI 모델 | Gemma 4 E2B QAT Q4 (`gemma4-e2b-it-qat.gguf`, 설치 파일에 내장) |
 | E4B 패키지 | Gemma 4 E4B Q4_K_M (`gemma4-e4b.gguf`, E4B 패키지에 내장) |
 | AI 호출 방식 | 내장 llama-server(llama.cpp b10686) OpenAI 호환 API, 127.0.0.1:18080 |
@@ -349,7 +353,7 @@ Deterministic Grounding Validator
 
 E2B와 E4B 모두 Gemma 호출을 질문당 **1회**만 수행합니다(v1.4.0.Beta에서 E4B Supervisor 제거). 연도 불일치 안내, 복지톡 원문이 없는 사업 안내, 시설 현황 목록 안내는 모델을 호출하지 않습니다. 검색·연도필터·근거선택·사실검증은 가능한 범위에서 Python 코드가 결정적으로 처리합니다. 질문과 복지DB 원문은 PC 밖으로 전송되지 않습니다. 사업명·사업내용 사전(복지제도100 기반, 서귀포시 전용)은 질문의 사업을 찾는 데만 쓰며 답변 근거로 쓰지 않습니다(`quality/program_dictionary/README.md`).
 
-검색 DB는 **6차 업데이트 원문 39개**를 사용합니다. `document_metadata.yaml`에서 각 합본 문서의 주제(`topic`), 근거 우선순위(`authority`), 자료 성격(`source_role`), 적용 범위(`jurisdiction`)를 별도로 관리합니다. `primary` 원본 업무자료를 최우선으로 사용하고, `reference`·`summary`·`index` 자료는 보조 근거로 취급합니다.
+검색 DB는 **6차 업데이트 원본 113개를 한 문서씩 넣은 개별 매뉴얼**을 사용합니다(kordoc 4.0.7 변환본 110개, OCR이 필요한 2개는 kordoc 4.21.3 추출본, 39번 시설 목록). 문서 분류와 관할은 파일명의 `[분류]` 표기로 정하고, `document_metadata.yaml`에서는 39번 시설 목록처럼 별도 지정이 필요한 문서의 주제(`topic`), 근거 우선순위(`authority`), 자료 성격(`source_role`), 적용 범위(`jurisdiction`)를 관리합니다. 문서별 원본 파일과 해시는 `db-update-2026-10-11.json`에 있습니다. `primary` 원본 업무자료를 최우선으로 사용하고, `reference`·`summary`·`index` 자료는 보조 근거로 취급합니다.
 
 별도 로컬 법령 DB는 운영하지 않습니다. 법령명이나 조문은 검색된 매뉴얼 원문에서 실제 확인되는 범위에서만 안내하며, 로컬 모델의 일반지식으로 현행 법령 내용을 보충하지 않습니다.
 
@@ -392,12 +396,12 @@ AI 답변은 `welfare_assistant.py`가 `welfare_llm.py`를 통해 내장 llama-s
 
 ## 복지DB 기준
 
-프로그램 v1.5.0 / 2026-09-07 복지DB 6차 업데이트 원문 기준:
+프로그램 v1.5.1 / 2026-10-11 개별 매뉴얼 DB 기준:
 
-- 원문 문서: **39개**
-- 원문 총량: **62,075,154바이트**
-- 검색 구간: **21,588개**
-- 검색 인덱스 DB: **286,445,568바이트 (약 273.2MiB)**
+- 원문 문서: **113개**
+- 원문 총량: **61,854,776바이트**
+- 검색 구간: **22,007개**
+- 검색 인덱스 DB: **297,869,312바이트 (약 284.1MiB)**
 - 품질 오류: **0건**
 
 EXE 빌드 시 다음 파일이 실행 파일 내부에 함께 포함됩니다.
@@ -486,7 +490,7 @@ EXE가 아닌 개발 상태에서 FastAPI 서버만 실행하려면:
 http://127.0.0.1:8765/
 ```
 
-이 방식은 개발·디버깅용입니다. 일반 사용자 배포 방식은 모델별 설치 패키지이며, 설치 후 실행 파일은 `복지업무비서_v1.5.0_E2B.exe` 또는 `복지업무비서_v1.5.0_E4B.exe`입니다.
+이 방식은 개발·디버깅용입니다. 일반 사용자 배포 방식은 모델별 설치 패키지이며, 설치 후 실행 파일은 `복지업무비서_v1.5.1_E2B.exe` 또는 `복지업무비서_v1.5.1_E4B.exe`입니다.
 
 ## 모델별 설치 패키지 빌드
 
@@ -513,8 +517,8 @@ powershell.exe -ExecutionPolicy Bypass -File .\build-exe.ps1
 결과 파일:
 
 ```text
-dist\BokjiTalkAI_Setup_v1.5.0_E2B.exe
-dist\BokjiTalkAI_Setup_v1.5.0_E4B.zip
+dist\BokjiTalkAI_Setup_v1.5.1_E2B.exe
+dist\BokjiTalkAI_Setup_v1.5.1_E4B.zip
 ```
 
 PyInstaller onedir 빌드에 웹 화면과 DB를 포함한 뒤, 해당 모델과 llama.cpp를 Inno Setup으로 묶습니다. 실행 파일 이름은 `복지업무비서_v{VERSION}_{E2B 또는 E4B}.exe`입니다. E4B 설치 EXE와 해당 `.bin` 파일을 하나의 ZIP으로 묶어 배포합니다.

@@ -1,0 +1,4682 @@
+{
+ "summary": {
+  "db": "D:\\Codex\\Projects\\복지업무비서\\wiki\\kb-v120\\welfare.db",
+  "items": 200,
+  "doc_hit_top1_pct": 75.0,
+  "doc_hit_any_pct": 88.0,
+  "section_term_pct": 98.5,
+  "numbers": [
+   2,
+   8
+  ],
+  "must_include": [
+   2,
+   8
+  ],
+  "avg_seconds": 3.047
+ },
+ "rows": [
+  {
+   "id": "Q001",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 3098
+  },
+  {
+   "id": "Q002",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12821
+  },
+  {
+   "id": "Q003",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13029
+  },
+  {
+   "id": "Q004",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12743
+  },
+  {
+   "id": "Q005",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 7368
+  },
+  {
+   "id": "Q006",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12944
+  },
+  {
+   "id": "Q007",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-업무시스템] 2025년 사회보장정보시스템(행복이음) 통합업무 매뉴얼.md"
+   ],
+   "top1": "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+   "sources": [
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+    "[매뉴얼-업무시스템] 2025년 사회보장정보시스템(행복이음) 통합업무 매뉴얼.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11020
+  },
+  {
+   "id": "Q008",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md"
+   ],
+   "top1": "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+   "sources": [
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13613
+  },
+  {
+   "id": "Q009",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-차상위계층] 2026년 차상위 본인부담경감대상자 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "top1": "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+   "sources": [
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13781
+  },
+  {
+   "id": "Q010",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "top1": "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+   "sources": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12980
+  },
+  {
+   "id": "Q011",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "top1": "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+   "sources": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12663
+  },
+  {
+   "id": "Q012",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-장애] 제11권 2026년 발달장애인활동서비스 사업안내.md",
+    "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md"
+   ],
+   "top1": "[매뉴얼-장애] 제8권 2026년 발달장애인지원 사업안내.md",
+   "sources": [
+    "[매뉴얼-장애] 제8권 2026년 발달장애인지원 사업안내.md",
+    "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md",
+    "[매뉴얼-장애] 제8권 2026년 발달장애인지원 사업안내.md",
+    "[매뉴얼-장애] 제8권 2026년 발달장애인지원 사업안내.md",
+    "[매뉴얼-장애] 제13권 2026년 최중증 발달장애인 통합돌봄서비스 사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13533
+  },
+  {
+   "id": "Q013",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026년 독거노인 장애인 응급안전안심서비스 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+   "sources": [
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12952
+  },
+  {
+   "id": "Q014",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12753
+  },
+  {
+   "id": "Q015",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12789
+  },
+  {
+   "id": "Q016",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12902
+  },
+  {
+   "id": "Q017",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13245
+  },
+  {
+   "id": "Q018",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11475
+  },
+  {
+   "id": "Q019",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "top1": "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+   "sources": [
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12451
+  },
+  {
+   "id": "Q020",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md"
+   ],
+   "top1": "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+   "sources": [
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 9792
+  },
+  {
+   "id": "Q021",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md"
+   ],
+   "top1": "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+   "sources": [
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11932
+  },
+  {
+   "id": "Q022",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md"
+   ],
+   "top1": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+   "sources": [
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 4152
+  },
+  {
+   "id": "Q023",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md"
+   ],
+   "top1": "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+   "sources": [
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12192
+  },
+  {
+   "id": "Q024",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md"
+   ],
+   "top1": "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+   "sources": [
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11271
+  },
+  {
+   "id": "Q025",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md"
+   ],
+   "top1": "[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
+   "sources": [
+    "[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+    "[매뉴얼-위기가구] 2026년 고독·고립 예방 및 관리 사업 운영 지침.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13463
+  },
+  {
+   "id": "Q026",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md"
+   ],
+   "top1": "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
+   "sources": [
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12302
+  },
+  {
+   "id": "Q027",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md"
+   ],
+   "top1": "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
+   "sources": [
+    "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
+    "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
+    "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
+    "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
+    "[매뉴얼-협의체] 2026년 읍면동 지역사회보장협의체 구성 및 운영지침(제주특별자치도).md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11785
+  },
+  {
+   "id": "Q028",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지관 운영관련 업무처리 안내-최종.md"
+   ],
+   "top1": "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+   "sources": [
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지관 운영관련 업무처리 안내-최종.md",
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지법인 관리안내.md",
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지법인 관리안내.md",
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지법인 관리안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12293
+  },
+  {
+   "id": "Q029",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md"
+   ],
+   "top1": "[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md",
+   "sources": [
+    "[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md",
+    "[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 5011
+  },
+  {
+   "id": "Q030",
+   "category": "simple",
+   "expected": [
+    "[매뉴얼-보건소] 2026년 정신건강사업 안내.md"
+   ],
+   "top1": "[매뉴얼-보건소] 2026년 정신건강사업 안내.md",
+   "sources": [
+    "[매뉴얼-보건소] 2026년 정신건강사업 안내.md",
+    "[매뉴얼-보건소] 2026년 정신건강사업 안내.md",
+    "[매뉴얼-보건소] 2026년 정신건강사업 안내.md",
+    "[매뉴얼-보건소] 2026년 정신건강사업 안내.md",
+    "[매뉴얼-보건소] 2026년 정신건강사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11810
+  },
+  {
+   "id": "Q031",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 3098
+  },
+  {
+   "id": "Q032",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13575
+  },
+  {
+   "id": "Q033",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026년 재가 의료급여 사업운영 매뉴얼.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13860
+  },
+  {
+   "id": "Q034",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12718
+  },
+  {
+   "id": "Q035",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12715
+  },
+  {
+   "id": "Q036",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-차상위계층] 2026년 차상위 본인부담경감대상자 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "top1": "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+   "sources": [
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12745
+  },
+  {
+   "id": "Q037",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "top1": "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+   "sources": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13202
+  },
+  {
+   "id": "Q038",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "top1": "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+   "sources": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13644
+  },
+  {
+   "id": "Q039",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026년 독거노인 장애인 응급안전안심서비스 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md",
+   "sources": [
+    "[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md",
+    "[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 4461
+  },
+  {
+   "id": "Q040",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13284
+  },
+  {
+   "id": "Q041",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13110
+  },
+  {
+   "id": "Q042",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12320
+  },
+  {
+   "id": "Q043",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11865
+  },
+  {
+   "id": "Q044",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "top1": "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+   "sources": [
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12950
+  },
+  {
+   "id": "Q045",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md"
+   ],
+   "top1": "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+   "sources": [
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 5120
+  },
+  {
+   "id": "Q046",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md"
+   ],
+   "top1": "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+   "sources": [
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12040
+  },
+  {
+   "id": "Q047",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md"
+   ],
+   "top1": "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+   "sources": [
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
+    "[서귀포시업무-돌봄] 2026 의료·요양 통합돌봄 서귀포시 국비 신규사업 세부 내역(5개사업)★.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 9064
+  },
+  {
+   "id": "Q048",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md"
+   ],
+   "top1": "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+   "sources": [
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13639
+  },
+  {
+   "id": "Q049",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md"
+   ],
+   "top1": "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+   "sources": [
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13579
+  },
+  {
+   "id": "Q050",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지관 운영관련 업무처리 안내-최종.md"
+   ],
+   "top1": "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지관 운영관련 업무처리 안내-최종.md",
+   "sources": [
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지관 운영관련 업무처리 안내-최종.md",
+    "[매뉴얼-보건소] 2026년 모자보건사업 안내.md",
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지법인 관리안내.md",
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지법인 관리안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 9826
+  },
+  {
+   "id": "Q051",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-보건소] 2026년 모자보건사업 안내.md"
+   ],
+   "top1": "[매뉴얼-보건소] 2026년 통합건강증진사업안내(모자보건).md",
+   "sources": [
+    "[매뉴얼-보건소] 2026년 통합건강증진사업안내(모자보건).md",
+    "[매뉴얼-보건소] 2026년 모자보건사업 안내.md",
+    "[매뉴얼-보건소] 2026년 모자보건사업 안내.md",
+    "[매뉴얼-보건소] 2026년 모자보건사업 안내.md",
+    "[매뉴얼-보건소] 2026년 모자보건사업 안내.md",
+    "[매뉴얼-보건소] 2026년 모자보건사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12923
+  },
+  {
+   "id": "Q052",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-보조금관리] 2026년 지방보조금 관리 가이드.md"
+   ],
+   "top1": "[매뉴얼-보조금관리] 2026년 지방보조금 관리 가이드.md",
+   "sources": [
+    "[매뉴얼-보조금관리] 2026년 지방보조금 관리 가이드.md",
+    "[매뉴얼-보조금관리] 2026년 지방보조금 관리 가이드.md",
+    "[매뉴얼-보조금관리] 2026년 지방보조금 관리 가이드.md",
+    "[매뉴얼-보조금관리] 2026년 지방보조금 관리 가이드.md",
+    "[매뉴얼-보조금관리] 2026년 지방보조금 관리 가이드.md",
+    "[매뉴얼-보조금관리] 2026년 지방보조금 관리 가이드.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13643
+  },
+  {
+   "id": "Q053",
+   "category": "numeric",
+   "expected": [
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md"
+   ],
+   "top1": "[매뉴얼-돌봄] 2026년 지역이음 사업안내(제주가치돌봄 관련)★.md",
+   "sources": [
+    "[매뉴얼-돌봄] 2026년 지역이음 사업안내(제주가치돌봄 관련)★.md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12876
+  },
+  {
+   "id": "Q054",
+   "category": "numeric",
+   "expected": [
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md"
+   ],
+   "top1": "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+   "sources": [
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 4747
+  },
+  {
+   "id": "Q055",
+   "category": "numeric",
+   "expected": [
+    "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md"
+   ],
+   "top1": "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
+   "sources": [
+    "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
+    "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md",
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md",
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md",
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12277
+  },
+  {
+   "id": "Q056",
+   "category": "numeric",
+   "expected": [
+    "39.[서귀포시업무-시설현황] 제주도 내 사회복지시설·기관 전체 목록(2026.7.31.기준).md"
+   ],
+   "top1": "",
+   "sources": [],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": false,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 0
+  },
+  {
+   "id": "Q057",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 1,
+   "numbers_found": 1,
+   "must_include_total": 1,
+   "must_include_found": 1,
+   "chars": 13778
+  },
+  {
+   "id": "Q058",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 1,
+   "numbers_found": 0,
+   "must_include_total": 1,
+   "must_include_found": 0,
+   "chars": 13848
+  },
+  {
+   "id": "Q059",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 1,
+   "numbers_found": 0,
+   "must_include_total": 1,
+   "must_include_found": 0,
+   "chars": 13848
+  },
+  {
+   "id": "Q060",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 1,
+   "numbers_found": 0,
+   "must_include_total": 1,
+   "must_include_found": 0,
+   "chars": 11855
+  },
+  {
+   "id": "Q061",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 1,
+   "numbers_found": 0,
+   "must_include_total": 1,
+   "must_include_found": 0,
+   "chars": 13848
+  },
+  {
+   "id": "Q062",
+   "category": "numeric",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 1,
+   "numbers_found": 0,
+   "must_include_total": 1,
+   "must_include_found": 0,
+   "chars": 13848
+  },
+  {
+   "id": "Q063",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13910
+  },
+  {
+   "id": "Q064",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13321
+  },
+  {
+   "id": "Q065",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-업무시스템] 2025년 사회보장정보시스템(행복이음) 통합업무 매뉴얼.md"
+   ],
+   "top1": "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+   "sources": [
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12633
+  },
+  {
+   "id": "Q066",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md"
+   ],
+   "top1": "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+   "sources": [
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12042
+  },
+  {
+   "id": "Q067",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-차상위계층] 2026년 차상위 본인부담경감대상자 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "top1": "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+   "sources": [
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12807
+  },
+  {
+   "id": "Q068",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "top1": "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+   "sources": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13862
+  },
+  {
+   "id": "Q069",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "top1": "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+   "sources": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13066
+  },
+  {
+   "id": "Q070",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-장애] 제11권 2026년 발달장애인활동서비스 사업안내.md",
+    "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md"
+   ],
+   "top1": "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md",
+   "sources": [
+    "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md",
+    "[매뉴얼-장애] 제12권 2026 발달장애인 긴급돌봄서비스 사업안내.md",
+    "[매뉴얼-장애] 제12권 2026 발달장애인 긴급돌봄서비스 사업안내.md",
+    "[매뉴얼-장애] 제12권 2026 발달장애인 긴급돌봄서비스 사업안내.md",
+    "[매뉴얼-장애] 제13권 2026년 최중증 발달장애인 통합돌봄서비스 사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11742
+  },
+  {
+   "id": "Q071",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026년 독거노인 장애인 응급안전안심서비스 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md",
+   "sources": [
+    "[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md",
+    "[매뉴얼-위기가구] 2026년 고독·고립 예방 및 관리 사업 운영 지침.md",
+    "[매뉴얼-종합안내] 2026 나에게 힘이 되는 복지서비스★.md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13709
+  },
+  {
+   "id": "Q072",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13491
+  },
+  {
+   "id": "Q073",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13006
+  },
+  {
+   "id": "Q074",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12479
+  },
+  {
+   "id": "Q075",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13188
+  },
+  {
+   "id": "Q076",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12873
+  },
+  {
+   "id": "Q077",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "top1": "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+   "sources": [
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13591
+  },
+  {
+   "id": "Q078",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md"
+   ],
+   "top1": "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+   "sources": [
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12892
+  },
+  {
+   "id": "Q079",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md"
+   ],
+   "top1": "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+   "sources": [
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12040
+  },
+  {
+   "id": "Q080",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md"
+   ],
+   "top1": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
+   "sources": [
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 779
+  },
+  {
+   "id": "Q081",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md"
+   ],
+   "top1": "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+   "sources": [
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지시설 관리안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11824
+  },
+  {
+   "id": "Q082",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md"
+   ],
+   "top1": "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+   "sources": [
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11233
+  },
+  {
+   "id": "Q083",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md"
+   ],
+   "top1": "[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
+   "sources": [
+    "[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
+    "[매뉴얼-위기가구] 2026년 찾아가는 보건복지서비스 업무안내.md",
+    "[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
+    "[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13877
+  },
+  {
+   "id": "Q084",
+   "category": "procedure",
+   "expected": [
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md"
+   ],
+   "top1": "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
+   "sources": [
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12688
+  },
+  {
+   "id": "Q085",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "top1": "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+   "sources": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12980
+  },
+  {
+   "id": "Q086",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "top1": "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+   "sources": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13344
+  },
+  {
+   "id": "Q087",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-장애] 제11권 2026년 발달장애인활동서비스 사업안내.md",
+    "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md"
+   ],
+   "top1": "[매뉴얼-장애] 제13권 2026년 최중증 발달장애인 통합돌봄서비스 사업 안내.md",
+   "sources": [
+    "[매뉴얼-장애] 제13권 2026년 최중증 발달장애인 통합돌봄서비스 사업 안내.md",
+    "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md",
+    "[매뉴얼-장애] 제12권 2026 발달장애인 긴급돌봄서비스 사업안내.md",
+    "[매뉴얼-장애] 제13권 2026년 최중증 발달장애인 통합돌봄서비스 사업 안내.md",
+    "[매뉴얼-장애] 제12권 2026 발달장애인 긴급돌봄서비스 사업안내.md",
+    "[매뉴얼-장애] 제8권 2026년 발달장애인지원 사업안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12497
+  },
+  {
+   "id": "Q088",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026년 독거노인 장애인 응급안전안심서비스 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+   "sources": [
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13015
+  },
+  {
+   "id": "Q089",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13511
+  },
+  {
+   "id": "Q090",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11094
+  },
+  {
+   "id": "Q091",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12776
+  },
+  {
+   "id": "Q092",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13746
+  },
+  {
+   "id": "Q093",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13203
+  },
+  {
+   "id": "Q094",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "top1": "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+   "sources": [
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12733
+  },
+  {
+   "id": "Q095",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md"
+   ],
+   "top1": "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+   "sources": [
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13839
+  },
+  {
+   "id": "Q096",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md"
+   ],
+   "top1": "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+   "sources": [
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12994
+  },
+  {
+   "id": "Q097",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md"
+   ],
+   "top1": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+   "sources": [
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 6899
+  },
+  {
+   "id": "Q098",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md"
+   ],
+   "top1": "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+   "sources": [
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md",
+    "[매뉴얼-기부식품] 2026년도 기부식품등 제공사업 안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13639
+  },
+  {
+   "id": "Q099",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md"
+   ],
+   "top1": "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+   "sources": [
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md",
+    "[매뉴얼-기부식품] 2026년 그냥드림 사업 안내(개정)★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11233
+  },
+  {
+   "id": "Q100",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md"
+   ],
+   "top1": "[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
+   "sources": [
+    "[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11897
+  },
+  {
+   "id": "Q101",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md"
+   ],
+   "top1": "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
+   "sources": [
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md",
+    "[매뉴얼-위기가구] 2026년 찾아가는 보건복지서비스 업무안내.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
+    "[매뉴얼-위기가구] 2026년 고독·고립 예방 및 관리 사업 운영 지침.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13718
+  },
+  {
+   "id": "Q102",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md"
+   ],
+   "top1": "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+   "sources": [
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
+    "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
+    "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
+    "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13550
+  },
+  {
+   "id": "Q103",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지관 운영관련 업무처리 안내-최종.md"
+   ],
+   "top1": "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+   "sources": [
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지법인 관리안내.md",
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지관 운영관련 업무처리 안내-최종.md",
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지법인 관리안내.md",
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지법인 관리안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13803
+  },
+  {
+   "id": "Q104",
+   "category": "exception",
+   "expected": [
+    "[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md"
+   ],
+   "top1": "[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md",
+   "sources": [
+    "[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md",
+    "[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md",
+    "[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md",
+    "[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md",
+    "[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md",
+    "[매뉴얼-제도신설] 2026 사회보장제도 신설변경 협의운용 지침★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 10507
+  },
+  {
+   "id": "Q105",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13106
+  },
+  {
+   "id": "Q106",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11351
+  },
+  {
+   "id": "Q107",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12743
+  },
+  {
+   "id": "Q108",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 3221
+  },
+  {
+   "id": "Q109",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13342
+  },
+  {
+   "id": "Q110",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-차상위계층] 2026년 차상위 본인부담경감대상자 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "top1": "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13598
+  },
+  {
+   "id": "Q111",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "top1": "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+   "sources": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12980
+  },
+  {
+   "id": "Q112",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "top1": "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+   "sources": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12085
+  },
+  {
+   "id": "Q113",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026년 독거노인 장애인 응급안전안심서비스 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+   "sources": [
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(2권).md",
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13018
+  },
+  {
+   "id": "Q114",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11842
+  },
+  {
+   "id": "Q115",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12116
+  },
+  {
+   "id": "Q116",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md"
+   ],
+   "top1": "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+   "sources": [
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12960
+  },
+  {
+   "id": "Q117",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md"
+   ],
+   "top1": "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+   "sources": [
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12717
+  },
+  {
+   "id": "Q118",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md"
+   ],
+   "top1": "[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
+   "sources": [
+    "[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+    "[매뉴얼-위기가구] 2026년 고독·고립 예방 및 관리 사업 운영 지침.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13463
+  },
+  {
+   "id": "Q119",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md",
+    "[매뉴얼-장애] 제8권 2026년 발달장애인지원 사업안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11452
+  },
+  {
+   "id": "Q120",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-보건소] 2026년 정신건강사업 안내.md"
+   ],
+   "top1": "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
+   "sources": [
+    "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-보건소] 2026년 정신건강 심리상담 바우처사업 안내.md",
+    "[매뉴얼-장애] 제2권 2026년 장애인복지 사업안내2.md",
+    "[매뉴얼-장애] 제8권 2026년 발달장애인지원 사업안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13231
+  },
+  {
+   "id": "Q121",
+   "category": "case",
+   "expected": [
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md"
+   ],
+   "top1": "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+   "sources": [
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13678
+  },
+  {
+   "id": "Q122",
+   "category": "case",
+   "expected": [
+    "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md"
+   ],
+   "top1": "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
+   "sources": [
+    "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md",
+    "[서귀포시업무-위기가구] 취약계층 화재 발생 긴급 지원제도 안내.md",
+    "[서귀포시업무-위기가구] 취약계층 화재 발생 긴급 지원제도 안내.md",
+    "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13423
+  },
+  {
+   "id": "Q123",
+   "category": "case",
+   "expected": [
+    "[서귀포시업무-종합자료] 2026년 서귀포시 노인복지 종합안내서.md"
+   ],
+   "top1": "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+   "sources": [
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(2권).md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(2권).md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13554
+  },
+  {
+   "id": "Q124",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13106
+  },
+  {
+   "id": "Q125",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11954
+  },
+  {
+   "id": "Q126",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12743
+  },
+  {
+   "id": "Q127",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 3221
+  },
+  {
+   "id": "Q128",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12944
+  },
+  {
+   "id": "Q129",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-차상위계층] 2026년 차상위 본인부담경감대상자 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "top1": "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위 본인부담경감대상자 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13347
+  },
+  {
+   "id": "Q130",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "top1": "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+   "sources": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13232
+  },
+  {
+   "id": "Q131",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026년 독거노인 장애인 응급안전안심서비스 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+   "sources": [
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12952
+  },
+  {
+   "id": "Q132",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11842
+  },
+  {
+   "id": "Q133",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11894
+  },
+  {
+   "id": "Q134",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md"
+   ],
+   "top1": "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+   "sources": [
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12751
+  },
+  {
+   "id": "Q135",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md"
+   ],
+   "top1": "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+   "sources": [
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md",
+    "[매뉴얼-돌봄] 2026년 일상돌봄서비스 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12717
+  },
+  {
+   "id": "Q136",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md"
+   ],
+   "top1": "[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
+   "sources": [
+    "[매뉴얼-위기가구] 2025년 통합사례관리 실천가이드.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
+    "[매뉴얼-위기가구] 2026 희망복지지원단 업무안내.md",
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+    "[매뉴얼-위기가구] 2026년 고독·고립 예방 및 관리 사업 운영 지침.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13463
+  },
+  {
+   "id": "Q137",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-위기가구] 2026년 노숙인 등의 복지사업 안내.md"
+   ],
+   "top1": "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+   "sources": [
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-종합안내] 2026 나에게 힘이 되는 복지서비스★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12987
+  },
+  {
+   "id": "Q138",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-보건소] 2026년 정신건강사업 안내.md"
+   ],
+   "top1": "[매뉴얼-보건소] 2026년 정신건강사업 안내.md",
+   "sources": [
+    "[매뉴얼-보건소] 2026년 정신건강사업 안내.md",
+    "[매뉴얼-보건소] 2026년 자살예방사업 안내.md",
+    "[매뉴얼-보건소] 2026년 정신건강사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12226
+  },
+  {
+   "id": "Q139",
+   "category": "case",
+   "expected": [
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md"
+   ],
+   "top1": "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+   "sources": [
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13678
+  },
+  {
+   "id": "Q140",
+   "category": "case",
+   "expected": [
+    "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md"
+   ],
+   "top1": "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
+   "sources": [
+    "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
+    "[서귀포시업무-위기가구] 취약계층 화재 발생 긴급 지원제도 안내.md",
+    "[서귀포시업무-위기가구] 취약계층 화재 발생 긴급 지원제도 안내.md",
+    "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md",
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13936
+  },
+  {
+   "id": "Q141",
+   "category": "case",
+   "expected": [
+    "[서귀포시업무-종합자료] 2026년 서귀포시 노인복지 종합안내서.md"
+   ],
+   "top1": "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+   "sources": [
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(2권).md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(2권).md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13554
+  },
+  {
+   "id": "Q142",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13106
+  },
+  {
+   "id": "Q143",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 10798
+  },
+  {
+   "id": "Q144",
+   "category": "case",
+   "expected": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12743
+  },
+  {
+   "id": "Q145",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12587
+  },
+  {
+   "id": "Q146",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11621
+  },
+  {
+   "id": "Q147",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13995
+  },
+  {
+   "id": "Q148",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 재가 의료급여 사업운영 매뉴얼.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 재가 의료급여 사업운영 매뉴얼.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026년 재가 의료급여 사업운영 매뉴얼.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12191
+  },
+  {
+   "id": "Q149",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12072
+  },
+  {
+   "id": "Q150",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12914
+  },
+  {
+   "id": "Q151",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md"
+   ],
+   "top1": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+   "sources": [
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": false,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 6636
+  },
+  {
+   "id": "Q152",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-차상위계층] 2026년 차상위 본인부담경감대상자 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "top1": "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+   "sources": [
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12637
+  },
+  {
+   "id": "Q153",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "top1": "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+   "sources": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제2권 2026년 자활사업안내(II) 자산형성지원 통장사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12352
+  },
+  {
+   "id": "Q154",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "top1": "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+   "sources": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12642
+  },
+  {
+   "id": "Q155",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-장애] 제11권 2026년 발달장애인활동서비스 사업안내.md",
+    "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md"
+   ],
+   "top1": "[매뉴얼-장애] 제8권 2026년 발달장애인지원 사업안내.md",
+   "sources": [
+    "[매뉴얼-장애] 제8권 2026년 발달장애인지원 사업안내.md",
+    "[매뉴얼-장애] 제8권 2026년 발달장애인지원 사업안내.md",
+    "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md",
+    "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md",
+    "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md",
+    "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13809
+  },
+  {
+   "id": "Q156",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026년 독거노인 장애인 응급안전안심서비스 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+   "sources": [
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md",
+    "[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md",
+    "[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 6986
+  },
+  {
+   "id": "Q157",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12814
+  },
+  {
+   "id": "Q158",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13167
+  },
+  {
+   "id": "Q159",
+   "category": "year_confusion",
+   "expected": [
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md",
+    "[매뉴얼-아동] 2026년 다함께돌봄센터 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12056
+  },
+  {
+   "id": "Q160",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 3098
+  },
+  {
+   "id": "Q161",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12280
+  },
+  {
+   "id": "Q162",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 9295
+  },
+  {
+   "id": "Q163",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12357
+  },
+  {
+   "id": "Q164",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 3221
+  },
+  {
+   "id": "Q165",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12944
+  },
+  {
+   "id": "Q166",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-업무시스템] 2025년 사회보장정보시스템(행복이음) 통합업무 매뉴얼.md"
+   ],
+   "top1": "[매뉴얼-업무시스템] 2025년 사회보장정보시스템(행복이음) 통합업무 매뉴얼.md",
+   "sources": [
+    "[매뉴얼-업무시스템] 2025년 사회보장정보시스템(행복이음) 통합업무 매뉴얼.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 10066
+  },
+  {
+   "id": "Q167",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md"
+   ],
+   "top1": "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+   "sources": [
+    "[매뉴얼-업무시스템] 통합돌봄지원정보시스템(행복이음) 사용자 매뉴얼 V1.0.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md",
+    "[매뉴얼-업무시스템] 통합돌봄 지원 정보 시스템(행복이음) FAQ.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12606
+  },
+  {
+   "id": "Q168",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-차상위계층] 2026년 차상위 본인부담경감대상자 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "top1": "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+   "sources": [
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12939
+  },
+  {
+   "id": "Q169",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "top1": "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+   "sources": [
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md",
+    "[매뉴얼-자활사업] 제1권 2026년 자활사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13942
+  },
+  {
+   "id": "Q170",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "top1": "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+   "sources": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12600
+  },
+  {
+   "id": "Q171",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-장애] 제11권 2026년 발달장애인활동서비스 사업안내.md",
+    "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md"
+   ],
+   "top1": "[매뉴얼-장애] 제13권 2026년 최중증 발달장애인 통합돌봄서비스 사업 안내.md",
+   "sources": [
+    "[매뉴얼-장애] 제13권 2026년 최중증 발달장애인 통합돌봄서비스 사업 안내.md",
+    "[매뉴얼-장애] 제12권 2026 발달장애인 긴급돌봄서비스 사업안내.md",
+    "[매뉴얼-장애] 제13권 2026년 최중증 발달장애인 통합돌봄서비스 사업 안내.md",
+    "[매뉴얼-장애] 제13권 2026년 최중증 발달장애인 통합돌봄서비스 사업 안내.md",
+    "[매뉴얼-장애] 제12권 2026 발달장애인 긴급돌봄서비스 사업안내.md",
+    "[매뉴얼-장애] 제9권 2026년 발달장애인지원센터 사업안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13509
+  },
+  {
+   "id": "Q172",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026년 독거노인 장애인 응급안전안심서비스 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+   "sources": [
+    "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 10650
+  },
+  {
+   "id": "Q173",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12429
+  },
+  {
+   "id": "Q174",
+   "category": "program_mix",
+   "expected": [
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 11520
+  },
+  {
+   "id": "Q175",
+   "category": "wrong_premise",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 1,
+   "numbers_found": 0,
+   "must_include_total": 1,
+   "must_include_found": 0,
+   "chars": 11934
+  },
+  {
+   "id": "Q176",
+   "category": "wrong_premise",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 1,
+   "numbers_found": 1,
+   "must_include_total": 1,
+   "must_include_found": 1,
+   "chars": 13784
+  },
+  {
+   "id": "Q177",
+   "category": "wrong_premise",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13106
+  },
+  {
+   "id": "Q178",
+   "category": "wrong_premise",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+    "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 10798
+  },
+  {
+   "id": "Q179",
+   "category": "wrong_premise",
+   "expected": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12743
+  },
+  {
+   "id": "Q180",
+   "category": "wrong_premise",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 3221
+  },
+  {
+   "id": "Q181",
+   "category": "wrong_premise",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md",
+    "[매뉴얼-공적급여] 2026년 청년월세 지원사업 매뉴얼★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12944
+  },
+  {
+   "id": "Q182",
+   "category": "wrong_premise",
+   "expected": [
+    "[매뉴얼-차상위계층] 2026년 차상위 본인부담경감대상자 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "top1": "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 중앙부처 차상위계층 지원사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13598
+  },
+  {
+   "id": "Q183",
+   "category": "wrong_premise",
+   "expected": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "top1": "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+   "sources": [
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md",
+    "[매뉴얼-장애] 제5권 2026년 장애인활동지원 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12622
+  },
+  {
+   "id": "Q184",
+   "category": "wrong_premise",
+   "expected": [
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md"
+   ],
+   "top1": "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+   "sources": [
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+    "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12751
+  },
+  {
+   "id": "Q185",
+   "category": "local",
+   "expected": [
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "top1": "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+   "sources": [
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13853
+  },
+  {
+   "id": "Q186",
+   "category": "local",
+   "expected": [
+    "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md"
+   ],
+   "top1": "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
+   "sources": [
+    "[매뉴얼-협의체] 2026년 지역사회보장협의체 운영안내 지침.md",
+    "[매뉴얼-협의체] 2026년 읍면동 지역사회보장협의체 구성 및 운영지침(제주특별자치도).md",
+    "[매뉴얼-협의체] 2026년 읍면동 지역사회보장협의체 구성 및 운영지침(제주특별자치도).md",
+    "[매뉴얼-협의체] 2026년 읍면동 지역사회보장협의체 구성 및 운영지침(제주특별자치도).md",
+    "[매뉴얼-협의체] 2026년 읍면동 지역사회보장협의체 구성 및 운영지침(제주특별자치도).md",
+    "[매뉴얼-협의체] 2026년 읍면동 지역사회보장협의체 구성 및 운영지침(제주특별자치도).md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12578
+  },
+  {
+   "id": "Q187",
+   "category": "local",
+   "expected": [
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md"
+   ],
+   "top1": "",
+   "sources": [],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": false,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 0
+  },
+  {
+   "id": "Q188",
+   "category": "local",
+   "expected": [
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md"
+   ],
+   "top1": "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+   "sources": [
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md",
+    "[서귀포시업무-돌봄] 2026년 제주가치돌봄 매뉴얼(개정).md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 4747
+  },
+  {
+   "id": "Q189",
+   "category": "local",
+   "expected": [
+    "[서귀포시업무-충혼묘지] 서귀포시 충혼묘지 관련 업무자료 합본.md"
+   ],
+   "top1": "[서귀포시업무-충혼묘지] 서귀포시 충혼묘지 관련 업무자료 합본.md",
+   "sources": [
+    "[서귀포시업무-충혼묘지] 서귀포시 충혼묘지 관련 업무자료 합본.md",
+    "[서귀포시업무-충혼묘지] 서귀포시 충혼묘지 관련 업무자료 합본.md",
+    "[서귀포시업무-충혼묘지] 서귀포시 충혼묘지 관련 업무자료 합본.md",
+    "[서귀포시업무-충혼묘지] 서귀포시 충혼묘지 관련 업무자료 합본.md",
+    "[서귀포시업무-충혼묘지] 서귀포시 충혼묘지 관련 업무자료 합본.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 12068
+  },
+  {
+   "id": "Q190",
+   "category": "local",
+   "expected": [
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md"
+   ],
+   "top1": "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md",
+   "sources": [
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md",
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 5296
+  },
+  {
+   "id": "Q191",
+   "category": "local",
+   "expected": [
+    "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md"
+   ],
+   "top1": "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
+   "sources": [
+    "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
+    "[서귀포시업무-위기가구] 위기가구 발굴 신고자 포상금 지급 계획(제주도).md",
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md",
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md",
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md",
+    "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13298
+  },
+  {
+   "id": "Q192",
+   "category": "local",
+   "expected": [
+    "[서귀포시업무-종합자료] 2026년 서귀포시 노인복지 종합안내서.md"
+   ],
+   "top1": "[서귀포시업무-종합자료] 2026년 서귀포시 노인복지 종합안내서.md",
+   "sources": [
+    "[서귀포시업무-종합자료] 2026년 서귀포시 노인복지 종합안내서.md",
+    "[서귀포시업무-종합자료] 2026년 서귀포시 노인복지 종합안내서.md",
+    "[서귀포시업무-종합자료] 2026년 서귀포시 노인복지 종합안내서.md",
+    "[서귀포시업무-종합자료] 2026년 서귀포시 노인복지 종합안내서.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 9774
+  },
+  {
+   "id": "Q193",
+   "category": "local",
+   "expected": [
+    "39.[서귀포시업무-시설현황] 제주도 내 사회복지시설·기관 전체 목록(2026.7.31.기준).md"
+   ],
+   "top1": "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지시설 관리안내.md",
+   "sources": [
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지시설 관리안내.md",
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지시설 관리안내.md",
+    "[매뉴얼-사회복지관,법인,시설] 2026년 사회복지시설 관리안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 6715
+  },
+  {
+   "id": "Q194",
+   "category": "local",
+   "expected": [
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "top1": "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+   "sources": [
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+    "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+    "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13853
+  },
+  {
+   "id": "Q195",
+   "category": "table",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년도 국민기초생활보장 사업안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 3098
+  },
+  {
+   "id": "Q196",
+   "category": "table",
+   "expected": [
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md",
+    "[매뉴얼-공적급여] 2026년 사회보장급여 공통업무 안내★.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 10302
+  },
+  {
+   "id": "Q197",
+   "category": "table",
+   "expected": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "top1": "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+   "sources": [
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md",
+    "[매뉴얼-공적급여] 2026 의료급여사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13042
+  },
+  {
+   "id": "Q198",
+   "category": "table",
+   "expected": [
+    "[매뉴얼-차상위계층] 2026년 차상위 본인부담경감대상자 지원사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "top1": "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+   "sources": [
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md",
+    "[매뉴얼-차상위계층] 2026년 차상위계층 확인사업 안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13763
+  },
+  {
+   "id": "Q199",
+   "category": "table",
+   "expected": [
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md"
+   ],
+   "top1": "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+   "sources": [
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md",
+    "[매뉴얼-아동] 2026년도 부모급여 사업안내.md"
+   ],
+   "doc_hit_top1": true,
+   "doc_hit_any": true,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 8229
+  },
+  {
+   "id": "Q200",
+   "category": "table",
+   "expected": [
+    "[매뉴얼-긴급복지] 2025년 긴급복지지원사업안내 질의응답집(최종).md"
+   ],
+   "top1": "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+   "sources": [
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "doc_hit_top1": false,
+   "doc_hit_any": false,
+   "section_term": true,
+   "numbers_total": 0,
+   "numbers_found": 0,
+   "must_include_total": 0,
+   "must_include_found": 0,
+   "chars": 13770
+  }
+ ]
+}

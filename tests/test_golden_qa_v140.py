@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-GOLDEN_PATH = PROJECT_ROOT / "quality" / "golden_qa_v1.4.0.json"
+GOLDEN_PATH = PROJECT_ROOT / "quality" / "golden_qa_20261011.json"
 SOURCE_DIR = PROJECT_ROOT / "source-md"
 
 

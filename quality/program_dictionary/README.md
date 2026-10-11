@@ -76,3 +76,15 @@ python -X utf8 tools\build_program_dictionary.py ^
 
 감사 파일 `build_20260925/audit.json`에는 사업별 분류 근거(`region_basis`), 연결 문서와 헤딩·본문 적중 수, 제외된 제주시 사업과 사유, 제거한 별칭이 들어 있습니다. 원문 DB가 바뀌면 사전을 다시 만들어야 합니다(사전에 원문 DB sha256이 기록됩니다).
 
+## 2026-10-11 재생성 (개별 매뉴얼 DB)
+
+검색 DB가 113개 개별 매뉴얼로 바뀌어 사전을 다시 만들었습니다. 복지제도100의 `src`·`talkRefs` 힌트는 옛 병합본 번호를 쓰므로, `--corpus-manifest db-update-2026-10-11.json`으로 문서별 `legacy_serial`을 넘겨 힌트가 계속 작동하게 했습니다. 출처의 `doc` 값도 이 번호입니다. 감사 파일은 `build_20261011/audit.json`이고, 변경 수치는 저장소 루트의 `DB_UPDATE_2026-10-11.md`에 있습니다.
+
+```cmd
+python -X utf8 tools\build_program_dictionary.py ^
+  --snapshot quality\program_dictionary\source_snapshot_welfare100_20260924 ^
+  --db wiki\kb-v120\welfare.db ^
+  --audit-dir quality\program_dictionary\build_20261011 ^
+  --corpus-manifest db-update-2026-10-11.json
+```
+

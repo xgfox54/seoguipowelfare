@@ -166,7 +166,7 @@ def distinctive_keys(entries: list[dict], document_texts: dict[str, str]) -> Non
         entry["keys"] = sorted(k for k in keys if not any(o != k and o in k for o in keys))
 
 
-def document_roles(connection: sqlite3.Connection) -> dict[str, dict]:
+def document_roles(connection: sqlite3.Connection, legacy_serials: dict[str, str]) -> dict[str, dict]:
     roles = {}
     for source_name, topic, authority, jurisdiction, year in connection.execute(
         "SELECT source_name, topic, authority, jurisdiction, year FROM documents"
@@ -182,8 +182,17 @@ def document_roles(connection: sqlite3.Connection) -> dict[str, dict]:
             role = "reference"
         else:
             role = "manual"
-        roles[source_name] = {"doc": source_name[:2], "role": role, "jurisdiction": jurisdiction, "year": year}
+        roles[source_name] = {"doc": legacy_serials.get(source_name, source_name[:2]), "role": role,
+                              "jurisdiction": jurisdiction, "year": year}
     return roles
+
+
+def load_legacy_serials(path: Path | None) -> dict[str, str]:
+    """Old merged-document serial per source, so 복지제도100 talkRefs ("18") still act as hints."""
+    if path is None:
+        return {}
+    documents = json.loads(path.read_text(encoding="utf-8"))["documents"]
+    return {d["source_name"]: d["legacy_serial"] for d in documents if d.get("legacy_serial")}
 
 
 def link_sources(aliases: set[str], sections: list[tuple[str, str, str]], roles: dict[str, dict],
@@ -315,11 +324,12 @@ def main() -> int:
     parser.add_argument("--db", type=Path, required=True)
     parser.add_argument("--out", type=Path, default=ROOT / "resources" / "program_dictionary.json")
     parser.add_argument("--audit-dir", type=Path, required=True)
+    parser.add_argument("--corpus-manifest", type=Path, default=None)
     args = parser.parse_args()
 
     lite, rows, extras, items = load_snapshot(args.snapshot)
     connection = sqlite3.connect(args.db)
-    roles = document_roles(connection)
+    roles = document_roles(connection, load_legacy_serials(args.corpus_manifest))
     sections = [
         (source, normalize(f"{title} {headings}"), normalize(content))
         for source, title, headings, content in connection.execute(
@@ -354,7 +364,7 @@ def main() -> int:
         elif sigungu == "서귀포시":
             region_status, basis = "seogwipo_confirmed", "복지제도100 시군구 라벨=서귀포시"
         else:
-            in_seogwipo = sorted(n[:2] for n in evidence if n in seogwipo_docs)
+            in_seogwipo = sorted({roles[n]["doc"] for n in evidence if n in seogwipo_docs})
             region_status = "seogwipo_confirmed" if in_seogwipo else "jeju_common"
             basis = ("복지톡 서귀포 문서 등장: " + ",".join(in_seogwipo)) if in_seogwipo else "복지톡 서귀포 문서 미등장(도 단위 사업)"
         entries.append({
@@ -364,7 +374,7 @@ def main() -> int:
             "bokjiro_id": view["bokjiro_id"], "curated": row.get("a") == 1,
             "aliases": sorted(aliases), "content": " ".join(x for x in view["content"] if x)[:600],
             "sources": sources, "source_status": status,
-            "_evidence": {n[:2]: v for n, v in sorted(evidence.items())}, "_hints": sorted(view["hints"]),
+            "_evidence": {n.removesuffix(".md"): v for n, v in sorted(evidence.items())}, "_hints": sorted(view["hints"]),
         })
 
     # Drop over-shared or generic aliases (never an entry's own canonical name).
