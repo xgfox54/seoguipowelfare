@@ -9,6 +9,7 @@ from welfare_search.synonyms import PROGRAM_ANCHORS
 from welfare_evidence import claim_support_text, context_warning, parse_evidence, scoped_numeric_support
 from welfare_table_facts import table_money_facts, table_number_facts, plain
 from welfare_answer_quality import assess_answer, assessment_notice, substantive_body
+from welfare_claim_conditions import normalize_money_count_object, preserve_period_amount_scope, supported_conditions
 
 YEAR_PATTERN: Final[re.Pattern[str]] = re.compile(
     r"(?<!\d)(?:20(?P<full>\d{2})|[’']?(?P<short>\d{2}))\s*년"
@@ -459,6 +460,7 @@ def grounded_line_checker(context: str, question: str):
         line = _without_case_subjects(line, subjects)
         return (
             not _unsupported_line(line, source_text, source_claims, allowed_years, source_scope_text)
+            and supported_conditions(line, sources, source_text)
             and scoped_numeric_support(line, context, question,
                                        _numbered_claims, _household_amount_pairs, _normalized,
                                        prepared_blocks=sources)
@@ -486,7 +488,9 @@ def sanitize_grounded_answer(
     subjects = _case_subjects(question)
     answer, provenance_lines = normalize_evidence_references(answer, sources)
     original_lines = tuple(
-        _strip_invented_units_from_unitless_table_claims(line, sources)
+        preserve_period_amount_scope(
+            normalize_money_count_object(_strip_invented_units_from_unitless_table_claims(line, sources), sources), sources
+        )
         for line in answer.splitlines()
     )
     provenance_lines = provenance_lines | source_guide_references(original_lines, sources)
@@ -496,6 +500,7 @@ def sanitize_grounded_answer(
         if line in provenance_lines
         or (not _unsupported_line(_without_case_subjects(line, subjects), source_text, source_claims,
                                   allowed_years, source_scope_text)
+            and supported_conditions(line, sources, source_text)
             and scoped_numeric_support(_without_case_subjects(line, subjects), context, question,
                                        _numbered_claims, _household_amount_pairs, _normalized,
                                        prepared_blocks=sources))

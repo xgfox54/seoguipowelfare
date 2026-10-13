@@ -26,6 +26,7 @@ from welfare_answer_format import (
 )
 from welfare_evidence import parse_evidence, prompt_evidence
 from welfare_grounding import grounded_line_checker, sanitize_grounded_answer
+from welfare_manual_faq_prompt import reviewed_faq_context, reviewed_faq_prompt, reviewed_faq_sources
 from welfare_llm import (
     DEFAULT_MODEL_KEY,
     RUNTIME,
@@ -38,6 +39,8 @@ from welfare_models import available_choices
 from welfare_program_dictionary import ProgramEntry, evidence_mentions, no_source_answer
 from welfare_runtime import app_version
 from welfare_search import retrieve_context
+from welfare_search.faq_direct import match_direct_faq, render_direct_faq
+from welfare_search.manual_faq_match import match_manual_faq
 from welfare_search.query import QueryPlan, plan_query
 from welfare_search.search import YearScope, describe_sources, owner_scope, semantic_search_enabled, year_scope
 from welfare_decision import database_version, read_policy, run_gate
@@ -232,6 +235,21 @@ def _current_year() -> int:
     return date.today().year
 
 
+def _direct_faq_answer(database: Path, question: str, plan: QueryPlan) -> str | None:
+    from welfare_program_cards import program_card_answer
+
+    if match_manual_faq(database, question, plan):
+        return None
+    if program_card_answer(question, plan.explicit_programs, plan.requested_years) is not None:
+        return None
+    match = timed_call('faq_direct', match_direct_faq, database, question, _current_year(), plan.requested_years)
+    if match is None:
+        return None
+    note('numeric_render', {'mode': 'faq_direct', 'faq_ids': [faq.faq_id for faq in match.faqs],
+                            'answer_score': match.answer_score, 'question_score': match.question_score})
+    return render_direct_faq(match)
+
+
 def _plan_diagnostics(plan: QueryPlan) -> dict[str, object]:
     """Decision log of the query plan: fixed-vocabulary labels only, never question text."""
     return {
@@ -338,6 +356,8 @@ def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_
         directory_answer = _directory_owner_answer(database, question, "")
         if directory_answer is not None:
             return directory_answer
+    if (direct_answer := _direct_faq_answer(database, question, plan)) is not None:
+        return direct_answer
     context = timed_call('retrieval', retrieve_context,
         database,
         question,
@@ -360,15 +380,17 @@ def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_
     if confidence_labels and all(label == "low" for label in confidence_labels):
         return NOT_FOUND_ANSWER
 
+    if (faq_context := reviewed_faq_context(context)) is not None:
+        context = faq_context
+        note('evidence_summary', _evidence_summary(context))
+
     policy = read_policy(kb_dir)
     db_version = 'OFF' if str(policy['decision_mode']).upper() == 'OFF' else database_version(database)
     context, gate_report = timed_call('decision', run_gate,
         question, context, configured.key, db_version, policy,
         version_reader=lambda: database_version(database))
     note('gate', gate_report)
-    # The model sees a trimmed evidence rendering; validators below keep the
-    # full EvidenceContext (all provenance metadata) returned by retrieval.
-    prompt = build_grounded_prompt(question, prompt_evidence(context))
+    prompt = reviewed_faq_prompt(question, context) or build_grounded_prompt(question, prompt_evidence(context))
     prior_removed = 0
     criterion_answer = (criterion_amount(question, parse_evidence(context))
                         or criterion_rate(question, parse_evidence(context))
@@ -417,6 +439,8 @@ def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_
         review_complete=True,
         prior_removed=prior_removed,
     )
+    if (faq_sources := reviewed_faq_sources(context)):
+        answer += '\n\n' + faq_sources
     return _with_edition_notice(answer, plan, context)
 
 

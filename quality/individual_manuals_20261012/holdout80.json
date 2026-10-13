@@ -1,0 +1,1536 @@
+{
+ "purpose": "복지톡 개선에 사용하지 않은 독립 시험 세트. FAQ 직접 답변 기준값 확정 후 1회 평가용.",
+ "parents": [
+  {
+   "path": "c-users-rumans-desktop-26-6/work/site/quality/faq-paraphrase-test.json",
+   "sha256": "059ffc93ce4f41da72def76fb7a4d0d71752670e0c8bb499414d38ed68ac64cf"
+  },
+  {
+   "path": "c-users-rumans-desktop-26-6/work/site/quality/hybrid-search-holdout.json",
+   "sha256": "636609efebbed6527f71def1f9948956e714935401dc3fc2a3146c811729ef62"
+  }
+ ],
+ "grading": "정답 FAQ 원문(reference_answers)과 대조. negative는 복지 답변을 만들지 않으면 정답, scope는 2035년 자료 미확인 경고가 있으면 정답.",
+ "items": [
+  {
+   "id": "test-01",
+   "question": "지역아동센터 밤늦은 돌봄은 몇 살 아이까지 이용할 수 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "17540"
+   ],
+   "reference_faq_ids": [
+    "17540"
+   ],
+   "reference_answers": [
+    "야간 연장돌봄은 긴급상황 시 돌봄 필요한 6세부터 12세까지의 아동은 누구나 이용 가능합니다.\n\n다만, 형제·­자매가 함께 이용하는 경우 등 불가피한 상황에서는 센터 판단하에 미취학 아동도 제한적으로\n\n이용 가능합니다.\n\n※ 기존 센터에 이용아동으로 등록된 중·고등학생의 경우 밤 10까지 이용 가능합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-02",
+   "question": "기초생활 보장시설에 살고 있어도 가사간병 서비스를 받을 수 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "2446"
+   ],
+   "reference_faq_ids": [
+    "2446"
+   ],
+   "reference_answers": [
+    "보장시설 입소자는 지원대상에서 제외되므로 서비스가 불가합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다"
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-03",
+   "question": "산골 뿌린 장소에 고인 이름을 새긴 표지석을 세워도 되나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "16100"
+   ],
+   "reference_faq_ids": [
+    "16100"
+   ],
+   "reference_answers": [
+    "산분장지에 사망자 및 연고자의 이름 등을 기록한 표지를 설치할 수 없습니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-04",
+   "question": "췌장 장애 진단은 어떤 병원 의사에게 받아야 하나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "18083"
+   ],
+   "reference_faq_ids": [
+    "18083"
+   ],
+   "reference_answers": [
+    "췌장장애는 장애진단 직전 3개월 이상 지속적으로 진료한 내과(내분비대사분과) 또는 소아청소년과(내분비분과) 전문의가 진단이 가능하며, 췌장이식의 경우는 췌장이식을 시술하였거나 이식환자를 진료하는 의료기관의 외과 또는 내과 전문의가 진단 가능합니다.\n\n췌장장애는 6개월이상 적극적인 인슐린치료에도 불구하고 호전의 기미가 거의없는 췌장의 만성적인 중증 내분비기능 이상을 보이는 경우 진단이 가능합니다. 단, 전체췌장전제로 장애 고착이 명백하거나 2종 이상의 자가항체가 양성인 경우, 췌장이식의 경우에는 치료기간과 무관하게 진단 할수 있습니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-05",
+   "question": "보험사가 약국에 제 약 조제 기록을 달라고 하면 넘겨줘도 되나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "15479"
+   ],
+   "reference_faq_ids": [
+    "15479"
+   ],
+   "reference_answers": [
+    "안됩니다.\n\n조제내역과 같은 개인정보를 제3자인 보험회사에게 제공하는 경우에는 원칙적으로 환자의 동의를 받아야 합니다.\n\n보험회사는 자동차손해배상 보장법 제14조(진료기록의 열람 등)에 근거하여, 자동차보험진료수가를 청구 받으면 그 의료기관에 대하여 관계 진료기록의 열람을 청구할 수 있지만, 약국은 의료법 제3조에서 규율하는 의료기관이 아니므로, 개인정보보호법 제18조제2항제2호의 '다른 법률에 특별한 규정이 있는 경우'에 해당되지 않습니다.\n\n* 필요하다면 (정보주체의 동의를 받아) 환자 본인이나 보호자와 직접 연락할 수 있도록 조치를 취해 주는 것이 바람직합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다"
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-06",
+   "question": "기초연금 받는 중인데 장애인연금을 같이 받을 수 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "11879"
+   ],
+   "reference_faq_ids": [
+    "11879"
+   ],
+   "reference_answers": [
+    "장애인연금법에 따른 중증장애인으로 소득과 재산조사를 통해서 장애인연금 대상자 선정기준에 충족이 되는 경우 장애인연금 지급이 가능합니다. 다만, 장애인연금은 기초급여와 부가급여로 나뉘어 있습니다.\n\n65세 이상의 경우는 부가급여만 지급이 가능합니다\n\n부가급여는 장애로 인해 추가로 드는 비용의 전부 또는 일부를 보전해주기 위해 지급하는 급여로 추가 지출비용 보전 성격의 급여이며, 장애인연금 수급자 중 국민기초생활수급자(생계,의료), 차상위계층, 차상위초과자로 구분하여 지급합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-07",
+   "question": "부모님 기초연금을 자녀가 대신 신청해도 되나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "11394"
+   ],
+   "reference_faq_ids": [
+    "11394"
+   ],
+   "reference_answers": [
+    "「기초연금법」제10조제1항에 따라 보건복지부령으로 정하는 대리인은 기초연금의 지급을 대리 신청할 수 있습니다.\n\n기초연금 지급의 신청을 대리할 수 있는 사람은 배우자(65세 미만 포함), 자녀, 형제.자매, 친족(8촌 이내의 혈족, 4촌 이내의 인척), 기타관계인(후견인) 사회복지시설장(개인 및 법인운영 신고시설의 장), 사회복지 전담공무원 등 관계 공무원이 있습니다.\n\n대리인이 신청할 경우 신청서류와 본인 신분증 이외에 대리인의 신분증, 위임장을 추가로 지참하셔야 합니다.\n\n* 배우자 대리신청 시 위임장은 제출하지 않아도 됨\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-08",
+   "question": "정신과 병원 치료비도 재난적의료비 지원이 되나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "13677"
+   ],
+   "reference_faq_ids": [
+    "13677"
+   ],
+   "reference_answers": [
+    "정신병원(정신건강의학과 포함), 한방병원(한방과 포함)에서 발생한 의료비는 진료를 받은 사람 중 질환 특성과 의료적 필요성 등을 고려하여 지원여부 심의가 필요한 경우로 개별심사를 통해 선별 지원합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-09",
+   "question": "의료급여 1종이 2종으로 바뀌었는데 원래 쓰던 의료급여증을 그대로 써도 되나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "14839"
+   ],
+   "reference_faq_ids": [
+    "14839"
+   ],
+   "reference_answers": [
+    "의료급여 유형이 1종에서 2종 또는 2종에서 1종으로 변경된 경우, 기존 의료급여증은 회수하고 변경된 내용에 맞게 새로운 의료급여증을 발급합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-10",
+   "question": "장벽 없는 키오스크를 안 갖추면 벌금 같은 게 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "17260"
+   ],
+   "reference_faq_ids": [
+    "17260"
+   ],
+   "reference_answers": [
+    "장벽 없는 키오스크를 위한 편의를 제공하지 않으면 그 사실을 아는 모든 국민은 국가인권위원회에 진정을 접수할 수 있고 시정권고와 시정명령을 거쳐 과태료(최대 3천만원)가 부과될 수 있 있습니다.\n\n또한, 「장애인차별금지법」을 위반한 차별행위에 대하여 민·형사상 책임을 부담할 수 있고, 재판 과정에서 차별행위가 아니라는 점을 적극적으로 입증하지 않는 한 손해배상책임이 인정되며, 악의적인 경우에는 3년 이하의 징역 또는 3천만 원 이하의 벌금이 선고될 수 있습니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-11",
+   "question": "아파트 복도랑 계단을 금연구역으로 하려면 어떤 조건이 필요한가요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "17040"
+   ],
+   "reference_faq_ids": [
+    "17040"
+   ],
+   "reference_answers": [
+    "공동주택 거주 세대 중 2분의1 이상이 그 공동주택의 복도, 계단, 엘리베이터 및 지하주차장 4곳 전부 또는 4곳 중 일부를 특별자치시장·특별자치도지사·시장·군수·구청장에 금연구역으로 지정하여 줄 것을 신청하면, 금연구역으로 의무 지정합니다.\n\n* 적용 대상 공동주택 범위 : 「주택법」 제2조제3호에 따른 아파트, 연립주택, 다세대주택을 전부 포함\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-12",
+   "question": "상병수당이 어떤 제도인지 알려주세요",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "14206"
+   ],
+   "reference_faq_ids": [
+    "14206"
+   ],
+   "reference_answers": [
+    "상병수당이란 근로자가 업무와 관련 없는 부상·질병으로 경제활동이 어려운 경우 치료에 집중할 수 있도록 소득을 보전하는 제도로 `25.1.1. 기준 총 8개 지역*에서 시행 중에 있습니다.\n\n* 대구 달서구, 경기 안양시, 경기 용인시, 전북 익산시, 강원도 원주시, 충북 충주시, 전북 전주시, 충남 홍성군\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-13",
+   "question": "전국 산후조리원 가격이랑 연락처를 한 번에 볼 수 있는 자료가 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "4187"
+   ],
+   "reference_faq_ids": [
+    "4187"
+   ],
+   "reference_answers": [
+    "전국 산후조리원 현황 자료(산후조리원명, 주소, 전화번호, 이용가격)는 보건복지부 홈페이지에서 확인가능합니다.\n\n* 확인경로 : 보건복지부 홈페이지 > 정보 > 현황 > 전국 산후조리원 현황(2025.12월.기준)/26.03.11등록\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-14",
+   "question": "청소년 산모 의료비 바우처는 언제까지 쓸 수 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "921"
+   ],
+   "reference_faq_ids": [
+    "921"
+   ],
+   "reference_answers": [
+    "청소년산모 임신·출산 의료비 지원은 임산부 본인이 국민행복카드를 수령한 날(국민행복카드 소지자는 서비스신청 승인 다음날)부터 분만예정일(유산진단일, 출산 이후 서비스 신청한 경우 출산일) 이후 2년까지 사용 가능합니다.\n\n* 예) 분만예정일이 2026년 5월 1일인 경우 2026년 4월 30일까지 사용 가능\n\n사용 기간이 지나면 지원금 잔액은 자동으로 소멸되어 사용할 수 없게 됩니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-15",
+   "question": "기초연금이 어떤 제도인지 설명해 주세요",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "13927"
+   ],
+   "reference_faq_ids": [
+    "13927"
+   ],
+   "reference_answers": [
+    "기초연금은 국민연금제도가 시행된 지 오래되지 않아 국민연금에 가입하지 못하셨거나, 가입하셨다 하더라도 충분한 연금을 받지 못하는 등 노후준비가 되지 못한 어르신들에게 기초연금을 지급하여 안정적인 소득기반을 제공함으로써 어르신의 생활안정을 지원하고 복지를 증진하기 위해 만들어진 제도입니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-16",
+   "question": "출산하고 나서 난임 시술을 다시 받으면 건강보험 횟수는 어떻게 계산하나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "15061"
+   ],
+   "reference_faq_ids": [
+    "15061"
+   ],
+   "reference_answers": [
+    "출산당 급여인정 횟수의 적용기준은,\n\n보조생식술 이력있는 여성이 출산(사산* 포함) 후, 2024년 11월 1일부터 보조생식술을 재시행하는 경우 체외수정(신선배아, 동결배아) 20회, 인공수정 5회 횟수가 다시 적용됩니다. 난임 부부 시술비 지원사업도 급여인정 횟수의 적용기준과 같습니다.\n\n* 사산 : 임신 20주 이후 태아 사망으로 임신이 종결된 경우 의미\n\n다만, 위 대상자가 2024년 11월 1일 전에 보조생식술을 재시행한 경우, 체외수정(신선배아, 동결배아) 20회, 인공수정 5회에서 이미 재시행한 횟수를 차감한 횟수가 적용됩니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-17",
+   "question": "장기요양기관이면 전부 CCTV를 꼭 달아야 하나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "16200"
+   ],
+   "reference_faq_ids": [
+    "16200"
+   ],
+   "reference_answers": [
+    "「노인장기요양보험법」 제31조에 따라 장기요양기관으로 지정을 받은 노인요양시설 및 노인요양공동생활가정이 의무설치 적용 기관입니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-18",
+   "question": "발달장애인 부모 상담 지원은 누가 받을 수 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "14078"
+   ],
+   "reference_faq_ids": [
+    "14078"
+   ],
+   "reference_answers": [
+    "발달장애인 부모상담지원사업은 「장애인복지법」상 지적·자폐성 장애인으로 등록된 자녀의 부모 및 보호자가 지원 대상입니다. 발달장애인 자녀의 부모 동시에 지원도 가능합니다.\n\n우선적으로 부모를 지원하는 것이 원칙이나, 발달장애인과 거주를 같이하면서 부모를 대신하여 발달장애인을 돌보는 보호자(2촌 이내)도 이용 가능합니다.\n\n자녀가 영유아(9세 미만)의 경우, 장애등록이 되어 있지 않더라도 발달장애(지적·자폐성)가 의심된다는 최근 6개월 이내 발행된 발달재활서비스 의뢰서 또는 최근 6개월 이내 발행된 의사소견서(진단서)로 대체 가능합니다. 대상자로 선정된 이후 이용기간 중에 9세 도래되는 경우 9세가 되는 달까지 지원됩니다.\n\n더 자세한 사항은 보건복지상담센터 (국번없이 ☎129)로 문의주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-19",
+   "question": "결혼한 딸이 부양의무자일 때 의료급여 소득재산 기준이 어떻게 되나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "17841"
+   ],
+   "reference_faq_ids": [
+    "17841"
+   ],
+   "reference_answers": [
+    "26년부터 1월부터 의료급여 부양의무자의 부양비제도가 폐지되면서 혼인한 딸인 부양의무자의 소득재산 기준은 다음과 같습니다.\n○소득기준 : 없음\n\n○재산기준 : 금융재산이 2억원 미만\n\n* 주거용재산과 일반재산 고려하지 않음\n\n* 생활준비금(500만원)과 재산가액에서 차감하는 부채는 공제하며, 3년 이상 장기금융저축 공제는 미적용\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-20",
+   "question": "아무 병원에서나 연명치료를 중단할 수 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "14960"
+   ],
+   "reference_faq_ids": [
+    "14960"
+   ],
+   "reference_answers": [
+    "모든 의료기관에서 연명의료를 유보하거나 중단할 수 있는 것은 아닙니다.\n\n연명의료의 유보,중단은 의료기관윤리위원회를 설치한 의료기관에서만 가능합니다.\n\n의료기관윤리위원회가 설치된 의료기관은 국립연명의료관리기관 누리집(www.lst.go.kr)에서 확인할 수 있습니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-21",
+   "question": "고유번호증만 있어도 지역사회서비스 바우처 제공기관으로 등록할 수 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "8512"
+   ],
+   "reference_faq_ids": [
+    "8512"
+   ],
+   "reference_answers": [
+    "지역사회바우처 제공자 등록 시 제출서류는 '사회서비스 제공자 등록신청서(별지제1호서식)', 등록기준을 충족하는지를 확인할 수 있는 서류로 규정하고 있습니다.\n\n사회서비스 제공자 등록 신청 시 사업자등록증과 고유번호증을 별도로 구분하지 않으므로, 고유번호증 제출로도 사회서비스 제공자 등록이 가능합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-22",
+   "question": "구급차 출동 처치 기록지를 환자 가족에게 줘야 하나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "9718"
+   ],
+   "reference_faq_ids": [
+    "9718"
+   ],
+   "reference_answers": [
+    "네. 그렇습니다.\n\n「응급의료에 관한 법률 시행규칙」 제40조제2항에 의해 출동 및 처치기록은 3부를 작성하여 응급환자를 인수한 응급의료종사자의 서명을 받은 뒤, 그 중 1부는 이송처치료 징수용(이송처리용 영수증과 별개)으로 환자 또는 보호자에게 교부해야 합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-23",
+   "question": "자활근로 하는 임산부가 산전검사 받으러 가면 유급휴가가 되나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "16003"
+   ],
+   "reference_faq_ids": [
+    "16003"
+   ],
+   "reference_answers": [
+    "2025년부터 임신한 여성 자활 참여자가 「모자보건법」 제10조에 따른 임산부 정기건강진단을 받을 경우, 각 회마다 4시간의 유급휴가 처리가 가능합니다.\n\n- 임신 28주까지 : 4주마다 1회\n\n- 임신 29주에서 36주까지 : 2주마다 1회\n\n- 임신 37주 이후 : 1주마다 1회\n\n임산부가 「장애인복지법」에 따른 장애인인 경우, 만 35세 이상인 경우, 다태아를 임신한 경우 또는 의사가 고위험 임신으로 판단한 경우 횟수 추가 인정이 가능합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-24",
+   "question": "사회복지시설 원장은 매일 출근해서 상주해야 하나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "2457"
+   ],
+   "reference_faq_ids": [
+    "2457"
+   ],
+   "reference_answers": [
+    "사회복지시설의 장은 「사회복지사업법」제35조에 따라 상근의무가 있습니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-25",
+   "question": "큰 복합건물 안 유흥주점도 금연구역에 해당하나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "16940"
+   ],
+   "reference_faq_ids": [
+    "16940"
+   ],
+   "reference_answers": [
+    "연면적 1,000㎡ 이상 복합용도의 건축물은 시설 전체가 금연구역이므로 유흥주점, 단란주점 등 개별 법령에서 제외 규정된 시설이더라도 1,000㎡ 이상 복합용도 건축물에 있는 경우 금연구역에 포함됩니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-26",
+   "question": "통장이 압류됐을 때 기초연금은 어떻게 받나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "15082"
+   ],
+   "reference_faq_ids": [
+    "15082"
+   ],
+   "reference_answers": [
+    "기초연금 수급자의 급여가 압류되는 것을 방지하기 위해 복지급여만 입금되고 그 외의 금원은 입금이 차단되는 압류방지 전용통장(명칭: 행복지킴이 통장)으로 수령할 수 있습니다.\n\n압류방지 전용통장은 1인 1계좌 원칙의 예외로 운영되며, 압류방지 전용통장은 1개의 계좌만 사용할 수 있습니다.\n\n* 기존 발급된 압류방지 전용통장이 있는 경우 추가발급이 제한되며, 이 경우 수급계좌 변경만 가능\n\n압류방지 전용통장은 전국 읍­면­동 주민센터에서 ‘기초연금 수급자 확인서(서식18호)’를 발급받아 금융기관에 신청한 후, 다시 관할 읍­면­동 주민센터 또는 전국 국민연금공단 지사에 급여계좌를 변경 신고하면 압류방지 전용통장을 통해 연금을 지급받을 수 있습니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-27",
+   "question": "입양된 아이가 의료급여 특례 자격이 있으면 기저귀 분유 지원 대상인가요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "12021"
+   ],
+   "reference_faq_ids": [
+    "12021"
+   ],
+   "reference_answers": [
+    "입양아동이 보유하게 되는 1종 의료급여(특례)는 [의료급여법]상 자격이므로 해당 자격만으로는 기저귀 지원대상에 포함되지 않습니다.\n\n다만, 해당 입양 아동 또는 그 가정이 1종 의료급여(특례) 자격 외에 국민기초생활보장법 상 기초생활보장, 차상위계층, 한부모가족 수급 자격을 보유하거나 기준중위소득 100% 이하의 장애인, 다자녀 가구에 해당하는 경우 기저귀 및 조제분유를 동시에 신청하여 지원받을 수 있습니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-28",
+   "question": "긴급생계지원 받을 때 청약통장도 금융재산에 들어가나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "913"
+   ],
+   "reference_faq_ids": [
+    "913"
+   ],
+   "reference_answers": [
+    "「주택법」 제56조2항에 따른 주택청약종합저축은 금융재산에서 제외하고, 일반재산으로 산정합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-29",
+   "question": "간암 검사는 누가 받을 수 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "16540"
+   ],
+   "reference_faq_ids": [
+    "16540"
+   ],
+   "reference_answers": [
+    "간암검진은 40세 이상 남녀 중 다음의 기준을 충족한 경우 대상입니다.\n\n- 해당연도 전 2년간 간암발생고위험군 해당자\n\n※ 간암발생고위험군은 간경변증, B형 간염항원 양성, C형 간염항체 양성, B형 또는 C형 간염 바이러스에 의한 만성 간질환 환자로서 해당하는 질병분류코드로 의료이용을 한 경우 대상자로 선정함\n\n더 자세한 사항은 보건복지상담센터(국번없이129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-30",
+   "question": "마음투자 사업으로 상담 받는 중인데 발달장애인 부모 상담도 신청할 수 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "15299"
+   ],
+   "reference_faq_ids": [
+    "15299"
+   ],
+   "reference_answers": [
+    "다른법령(또는 국가 예산)에 따라 발달장애인 부모상담지원 사업과 유사한 서비스를 받고 있는 경우 신청 제외대상입니다.\n\n전국민 마음투자 사업으로 이미 심리상담서비스를 지원을 받고 있다면 발달장애인 부모상담지원 사업을 중복으로 받을수는 없습니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-31",
+   "question": "장애인 보조견 표지는 어떤 개가 받을 수 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "16201"
+   ],
+   "reference_faq_ids": [
+    "16201"
+   ],
+   "reference_answers": [
+    "보건복지부장관이 고시하는 시설기준에 해당하는 장애인 보조견 전문훈련기관에서 훈련 중이거나 훈련을 이수한 장애인 보조견이 표지 발급대상에 해당합니다.\n\n전문훈련기관의 장이 해당 훈련기관에서 훈련중이거나 훈련을 이수한 장애인 보조견에 대하여 보조견표지의 발급을 신청할 수 있습니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-32",
+   "question": "영구 불임이 예상될 때 난자 정자 얼리는 비용은 얼마나 지원되나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "16080"
+   ],
+   "reference_faq_ids": [
+    "16080"
+   ],
+   "reference_answers": [
+    "영구 불임 예상 난자·정자 냉동지원 내용은 다음과 같습니다.\n\n○ 지원 범위 : 검사, 과배란유도, 생식세포(난자·정자) 채취, 동결, 보관비용 일부 지원\n\n- 생식세포 동결·보존과 관련된 비용이면 지원 금액 한도 내 지원 가능\n\n※ 지원제외 : 입원료, 생식세포 동결·보존과 관련 없는 검사료, 연장 보관료 등\n\n○ 지원 횟수 : 생애 1회\n\n○ 지원 금액 : 본인부담금의 50%, 여) 최대 200만 원, 남) 최대 30만 원\n\n○ 생명윤리 및 안전에 관한 법률상 허용되는 범위에서 지원\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-33",
+   "question": "결혼한 지 1년이 안 됐는데 난임 시술비 지원을 받을 수 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "7170"
+   ],
+   "reference_faq_ids": [
+    "7170"
+   ],
+   "reference_answers": [
+    "난임부부 시술비 지원은 법적 혼인상태로 1년 이상이 되지 않더라도 난임시술 지정 의료기관에서 발급한 난임진단서를 제출하면 지원 가능합니다.\n\n다만, 정액검사•배란기능•자궁강 및 난관검사 결과 의학적 소견상 모두 정상으로 진단된 경우, 다음과 같이 원인불명 난임으로 진단할 수 있는 의학적 기준 가이드라인을 정하고 있습니다.\n\n[체외수정 시술 의학적 기준 가이드라인]\n\n- 원인불명 난임 : 3년 이상 임신이 되지 않은 경우. 단, 부인연령이 35세 이상인 경우 1년 이상 임신이 되지 않은 경우.\n\n[인공수정 시술 의학적 기준 가이드라인]\n\n- 원인불명 난임 : 1년 이상 자연임신이 되지 않은 경우. 단, 부인연령이 35세 이상인 자는 6개월 이상 자연임신이 되지 않은 경우.\n\n더 궁금한 사항 있으시면 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-34",
+   "question": "부부 둘 다 기초연금 받으면 부부감액이랑 소득역전 감액이 둘 다 되나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "18402"
+   ],
+   "reference_faq_ids": [
+    "18402"
+   ],
+   "reference_answers": [
+    "'부부감액'과 '소득역전방지감액'은 감액의 취지가 각각 다르므로 둘 다 적용합니다.\n\n'부부감액'은 단독가구와 부부가구의 생활비 차이를 감안하여 부부 모두 수급자인 경우 기초연금액에서 20%를 감액하는 것입니다.\n\n반면, '소득역전방지감액'은 기초연금을 받는 사람과 못 받는 사람 간에 기초연금 수급으로 인해 발생할 수 있는 소득역전을 최소화하기 위해 기초연금의 일부를 감액하는 것입니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-35",
+   "question": "회사 다니고 있어도 최중증 발달장애인 통합돌봄을 신청할 수 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "18587"
+   ],
+   "reference_faq_ids": [
+    "18587"
+   ],
+   "reference_answers": [
+    "현재 취업상태에 있는 경우에도 신청은 가능하지만, 직장을 다니고 있는 경우에는 최중증 발달장애인 통합돌봄서비스와 동시 이용은 불가합니다.\n\n통합돌봄서비스 대상자로 선정되어 서비스 이용 시에는 기존 직업활동을 유지할 수 없습니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-36",
+   "question": "가사간병 서비스 본인부담금은 어떻게 내나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "4735"
+   ],
+   "reference_faq_ids": [
+    "4735"
+   ],
+   "reference_answers": [
+    "바우처 카드 또는 결정통지서에 명시된 지정계좌에 납부하시면 됩니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-37",
+   "question": "가족이 활동지원사를 하면 지원 시간이 줄어드나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "14802"
+   ],
+   "reference_faq_ids": [
+    "14802"
+   ],
+   "reference_answers": [
+    "장애인활동지원에 관한 법률 시행규칙 제15조 제2항에 따라 가족인 활동지원인력으로부터 활동지원급여를 받는 경우 급여량이 50% 감산된 급여가 지급됩니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-38",
+   "question": "발달장애인 돈 관리를 도와주는 서비스가 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "17000"
+   ],
+   "reference_faq_ids": [
+    "17000"
+   ],
+   "reference_answers": [
+    "발달장애인 본인 또는 가족 등의 재산(금전)을 발달장애인의 욕구와 선호에 따라 안전하게 보관 및 사용하도록 지원하는 서비스입니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다"
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-39",
+   "question": "타법 의료급여 수급자가 정부 해외인턴으로 외국 가면 자격이 끊기나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "15459"
+   ],
+   "reference_faq_ids": [
+    "15459"
+   ],
+   "reference_answers": [
+    "타법 의료급여 수급자가 정부해외인턴사업 참여로 해외에 체류하는 경우에는 91일째 부터 보장가구원에서 제외되며, 의료급여 상실처리 됩니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "test-40",
+   "question": "어린이집 선생님이 활동지원사로도 일할 수 있나요?",
+   "category": "paraphrase-test",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "17001"
+   ],
+   "reference_faq_ids": [
+    "17001"
+   ],
+   "reference_answers": [
+    "장애인활동지원 인력기준에서 활동지원기관이 아닌 사회복지시설의 장 또는 종사자는 활동지원인력이 될 수 없다고 규정하고 있습니다.\n\n「영유아보육법」에 따른 어린이집은 사회복지시설에 해당되므로 어린이집 종사자는 활동지원인력이 될 수 없습니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-1",
+   "question": "기저귀 조제분유 지원을 인터넷으로 접수하고 싶은데 어디서 하나요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "1003"
+   ],
+   "reference_faq_ids": [
+    "1003"
+   ],
+   "reference_answers": [
+    "기저귀조제분유 지원 신청은 영아의 주민등록 관할 보건소, 읍­면­동 주민센터 방문 또는 온라인(정부24(www.gov.kr) ‘행복출산원스톱서비스’ 또는 복지로(www.bokjiro.go.kr))으로 신청할 수 있습니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-2",
+   "question": "기저귀 지원 결제용 국민행복카드를 아직 만들지 않았어요. 발급 절차는?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "1004"
+   ],
+   "reference_faq_ids": [
+    "1004"
+   ],
+   "reference_answers": [
+    "기저귀 ­조제분유 결제 가능한 국민행복카드는 BC카드사(또는 제휴은행 지점), 삼성카드사, 롯데카드사, KB국민카드사, 신한카드사 영업점을 직접 방문하여 신청하거나, 기저귀 ­조제분유 지원 신청 시 ‘국민행복카드 상담전화를 위한 개인정보 제공동의서’를 작성하여 함께 제출하시면 금융기관(카드사)의 카드발급 상담전화(TM)를 통해 본인확인 후 발급 가능합니다.\n\n* BC카드 제휴은행：IBK기업은행, 수협은행, NH농협, 우리은행(우리카드), 하나은행(하나카드), iM뱅크(구.대구은행), BNK부산은행, BNK경남은행, 광주은행, 제주은행, 신협, 우체국\n\n* 삼성카드 : 삼성카드사 전국 영업점 및 신세계 백화점\n\n* 롯데카드 : 롯데카드 전국영업점 및 롯데백화점\n\n* KB국민카드 : KB국민카드 전국 영업점, 전북은행 전 영업점\n\n* 신한카드 : 신한카드사 전국 영업점\n\n* 체크카드 발급 등으로 계좌개설이 필요한 경우에는 지원결정통지서를 지참하고 직접 전담금융기관 영업점을 방문하여 신청하여야 함\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-3",
+   "question": "기저귀 바우처는 신청서를 낸 날 바로 쓸 수 있나요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "1006"
+   ],
+   "reference_faq_ids": [
+    "1006"
+   ],
+   "reference_answers": [
+    "기저귀조제분유 신청을 했더라도 지원 대상으로 결정 통보된 날의 익일부터(3개월 단위로 바우처 지원) 지원기간 동안 사용 가능합니다.\n\n보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-4",
+   "question": "아기 출생신고 전에도 기저귀 지원을 접수할 수 있는지 궁금합니다.",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "1011"
+   ],
+   "reference_faq_ids": [
+    "1011"
+   ],
+   "reference_answers": [
+    "기저귀조제분유 지원 신청은 영아의 출생신고가 반드시 완료되어 주민등록번호 확인이 되어야 가능합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-5",
+   "question": "사용기간이 지나 사라진 기저귀 바우처 잔액을 되살릴 수 있나요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "1016"
+   ],
+   "reference_faq_ids": [
+    "1016"
+   ],
+   "reference_answers": [
+    "기저귀·조제분유 지원 사업은 지원대상 영아의 월령(0~24개월) 및 바우처 지급 시가 아닌 지원대상자의 기저귀 등 구매 시에 예산이 집행되는 점 등 예산의 효율적 운영·관리 측면을 고려하여 서비스 이용기간이 종료되는 날의 다음 날부터 바우처가 소멸되며, 이미 소멸된 바우처의 복구 및 재사용은 불가합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-6",
+   "question": "가사간병 제공기관 운영을 그만두려면 폐업 신고를 언제 해야 하나요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "10195"
+   ],
+   "reference_faq_ids": [
+    "10195"
+   ],
+   "reference_answers": [
+    "가사·간병서비스 제공자는 영업의 전부 또는 일부를 휴업하거나 폐업하려는 경우, 휴·­폐업 예정 2개월 전까지 폐업·휴업 신고서(기존 이용자에 대한 조치계획서 첨부)를 시장­·군수·­구청장에게 제출해야 합니다.\n\n또한, 제공자는 이용자 및 이용자의 보호자에게 문서 또는 구두로 휴­·폐업 사실을 통보해야 합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다"
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-7",
+   "question": "가사간병 제공기관 상호가 바뀌었는데 변경신고 기한이 있나요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "10214"
+   ],
+   "reference_faq_ids": [
+    "10214"
+   ],
+   "reference_answers": [
+    "가사·간병서비스 제공기관의 등록사항(제공기관명칭, 사업자등록번호, 지급계좌, 소재지, 연락처 등)을 변경하려는 제공자는\n\n변경사항이 발생한 날부터 14일 이내에 제공자 등록사항 변경신청서를 시장­·군수·구청장에게 제출해야합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-8",
+   "question": "가사간병 방문을 한 번에 한 시간만 이용할 수 있나요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "10215"
+   ],
+   "reference_faq_ids": [
+    "10215"
+   ],
+   "reference_answers": [
+    "가사간병서비스 이용시 1회 방문 시 서비스 제공시간은 최소 2시간 이상을 원칙으로 합니다.\n\n*(예시) 주 5시간씩 서비를 제공하는 경우 - 월요일 2시간, 수요일 3시간 (O) / 월요일 2시간, 수요일 1.5시간, 금요일 1.5시간 (X)\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-9",
+   "question": "기초연금 심사 때 국가유공자 보상금에도 소득에서 빼주는 부분이 있나요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "10052"
+   ],
+   "reference_faq_ids": [
+    "10052"
+   ],
+   "reference_answers": [
+    "2022년 8월 1일부터 기초연금법 시행령의 개정으로 「국가유공자 등 예우 및 지원에 관한 법률」, 「보훈대상자 지원에 관한 법률」, 「독립유공자예우에 관한 법률」에 따른 보상금과 6·25전몰군경자녀수당 중 일정액*과 「국가유공자 등 예우 및 지원에 관한 법률」에 따른 4·19혁명 공로수당 전액을 소득에서 제외하고 반영합니다.\n\n* 국가유공자 · 독립유공자 보훈보상금 : 최대 무공영예수당 최고액(43만원) 만큼 소득 제외\n\n6·25 전몰군경자녀수당 : 최대 무공영예수당 최고액(43만원) 만큼 소득 제외\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-10",
+   "question": "이혼 뒤 국민연금 분할연금을 받으면 기초연금 지급액도 줄어드나요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "10235"
+   ],
+   "reference_faq_ids": [
+    "10235"
+   ],
+   "reference_answers": [
+    "기초연금은 ­국민연금법­ 제64조에 의한 분할연금 수급권자는 A급여액과 국민연금 급여액 등 산식에 따라 기초연금액이 감액될 수 있습니다.\n\n* 단, 분할연금 수급권이 발생하였으나 이를 청구하지 않은 경우는 제외\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-11",
+   "question": "기초연금을 방문하지 않고 온라인으로 신청할 수 있을까요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "10557"
+   ],
+   "reference_faq_ids": [
+    "10557"
+   ],
+   "reference_answers": [
+    "기초연금 신청방법은 방문신청과 온라인신청이 있습니다.\n\n전국 가까운 읍·면·동 주민센터 또는 전국 국민연금공단 지사로 방문신청 하실 수 있으며, 본인 인증을 통해 복지로(www.bokjiro.go.kr)에서 온라인신청을 하실 수 있습니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-12",
+   "question": "예순다섯 생일 전에 기초연금 신청서를 미리 낼 수 있나요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "11215"
+   ],
+   "reference_faq_ids": [
+    "11215"
+   ],
+   "reference_answers": [
+    "기초연금은 신청자격이 있는자(대한민국 국적을 가지고 주민등록상 65세 이상인 자)가 65세 생일이 속하는 달의 1개월 전 초일부터 신청이 가능합니다\n\n※ 수급자로 결정된 경우 신청일이 속한 달부터 기초연금 지급. 단, 사전신청자는 생일이 도래한 월부터 지급\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-13",
+   "question": "상병수당 시범사업은 나이와 거주지에 어떤 신청 제한이 있나요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "10275"
+   ],
+   "reference_faq_ids": [
+    "10275"
+   ],
+   "reference_answers": [
+    "상병수당 시범사업 지역에 거주하는 취업자 또는 해당 지역 내 사업장에서 근무하는 근로자 중 만 15세 이상 만 65세 미만 대한민국 국적자 중 지역별 시범사업 모형에 따른 요건이 충족하는 경우,\n\n관련서류를 준비하여 건강보험공단 지사에 신청하면 심사 후 상병수당을 지급합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-14",
+   "question": "평가등급이 우수한 건강검진 병원을 조회하려면 어느 사이트를 보나요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "10279"
+   ],
+   "reference_faq_ids": [
+    "10279"
+   ],
+   "reference_answers": [
+    "우수 검진기관은 건강보험공단 홈페이지에서 조회 가능하며, 경로는 아래와 같습니다.\n\n- 국민건강보험공단 홈페이지 > 건강모아 > 기관찾기 > 병(의)원/검진기관 평가정보 > 검진기관 평가정보 > 평가등급 우수 검진기관 조회 체크(V) 후 지역별 검색\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-15",
+   "question": "장애인연금 신청에는 장애 정도 말고 소득 재산 조건도 있나요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "10515"
+   ],
+   "reference_faq_ids": [
+    "10515"
+   ],
+   "reference_answers": [
+    "장애인연금은 18세 이상의 「장애인연금법」 제2조제1호에 따른 중증장애인(종전 1급, 2급, 3급 중복장애*)이 신청 가능하고, 본인과 배우자의 소득과 재산을 조사해서 선정기준액 이하일때 지원 가능합니다.\n\n* 종전 3급 중복장애: 종전 3급에 해당하는 장애와 추가 장애를 하나 이상 가진 자\n\n2026년 장애인연금 선정기준액은 단독가구 140만원, 부부가구 224만원 입니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-16",
+   "question": "장애정도 심사가 어디까지 진행됐는지 인터넷에서 조회하고 싶어요.",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "10517"
+   ],
+   "reference_faq_ids": [
+    "10517"
+   ],
+   "reference_answers": [
+    "국민연금공단 홈페이지에 접속하여 장애등록심사 진행상태 조회에서 확인 가능합니다.\n\n- 접속경로 : 국민연금홈페이지(www.nps.or.kr) → 전자민원 → 개인 → 조회 → ‘장애정도심사 진행상태 조회'\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-17",
+   "question": "퇴원 뒤 집에서 의료기관 가정간호를 받을 수 있는 환자는 누구인가요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "10599"
+   ],
+   "reference_faq_ids": [
+    "10599"
+   ],
+   "reference_answers": [
+    "가정간호 대상자는 의료기관에서 입원치료 후 퇴원한 환자와 외래 및 응급실 환자 중 다음에 해당되는 자로서 의사 또는 한의사가 가정에서 계속적인 치료와 관리가 필요하다고 인정하는 경우에 해당됩니다.\n\n- 수술 후 조기퇴원환자\n\n- 만성질환자(고혈압·당뇨·암 등)\n\n- 만성호흡기질환자\n\n- 말기환자\n\n- 심뇌혈관질환자\n\n- 산모 및 신생아\n\n- 의학적 상태 감시가 지속적으로 필요한 환자\n\n- 기타 의사가 필요하다고 인정하는 환자\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-18",
+   "question": "헌혈증서를 잃어버렸는데 재발급 신청을 할 수 있을까요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "10601"
+   ],
+   "reference_faq_ids": [
+    "10601"
+   ],
+   "reference_answers": [
+    "혈액관리법 개정('22.9.24. 시행)에 따라 2022년 9월 24일 이후 발급된 헌혈증서부터 재발급 받을 수 있습니다.\n\n2022년 9월 24일부터 발급되는 헌혈증서는 노란색으로 이전 헌혈증서(파란색)와 구분되며, 2022년 9월 23일까지 발급된 헌혈증서(파란색)은 재발급 받을 수 없습니다.\n\n헌혈증서 재발급은 헌혈증서 당 1회만 가능하며, 증서 재발급과 동시에 기존 발급한 헌혈증서는 사용할 수 없습니다.\n\n또한 혈액원에 기증하거나, 의료기관에 혈액제제를 무상으로 수혈받기 위해 제출한 헌혈증서는 재발급 받을 수 없습니다.\n\n헌혈증서 재발급은 온라인 신청 또는 직접 방문하시어 신청 가능하며, 신청 후 3일 이내 헌혈의집에 방문하시어 수령하셔야 하며, 3일 내 수령하지 않는 경우 재발급 신청이 자동 취소됩니다.\n\n온라인 신청은 혈액관리본부 홈페이지 또는 헌혈앱 레드커넥트를 이용해주시기 바라며, 한마음혈액원에서 발급받은 헌혈증서는 한마음혈액원에서 재발급 신청 및 처리 가능합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-19",
+   "question": "외국에 살던 재외국민이 귀국하면 긴급생계지원 대상에 들어갈 수 있나요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "10734"
+   ],
+   "reference_faq_ids": [
+    "10734"
+   ],
+   "reference_answers": [
+    "재외국민은 긴급지원 대상자에 해당되지 않아 신청이 어려습니다.\n\n다만, 국내에 30일 이상 거주할 목적으로 입국 시 신고받아 주민등록을 재등록하거나, 주민등록이 말소되지 않은 재외국민거주자가 실제 생계가 곤란하여 필요하다고 시군구청장이 인정하는 경우 가구원으로서 포함 가능합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "paraphrase-20",
+   "question": "정부가 지정한 전문병원 명단을 찾아볼 수 있는 곳은 어디인가요?",
+   "category": "holdout-paraphrase",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [
+    "10795"
+   ],
+   "reference_faq_ids": [
+    "10795"
+   ],
+   "reference_answers": [
+    "보건복지부에서 지정한 전문병원 현황은 다음의 방법으로 확인이 가능합니다.\n\n① 건강보험심사평가원 홈페이지(www.hira.or.kr)\n\n☞ 상단 '의료정보' > 병원·약국 찾기 > 전문병원 찾기 - 지역별 검색\n\n② 국민건강보험공단 홈페이지(www.nhis.or.kr)\n\n☞ 오른쪽 상단 '전체메뉴(세줄)의 건강IN > 검진기관/병원찾기 > 병(의)원정보 - 병(의)원찾기 > 조건별 검색에서 '특성별 병원' - '전문병원' 선택 후 지역별 검색\n\n③ 보건복지부 홈페이지(www.mohw.go.kr)\n\n☞ 알림 > 공지사항 > 검색구분 제목으로 '전문병원' 입력 후 검색\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": null
+  },
+  {
+   "id": "negative-1",
+   "question": "목성 위성 궤도 계산 프로그램 설치",
+   "category": "holdout-negative",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [],
+   "reference_answers": [],
+   "required_warning": null
+  },
+  {
+   "id": "negative-2",
+   "question": "양자컴퓨터 큐비트 오류정정 코드",
+   "category": "holdout-negative",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [],
+   "reference_answers": [],
+   "required_warning": null
+  },
+  {
+   "id": "negative-3",
+   "question": "프로야구 입장권 환불 규정",
+   "category": "holdout-negative",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [],
+   "reference_answers": [],
+   "required_warning": null
+  },
+  {
+   "id": "negative-4",
+   "question": "자동차 엔진오일 점도 추천",
+   "category": "holdout-negative",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [],
+   "reference_answers": [],
+   "required_warning": null
+  },
+  {
+   "id": "negative-5",
+   "question": "항공기 조종사 면장 실기시험",
+   "category": "holdout-negative",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [],
+   "reference_answers": [],
+   "required_warning": null
+  },
+  {
+   "id": "negative-6",
+   "question": "해외 주식 배당 원천징수 세율",
+   "category": "holdout-negative",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [],
+   "reference_answers": [],
+   "required_warning": null
+  },
+  {
+   "id": "negative-7",
+   "question": "반려도마뱀 테라리움 온도 설정",
+   "category": "holdout-negative",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [],
+   "reference_answers": [],
+   "required_warning": null
+  },
+  {
+   "id": "negative-8",
+   "question": "화산암 현무암 생성 과정",
+   "category": "holdout-negative",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [],
+   "reference_answers": [],
+   "required_warning": null
+  },
+  {
+   "id": "negative-9",
+   "question": "리눅스 커널 모듈 컴파일 오류",
+   "category": "holdout-negative",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [],
+   "reference_answers": [],
+   "required_warning": null
+  },
+  {
+   "id": "negative-10",
+   "question": "전기기타 픽업 배선 교체 방법",
+   "category": "holdout-negative",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [],
+   "reference_answers": [],
+   "required_warning": null
+  },
+  {
+   "id": "scope-1",
+   "question": "2035년 기저귀 조제분유 지원을 인터넷으로 접수하고 싶은데 어디서 하나요?",
+   "category": "holdout-scope",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [
+    "1003"
+   ],
+   "reference_answers": [
+    "기저귀조제분유 지원 신청은 영아의 주민등록 관할 보건소, 읍­면­동 주민센터 방문 또는 온라인(정부24(www.gov.kr) ‘행복출산원스톱서비스’ 또는 복지로(www.bokjiro.go.kr))으로 신청할 수 있습니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": "YEAR_REQUEST_UNVERIFIED"
+  },
+  {
+   "id": "scope-2",
+   "question": "2035년 기저귀 지원 결제용 국민행복카드를 아직 만들지 않았어요. 발급 절차는?",
+   "category": "holdout-scope",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [
+    "1004"
+   ],
+   "reference_answers": [
+    "기저귀 ­조제분유 결제 가능한 국민행복카드는 BC카드사(또는 제휴은행 지점), 삼성카드사, 롯데카드사, KB국민카드사, 신한카드사 영업점을 직접 방문하여 신청하거나, 기저귀 ­조제분유 지원 신청 시 ‘국민행복카드 상담전화를 위한 개인정보 제공동의서’를 작성하여 함께 제출하시면 금융기관(카드사)의 카드발급 상담전화(TM)를 통해 본인확인 후 발급 가능합니다.\n\n* BC카드 제휴은행：IBK기업은행, 수협은행, NH농협, 우리은행(우리카드), 하나은행(하나카드), iM뱅크(구.대구은행), BNK부산은행, BNK경남은행, 광주은행, 제주은행, 신협, 우체국\n\n* 삼성카드 : 삼성카드사 전국 영업점 및 신세계 백화점\n\n* 롯데카드 : 롯데카드 전국영업점 및 롯데백화점\n\n* KB국민카드 : KB국민카드 전국 영업점, 전북은행 전 영업점\n\n* 신한카드 : 신한카드사 전국 영업점\n\n* 체크카드 발급 등으로 계좌개설이 필요한 경우에는 지원결정통지서를 지참하고 직접 전담금융기관 영업점을 방문하여 신청하여야 함\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": "YEAR_REQUEST_UNVERIFIED"
+  },
+  {
+   "id": "scope-3",
+   "question": "2035년 기저귀 바우처는 신청서를 낸 날 바로 쓸 수 있나요?",
+   "category": "holdout-scope",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [
+    "1006"
+   ],
+   "reference_answers": [
+    "기저귀조제분유 신청을 했더라도 지원 대상으로 결정 통보된 날의 익일부터(3개월 단위로 바우처 지원) 지원기간 동안 사용 가능합니다.\n\n보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": "YEAR_REQUEST_UNVERIFIED"
+  },
+  {
+   "id": "scope-4",
+   "question": "2035년 아기 출생신고 전에도 기저귀 지원을 접수할 수 있는지 궁금합니다.",
+   "category": "holdout-scope",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [
+    "1011"
+   ],
+   "reference_answers": [
+    "기저귀조제분유 지원 신청은 영아의 출생신고가 반드시 완료되어 주민등록번호 확인이 되어야 가능합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": "YEAR_REQUEST_UNVERIFIED"
+  },
+  {
+   "id": "scope-5",
+   "question": "2035년 사용기간이 지나 사라진 기저귀 바우처 잔액을 되살릴 수 있나요?",
+   "category": "holdout-scope",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [
+    "1016"
+   ],
+   "reference_answers": [
+    "기저귀·조제분유 지원 사업은 지원대상 영아의 월령(0~24개월) 및 바우처 지급 시가 아닌 지원대상자의 기저귀 등 구매 시에 예산이 집행되는 점 등 예산의 효율적 운영·관리 측면을 고려하여 서비스 이용기간이 종료되는 날의 다음 날부터 바우처가 소멸되며, 이미 소멸된 바우처의 복구 및 재사용은 불가합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": "YEAR_REQUEST_UNVERIFIED"
+  },
+  {
+   "id": "scope-6",
+   "question": "2010년 가사간병 제공기관 운영을 그만두려면 폐업 신고를 언제 해야 하나요?",
+   "category": "holdout-scope",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [
+    "10195"
+   ],
+   "reference_answers": [
+    "가사·간병서비스 제공자는 영업의 전부 또는 일부를 휴업하거나 폐업하려는 경우, 휴·­폐업 예정 2개월 전까지 폐업·휴업 신고서(기존 이용자에 대한 조치계획서 첨부)를 시장­·군수·­구청장에게 제출해야 합니다.\n\n또한, 제공자는 이용자 및 이용자의 보호자에게 문서 또는 구두로 휴­·폐업 사실을 통보해야 합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다"
+   ],
+   "required_warning": "YEAR_EXCLUDED"
+  },
+  {
+   "id": "scope-7",
+   "question": "2010년 가사간병 제공기관 상호가 바뀌었는데 변경신고 기한이 있나요?",
+   "category": "holdout-scope",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [
+    "10214"
+   ],
+   "reference_answers": [
+    "가사·간병서비스 제공기관의 등록사항(제공기관명칭, 사업자등록번호, 지급계좌, 소재지, 연락처 등)을 변경하려는 제공자는\n\n변경사항이 발생한 날부터 14일 이내에 제공자 등록사항 변경신청서를 시장­·군수·구청장에게 제출해야합니다.\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": "YEAR_EXCLUDED"
+  },
+  {
+   "id": "scope-8",
+   "question": "2010년 가사간병 방문을 한 번에 한 시간만 이용할 수 있나요?",
+   "category": "holdout-scope",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [
+    "10215"
+   ],
+   "reference_answers": [
+    "가사간병서비스 이용시 1회 방문 시 서비스 제공시간은 최소 2시간 이상을 원칙으로 합니다.\n\n*(예시) 주 5시간씩 서비를 제공하는 경우 - 월요일 2시간, 수요일 3시간 (O) / 월요일 2시간, 수요일 1.5시간, 금요일 1.5시간 (X)\n\n더 자세한 사항은 보건복지상담센터(국번없이 129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": "YEAR_EXCLUDED"
+  },
+  {
+   "id": "scope-9",
+   "question": "2010년 기초연금 심사 때 국가유공자 보상금에도 소득에서 빼주는 부분이 있나요?",
+   "category": "holdout-scope",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [
+    "10052"
+   ],
+   "reference_answers": [
+    "2022년 8월 1일부터 기초연금법 시행령의 개정으로 「국가유공자 등 예우 및 지원에 관한 법률」, 「보훈대상자 지원에 관한 법률」, 「독립유공자예우에 관한 법률」에 따른 보상금과 6·25전몰군경자녀수당 중 일정액*과 「국가유공자 등 예우 및 지원에 관한 법률」에 따른 4·19혁명 공로수당 전액을 소득에서 제외하고 반영합니다.\n\n* 국가유공자 · 독립유공자 보훈보상금 : 최대 무공영예수당 최고액(43만원) 만큼 소득 제외\n\n6·25 전몰군경자녀수당 : 최대 무공영예수당 최고액(43만원) 만큼 소득 제외\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": "YEAR_EXCLUDED"
+  },
+  {
+   "id": "scope-10",
+   "question": "2010년 이혼 뒤 국민연금 분할연금을 받으면 기초연금 지급액도 줄어드나요?",
+   "category": "holdout-scope",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "gold_faq_ids": [],
+   "reference_faq_ids": [
+    "10235"
+   ],
+   "reference_answers": [
+    "기초연금은 ­국민연금법­ 제64조에 의한 분할연금 수급권자는 A급여액과 국민연금 급여액 등 산식에 따라 기초연금액이 감액될 수 있습니다.\n\n* 단, 분할연금 수급권이 발생하였으나 이를 청구하지 않은 경우는 제외\n\n더 자세한 사항은 보건복지상담센터(국번없이 ☎129)로 연락주시기 바랍니다."
+   ],
+   "required_warning": "YEAR_EXCLUDED"
+  }
+ ]
+}

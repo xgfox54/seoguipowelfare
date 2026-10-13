@@ -11,6 +11,7 @@ from typing import Final
 import yaml
 
 from welfare_search.faq import load_official_faq
+from welfare_search.manual_faq import load_manual_faq
 from welfare_search.split import MAX_SECTION_CHARS, build_nodes, split_document
 from welfare_search.types import (
     IndexReport,
@@ -157,6 +158,7 @@ def _reset_schema(connection: sqlite3.Connection) -> None:
     connection.executescript(
         """
         DROP TABLE IF EXISTS quality_issues;
+        DROP TABLE IF EXISTS manual_faq;
         DROP TABLE IF EXISTS references_map;
         DROP TABLE IF EXISTS embeddings;
         DROP TABLE IF EXISTS index_state;
@@ -358,6 +360,8 @@ def build_index(source_dir: Path, output_dir: Path) -> IndexReport:
             _insert_document(connection, document)
         faq_path = source_dir.parent / "knowledge" / "faq129" / "faq129.json"
         official_faq_count = load_official_faq(connection, faq_path) if faq_path.is_file() else 0
+        manual_faq_path = source_dir.parent / "knowledge" / "manual_faq" / "reviewed.json"
+        manual_faq_count = load_manual_faq(connection, manual_faq_path if manual_faq_path.is_file() else None)
         connection.commit()
         section_count = int(connection.execute("SELECT COUNT(*) FROM sections").fetchone()[0])
         reference_count = int(connection.execute("SELECT COUNT(*) FROM references_map").fetchone()[0])
@@ -379,6 +383,7 @@ def build_index(source_dir: Path, output_dir: Path) -> IndexReport:
                 "authority_levels": ["primary", "reference", "summary", "index"],
                 "service_name_index": "section content and ancestor headings only",
                 "official_faq_count": official_faq_count,
+                "manual_faq_count": manual_faq_count,
             },
             ensure_ascii=False,
             indent=2,

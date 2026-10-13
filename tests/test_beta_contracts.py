@@ -251,7 +251,7 @@ def test_release_version_and_default_model_port():
     # v1.5.0 정식판 전환(2026-09-26, 사용자 결정): 정식판 모델 서버 포트 18080.
     import welfare_llm
     from welfare_runtime import app_version
-    assert app_version() == '1.6.0'
+    assert app_version() == '1.7.0'
     assert welfare_llm.LLM_PORT == 18080
 
 

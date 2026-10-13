@@ -1,0 +1,434 @@
+{
+ "WFAQ-005": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "18322"
+  ],
+  "answer_score": 0.779,
+  "question_score": 0.7951
+ },
+ "WFAQ-013": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "17402"
+  ],
+  "answer_score": 0.7744,
+  "question_score": 0.7092
+ },
+ "WFAQ-017": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "16280"
+  ],
+  "answer_score": 0.7584,
+  "question_score": 0.804
+ },
+ "WFAQ-023": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "18182"
+  ],
+  "answer_score": 0.7734,
+  "question_score": 0.8054
+ },
+ "WFAQ-024": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "18182"
+  ],
+  "answer_score": 0.7727,
+  "question_score": 0.7771
+ },
+ "WFAQ-025": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "17960"
+  ],
+  "answer_score": 0.7616,
+  "question_score": 0.8334
+ },
+ "WFAQ-027": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "916"
+  ],
+  "answer_score": 0.7684,
+  "question_score": 0.7412
+ },
+ "WFAQ-036": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "18202"
+  ],
+  "answer_score": 0.7743,
+  "question_score": 0.6263
+ },
+ "WFAQ-037": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "18503"
+  ],
+  "answer_score": 0.8056,
+  "question_score": 0.708
+ },
+ "WFAQ-043": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "17920"
+  ],
+  "answer_score": 0.8197,
+  "question_score": 0.8194
+ },
+ "WFAQ-045": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "16260"
+  ],
+  "answer_score": 0.8161,
+  "question_score": 0.9009
+ },
+ "WFAQ-046": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "16260"
+  ],
+  "answer_score": 0.7676,
+  "question_score": 0.7824
+ },
+ "WFAQ-055": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "13739"
+  ],
+  "answer_score": 0.7435,
+  "question_score": 0.8042
+ },
+ "WFAQ-057": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "13760"
+  ],
+  "answer_score": 0.7577,
+  "question_score": 0.7095
+ },
+ "WFAQ-058": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "13760"
+  ],
+  "answer_score": 0.7343,
+  "question_score": 0.8054
+ },
+ "WFAQ-068": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "18363"
+  ],
+  "answer_score": 0.7663,
+  "question_score": 0.7008
+ },
+ "WFAQ-071": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "5676",
+   "17801"
+  ],
+  "answer_score": 0.7625,
+  "question_score": 0.5537
+ },
+ "WFAQ-072": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "6739"
+  ],
+  "answer_score": 0.7874,
+  "question_score": 0.6812
+ },
+ "WFAQ-074": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "1319"
+  ],
+  "answer_score": 0.781,
+  "question_score": 0.7356
+ },
+ "WFAQ-076": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "18245"
+  ],
+  "answer_score": 0.8193,
+  "question_score": 0.8629
+ },
+ "WFAQ-078": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "2441",
+   "6334"
+  ],
+  "answer_score": 0.7983,
+  "question_score": 0.7101
+ },
+ "WFAQ-080": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "2441"
+  ],
+  "answer_score": 0.7701,
+  "question_score": 0.8185
+ },
+ "WFAQ-085": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "11879",
+   "10515"
+  ],
+  "answer_score": 0.705,
+  "question_score": 0.8253
+ },
+ "WFAQ-086": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "6451"
+  ],
+  "answer_score": 0.7546,
+  "question_score": 0.7052
+ },
+ "WFAQ-088": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "14600"
+  ],
+  "answer_score": 0.8297,
+  "question_score": 0.9127
+ },
+ "WFAQ-089": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "14600"
+  ],
+  "answer_score": 0.7783,
+  "question_score": 0.697
+ },
+ "WFAQ-090": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "16782"
+  ],
+  "answer_score": 0.8512,
+  "question_score": 0.8984
+ },
+ "WFAQ-091": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "16782"
+  ],
+  "answer_score": 0.7732,
+  "question_score": 0.7519
+ },
+ "WFAQ-094": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "17160",
+   "18583"
+  ],
+  "answer_score": 0.8008,
+  "question_score": 0.8314
+ },
+ "WFAQ-095": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "17160",
+   "18587"
+  ],
+  "answer_score": 0.7786,
+  "question_score": 0.825
+ },
+ "WFAQ-096": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "1526"
+  ],
+  "answer_score": 0.808,
+  "question_score": 0.8211
+ },
+ "WFAQ-100": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "1496"
+  ],
+  "answer_score": 0.7394,
+  "question_score": 0.8275
+ },
+ "WFAQ-104": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "5534"
+  ],
+  "answer_score": 0.8011,
+  "question_score": 0.7962
+ },
+ "WFAQ-106": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "1494"
+  ],
+  "answer_score": 0.8545,
+  "question_score": 0.8866
+ },
+ "WFAQ-107": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "1494"
+  ],
+  "answer_score": 0.8114,
+  "question_score": 0.803
+ },
+ "WFAQ-118": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "12021"
+  ],
+  "answer_score": 0.7756,
+  "question_score": 0.7495
+ },
+ "WFAQ-119": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "12021"
+  ],
+  "answer_score": 0.836,
+  "question_score": 0.832
+ },
+ "WFAQ-120": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "965"
+  ],
+  "answer_score": 0.7962,
+  "question_score": 0.8877
+ },
+ "WFAQ-121": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "13279"
+  ],
+  "answer_score": 0.7621,
+  "question_score": 0.6745
+ },
+ "WFAQ-125": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "13577"
+  ],
+  "answer_score": 0.8447,
+  "question_score": 0.7725
+ },
+ "WFAQ-126": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "15063"
+  ],
+  "answer_score": 0.8019,
+  "question_score": 0.7894
+ },
+ "WFAQ-138": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "18484"
+  ],
+  "answer_score": 0.774,
+  "question_score": 0.7438
+ },
+ "WFAQ-140": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "12604"
+  ],
+  "answer_score": 0.7978,
+  "question_score": 0.6512
+ },
+ "WFAQ-151": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "14059"
+  ],
+  "answer_score": 0.7631,
+  "question_score": 0.7798
+ },
+ "WFAQ-152": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "14059"
+  ],
+  "answer_score": 0.7561,
+  "question_score": 0.7356
+ },
+ "WFAQ-153": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "14054"
+  ],
+  "answer_score": 0.8079,
+  "question_score": 0.7599
+ },
+ "WFAQ-154": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "14054"
+  ],
+  "answer_score": 0.8139,
+  "question_score": 0.7158
+ },
+ "WFAQ-155": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "16320"
+  ],
+  "answer_score": 0.7923,
+  "question_score": 0.7617
+ },
+ "WFAQ-158": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "18563"
+  ],
+  "answer_score": 0.7728,
+  "question_score": 0.7007
+ },
+ "WFAQ-161": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "16079"
+  ],
+  "answer_score": 0.7669,
+  "question_score": 0.8457
+ },
+ "WFAQ-162": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "16079",
+   "15299"
+  ],
+  "answer_score": 0.7647,
+  "question_score": 0.6614
+ },
+ "WFAQ-165": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "6651",
+   "14054"
+  ],
+  "answer_score": 0.7677,
+  "question_score": 0.7205
+ },
+ "WFAQ-166": {
+  "mode": "faq_direct",
+  "faq_ids": [
+   "7917",
+   "6651"
+  ],
+  "answer_score": 0.7678,
+  "question_score": 0.7536
+ }
+}

@@ -16,11 +16,11 @@ META_OPEN_RE = re.compile(r'^\[([a-z_][a-z0-9_]*):[ \t]*(.*)$')
 CITATION_RE = re.compile(r'\[(E\d+)\]')
 EXCEPTION_RE = re.compile(r'예외|제외|특례|중복|병행|불가|다만|단,|단\s*[:：]')
 SLOT_PATTERNS = {
-    '대상': re.compile(r'대상|자격|선정|요건|소득인정액|부양의무자'),
+    '대상': re.compile(r'대상|자격|선정|요건|소득인정액|부양의무자|수급자\s*이면서|인\s*경우\s*지원|다자녀.*(?:산정|인정)|실제\s*전입'),
     '금액': re.compile(r'금액|지원액|지급액|급여액|\d[\d,]*(?:\.\d+)?\s*(?:만원|천원|원)'),
-    '기간': re.compile(r'지원기간|신청기간|지원\s*기간|개월|기한|연장'),
+    '기간': re.compile(r'지원기간|신청기간|사용기간|지원\s*기간|보호기간|기간\s*산정|개월|기한|연장|\d+\s*(?:년|월|일)\s*(?:까지|부터|[~∼])'),
     '절차': re.compile(r'신청|접수|절차|서류|처리'),
-    '예외·제외': EXCEPTION_RE,
+    '예외·제외': re.compile(EXCEPTION_RE.pattern + r'|한정|아니므로|대상이\s*아닙|재보호.*연속'),
 }
 FLATTENED_TABLE_LINE_MIN_CHARS = 800
 FLATTENED_TABLE_MIN_PIPES = 4
@@ -29,7 +29,7 @@ FLATTENED_LAYOUT_MARKERS = ('※', '▸', '･')
 # the document).  Validators never read the prompt string: they keep using the
 # full metadata of the EvidenceBlock objects (sha256, section_id, references…).
 PROMPT_METADATA_FIELDS = ('original_name', 'year', 'jurisdiction', 'authority', 'effective_period',
-                          'heading_path', 'lines', 'title')
+                          'heading_path', 'lines', 'pdf_page', 'title')
 
 
 @dataclass(frozen=True)
@@ -209,16 +209,16 @@ def claim_support_text(text: str) -> str:
 
 def required_slots(question: str) -> tuple[str, ...]:
     slots: list[str] = []
-    if re.search(r'대상|자격|요건|조건|받을\s*수|가능|선정', question):
+    if re.search(r'대상(?!자에게)|자격|요건|조건|받을\s*수|가능|선정', question):
         slots.append('대상')
     # Preserve the stricter legacy contract for an explicit application-
     # conditions request. Generic eligibility review (e.g. "받을 수 있는지
     # 검토할 조건") must not invent an exception/exclusion dimension.
     if re.search(r'신청\s*조건', question):
         slots.append('예외·제외')
-    if re.search(r'얼마|금액|지원액|지급액|급여액', question):
+    if re.search(r'얼마(?!나)|금액|지원액|지급액|급여액', question):
         slots.append('금액')
-    if re.search(r'기간|언제|기한|연장|몇\s*개?월', question):
+    if re.search(r'기간|언제|기한|연장|몇\s*개?월|얼마나', question):
         slots.append('기간')
     if re.search(
         r'신청\s*(?:방법|절차|서류|기간|시기|처|창구)|(?:어떻게|어디(?:서|에))\s*신청|'

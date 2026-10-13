@@ -1,0 +1,45 @@
+{
+  "git_commit": "857f5fbfabe86989eb81bc2ea1de1cb3f41ee2a1",
+  "run_identity": {
+    "golden_sha256": "fb1d4ccb02ebde5106258e5aa215e99c83879fe03c352c093ee21fdd425ac992",
+    "code_sha256": "45180391ac4c90ba02c3a985f533a0c0cf41d9fd5b66eb94c2575db8a0eb2f09",
+    "db_sha256": "21432e5432751dbbc5a75e70f2508d8a5c761ddadc3a8789017a4140e4884eee",
+    "model": "gemma4-e2b-it-qat.gguf",
+    "context_limit": 5,
+    "context_char_budget": 9000
+  },
+  "assets": [
+    {
+      "path": "D:\\Codex\\Projects\\복지업무비서\\models\\gemma4-e2b-it-qat.gguf",
+      "sha256": "e531007218dfab990486a5de7676a6932d6ea8dea233d1f698d7c21cf8a16889",
+      "bytes": 2620370976
+    },
+    {
+      "path": "D:\\Codex\\Projects\\복지업무비서\\models\\bge-m3-q8_0.gguf",
+      "sha256": "aa473d51f451a22f0fcf39ba3330c14bed38a385712b1113440f69df4047a173",
+      "bytes": 634553760
+    },
+    {
+      "path": "D:\\Codex\\Projects\\복지업무비서\\runtime\\llamacpp\\llama-server.exe",
+      "sha256": "25605416d593e416492dc5c8a8f3308f9e6201b505248b10282337139fb6aff7",
+      "bytes": 9216
+    },
+    {
+      "path": "D:/Codex/Projects/복지업무비서/runtime/llamacpp/llama-server-impl.dll",
+      "bytes": 9231872,
+      "sha256": "16629cefd6ba8a91d8f2a305d7218ca9830307c7e6cab503573d22470398130c"
+    },
+    {
+      "path": "D:/Codex/Projects/복지업무비서/runtime/llamacpp/llama.dll",
+      "bytes": 3428352,
+      "sha256": "5e4c6b249fbec471d392d7076aae25289ca752c730bce6b93c163dbd6758fd64"
+    },
+    {
+      "path": "D:/Codex/Projects/복지업무비서/runtime/llamacpp/ggml-vulkan.dll",
+      "bytes": 41361408,
+      "sha256": "07e7d94db4cd80e81dfc616b1894287e15f21aef11fe052f291204348965eb91"
+    }
+  ],
+  "sampling": "Existing answer path, temperature 0 and fixed seed 20260101",
+  "dataset_and_rubric_locked_before_inference": true
+}

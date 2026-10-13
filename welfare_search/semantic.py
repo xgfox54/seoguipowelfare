@@ -81,7 +81,10 @@ def build_embeddings(database_path: Path, model: str, batch_size: int = 16,
             store_embeddings(connection, model, [(row[0], row[4]) for row in batch], np.asarray(vectors))
             embedded += len(batch)
             connection.commit()
-    return {"model": model, "embedded": embedded, "skipped": len(rows) - len(pending)}
+    from welfare_search.faq_direct import build_faq_embeddings
+
+    faq_report = build_faq_embeddings(database_path, model, batch_size, base_url)
+    return {"model": model, "embedded": embedded, "skipped": len(rows) - len(pending), **faq_report}
 
 
 @lru_cache(maxsize=2)

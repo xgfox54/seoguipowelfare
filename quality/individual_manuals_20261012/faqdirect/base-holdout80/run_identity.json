@@ -1,0 +1,8 @@
+{
+  "golden_sha256": "fb5840fc87da44a88995f2db6fc8f59a1b6799c1c6496feb6d3f226bf89c73db",
+  "code_sha256": "6bcb901d0076cfa754205fac7eefe30d750472b346bb3ac8548b405ae358f4c1",
+  "db_sha256": "b01358141dd2c0ccf5eaa1457c3515a2df26bf3183307351ee01635d9d3cb358",
+  "model": "gemma4-e2b-it-qat.gguf",
+  "context_limit": 5,
+  "context_char_budget": 9000
+}

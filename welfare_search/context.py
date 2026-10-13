@@ -19,7 +19,7 @@ from welfare_criterion_amount import criterion_request, criterion_amount, criter
 from welfare_telemetry import note
 
 from welfare_search.query import plan_query, program_dictionary, strip_exclusion_clauses
-from welfare_search.faq import best_official_faq, official_faq_evidence
+from welfare_search.faq_context import faq_context
 from welfare_search.search import (
     OwnerScope,
     excluded_source_names,
@@ -1259,17 +1259,12 @@ def retrieve_context(
             scope_report["semantic_added"] = sum(
                 block.metadata.get("section_id") in extra_ids for block in blocks
             )
-    faq_match = None if numeric_overview else best_official_faq(database_path, query, plan.program_terms)
-    if faq_match is not None:
-        faq, faq_score = faq_match
-        next_id = max((int(block.evidence_id[1:]) for block in blocks), default=0) + 1
-        faq_block = official_faq_evidence(faq, f"E{next_id}")
-        separator_size = len("\n\n-----\n\n")
-        kept = list(blocks[: max(0, limit - 1)])
-        while kept and sum(len(block.raw) + separator_size for block in kept) + len(faq_block.raw) > char_budget:
-            kept.pop()
-        blocks = [*kept, faq_block]
-        scope_report["official_faq"] = {"faq_id": faq.faq_id, "score": round(faq_score, 3)}
+    if not numeric_overview:
+        blocks = list(faq_context(database_path, query, plan, tuple(blocks),
+                                  limit=limit, budget=char_budget))
+        scope_report["faq_ids"] = [block.metadata.get("section_id") for block in blocks
+                                   if block.metadata.get("source_role") in
+                                   ("reviewed_manual_faq", "official_faq")]
     note("retrieval_scope", scope_report)
     return EvidenceContext(tuple(blocks))
 

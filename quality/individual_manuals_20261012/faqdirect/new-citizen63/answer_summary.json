@@ -1,0 +1,14 @@
+{
+  "items": 63,
+  "total": 63,
+  "complete": true,
+  "golden_sha256": "3fbdf92beb6e5c2025c94357ce3edf09c97cc3abf2912c4c116d343c1fb98081",
+  "model": "gemma4-e2b-it-qat.gguf",
+  "context_limit": 5,
+  "context_char_budget": 9000,
+  "top1_pct": 0.0,
+  "any_pct": 0.0,
+  "empty_contexts": [],
+  "answer_accuracy_pct": null,
+  "accuracy_note": "Literal checks and source hits do not establish semantic answer correctness."
+}

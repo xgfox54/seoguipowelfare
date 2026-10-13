@@ -1,0 +1,490 @@
+{
+  "items": [
+    {
+      "faq_id": "MFAQ-dd424243d1a8",
+      "question": "퇴원 후 읍면동으로 신청한 경우 퇴원환자로 분류가 가능한가요? 이후 절차는 어떻게 이루어지나요?",
+      "answer": "퇴원환자 절차는 의료기관을 통해 시군구로 연계된 경우에 한정됩니다. 퇴원 후 읍면동으로 신청하면 일반절차로 진행합니다. 긴급한 지원이 필요하다고 판단되는 경우에는 긴급돌봄 연계 또는 직권신청할 수 있습니다.",
+      "programs": [
+        "의료요양통합돌봄",
+        "의료요양 통합돌봄",
+        "통합돌봄",
+        "통돌"
+      ],
+      "source_name": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
+      "source_sha256": "01e10ceefd29782680cbb198b80a353cc72d3bb0bf13f724d55a6f0265acf325",
+      "start_line": 189,
+      "end_line": 196,
+      "pdf_page": 8,
+      "original_pdf_name": "6.[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.pdf",
+      "original_pdf_sha256": "2d97a254cc66f1b58e071763e2f9659f89fb375fd049fd3dc40d3ad9b709d80b",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-5a960049f04c",
+      "question": "주민등록상 거주지와 실거주지가 다른 경우의 대상자에 대한 지원은 어떻게 해야 하나요?",
+      "answer": "주소지에 신청하므로 주민등록지 시군구가 업무를 수행합니다. 실제 거주지가 관할 밖이면 주민등록지 시군구가 자원현황과 서비스 제공 가능 여부를 고려하여 제공 여부를 판단합니다.",
+      "programs": [
+        "의료요양통합돌봄",
+        "통합돌봄",
+        "통돌"
+      ],
+      "source_name": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
+      "source_sha256": "01e10ceefd29782680cbb198b80a353cc72d3bb0bf13f724d55a6f0265acf325",
+      "start_line": 351,
+      "end_line": 367,
+      "pdf_page": 13,
+      "original_pdf_name": "6.[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.pdf",
+      "original_pdf_sha256": "2d97a254cc66f1b58e071763e2f9659f89fb375fd049fd3dc40d3ad9b709d80b",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-2252fa6a736c",
+      "question": "동일 시군구 내에 주민등록지와 실거주지가 다른 경우, 주민등록지 읍면동과 실거주지 읍면동 중 어느 읍면동에서 업무를 담당해야 하나요?",
+      "answer": "현재 시스템상 주민등록지 읍면동에서 접수와 조사 등 업무를 담당합니다.",
+      "programs": [
+        "의료요양통합돌봄",
+        "통합돌봄",
+        "통돌"
+      ],
+      "source_name": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
+      "source_sha256": "01e10ceefd29782680cbb198b80a353cc72d3bb0bf13f724d55a6f0265acf325",
+      "start_line": 369,
+      "end_line": 371,
+      "pdf_page": 13,
+      "original_pdf_name": "6.[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.pdf",
+      "original_pdf_sha256": "2d97a254cc66f1b58e071763e2f9659f89fb375fd049fd3dc40d3ad9b709d80b",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-abba698095a3",
+      "question": "긴급돌봄이 없는 지자체는 어떻게 해야 하나요?",
+      "answer": "지자체는 복지부 긴급돌봄과 유사한 서비스인 돌봄 SOS, 누구나 돌봄 등을 제공할 수 있습니다.",
+      "programs": [
+        "의료요양통합돌봄",
+        "통합돌봄",
+        "통돌"
+      ],
+      "source_name": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
+      "source_sha256": "01e10ceefd29782680cbb198b80a353cc72d3bb0bf13f724d55a6f0265acf325",
+      "start_line": 487,
+      "end_line": 490,
+      "pdf_page": 17,
+      "original_pdf_name": "6.[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.pdf",
+      "original_pdf_sha256": "2d97a254cc66f1b58e071763e2f9659f89fb375fd049fd3dc40d3ad9b709d80b",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-d4203afafc50",
+      "question": "맞춤돌봄 퇴원환자 지원과 통돌 퇴원환자 지원은 어떤 차이가 있나요?",
+      "answer": "통합돌봄 퇴원환자 연계는 의료기관에서 지역으로 대상자를 연계하는 절차입니다. 맞춤돌봄 퇴원환자 지원은 이 대상자에게 제공할 수 있는 서비스 유형 중 하나로, 1개월 범위에서 영양·가사·동행 서비스를 집중 지원합니다.",
+      "programs": [
+        "의료요양통합돌봄",
+        "통합돌봄",
+        "통돌",
+        "노인맞춤돌봄",
+        "맞춤돌봄"
+      ],
+      "source_name": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
+      "source_sha256": "01e10ceefd29782680cbb198b80a353cc72d3bb0bf13f724d55a6f0265acf325",
+      "start_line": 783,
+      "end_line": 791,
+      "pdf_page": 25,
+      "original_pdf_name": "6.[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.pdf",
+      "original_pdf_sha256": "2d97a254cc66f1b58e071763e2f9659f89fb375fd049fd3dc40d3ad9b709d80b",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-cc650d1ab30f",
+      "question": "기저귀 바우처를 지원받고 있는 대상자인데, 신청 당시 보유 자격(차상 위계층 등)을 상실하였습니다. 어떻게 해야 하나요?",
+      "answer": "지원기간 중 기초생활보장·차상위·한부모가족 자격 등에 변동이 있으면 14일 이내 보건소에 신고해야 합니다. 신청 자격기준을 부정한 방법으로 조작해 급여를 받은 경우 사회보장급여법 제22조에 따라 환수될 수 있습니다.",
+      "programs": [
+        "기저귀",
+        "기저귀조제분유"
+      ],
+      "source_name": "[매뉴얼-보건소] 2026년 모자보건사업 안내.md",
+      "source_sha256": "0f02cd993602bf17a2ce2cb2bdfe229d4ccbe80b778f21657c8b73cb1c3a822a",
+      "start_line": 14955,
+      "end_line": 14965,
+      "pdf_page": 446,
+      "original_pdf_name": "[매뉴얼-보건소] 2026년+모자보건사업+안내.pdf",
+      "original_pdf_sha256": "e62befad549ca88c0a78e69d8b15d2eb70f2618b53ae1a6adb0db6a10f322e54",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-b170727757f1",
+      "question": "첫째와 둘째 자녀가 미숙아로 사망하고, 셋째 자녀를 양육중인 경우 다자녀 가구로 볼 수 있는지?",
+      "answer": "다자녀 지원은 두 명 이상 자녀를 양육하는 경제적 부담을 완화하는 취지이므로 사망한 자녀는 가구원 수와 다자녀 산정에 포함하지 않습니다.",
+      "programs": [
+        "기저귀",
+        "기저귀조제분유"
+      ],
+      "source_name": "[매뉴얼-보건소] 2026년 모자보건사업 안내.md",
+      "source_sha256": "0f02cd993602bf17a2ce2cb2bdfe229d4ccbe80b778f21657c8b73cb1c3a822a",
+      "start_line": 14929,
+      "end_line": 14937,
+      "pdf_page": 444,
+      "original_pdf_name": "[매뉴얼-보건소] 2026년+모자보건사업+안내.pdf",
+      "original_pdf_sha256": "e62befad549ca88c0a78e69d8b15d2eb70f2618b53ae1a6adb0db6a10f322e54",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-126992271e05",
+      "question": "대상 영아의 부모가 건강 또는 직장 등의 사정으로 신청이 어려운 경우에는 할머니 등 친족의 대리신청이 가능한가요?",
+      "answer": "부모가 일시적인 사유로 신청하기 어려우면 할머니 등 친족이 대리신청할 수 있습니다. 가족관계증명서 등 관계증빙서류를 지참하여 관할 보건소 또는 주민센터에 방문합니다.",
+      "programs": [
+        "기저귀",
+        "기저귀조제분유"
+      ],
+      "source_name": "[매뉴얼-보건소] 2026년 모자보건사업 안내.md",
+      "source_sha256": "0f02cd993602bf17a2ce2cb2bdfe229d4ccbe80b778f21657c8b73cb1c3a822a",
+      "start_line": 14581,
+      "end_line": 14582,
+      "pdf_page": 434,
+      "original_pdf_name": "[매뉴얼-보건소] 2026년+모자보건사업+안내.pdf",
+      "original_pdf_sha256": "e62befad549ca88c0a78e69d8b15d2eb70f2618b53ae1a6adb0db6a10f322e54",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-2c78e1eae0e0",
+      "question": "소득조사 생략 가능한 자격은?",
+      "answer": "신청자가 기초생활수급자, 차상위계층, 법정한부모가족이면 행복이음에서 자격을 확인하고 소득조사를 실시하지 않습니다. 정신건강 심리상담 바우처사업의 규정입니다.",
+      "programs": [
+        "정신건강심리상담",
+        "심리상담"
+      ],
+      "source_name": "[매뉴얼-보건소] 2026년 정신건강 심리상담 바우처사업 안내.md",
+      "source_sha256": "d9d16a1fb56c674d7e92bf30aa4e535840a0bdb74bb6d4e48b2a99399d252a2c",
+      "start_line": 4886,
+      "end_line": 4897,
+      "pdf_page": 179,
+      "original_pdf_name": "[매뉴얼-보건소] 2026년+정신건강+심리상담+바우처사업+안내.pdf",
+      "original_pdf_sha256": "f76b0615e28225e4e58e68f4ddbf83a3bbb7fbc21e7c3b466abf234572ddc2d4",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-46daacfa50f9",
+      "question": "장애정도 변경에 따른 장애인연금과 장애수당의 지급변경일은 어떻게 바뀌나요?",
+      "answer": "경증에서 중증으로 바뀌면 장애인연금을 신청한 달부터 지급하며 변경월에 신청해야 합니다. 변경월에 신청하지 않으면 그 달까지 장애수당을 지급한 뒤 중지합니다. 중증에서 경증으로 바뀌면 결정월까지 장애인연금을 지급하고, 수급·차상위에 해당하면 다음 달부터 장애수당을 지급합니다. 장애수당 변경월 신청이 필요하며 생계·의료 수급자는 직권책정, 주거·교육 수급자와 차상위는 신청 안내합니다.",
+      "programs": [
+        "장애인연금",
+        "장애수당"
+      ],
+      "source_name": "[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.md",
+      "source_sha256": "d6856fe383fc78e28b8b073ea5d9c7d957d0ad3b9dcf476ccb670a6f1dc9c4dc",
+      "start_line": 7922,
+      "end_line": 7927,
+      "pdf_page": 210,
+      "original_pdf_name": "12.[매뉴얼-종합안내] 업무에바로쓰는 읍면동복지매뉴얼(2026년 기준)★.pdf",
+      "original_pdf_sha256": "5c15d68c0c246a69e15c657ea764bef6d27fd16b0117103077178d4293644b9f",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-bfcf8339af90",
+      "question": "장애인연금 등 서비스 신청을 위해 재판정 장애정도심사를 받은 결과 기존 장애정도보다 하락하면 어떻게 되나요?",
+      "answer": "시군구 또는 읍면동에서 장애 정도를 하향 조정하고 기존 복지카드를 회수·폐기한 뒤 갱신·교부합니다. 이후 하향 조정된 장애 정도에 따라 복지혜택을 받습니다.",
+      "programs": [
+        "장애인연금",
+        "장애정도심사"
+      ],
+      "source_name": "[매뉴얼-장애] 제1권 2026년 장애인복지 사업안내1.md",
+      "source_sha256": "dbfd0cf3d62f259f0b9f959479de75a1ff4083b66bcd325793b1b573b518799b",
+      "start_line": 7732,
+      "end_line": 7744,
+      "pdf_page": 272,
+      "original_pdf_name": "[매뉴얼-장애]제1권 2026년_장애인복지_사업안내1.pdf",
+      "original_pdf_sha256": "063e5e4d4a9df6703fd28852119fef53e200c9395534ab9fc8b56050ce08b46b",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-f6fb34090a44",
+      "question": "부모급여 대상자가 24개월이 되면 가정양육수당 신청을 해야 하나요?",
+      "answer": "가정에서 양육하며 부모급여를 받던 아동은 24개월이 되면 가정양육수당으로 자격이 자동 변경됩니다.",
+      "programs": [
+        "부모급여",
+        "가정양육수당",
+        "양육수당"
+      ],
+      "source_name": "[매뉴얼-종합안내] 2026 나에게 힘이 되는 복지서비스★.md",
+      "source_sha256": "64bcbf070b8faa2068e01f3a459337b127fe50a7af58c5a24c36cb90c7e8e8a1",
+      "start_line": 2797,
+      "end_line": 2801,
+      "pdf_page": 112,
+      "original_pdf_name": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "original_pdf_sha256": "d6f00080dd32ff970c18467a2e63293d3171b3c065533edc0598ac0f37ca543b",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-5193f7019546",
+      "question": "만 18세 넘어 아동복지시설을 전원하는 경우에 자립수당을 신청하고 받을 수 있나요?",
+      "answer": "자립수당은 만기 또는 연장 보호가 종료된 아동이 대상입니다. 만 18세 이후에도 보호연장 중 시설을 전원하면 보호종료가 아니므로 대상이 아니며 실제 보호가 종료될 때 신청할 수 있습니다. 시설 전원 등으로 보호종료 처리 후 30일 이내 재보호하면 연속 보호로 인정합니다.",
+      "programs": [
+        "자립수당",
+        "자립준비청년"
+      ],
+      "source_name": "[매뉴얼-아동] 2026년 아동분야 사업안내(2권).md",
+      "source_sha256": "e2d04559556be51e60b292e0a4cf377cd23e7dd6091fa7ebb194b02454e223da",
+      "start_line": 4018,
+      "end_line": 4030,
+      "pdf_page": 157,
+      "original_pdf_name": "2.[매뉴얼-아동] 2026년+아동분야+사업안내(2권).pdf",
+      "original_pdf_sha256": "7625d5ad8ef15d647891a38d41e805f598935ec92d6912c088dd82ec700b9510",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-4cb01e1c7e9e",
+      "question": "신청 자격 요건을 모두 충족하지만 보호종료 후 현재 자립지원시설이나 청소년쉼터 등에 있는 경우도 신청할 수 있나요?",
+      "answer": "아동복지 자립수당의 신청 자격 요건을 충족하면 보호종료 후 자립지원시설이나 청소년쉼터에 있어도 신청할 수 있습니다. 청소년쉼터 퇴소자 자립지원수당과는 구분해야 합니다.",
+      "programs": [
+        "자립수당",
+        "자립준비청년"
+      ],
+      "source_name": "[매뉴얼-아동] 2026년 아동분야 사업안내(2권).md",
+      "source_sha256": "e2d04559556be51e60b292e0a4cf377cd23e7dd6091fa7ebb194b02454e223da",
+      "start_line": 4004,
+      "end_line": 4005,
+      "pdf_page": 156,
+      "original_pdf_name": "2.[매뉴얼-아동] 2026년+아동분야+사업안내(2권).pdf",
+      "original_pdf_sha256": "7625d5ad8ef15d647891a38d41e805f598935ec92d6912c088dd82ec700b9510",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-R1272d7568a2",
+      "question": "에너지바우처와 연탄전환 에너지바우처는 각각 누가 지원받을 수 있나요?",
+      "answer": "에너지바우처는 기초생활 생계·의료·주거·교육급여 수급자이면서 본인 또는 등본상 세대원이 노인, 영유아, 장애인, 임산부, 중증·희귀·중증난치질환자이거나 한부모·소년소녀가정·다자녀 세대인 경우 지원합니다. 연탄전환 에너지바우처는 연탄보일러를 비연탄보일러로 교체한 세대 중 기초수급·차상위·노인·장애인·한부모·소년소녀가정 중 하나인 경우 지원합니다. 세대원 모두 보장시설 수급자이면 신청할 수 없습니다. 긴급복지 연료비나 연탄쿠폰과 동절기 중복지원은 불가하나 하절기는 별도 금액 범위에서 지원합니다.",
+      "programs": [
+        "에너지바우처",
+        "연탄전환에너지바우처"
+      ],
+      "source_name": "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+      "source_sha256": "899e696b47888b683013296156d5497595d73736fee00c5904b559b5fc7ccfc5",
+      "start_line": 2640,
+      "end_line": 2710,
+      "pdf_page": 45,
+      "original_pdf_name": "29.[매뉴얼-바우처] 2026년 에너지바우처_사업안내서★.pdf",
+      "original_pdf_sha256": "5f639035bb2cb81a69a5aa4e586829435dbf60f08d755b6aa5bd0513bdbe8dea",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-Rc0e37171019",
+      "question": "에너지바우처에서 다자녀 세대에 대한 지원 기준은 어떻게 되나요?",
+      "answer": "주민등록표 등본상 세대원 중 부 또는 모가 있고 그 부모의 19세 미만 자녀가 두 명 이상 포함된 세대입니다. 동일 등본에 등재된 가정위탁보호아동도 자녀로 인정합니다.",
+      "programs": [
+        "에너지바우처"
+      ],
+      "source_name": "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+      "source_sha256": "899e696b47888b683013296156d5497595d73736fee00c5904b559b5fc7ccfc5",
+      "start_line": 2841,
+      "end_line": 2849,
+      "pdf_page": 47,
+      "original_pdf_name": "29.[매뉴얼-바우처] 2026년 에너지바우처_사업안내서★.pdf",
+      "original_pdf_sha256": "5f639035bb2cb81a69a5aa4e586829435dbf60f08d755b6aa5bd0513bdbe8dea",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-R29090523a2a",
+      "question": "지원금액을 매달 받는 것인가요?",
+      "answer": "월 지급액이 아니라 사용기간 전체에 사용할 총 금액입니다. 에너지바우처는 2026년 7월~2027년 5월 약 11개월이며 2인 세대 총액은 407,500원입니다. 연탄전환 에너지바우처는 2026년 10월~2027년 5월 약 8개월이며 총액은 산업통상부 연탄쿠폰 지원 금액과 같습니다.",
+      "programs": [
+        "에너지바우처",
+        "연탄전환에너지바우처"
+      ],
+      "source_name": "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+      "source_sha256": "899e696b47888b683013296156d5497595d73736fee00c5904b559b5fc7ccfc5",
+      "start_line": 2795,
+      "end_line": 2817,
+      "pdf_page": 47,
+      "original_pdf_name": "29.[매뉴얼-바우처] 2026년 에너지바우처_사업안내서★.pdf",
+      "original_pdf_sha256": "5f639035bb2cb81a69a5aa4e586829435dbf60f08d755b6aa5bd0513bdbe8dea",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-R78bac0253a9",
+      "question": "다른 동절기 에너지이용권을 이용하는 경우 하절기 에너지바우처를 지원받을 수 있나요?",
+      "answer": "긴급복지지원법에 따른 연료비 지원이나 한국광해광업공단에서 시행하는 연탄쿠폰 등 다른 동절기 에너지이용권을 이용해도 하절기 에너지바우처를 지원받을 수 있습니다. 2026년 12월 31일까지 신청하며 별도로 정한 하절기 금액을 2026년 7월 1일~9월 30일에 사용할 수 있습니다. 동절기 중복지원은 허용되지 않습니다.",
+      "programs": [
+        "에너지바우처"
+      ],
+      "source_name": "[매뉴얼-바우처] 2026년 에너지바우처 사업안내서★.md",
+      "source_sha256": "899e696b47888b683013296156d5497595d73736fee00c5904b559b5fc7ccfc5",
+      "start_line": 2776,
+      "end_line": 2791,
+      "pdf_page": 46,
+      "original_pdf_name": "29.[매뉴얼-바우처] 2026년 에너지바우처_사업안내서★.pdf",
+      "original_pdf_sha256": "5f639035bb2cb81a69a5aa4e586829435dbf60f08d755b6aa5bd0513bdbe8dea",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-R7f966ce5773",
+      "question": "주거급여 신청자의 주택조사 의뢰를 3단계로 구분한 이유",
+      "answer": "보장기관 담당자의 효율적인 의뢰와 전담기관 업무부담 최소화를 위해 행복이음 평균 자료 수신일을 고려한 구분입니다. 행복이음에서 소득·재산 조회용 공적자료 요청을 클릭하면 주택조사 의뢰 절차가 진행됩니다.",
+      "programs": [
+        "주거급여"
+      ],
+      "source_name": "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+      "source_sha256": "ac4b253a8ee2eaf15bcb2b778e79d88d02014decff39f14e61aa85d528e26c94",
+      "start_line": 3908,
+      "end_line": 3916,
+      "pdf_page": 110,
+      "original_pdf_name": "03.[매뉴얼-공적급여] 2026년 주거급여 사업안내★.pdf",
+      "original_pdf_sha256": "02d343163bf950ac361c397bce42b019babffbbd34ff68c03dd58764103d782e",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-Rfe46e0627dd",
+      "question": "임대인과 수급자의 부양의무자가 임대차계약을 체결하고 보증금은 부양의무자가 지급하였으나 월차임은 수급자가 직접 지급하는 경우 계좌이체 내역으로 주택조사가 가능한지?",
+      "answer": "계약서에 수급자의 실제 월차임 부담을 명기하거나 계좌이체 내역으로 확인 가능하면 보증금을 포함한 월세로 주택조사 후 급여를 지급합니다. 보증금은 사용·수익에 대한 재산으로 반영합니다.",
+      "programs": [
+        "주거급여"
+      ],
+      "source_name": "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+      "source_sha256": "ac4b253a8ee2eaf15bcb2b778e79d88d02014decff39f14e61aa85d528e26c94",
+      "start_line": 3934,
+      "end_line": 3948,
+      "pdf_page": 110,
+      "original_pdf_name": "03.[매뉴얼-공적급여] 2026년 주거급여 사업안내★.pdf",
+      "original_pdf_sha256": "02d343163bf950ac361c397bce42b019babffbbd34ff68c03dd58764103d782e",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-R54870d6ccef",
+      "question": "청년 주거급여 분리지급을 위한 임대차계약 주체 및 임대료 입금주체",
+      "answer": "원칙적으로 청년 명의로 계약하되 불가피한 경우 제3자 명의 계약도 인정할 수 있습니다. 청년이 실제 전입하여 거주해야 하고 전대차관계 확인서 등을 권장합니다. 임차료도 청년 명의가 원칙이나 불가피하면 보장가구원 송금을 인정할 수 있습니다. 급여는 반드시 청년 명의 계좌로 지급합니다.",
+      "programs": [
+        "청년주거급여",
+        "주거급여"
+      ],
+      "source_name": "[매뉴얼-공적급여] 2026년 주거급여 사업안내★.md",
+      "source_sha256": "ac4b253a8ee2eaf15bcb2b778e79d88d02014decff39f14e61aa85d528e26c94",
+      "start_line": 7673,
+      "end_line": 7683,
+      "pdf_page": 191,
+      "original_pdf_name": "03.[매뉴얼-공적급여] 2026년 주거급여 사업안내★.pdf",
+      "original_pdf_sha256": "02d343163bf950ac361c397bce42b019babffbbd34ff68c03dd58764103d782e",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-Rc8690a9f873",
+      "question": "청소년 쉼터 등 타 시설에서 보호 받았던 경우 보호기간 산정은 어떻게 하나요?",
+      "answer": "합산 가능한 보호는 아동복지법 제52조상 아동양육시설, 공동생활가정(학대피해아동쉼터 포함), 아동보호치료시설, 아동일시보호시설(아동종합시설 포함) 및 가정위탁으로 한정됩니다. 청소년쉼터 기간을 모두 합산하는 기준은 아닙니다.",
+      "programs": [
+        "자립수당",
+        "자립준비청년"
+      ],
+      "source_name": "[매뉴얼-아동] 2026년 아동분야 사업안내(2권).md",
+      "source_sha256": "e2d04559556be51e60b292e0a4cf377cd23e7dd6091fa7ebb194b02454e223da",
+      "start_line": 3995,
+      "end_line": 3998,
+      "pdf_page": 156,
+      "original_pdf_name": "2.[매뉴얼-아동] 2026년+아동분야+사업안내(2권).pdf",
+      "original_pdf_sha256": "7625d5ad8ef15d647891a38d41e805f598935ec92d6912c088dd82ec700b9510",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-R3c40085e658",
+      "question": "보육료, 양육수당 서비스 변경 기준은 어떻게 되나요?",
+      "answer": "15일 이전에 신청하면 신청일부터 변경 신청한 서비스를 지원합니다. 16일 이후 신청하면 신청월에는 기존 서비스를 지원하고 익월 1일부터 변경 서비스를 지원합니다.",
+      "programs": [
+        "보육료",
+        "양육수당",
+        "가정양육수당"
+      ],
+      "source_name": "[매뉴얼-종합안내] 2026 나에게 힘이 되는 복지서비스★.md",
+      "source_sha256": "64bcbf070b8faa2068e01f3a459337b127fe50a7af58c5a24c36cb90c7e8e8a1",
+      "start_line": 2791,
+      "end_line": 2795,
+      "pdf_page": 112,
+      "original_pdf_name": "10.[매뉴얼-종합안내] 2026+나에게+힘이+되는+복지서비스★.pdf",
+      "original_pdf_sha256": "d6f00080dd32ff970c18467a2e63293d3171b3c065533edc0598ac0f37ca543b",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    },
+    {
+      "faq_id": "MFAQ-R1301a18cfbb",
+      "question": "재혼가정으로 재혼 이전 출산한 성인 자녀가 직장 건강보험료 별도 납부하는 경우 다자녀 인정여부 및 가구원수 산정",
+      "answer": "재혼 이전에 출산한 자녀도 주민등록상 같은 주소지에 있으면 다자녀 인정이 가능합니다. 다만 소득이 있어 별도 건강보험료를 납부하는 성인 자녀는 가구원 수에서 제외하고 그 건강보험료도 합산하지 않습니다.",
+      "programs": [
+        "기저귀",
+        "기저귀조제분유"
+      ],
+      "source_name": "[매뉴얼-보건소] 2026년 모자보건사업 안내.md",
+      "source_sha256": "0f02cd993602bf17a2ce2cb2bdfe229d4ccbe80b778f21657c8b73cb1c3a822a",
+      "start_line": 14944,
+      "end_line": 14946,
+      "pdf_page": 445,
+      "original_pdf_name": "[매뉴얼-보건소] 2026년+모자보건사업+안내.pdf",
+      "original_pdf_sha256": "e62befad549ca88c0a78e69d8b15d2eb70f2618b53ae1a6adb0db6a10f322e54",
+      "year": "2026",
+      "jurisdiction": "national",
+      "reviewer": "Codex",
+      "answer_kind": "source_reviewed_summary"
+    }
+  ]
+}
