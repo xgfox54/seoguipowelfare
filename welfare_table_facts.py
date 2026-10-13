@@ -4,8 +4,12 @@ import hashlib
 import re
 from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
+from welfare_household_html import household_cells
 
 MULTIPLIERS = {'원': Decimal(1), '천원': Decimal(1000), '만원': Decimal(10000)}
+CLAIM_MULTIPLIERS = {'': Decimal(1), '천': Decimal(1000), '만': Decimal(10000), '백만': Decimal(10 ** 6),
+                     '천만': Decimal(10 ** 7), '억': Decimal(10 ** 8)}
+MONEY_CLAIM = re.compile(r'(?<![\d,])([\d,]+(?:\.\d+)?)\s*(억|천만|백만|만|천|)\s*원')
 CELL_NUMBER = re.compile(r'([0-9][0-9,]*(?:\.[0-9]+)?)\s*(만원|천원|원)?')
 HOUSEHOLD = re.compile(r'(\d{1,2})\s*인(?:\s*가구)?')
 UNIT_LINE = re.compile(r'(?:단위\s*[:：]\s*|[（(]\s*)(만원|천원|원)(?:\s*[/·ㆍ,]\s*(월|년|연|일|회))?\s*[）)]?\s*$')
@@ -150,10 +154,10 @@ def _explicit_html_facts(text: str) -> tuple[TableMoneyFact, ...]:
 
 
 def table_money_facts(text: str) -> tuple[TableMoneyFact, ...]:
-    """Rectangular Markdown household tables with explicit units only.
+    """Household columns with explicit units in Markdown or supported HTML.
 
     Coordinates are relative to this exact body, not fabricated PDF pages.
-    Unsupported HTML/merged cells stay raw evidence, never guessed facts.
+    Ambiguous merged cells stay raw evidence, never guessed facts.
     """
     lines = text.splitlines()
     facts = []
@@ -224,6 +228,23 @@ def table_money_facts(text: str) -> tuple[TableMoneyFact, ...]:
                     if parsed:
                         facts.append(TableMoneyFact(int(count_match[1]), parsed[0], parsed[1], period,
                             header[col], digest, rno, col+1, start+1, i, tuple(notes)))
+    for match in HTML_TABLE.finditer(text):
+        raw = match.group(0)
+        digest = hashlib.sha256(raw.encode('utf-8')).hexdigest()
+        start_line = text.count('\n', 0, match.start()) + 1
+        caption_unit = ''
+        for previous in reversed(text[:match.start()].splitlines()[-6:]):
+            if not previous.strip():
+                continue
+            unit_match = UNIT_LINE.search(plain(previous))
+            caption_unit = unit_match[1] if unit_match else ''
+            break
+        for cell in household_cells(raw, caption_unit):
+            parsed = _cell(cell.value, cell.unit)
+            if parsed is not None:
+                facts.append(TableMoneyFact(cell.household, parsed[0], parsed[1], 'UNKNOWN',
+                                            cell.label, digest, cell.row, cell.column,
+                                            start_line, start_line + raw.count('\n')))
     return tuple(facts) + _explicit_html_facts(text)
 
 
@@ -275,9 +296,9 @@ def table_number_facts(text: str) -> tuple[TableNumberFact, ...]:
 
 def monetary_claims(text: str) -> tuple[Decimal, ...]:
     claims = []
-    for match in re.finditer(r'(?<![\d,])([\d,]+(?:\.\d+)?)\s*(만원|천원|원)', plain(text)):
+    for match in MONEY_CLAIM.finditer(plain(text)):
         try:
-            claims.append(Decimal(match[1].replace(',', '')) * MULTIPLIERS[match[2]])
+            claims.append(Decimal(match[1].replace(',', '')) * CLAIM_MULTIPLIERS[match[2]])
         except InvalidOperation:
             pass
     return tuple(claims)

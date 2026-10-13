@@ -1,0 +1,40 @@
+{
+  "evaluation_run": "releasecheck-full250-answers",
+  "review_method": "Codex comparison of actual answers with frozen source excerpts and table relationships; conservative completeness gate",
+  "reviewed_items": 50,
+  "core_value_correct": 50,
+  "complete_correct": 49,
+  "complete_correct_pct": 98.0,
+  "partial_failures": ["H040"],
+  "pass_ids": [
+    "H001", "H002", "H003", "H004", "H005", "H006", "H007",
+    "H008", "H009", "H010", "H011", "H012", "H013", "H014",
+    "H015", "H016", "H017", "H018", "H019", "H020", "H021",
+    "H022", "H023", "H024", "H025", "H026", "H027", "H028",
+    "H029", "H030", "H031", "H032", "H033", "H034", "H035",
+    "H036", "H037", "H038", "H039",
+    "H041", "H042", "H043", "H044", "H045", "H046",
+    "H047", "H048", "H049", "H050"
+  ],
+  "group_reviews": [
+    {"ids": "H001-H007", "finding": "2026 median income values match requested households 1 through 7 and source won units."},
+    {"ids": "H008-H035", "finding": "Each value matches the requested household and benefit selection row. Answers explicitly distinguish income eligibility thresholds from actual payments."},
+    {"ids": "H036-H039", "finding": "Emergency livelihood amounts match requested households 2, 3, 5 and 6 with explicit monthly units."},
+    {"ids": "H040", "finding": "301,000 won increment and the retained household amounts match the source. Three other claims were removed by grounding validation, leaving an explicit partial-answer warning; counted as incomplete, not a completed correct answer."},
+    {"ids": "H041-H044", "finding": "Benefit-to-rate relationships are livelihood 32%, medical 40%, housing 48%, education 50%; values are stated as income selection thresholds."},
+    {"ids": "H045-H046", "finding": "Single/couple pension income eligibility limits are 2,470,000/3,952,000 won, not monthly pension payment amounts."},
+    {"ids": "H047-H048", "finding": "Parent cash allowance for a child not using daycare is age 0: 1,000,000 won/month and age 1: 500,000 won/month; no retrospective or daycare balance amounts are substituted."},
+    {"ids": "H049-H050", "finding": "First/second birth voucher amounts are 2,000,000/3,000,000 won; first-birth amount is not described as an ambiguous lower bound."}
+  ],
+  "independent_holdout": false,
+  "limitations": [
+    "These 50 questions were used during error diagnosis and tuning, so this is regression verification.",
+    "Household values from a few source tables are correlated and do not represent all welfare tasks.",
+    "Answers combine source-bound deterministic lookups and local E2B generation.",
+    "The review is by Codex, not an independent welfare practitioner."
+  ],
+  "overall_welfare_answer_accuracy_pct": null,
+  "code_sha256": "869546bc7051f3bab5a2d6f94f487188d11eeefae5af5a97f805412b5c05e411",
+  "golden_sha256": "0c889c2b24e959931da952db684143e554c368d9a485eb24365e05edb325a4c6",
+  "db_sha256": "156f14a046b555c6604eeecfbece738bdfb54b5b5c4d5c4e48b07a9c348868a6"
+}

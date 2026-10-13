@@ -18,6 +18,7 @@ a = Analysis(
         ("VERSION", "."),
         ("beta-policy.json", "."),
         ("resources/program_dictionary.json", "resources"),
+        ("resources/program_cards.json", "resources"),
     ],
     hiddenimports=hiddenimports,
     hookspath=[],

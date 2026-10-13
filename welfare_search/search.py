@@ -9,6 +9,7 @@ from dataclasses import asdict, dataclass, replace
 from pathlib import Path
 from typing import Final
 
+from welfare_llm import EMBEDDING_RUNTIME
 from welfare_program_dictionary import normalize as normalize_name
 from welfare_search.query import TOKEN_PATTERN, QueryPlan, plan_query
 from welfare_search.ranking import DocumentMetadata, rank_key
@@ -36,18 +37,23 @@ LIMIT ?
 
 
 def semantic_search_enabled() -> bool:
-    return os.environ.get("WELFARE_SEMANTIC_SEARCH", "").strip().lower() in {
-        "1",
-        "true",
-        "yes",
-        "on",
-    }
+    """On while the question-embedding server runs; WELFARE_SEMANTIC_SEARCH overrides."""
+    configured = os.environ.get("WELFARE_SEMANTIC_SEARCH", "").strip().lower()
+    if configured in {"1", "true", "yes", "on"}:
+        return True
+    if configured in {"0", "false", "no", "off"}:
+        return False
+    return EMBEDDING_RUNTIME.state == "ready"
 
 
 def _anchor_owner_sources(metadata: dict[str, DocumentMetadata], programs: tuple[str, ...]) -> frozenset[str]:
+    specific_programs = tuple(
+        program for program in programs
+        if not any(program != other and program in other for other in programs)
+    )
     aliases = tuple(
         alias
-        for program in programs
+        for program in specific_programs
         for alias in PROGRAM_MANUAL_ALIASES.get(program, ())
     )
     if not aliases:
@@ -56,7 +62,7 @@ def _anchor_owner_sources(metadata: dict[str, DocumentMetadata], programs: tuple
     return frozenset(
         source_name
         for source_name in metadata
-        if any(alias in "".join(source_name.split()) for alias in normalized_aliases)
+        if any(alias in "".join(re.sub(r"\[[^]]*\]|\([^)]*관련[^)]*\)", "", source_name).split()) for alias in normalized_aliases)
     )
 
 
@@ -66,6 +72,8 @@ def _owning_sources(metadata: dict[str, DocumentMetadata], plan: object) -> froz
     if anchored or getattr(plan, "explicit_programs", ()):
         return anchored
     dictionary = frozenset(getattr(plan, "dictionary_owner_sources", frozenset()))
+    if not dictionary and '기준중위소득' in ''.join(getattr(plan, 'original_terms', ())):
+        return _anchor_owner_sources(metadata, ('국민기초생활보장',))
     return frozenset(name for name in dictionary if name in metadata)
 
 
@@ -147,7 +155,7 @@ class YearScope:
 
     @property
     def filter_years(self) -> bool:
-        return bool(self.requested) and not self.mismatch
+        return bool(self.requested) and not self.mismatch and not (self.owner_sources and not self.available)
 
     def diagnostics(self) -> dict[str, object]:
         return {"requested": sorted(self.requested), "available": list(self.available), "basis": self.basis,
@@ -400,30 +408,27 @@ def _load_hits_by_ids(database_path: Path, section_ids: tuple[str, ...]) -> dict
 
 
 def search_sections(database_path: Path, query: str, limit: int = 8) -> tuple[SearchHit, ...]:
-    global _SEMANTIC_STATUS_LOGGED
     limit = max(1, min(limit, 20))
-    fts = _fts_ranked(database_path, query, max(30, limit * 4))
+    return _fts_ranked(database_path, query, max(30, limit * 4))[:limit]
+
+
+def semantic_hits(database_path: Path, query: str, limit: int) -> tuple[SearchHit, ...]:
+    """Sections closest in meaning to the question, best first; empty without embeddings.
+
+    Fused into the lexical ranking, vector hits displaced the owning-manual
+    sections that answers depended on, so they are offered only as extra
+    evidence after the lexical selection.
+    """
+    global _SEMANTIC_STATUS_LOGGED
     semantic_enabled = semantic_search_enabled()
     if not _SEMANTIC_STATUS_LOGGED:
         logger.info("semantic search enabled=%s (FTS5 fallback always available)", semantic_enabled)
         _SEMANTIC_STATUS_LOGGED = True
-    semantic_ids = (
-        semantic_section_ids(database_path, query, limit=max(30, limit * 4))
-        if semantic_enabled
-        else ()
-    )
-    if not semantic_ids:
-        return fts[:limit]
-
-    scores: dict[str, float] = {}
-    k = 60.0
-    for rank, hit in enumerate(fts, start=1):
-        scores[hit.section_id] = scores.get(hit.section_id, 0.0) + 1.0 / (k + rank)
-    for rank, section_id in enumerate(semantic_ids, start=1):
-        scores[section_id] = scores.get(section_id, 0.0) + 1.0 / (k + rank)
-    ordered_ids = tuple(section_id for section_id, _score in sorted(scores.items(), key=lambda item: item[1], reverse=True)[: max(limit * 3, limit)])
-    loaded = _load_hits_by_ids(database_path, ordered_ids)
-    return tuple(loaded[section_id] for section_id in ordered_ids if section_id in loaded)[:limit]
+    if not semantic_enabled:
+        return ()
+    section_ids = semantic_section_ids(database_path, query, limit=limit)
+    loaded = _load_hits_by_ids(database_path, section_ids)
+    return tuple(loaded[section_id] for section_id in section_ids if section_id in loaded)
 
 
 def search_index(database_path: Path, query: str, limit: int = 8) -> str:

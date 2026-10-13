@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 import welfare_assistant
+import welfare_program_cards
 from welfare_assistant import main, system_status
 from welfare_search import build_index
 
@@ -149,6 +150,7 @@ def test_e2b_answer_question_uses_one_llm_call(
 ) -> None:
     # Given: the E2B distribution and deterministic local evidence.
     kb_dir = _knowledge_base(tmp_path)
+    monkeypatch.setattr(welfare_program_cards, "load_cards", lambda: ())
     searched: list[tuple[str, int, int]] = []
     calls: list[str] = []
 
@@ -269,6 +271,7 @@ def test_e4b_complex_case_uses_single_generation_without_supervisor(
     kb_dir = _knowledge_base(tmp_path)
     calls: list[str] = []
     e4b = welfare_assistant.resolve_choice("gemma_e4b")
+    monkeypatch.setattr(welfare_program_cards, "load_cards", lambda: ())
     monkeypatch.setattr(welfare_assistant, "configured_model_variant", lambda: "E4B")
     monkeypatch.setattr(welfare_assistant, "configured_model_choice", lambda: e4b)
     monkeypatch.setattr(

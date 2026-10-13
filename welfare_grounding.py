@@ -8,7 +8,7 @@ from typing import Final
 from welfare_search.synonyms import PROGRAM_ANCHORS
 from welfare_evidence import claim_support_text, context_warning, parse_evidence, scoped_numeric_support
 from welfare_table_facts import table_money_facts, table_number_facts, plain
-from welfare_answer_quality import assess_answer, assessment_notice
+from welfare_answer_quality import assess_answer, assessment_notice, substantive_body
 
 YEAR_PATTERN: Final[re.Pattern[str]] = re.compile(
     r"(?<!\d)(?:20(?P<full>\d{2})|[’']?(?P<short>\d{2}))\s*년"
@@ -23,6 +23,13 @@ YEAR_COMPARISON_PATTERN: Final[re.Pattern[str]] = re.compile(
 NUMBERED_CLAIM_PATTERN: Final[re.Pattern[str]] = re.compile(
     r"(?<!\d)(?P<number>\d[\d,]*(?:\.\d+)?)\s*"
     r"(?P<unit>만원|천원|원|개월|년|일|세|인|명|종|건|회|%)"
+)
+RANGE_START_PATTERN: Final[re.Pattern[str]] = re.compile(
+    r"(?<![\d.,])(?P<number>\d[\d,]*(?:\.\d+)?)\s*\\?[~∼〜～–-]\s*\\?\s*\d[\d,]*(?:\.\d+)?\s*"
+    r"(?P<unit>만원|천원|원|개월|년|일|세|인|명|종|건|회|%)"
+)
+CASE_SUBJECT_PATTERN: Final[re.Pattern[str]] = re.compile(
+    r"(?<!\d)\d{1,3}\s*세\s*\d{1,2}\s*인\s*가구"
 )
 DOMAIN_TERM_PATTERN: Final[re.Pattern[str]] = re.compile(
     r"(?:[가-힣A-Za-z0-9·]{2,32}(?:급여|수당|연금|보험|바우처|이용권|채권)|양육비|생계비|의료비)"
@@ -40,7 +47,8 @@ HOUSEHOLD_BARE_NUMBER_PATTERN: Final[re.Pattern[str]] = re.compile(
 )
 NEGATIVE_POLARITY_PATTERN: Final[re.Pattern[str]] = re.compile(
     r"(?:할\s*수\s*없|지원\s*불가|지급\s*불가|신청\s*불가|대상에서\s*제외|"
-    r"지원하지\s*않|지급하지\s*않|인정하지\s*않|금지|불가능|아니(?:다|며|고|면|므로))"
+    r"제외\s*(?:기준|대상)|지원\s*제외|신청\s*제외|"
+    r"지원하지\s*않|지급하지\s*않|인정하지\s*않|하지\s*아니|금지|불가능|아니(?:다|며|고|면|므로))"
 )
 POLARITY_SIGNAL_PATTERN: Final[re.Pattern[str]] = re.compile(
     r"(?:가능|불가|할\s*수\s*있|할\s*수\s*없|지원|지급|제외|인정|금지)"
@@ -134,10 +142,12 @@ def source_guide_references(lines: tuple[str, ...], sources) -> frozenset[str]:
         if line.lstrip().startswith("#"):
             in_guide = bool(SOURCE_GUIDE_HEADING_PATTERN.match(line))
             continue
-        match = SOURCE_GUIDE_ITEM_PATTERN.match(line) if in_guide else None
+        match = SOURCE_GUIDE_ITEM_PATTERN.match(line)
         if not match:
             continue
         key = _normalized(CITATION_TOKEN_PATTERN.sub(" ", match.group("item")))
+        if not in_guide and not key.endswith(("md", "pdf", "hwp", "hwpx")):
+            continue
         if len(key) >= MIN_PROVENANCE_CHARS and any(key in reference for reference in references):
             kept.add(line)
     return frozenset(kept)
@@ -172,7 +182,8 @@ def _allowed_answer_years(context: str, question: str) -> frozenset[int]:
 
 def _numbered_claims(text: str) -> tuple[tuple[Decimal, str], ...]:
     claims: list[tuple[Decimal, str]] = []
-    for match in NUMBERED_CLAIM_PATTERN.finditer(plain(text)):
+    plain_text = plain(text)
+    for match in (*NUMBERED_CLAIM_PATTERN.finditer(plain_text), *RANGE_START_PATTERN.finditer(plain_text)):
         try:
             value = Decimal(match.group("number").replace(",", ""))
         except InvalidOperation:
@@ -234,7 +245,7 @@ def _unsupported_household_bare_number_relation(line: str, source_text: str) -> 
 
 
 UNITFUL_HOUSEHOLD_VALUE_PATTERN: Final[re.Pattern[str]] = re.compile(
-    r"(?P<count>\d{1,2})\s*인(?:\s*가구)?(?P<middle>[^0-9\n]{0,80})"
+    r"(?P<count>\d{1,2})\s*인(?:\s*가구)?(?P<middle>(?:20\d{2}\s*년|[^0-9\n]){0,80})"
     r"(?P<number>\d{1,3}(?:,\d{3})+(?:\.\d+)?)\s*(?P<unit>원)"
 )
 
@@ -327,7 +338,11 @@ def _unsupported_line(
     source_scope_text: str | None = None,
 ) -> bool:
     line_years = _years(line)
-    if allowed_years and any(year not in allowed_years for year in line_years):
+    source_years = _years(source_text)
+    if allowed_years and any(
+        year not in allowed_years and not (year > max(allowed_years) and year in source_years)
+        for year in line_years
+    ):
         return True
     if any(claim not in source_claims for claim in _numbered_claims(line)):
         return True
@@ -335,6 +350,15 @@ def _unsupported_line(
         return True
     if _unsupported_household_bare_number_relation(line, source_text):
         return True
+    from welfare_criterion_amount import BENEFITS, criterion_rates
+
+    compact_line = re.sub(r'\s+|[*_]', '', line)
+    for benefit in BENEFITS:
+        match = re.search(rf'{benefit}(?:소득)?선정기준[^。\n.]{{0,35}}?(\d+(?:\.\d+)?%)', compact_line)
+        if match is not None:
+            rates = criterion_rates(source_text, benefit)
+            if len(rates) == 1 and match[1] not in rates:
+                return True
     if _polarity_conflict(line, source_text):
         return True
     # Numeric/polarity evidence remains body-only. Program/domain scope may
@@ -347,9 +371,16 @@ def _unsupported_line(
         return True
     return any(
         _normalized(program) in _normalized(line)
-        and _normalized(program) not in normalized_source
+        and not _program_in_source(program, normalized_source)
         for program in PROGRAM_ANCHORS
     )
+
+
+def _program_in_source(program: str, normalized_source: str) -> bool:
+    if _normalized(program) in normalized_source:
+        return True
+    words = program.split()
+    return len(words) > 1 and all(_normalized(word) in normalized_source for word in words)
 
 
 def _without_empty_headings(lines: tuple[str, ...]) -> tuple[str, ...]:
@@ -376,6 +407,18 @@ def _without_repeated_lines(lines: tuple[str, ...]) -> tuple[str, ...]:
     return tuple(kept)
 
 
+def _case_subjects(question: str) -> frozenset[str]:
+    return frozenset(_normalized(match.group(0)) for match in CASE_SUBJECT_PATTERN.finditer(question))
+
+
+def _without_case_subjects(line: str, subjects: frozenset[str]) -> str:
+    if not subjects:
+        return line
+    return CASE_SUBJECT_PATTERN.sub(
+        lambda match: "해당 가구" if _normalized(match.group(0)) in subjects else match.group(0), line,
+    )
+
+
 def _prepared_sources(context: str, question: str):
     """Evidence-derived validation inputs; the question never adds evidence."""
     sources = parse_evidence(context)
@@ -389,6 +432,8 @@ def _prepared_sources(context: str, question: str):
                 block.metadata.get('service_names', ''),
                 block.metadata.get('heading_path', ''),
                 block.metadata.get('title', ''),
+                block.metadata.get('source_name', ''),
+                block.metadata.get('original_name', ''),
             ))
             for block in sources
         )
@@ -408,8 +453,10 @@ def grounded_line_checker(context: str, question: str):
     must never shorten an item to make it pass.
     """
     sources, source_text, source_scope_text, source_claims, allowed_years = _prepared_sources(context, question)
+    subjects = _case_subjects(question)
 
     def check(line: str) -> bool:
+        line = _without_case_subjects(line, subjects)
         return (
             not _unsupported_line(line, source_text, source_claims, allowed_years, source_scope_text)
             and scoped_numeric_support(line, context, question,
@@ -436,6 +483,7 @@ def sanitize_grounded_answer(
     # prior_removed: items an upstream structured renderer already dropped
     # because this same validator rejected them.  They are reported, not hidden.
     sources, source_text, source_scope_text, source_claims, allowed_years = _prepared_sources(context, question)
+    subjects = _case_subjects(question)
     answer, provenance_lines = normalize_evidence_references(answer, sources)
     original_lines = tuple(
         _strip_invented_units_from_unitless_table_claims(line, sources)
@@ -446,8 +494,9 @@ def sanitize_grounded_answer(
         line
         for line in original_lines
         if line in provenance_lines
-        or (not _unsupported_line(line, source_text, source_claims, allowed_years, source_scope_text)
-            and scoped_numeric_support(line, context, question,
+        or (not _unsupported_line(_without_case_subjects(line, subjects), source_text, source_claims,
+                                  allowed_years, source_scope_text)
+            and scoped_numeric_support(_without_case_subjects(line, subjects), context, question,
                                        _numbered_claims, _household_amount_pairs, _normalized,
                                        prepared_blocks=sources))
     )
@@ -472,8 +521,11 @@ def sanitize_grounded_answer(
         notices.append(
             "## ⚠️ 검수 상태\n- 자동 품질검수를 완료하지 못했습니다. 표시된 근거 지침을 확인해 주세요."
         )
-    if not cleaned:
-        cleaned = "검색된 원문에서 질문에 직접 답할 수 있는 근거를 확인하지 못했습니다."
+    if not substantive_body(cleaned).strip():
+        lead = "검색된 원문에서 질문에 직접 답할 수 있는 근거를 확인하지 못했습니다."
+        if removed_count:
+            lead += " 원문과 맞지 않는 문장은 표시하지 않았으니, 아래 원문 위치를 직접 확인해 주세요."
+        cleaned = f"{lead}\n\n{cleaned}" if cleaned else lead
     from welfare_telemetry import note, diagnostics
     if generation_truncated is None:
         generation_truncated = bool(diagnostics().get('generation', {}).get('truncated', False))

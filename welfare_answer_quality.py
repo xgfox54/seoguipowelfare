@@ -23,19 +23,21 @@ class AnswerAssessment:
         return asdict(self)
 
 
-def substantive_body(answer: str) -> str:
+def substantive_body(answer: str, *, with_headings: bool = False) -> str:
     lines = []
     ignore_section = False
+    heading = ''
     for line in answer.splitlines():
         if line.lstrip().startswith('#'):
             ignore_section = bool(REF_HEADING.search(line)) or '⚠️' in line
+            heading = re.sub(r'^\s*#+|[*_`]', '', line).strip()
             continue
         if ignore_section or REF_LINE.search(line):
             continue
         plain = re.sub(r'\[E\d+\]|[*_`]|^\s*[-\d.]+\s*', '', line).strip()
         if not plain or re.fullmatch(r'[|: -]+', plain):
             continue
-        lines.append(plain)
+        lines.append(f'{heading} {plain}' if with_headings and heading else plain)
     return '\n'.join(lines)
 
 
@@ -47,7 +49,7 @@ def assess_answer(answer: str, question: str, *, removed_lines: int = 0,
     if '출력 상한에 도달' in answer:
         truncated = True
     body = substantive_body(answer)
-    informative = [line for line in body.splitlines()
+    informative = [line for line in substantive_body(answer, with_headings=True).splitlines()
                    if not ABSTAIN_LINE.search(line) and len(line.strip()) >= 4
                    and not line.rstrip().endswith((':', '：'))]
     missing = []

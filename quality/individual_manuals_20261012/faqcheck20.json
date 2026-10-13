@@ -1,0 +1,489 @@
+{
+ "items": [
+  {
+   "id": "WFAQ-019",
+   "question": "지금은 수급자가 아니지만 과거 기초생활수급 이력을 증명해야 합니다. 어떤 서류를 요청해야 하나요?",
+   "category": "신청절차",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "topic": "기초생활·차상위",
+   "difficulty": "기본",
+   "evaluation_criteria": "1. 현재 자격과 과거 이력 구별\n2. 이력 증빙 서류명\n3. 발급 가능 여부 확인",
+   "major_error_type": "자격 중지로 어떤 이력 증빙도 불가능하다고 답함",
+   "origin": {
+    "site": "보건복지상담센터 129",
+    "institution": "보건복지상담센터 129",
+    "title": "수급자격이 중지된 사람도 수급자증명서 발급이 가능한가요?",
+    "written_at": "2025-04-15T00:00:00.000Z",
+    "url": "https://www.129.go.kr/faq/faq00.do?pageIndex=1&searchCondition=0&searchKeyword=%EC%88%98%EA%B8%89%EC%9E%90%EA%B2%A9%EC%9D%B4%20%EC%A4%91%EC%A7%80%EB%90%9C%20%EC%82%AC%EB%9E%8C%EB%8F%84&searchSort=1&searchUseYn=Y"
+   }
+  },
+  {
+   "id": "WFAQ-118",
+   "question": "입양아동이 의료급여 1종 자격을 갖고 있습니다. 그 사실만으로 기저귀 바우처 대상이 되나요?",
+   "category": "조건판단",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "topic": "임신·출산",
+   "difficulty": "응용",
+   "evaluation_criteria": "1. 의료급여 자격의 법적 경로\n2. 기초생활 수급 자격과 구별\n3. 별도 지원요건 확인",
+   "major_error_type": "모든 의료급여 1종 아동을 기초생활수급 가구로 간주함",
+   "origin": {
+    "site": "보건복지상담센터 129",
+    "institution": "보건복지상담센터 129",
+    "title": "(기저귀조제분유) 입양특례법에 따라 입양된 아동의 경우 의료급여 자격을 보유하고 있는데 기저귀 및 조제분유 지원신청 가능한가요?",
+    "written_at": "2026-09-22T00:00:00.000Z",
+    "url": "https://www.129.go.kr/faq/faq00.do?pageIndex=1&searchCondition=0&searchKeyword=%EC%9E%85%EC%96%91%ED%8A%B9%EB%A1%80%EB%B2%95%EC%97%90%20%EB%94%B0%EB%9D%BC%20%EC%9E%85%EC%96%91%EB%90%9C%20%EC%95%84%EB%8F%99&searchSort=1&searchUseYn=Y"
+   }
+  },
+  {
+   "id": "WFAQ-138",
+   "question": "위탁아동을 처음 맡는 가정입니다. 양육보조금과 아동용품구입비 등 어떤 지원을 확인해야 하며\n금액은 전국이 같은가요?",
+   "category": "사실검색",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "topic": "아동·청소년·가족",
+   "difficulty": "응용",
+   "evaluation_criteria": "1. 위탁 유형·아동 연령\n2. 지원 항목\n3. 국가 권고와 지자체 지급기준 구별",
+   "major_error_type": "권고금액을 모든 지자체의 확정 지급액으로 안내함",
+   "origin": {
+    "site": "보건복지상담센터 129",
+    "institution": "보건복지상담센터 129",
+    "title": "위탁가정은 어떤 지원을 받을 수 있나요?",
+    "written_at": "2026-10-07T00:00:00.000Z",
+    "url": "https://www.129.go.kr/faq/faq00.do?pageIndex=1&searchCondition=0&searchKeyword=%EC%9C%84%ED%83%81%EA%B0%80%EC%A0%95%EC%9D%80%20%EC%96%B4%EB%96%A4%20%EC%A7%80%EC%9B%90&searchSort=1&searchUseYn=Y"
+   }
+  },
+  {
+   "id": "WFAQ-159",
+   "question": "긴급복지 의료지원을 이미 승인받았습니다. 재난적의료비도 신청하면 같은 영수증 금액을 두\n제도에서 모두 받을 수 있나요?",
+   "category": "제도비교",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "topic": "의료비·건강지원",
+   "difficulty": "응용",
+   "evaluation_criteria": "1. 동일 비용 중복 보전 제한\n2. 승인된 지원액·항목 확인\n3. 차감 후 지원 산정",
+   "major_error_type": "두 사업의 한도액을 단순 합산해 중복 지급함",
+   "origin": {
+    "site": "보건복지상담센터 129",
+    "institution": "보건복지상담센터 129",
+    "title": "재난적의료비지원사업은 긴급지원 등과 중복지원이 가능한가요?",
+    "written_at": "2026-06-02T00:00:00.000Z",
+    "url": "https://www.129.go.kr/faq/faq00.do?pageIndex=1&searchCondition=0&searchKeyword=%EC%9E%AC%EB%82%9C%EC%A0%81%EC%9D%98%EB%A3%8C%EB%B9%84%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85%EC%9D%80%20%EA%B8%B4%EA%B8%89%EC%A7%80%EC%9B%90&searchSort=1&searchUseYn=Y"
+   }
+  },
+  {
+   "id": "WFAQ-162",
+   "question": "예전 ‘전국민 마음투자 지원사업’ 안내를 보고 신청하려 합니다. 현재 사업명과 아동·청소년\n심리지원서비스와의 중복 관계를 확인해 주세요.",
+   "category": "최신성검증",
+   "acceptable_documents": [],
+   "expected_numbers": [],
+   "must_include": [],
+   "must_not_include": [],
+   "expected_year": "",
+   "topic": "의료비·건강지원",
+   "difficulty": "심화",
+   "evaluation_criteria": "1. 구 명칭과 현 명칭 연결\n2. 유사서비스 목록\n3. 동일 기간 이용 제한",
+   "major_error_type": "이름 변경을 별개 사업 신설로 보고 중복 가능하다고 함",
+   "origin": {
+    "site": "보건복지상담센터 129",
+    "institution": "보건복지상담센터 129",
+    "title": "정신건강 심리상담 바우처 서비스와 중복 이용 가능한가요?",
+    "written_at": "2026-04-23T00:00:00.000Z",
+    "url": "https://www.129.go.kr/faq/faq00.do?pageIndex=1&searchCondition=0&searchKeyword=%EC%A0%95%EC%8B%A0%EA%B1%B4%EA%B0%95%20%EC%8B%AC%EB%A6%AC%EC%83%81%EB%8B%B4%20%EB%B0%94%EC%9A%B0%EC%B2%98%20%EC%84%9C%EB%B9%84%EC%8A%A4%EC%99%80&searchSort=1&searchUseYn=Y"
+   }
+  },
+  {
+   "id": "Q019",
+   "question": "지역사회서비스 투자사업 대상 기준 알려줘",
+   "expected_section": "지역사회서비스",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "simple",
+   "jurisdiction": "jeju",
+   "acceptable_documents": [
+    "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "legacy_expected_document": "19.[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내(제주도 지침 포함).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+     "sha256": "36b926caee2407acd064f28190e900f4ed526bdcaac52845a39ad6382146ebe1"
+    },
+    {
+     "source_name": "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+     "sha256": "9b188d1de4f797c08342dfa5e02b1ff3a8ff7f57ff1e5d830d7b064a9b0b6c98"
+    }
+   ]
+  },
+  {
+   "id": "Q022",
+   "question": "의료요양통합돌봄 대상 기준 알려줘",
+   "expected_section": "통합돌봄",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "simple",
+   "jurisdiction": "national",
+   "acceptable_documents": [
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md"
+   ],
+   "legacy_expected_document": "22.[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내(부록포함).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
+     "sha256": "01e10ceefd29782680cbb198b80a353cc72d3bb0bf13f724d55a6f0265acf325"
+    },
+    {
+     "source_name": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+     "sha256": "0648b1c6c784c51ca48c2f03af68808992afdebb46c0e7c11c4d9d1ef69e7c2c"
+    }
+   ]
+  },
+  {
+   "id": "Q071",
+   "question": "노인맞춤돌봄 신청할 때 필요한 서류와 방법을 알려줘",
+   "expected_section": "노인맞춤돌봄",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "procedure",
+   "jurisdiction": "national",
+   "acceptable_documents": [
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md"
+   ],
+   "legacy_expected_document": "16.[매뉴얼-노인복지] 2026_노인보건복지사업안내(1~2권), 응급안전안심서비스안내(합본).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+     "sha256": "5e0e7c6ef5b3776ceadc3a5027875b47435b86beeb8da0153b6efdf29463324d"
+    },
+    {
+     "source_name": "[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md",
+     "sha256": "5a604d75003f0b97129f618a33e28248913786f3bd3b744615a001c880670732"
+    }
+   ]
+  },
+  {
+   "id": "Q073",
+   "question": "첫만남이용권 접수부터 결정까지 처리 절차를 알려줘",
+   "expected_section": "첫만남이용권",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "procedure",
+   "jurisdiction": "national",
+   "acceptable_documents": [
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md"
+   ],
+   "legacy_expected_document": "17.[매뉴얼-아동] 2026년 보육사업,손주돌봄수당,유아학비,다함께돌봄,아동보호,아동분야사업,첫만남이용권,결식아동급식,드림스타트,지역아동센터,부모급여 안내(합본).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+     "sha256": "a026b56bfb87fb319952be3ae1fc5ace687534bb01aed24db3547630efb1b992"
+    }
+   ]
+  },
+  {
+   "id": "Q075",
+   "question": "긴급복지 생계지원 신청 절차 알려줘",
+   "expected_section": "생계지원",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "procedure",
+   "jurisdiction": "national",
+   "acceptable_documents": [
+    "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md"
+   ],
+   "legacy_expected_document": "18.[매뉴얼-긴급복지] 2026년 긴급복지지원, 재난적의료비지원사업 안내(합본).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-긴급복지] 2026년 긴급복지지원사업 안내.md",
+     "sha256": "4405cd5ff8478bbae57da0b9f7d9c5085f3b720dd7e2160e5dedec3c07b01410"
+    }
+   ]
+  },
+  {
+   "id": "Q076",
+   "question": "재난적의료비 접수부터 결정까지 처리 절차를 알려줘",
+   "expected_section": "재난적의료비",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "procedure",
+   "jurisdiction": "national",
+   "acceptable_documents": [
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md"
+   ],
+   "legacy_expected_document": "18.[매뉴얼-긴급복지] 2026년 긴급복지지원, 재난적의료비지원사업 안내(합본).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+     "sha256": "69a14fc1cf0e0830dfb794cc94c646a8b2eebe3186ead02e71e9c90e1ee5946a"
+    }
+   ]
+  },
+  {
+   "id": "Q077",
+   "question": "지역사회서비스 투자사업 신청할 때 필요한 서류와 방법을 알려줘",
+   "expected_section": "지역사회서비스",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "procedure",
+   "jurisdiction": "jeju",
+   "acceptable_documents": [
+    "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "legacy_expected_document": "19.[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내(제주도 지침 포함).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+     "sha256": "36b926caee2407acd064f28190e900f4ed526bdcaac52845a39ad6382146ebe1"
+    },
+    {
+     "source_name": "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+     "sha256": "9b188d1de4f797c08342dfa5e02b1ff3a8ff7f57ff1e5d830d7b064a9b0b6c98"
+    }
+   ]
+  },
+  {
+   "id": "Q080",
+   "question": "의료요양통합돌봄 신청할 때 필요한 서류와 방법을 알려줘",
+   "expected_section": "통합돌봄",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "procedure",
+   "jurisdiction": "national",
+   "acceptable_documents": [
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md"
+   ],
+   "legacy_expected_document": "22.[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내(부록포함).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
+     "sha256": "01e10ceefd29782680cbb198b80a353cc72d3bb0bf13f724d55a6f0265acf325"
+    },
+    {
+     "source_name": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+     "sha256": "0648b1c6c784c51ca48c2f03af68808992afdebb46c0e7c11c4d9d1ef69e7c2c"
+    }
+   ]
+  },
+  {
+   "id": "Q088",
+   "question": "노인맞춤돌봄 제외대상이나 예외 조건 알려줘",
+   "expected_section": "노인맞춤돌봄",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "exception",
+   "jurisdiction": "national",
+   "acceptable_documents": [
+    "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+    "[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md"
+   ],
+   "legacy_expected_document": "16.[매뉴얼-노인복지] 2026_노인보건복지사업안내(1~2권), 응급안전안심서비스안내(합본).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-노인복지] 2026 노인보건복지사업안내(1권).md",
+     "sha256": "5e0e7c6ef5b3776ceadc3a5027875b47435b86beeb8da0153b6efdf29463324d"
+    },
+    {
+     "source_name": "[매뉴얼-돌봄] 2026년 노인맞춤돌봄서비스 사업안내(개정).md",
+     "sha256": "5a604d75003f0b97129f618a33e28248913786f3bd3b744615a001c880670732"
+    }
+   ]
+  },
+  {
+   "id": "Q090",
+   "question": "첫만남이용권 특례나 예외가 있으면 원문 기준으로 알려줘",
+   "expected_section": "첫만남이용권",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "exception",
+   "jurisdiction": "national",
+   "acceptable_documents": [
+    "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md"
+   ],
+   "legacy_expected_document": "17.[매뉴얼-아동] 2026년 보육사업,손주돌봄수당,유아학비,다함께돌봄,아동보호,아동분야사업,첫만남이용권,결식아동급식,드림스타트,지역아동센터,부모급여 안내(합본).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-아동] 2026년 첫만남이용권 사업안내.md",
+     "sha256": "a026b56bfb87fb319952be3ae1fc5ace687534bb01aed24db3547630efb1b992"
+    }
+   ]
+  },
+  {
+   "id": "Q093",
+   "question": "재난적의료비 특례나 예외가 있으면 원문 기준으로 알려줘",
+   "expected_section": "재난적의료비",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "exception",
+   "jurisdiction": "national",
+   "acceptable_documents": [
+    "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md"
+   ],
+   "legacy_expected_document": "18.[매뉴얼-긴급복지] 2026년 긴급복지지원, 재난적의료비지원사업 안내(합본).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-긴급복지] 2026년 재난적의료비지원사업 안내.md",
+     "sha256": "69a14fc1cf0e0830dfb794cc94c646a8b2eebe3186ead02e71e9c90e1ee5946a"
+    }
+   ]
+  },
+  {
+   "id": "Q094",
+   "question": "지역사회서비스 투자사업 제외대상이나 예외 조건 알려줘",
+   "expected_section": "지역사회서비스",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "exception",
+   "jurisdiction": "jeju",
+   "acceptable_documents": [
+    "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "legacy_expected_document": "19.[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내(제주도 지침 포함).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+     "sha256": "36b926caee2407acd064f28190e900f4ed526bdcaac52845a39ad6382146ebe1"
+    },
+    {
+     "source_name": "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+     "sha256": "9b188d1de4f797c08342dfa5e02b1ff3a8ff7f57ff1e5d830d7b064a9b0b6c98"
+    }
+   ]
+  },
+  {
+   "id": "Q097",
+   "question": "의료요양통합돌봄 제외대상이나 예외 조건 알려줘",
+   "expected_section": "통합돌봄",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "exception",
+   "jurisdiction": "national",
+   "acceptable_documents": [
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
+    "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md"
+   ],
+   "legacy_expected_document": "22.[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내(부록포함).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내 부록.md",
+     "sha256": "01e10ceefd29782680cbb198b80a353cc72d3bb0bf13f724d55a6f0265acf325"
+    },
+    {
+     "source_name": "[매뉴얼-의료요양통합돌봄] 2026년 의료요양 통합돌봄 사업 안내.md",
+     "sha256": "0648b1c6c784c51ca48c2f03af68808992afdebb46c0e7c11c4d9d1ef69e7c2c"
+    }
+   ]
+  },
+  {
+   "id": "Q185",
+   "question": "서귀포에서 지역사회서비스 투자사업 업무를 처리할 때 적용 기준 알려줘",
+   "expected_section": "지역사회서비스",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "local",
+   "jurisdiction": "jeju",
+   "acceptable_documents": [
+    "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "legacy_expected_document": "19.[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내(제주도 지침 포함).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+     "sha256": "36b926caee2407acd064f28190e900f4ed526bdcaac52845a39ad6382146ebe1"
+    },
+    {
+     "source_name": "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+     "sha256": "9b188d1de4f797c08342dfa5e02b1ff3a8ff7f57ff1e5d830d7b064a9b0b6c98"
+    }
+   ]
+  },
+  {
+   "id": "Q194",
+   "question": "서귀포 지역사회서비스 투자사업의 제주도 지침 적용 기준을 알려줘",
+   "expected_section": "지역사회서비스",
+   "must_include": [],
+   "must_not_include": [],
+   "expected_numbers": [],
+   "expected_year": "2026",
+   "category": "local",
+   "jurisdiction": "jeju",
+   "acceptable_documents": [
+    "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+    "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md"
+   ],
+   "legacy_expected_document": "19.[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내(제주도 지침 포함).md",
+   "review_status": "source_scope_verified_answer_rubric_pending",
+   "source_references": [
+    {
+     "source_name": "[매뉴얼-바우처] 2026년 제주지역자율형사회서비스투자사업 지침(하반기).md",
+     "sha256": "36b926caee2407acd064f28190e900f4ed526bdcaac52845a39ad6382146ebe1"
+    },
+    {
+     "source_name": "[매뉴얼-바우처] 2026년도 지역사회서비스 투자사업 안내.md",
+     "sha256": "9b188d1de4f797c08342dfa5e02b1ff3a8ff7f57ff1e5d830d7b064a9b0b6c98"
+    }
+   ]
+  }
+ ]
+}

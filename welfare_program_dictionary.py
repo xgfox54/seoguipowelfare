@@ -24,6 +24,10 @@ MIN_ALIAS_CHARS = 3
 CONTENT_MIN_TERMS = 2
 CONTENT_MIN_SCORE = 6.0
 CONTENT_MIN_MARGIN = 1.35
+CONTENT_NAME_TERM_MAX_PROGRAMS = 3
+CONTENT_RARE_TERM_MAX_PROGRAMS = 2
+CONTENT_RARE_TERM_MIN_CHARS = 3
+CONTENT_MIN_RARE_TERMS = 2
 TOKEN_RE = re.compile(r"[0-9A-Za-z가-힣]{2,}")
 KOREAN_SUFFIXES = (
     "으로부터", "에게서", "에서는", "으로는", "까지는", "부터는", "에서", "에게", "께서", "으로",
@@ -157,6 +161,7 @@ class ProgramDictionary:
             for term in terms:
                 frequency[term] = frequency.get(term, 0) + 1
         total = max(1, len(documents))
+        self._frequency = frequency
         self._idf = {term: math.log((total + 1) / (count + 0.5)) for term, count in frequency.items()}
 
     @classmethod
@@ -245,7 +250,22 @@ class ProgramDictionary:
         # source is never selected from content alone.
         if not entry.has_source:
             return ProgramMatch("ambiguous", "content", (), (), candidates, best)
+        # Shared everyday words ("여부", "사는", "장애인") steered questions to
+        # unrelated programmes; a content match needs a word that singles out
+        # this programme: a rare word of its name, or several rare content words.
+        if not self._distinctive_overlap(terms.intersection(entry.content_terms), entry):
+            return ProgramMatch("ambiguous", "content", (), (), candidates, best)
         return ProgramMatch("matched", "content", (entry,), (), candidates, best)
+
+    def _distinctive_overlap(self, overlap: set[str], entry: ProgramEntry) -> bool:
+        name = normalize(entry.name)
+        if any(normalize(term) in name and self._frequency.get(term, 0) <= CONTENT_NAME_TERM_MAX_PROGRAMS
+               for term in overlap):
+            return True
+        rare = [term for term in overlap
+                if len(term) >= CONTENT_RARE_TERM_MIN_CHARS
+                and self._frequency.get(term, 0) <= CONTENT_RARE_TERM_MAX_PROGRAMS]
+        return len(rare) >= CONTENT_MIN_RARE_TERMS
 
 
 def _preferred(entries: tuple[ProgramEntry, ...]) -> ProgramEntry:

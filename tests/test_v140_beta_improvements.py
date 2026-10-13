@@ -343,6 +343,17 @@ def test_dictionary_matches_by_name_partial_name_and_content() -> None:
     assert "[서귀포시업무-위기가구] 2026년 서귀포 온정가게 사업 운영계획(안).md" in content.owner_sources
 
 
+def test_dictionary_content_match_needs_a_word_that_singles_out_the_programme() -> None:
+    for question in (
+        "수급자가 예금 이자를 받았는데 지급액 전부가 소득으로 잡히나요? 공제 여부와 확인할 자료를 알려주세요.",
+        "농촌에서 혼자 사는 어르신이 집안일을 하기 어렵습니다. 행복나눔이 가사서비스는 어떤 가구를 지원하고 어디에 문의하나요?",
+        "장애인 가족을 내려드린 뒤 혼자 볼일을 보는 동안에도 장애인전용주차구역을 이용할 수 있나요?",
+    ):
+        assert match_program(question).status != "matched", question
+    knee = match_program("저소득 어르신의 무릎인공관절 수술비 지원은 나이만 충족하면 되나요?")
+    assert knee.method == "content" and [p.name for p in knee.programs] == ["노인 무릎인공관절 수술 지원"]
+
+
 def test_dictionary_owner_steers_retrieval_only_without_an_explicit_anchor() -> None:
     assert plan_query("동네 가게에서 위기가구 제보하면 생필품 교환권 주는 사업").dictionary_owner_sources
     assert plan_query("동네 가게에서 위기가구 제보하면 생필품 교환권 주는 사업").jurisdiction == "seogwipo"

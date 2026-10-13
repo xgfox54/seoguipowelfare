@@ -22,7 +22,6 @@ from welfare_answer_format import (
     render_table_single_amount,
     render_numeric_triplet,
     single_amount_grammar,
-    single_amount_draft_missing,
     table_single_amount,
 )
 from welfare_evidence import parse_evidence, prompt_evidence
@@ -170,7 +169,7 @@ def _llm_generate(
     timeout: int = 600,
     *,
     system_prompt: str | None = None,
-    temperature: float = 0.2,
+    temperature: float = 0.0,
     grammar: str | None = None,
 ) -> str:
     configured = configured_model_choice()
@@ -314,6 +313,10 @@ def _with_edition_notice(answer: str, plan: QueryPlan, context: str) -> str:
 
 @track_answer
 def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_KEY) -> str:
+    from welfare_criterion_amount import criterion_amount, criterion_rate
+    from welfare_answer_quality import assess_answer, assessment_notice
+    from welfare_program_cards import program_card_answer
+    from welfare_target_amount import target_amount
     choice = resolve_choice(model_key)
     configured = configured_model_choice()
     if choice.key != configured.key:
@@ -331,6 +334,10 @@ def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_
     note('year_scope', years.diagnostics())
     if years.mismatch:
         return _year_mismatch_answer(database, plan, years)
+    if not plan.program_terms and re.search(r"(?:신청|지원).*(?:기준|자격|조건)", question):
+        directory_answer = _directory_owner_answer(database, question, "")
+        if directory_answer is not None:
+            return directory_answer
     context = timed_call('retrieval', retrieve_context,
         database,
         question,
@@ -363,7 +370,20 @@ def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_
     # full EvidenceContext (all provenance metadata) returned by retrieval.
     prompt = build_grounded_prompt(question, prompt_evidence(context))
     prior_removed = 0
-    if is_numeric_triplet_question(question):
+    criterion_answer = (criterion_amount(question, parse_evidence(context))
+                        or criterion_rate(question, parse_evidence(context))
+                        or target_amount(question, parse_evidence(context)))
+    if criterion_answer is not None:
+        draft_answer = criterion_answer
+        note('numeric_render', {'mode': 'criterion_table'})
+    elif (card := program_card_answer(question, plan.explicit_programs, plan.requested_years)) is not None:
+        note('numeric_render', {'mode': 'program_card', 'card': card.card_id, 'fields': list(card.fields)})
+        assessment = assess_answer(card.text, question)
+        note('answer_quality', assessment.to_dict())
+        notice = assessment_notice(assessment)
+        answer = card.text + (f'\n\n{notice}' if notice else '')
+        return _with_edition_notice(answer, plan, card.context)
+    elif is_numeric_triplet_question(question):
         draft = timed_call('generation', _generate_structured,
             choice.filename, prompt, numeric_triplet_grammar())
         rendered = render_numeric_triplet(
@@ -375,17 +395,13 @@ def answer_question(kb_dir: Path, question: str, model_key: str = DEFAULT_MODEL_
         draft_answer = rendered.text
         prior_removed = rendered.removed_items
     elif is_single_amount_question(question):
-        draft_answer = normalize_single_amount(timed_call('generation', _generate_structured,
-            choice.filename, prompt, single_amount_grammar()))
-        # The model declined although a bound evidence table pins exactly one
-        # value for this household (E4B locked-200 r1, Q057-Q062): answer from
-        # that table.  No extra model call; the line is validated below.
-        table_amount = None
-        if single_amount_draft_missing(draft_answer):
-            table_amount = table_single_amount(question, parse_evidence(context),
-                                               plan.explicit_programs, plan.requested_years)
-            if table_amount is not None:
-                draft_answer = render_table_single_amount(table_amount, plan.explicit_programs)
+        table_amount = table_single_amount(question, parse_evidence(context),
+                                           plan.explicit_programs, plan.requested_years)
+        if table_amount is not None:
+            draft_answer = render_table_single_amount(table_amount, plan.explicit_programs)
+        else:
+            draft_answer = normalize_single_amount(timed_call('generation', _generate_structured,
+                choice.filename, prompt, single_amount_grammar()))
         note('numeric_render', {'mode': 'single_amount', 'chars': len(draft_answer),
                                 'table_fallback': table_amount is not None})
     else:

@@ -1,0 +1,197 @@
+{
+  "evaluation_run": "round4-full250-answers",
+  "sample_method": "Stratified random sample, 4 general questions per category, random.Random(20261012)",
+  "grader": "Codex comparison of each answer sentence with the retrieved source text; not an independent welfare practitioner",
+  "rubric": "Pass only when every requested item is answered correctly from the source and no statement misattributes a value, group, programme or condition. Unjustified 'not found' on an answerable question, mixed programmes and wrong group/value labels fail.",
+  "graded": 40,
+  "passed": 18,
+  "pass_pct": 45,
+  "pass_by_category": {
+    "case": "3/4",
+    "exception": "1/4",
+    "local": "3/4",
+    "numeric": "1/4",
+    "procedure": "1/4",
+    "program_mix": "2/4",
+    "simple": "1/4",
+    "table": "2/4",
+    "wrong_premise": "3/4",
+    "year_confusion": "1/4"
+  },
+  "items": {
+    "Q105": {
+      "verdict": "pass",
+      "reason": "32%·소득인정액 산식·생계급여 부양능력 판정 미적용 원문 일치. 부양의무자 일반조건을 함께 적어 다소 혼동 소지"
+    },
+    "Q107": {
+      "verdict": "fail",
+      "reason": "국가무형유산 보유자 전용 소득인정액 상한표를 일반 기준처럼 제시"
+    },
+    "Q108": {
+      "verdict": "pass",
+      "reason": "연령·선정기준액·소득인정액·직역연금 제외 원문 일치"
+    },
+    "Q131": {
+      "verdict": "pass",
+      "reason": "연령·소득계층·요보호 기준·유사중복 제외 원문 일치, 재산만으로 판단 불가 안내"
+    },
+    "Q087": {
+      "verdict": "fail",
+      "reason": "원문 일치 예외 문장이나 매뉴얼 3권의 운영 예외가 섞이고 질문 관련성 낮음"
+    },
+    "Q092": {
+      "verdict": "fail",
+      "reason": "질병·부상 실업급여 수급 시 제외는 맞음. 해산비·전기요금 제외를 생계지원 제한으로 혼합"
+    },
+    "Q101": {
+      "verdict": "fail",
+      "reason": "보장시설 수급자 부양의무자 규정 위주로 질문 관련성 낮음"
+    },
+    "Q102": {
+      "verdict": "pass",
+      "reason": "읍면동 위원 결격사유 미적용·임기 2년·위원장 1회 연임 원문 일치"
+    },
+    "Q185": {
+      "verdict": "pass",
+      "reason": "사업 방식·본인부담·지자체 이용자 선정·지역 사업계획 확인 안내 원문 일치"
+    },
+    "Q186": {
+      "verdict": "pass",
+      "reason": "운영 원칙·사무국·운영매뉴얼·교육 원문 일치(제주 지침 고유 내용은 적음)"
+    },
+    "Q187": {
+      "verdict": "fail",
+      "reason": "FAQ 단락만 검색되어 기준 미확인으로 답함"
+    },
+    "Q191": {
+      "verdict": "pass",
+      "reason": "신고자격·지급요건·1건 5만원/연 30만원·30일 이내 지급·지급방법 원문 일치"
+    },
+    "Q035": {
+      "verdict": "fail",
+      "reason": "월 20만원·총 480만원·24개월 맞음. 원문 '24개월(회)'가 있는데 횟수 미확인이라 답함"
+    },
+    "Q045": {
+      "verdict": "fail",
+      "reason": "가구원수별 지원금액 등 핵심 수치 누락. 행복이음 처리 방법·카드 유효기간 등 주변 내용, 마지막 문장도 잘림"
+    },
+    "Q051": {
+      "verdict": "fail",
+      "reason": "엽산 권장량·산후우울증 발생률 등 원문 일치 수치지만 사업 지원기준(대상·지원금액) 수치 누락. 질문이 모호함"
+    },
+    "Q058": {
+      "verdict": "pass",
+      "reason": "2인 가구 월 1,286,600원 원문 일치"
+    },
+    "Q065": {
+      "verdict": "fail",
+      "reason": "행복이음은 시스템이라는 전제 교정 없이 복지멤버십 신청·개명 보정 절차를 섞음"
+    },
+    "Q066": {
+      "verdict": "fail",
+      "reason": "화면 버튼 조작만 답함. 신청·사전조사·종합판정 등 업무 절차 누락"
+    },
+    "Q067": {
+      "verdict": "fail",
+      "reason": "검색이 특례 단락으로 감. 절차를 확인하지 못했다고 답함"
+    },
+    "Q080": {
+      "verdict": "pass",
+      "reason": "신청인 유형별 서류·행정정보 공동이용 원문 일치. 요약의 '또는' 표현과 신청 창구 언급 부족은 경미"
+    },
+    "Q164": {
+      "verdict": "pass",
+      "reason": "다른 사업 섞지 않고 연령·선정기준액·소득인정액·직역연금 제외 원문 일치"
+    },
+    "Q165": {
+      "verdict": "fail",
+      "reason": "소득기준은 맞으나 19~34세·무주택 누락, 부모를 청년가구에 포함한다고 잘못 설명"
+    },
+    "Q169": {
+      "verdict": "fail",
+      "reason": "자활근로 대신 자산형성 통장 기준으로 답함(검색이 제2권으로 감)"
+    },
+    "Q174": {
+      "verdict": "pass",
+      "reason": "금액(첫째 200·둘째 이상 300만원)·이용기간·지급시기 원문 일치"
+    },
+    "Q015": {
+      "verdict": "pass",
+      "reason": "지급시기·금액·이용기간·사용범위 원문 일치"
+    },
+    "Q019": {
+      "verdict": "fail",
+      "reason": "우선순위 주체는 맞으나 서비스별 소득기준 누락, 자격상실 처리 등 무관 내용"
+    },
+    "Q021": {
+      "verdict": "fail",
+      "reason": "사회서비스 일반 정의·추진배경만 답함. 대상(중장년·가족돌봄청년), 서비스, 본인부담 누락"
+    },
+    "Q023": {
+      "verdict": "fail",
+      "reason": "운영 세부규칙 나열, 핵심 지원내용 요약 부족, 마지막 문장 의미 왜곡"
+    },
+    "Q195": {
+      "verdict": "pass",
+      "reason": "1~7인 생계급여 선정기준·32% 원문 일치(단위 없는 원문 그대로)"
+    },
+    "Q197": {
+      "verdict": "fail",
+      "reason": "국가무형유산 보유자 전용 표만 정리, 일반 의료급여 선정기준표 누락"
+    },
+    "Q198": {
+      "verdict": "pass",
+      "reason": "차상위 자격 연계 지원사업 표(생계·의료·교육) 원문 일치"
+    },
+    "Q199": {
+      "verdict": "fail",
+      "reason": "현금·보육료·종일제 구분은 맞으나 보육료·현금 동시 수령 사례를 0세/1세 중복으로 잘못 설명"
+    },
+    "Q176": {
+      "verdict": "pass",
+      "reason": "1인 가구 월 783,000원으로 바로잡음"
+    },
+    "Q181": {
+      "verdict": "pass",
+      "reason": "연령·별도거주·무주택·보증부월세·소득기준·월 20만원/24개월 원문 일치"
+    },
+    "Q182": {
+      "verdict": "pass",
+      "reason": "중위소득 50% 이하·부양의무자 기준으로 전제 교정"
+    },
+    "Q184": {
+      "verdict": "fail",
+      "reason": "전제 교정은 맞으나 소년소녀가정을 생계급여 수급자로 한정하는 오류, 한부모 정의를 소년소녀가정에 붙임"
+    },
+    "Q146": {
+      "verdict": "pass",
+      "reason": "상담·신청·조사·결정·통지·급여지급 절차 원문 일치"
+    },
+    "Q150": {
+      "verdict": "fail",
+      "reason": "사업개요를 검색하고도 기준 미확인이라고 답함(형식 검사도 보류를 놓침)"
+    },
+    "Q152": {
+      "verdict": "fail",
+      "reason": "50% 이하 기준은 맞으나 50% 값을 '기준 중위소득'으로 잘못 표기"
+    },
+    "Q153": {
+      "verdict": "fail",
+      "reason": "자활근로 대신 자산형성 통장 여러 종류 기준을 이름 없이 혼합, 월 30만원 귀속 오류"
+    }
+  },
+  "structural_complete_general": {
+    "baseline_releasecheck": "128/200",
+    "round4": "143/200"
+  },
+  "numeric50": {
+    "core_value_correct": "50/50",
+    "complete": "49/50",
+    "note": "Used during tuning; regression check only."
+  },
+  "limitations": [
+    "40-item sample: 95% confidence interval for the pass rate is roughly 30-61%.",
+    "The 200 general questions were written before this work and many are broad; a practitioner rubric per question does not exist yet.",
+    "Generation used temperature 0.2 without a fixed seed, so repeat runs vary."
+  ]
+}

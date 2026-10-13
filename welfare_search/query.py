@@ -32,7 +32,7 @@ QUESTION_TYPE_RULES: Final[tuple[tuple[str, re.Pattern[str]], ...]] = (
     ("기간", re.compile(r"기간|기한|언제까지|몇\s*(?:일|개월|년)")),
     ("필요서류", re.compile(r"필요\s*서류|구비\s*서류|서류|증빙")),
     ("신청방법", re.compile(r"신청.*방법|어떻게.*신청|접수.*방법")),
-    ("제외대상", re.compile(r"제외|불가|안\s*되|못\s*받")),
+    ("제외대상", re.compile(r"제외|불가|안\s*되|못\s*받|제한(?:되|하|사유|대상|기준)?")),
     ("예외", re.compile(r"예외|특례")),
     ("담당기관", re.compile(r"담당|기관|어디서|문의처")),
     ("처리절차", re.compile(r"절차|처리\s*순서|과정")),

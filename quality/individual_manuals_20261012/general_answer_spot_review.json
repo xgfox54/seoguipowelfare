@@ -1,0 +1,39 @@
+{
+  "evaluation_run": "releasecheck-full250-answers",
+  "coverage": "Diagnostic spot review, not a complete semantic grading of 200 questions",
+  "overall_accuracy_pct": null,
+  "findings": [
+    {
+      "id": "Q003",
+      "finding": "Housing benefit overview now states 48% and distinguishes rental benefit from owner-occupied repair benefit. Previous diagnostic run prioritized amendment comparisons.",
+      "assessment": "core_facts_supported"
+    },
+    {
+      "id": "Q005",
+      "finding": "Answer incorrectly says the A-benefit formula is always applied above 250%. Retrieved source explicitly says 200%; 250% is a different formula parameter. The answer also omits the base pension amount despite retrieving its table.",
+      "assessment": "semantic_failure",
+      "source_name": "[매뉴얼-공적급여] 2026년 기초연금 사업안내(개정)★.md",
+      "source_lines": "519-597",
+      "source_sha256": "cf9ba3b5da1e81cc5e9ec8bce769a9c9ecb2b2126ee2f147a667d80ce3f6a25e",
+      "structural_check": "COMPLETE_CANDIDATE",
+      "implication": "A source hit and a complete answer format do not prove a correct relationship between numbers and rules."
+    },
+    {
+      "id": "Q008",
+      "finding": "Answer lists the existence of a system manual and FAQ rather than explaining system functions or clarifying that this is an administrative system, not a benefit programme.",
+      "assessment": "requested_content_not_answered"
+    },
+    {
+      "id": "Q011",
+      "finding": "A support-content question is answered mostly with eligibility rules and staff break replacement. Coverage of the beneficiary's principal services needs a dedicated answer rubric.",
+      "assessment": "scope_completeness_concern"
+    }
+  ],
+  "next_validation_requirements": [
+    "Define beneficiary services, general eligibility, application procedure, exceptions and year applicability in the answer rubric for each programme.",
+    "Test percentage-to-rule relationships, not just presence of the same percentage somewhere in the retrieved evidence.",
+    "Create independent practitioner questions and review their answers without using them to tune the tested version.",
+    "Count incorrect, incomplete and unjustified abstaining answers as failures on answerable questions."
+  ],
+  "code_sha256": "869546bc7051f3bab5a2d6f94f487188d11eeefae5af5a97f805412b5c05e411"
+}

@@ -10,6 +10,7 @@ from typing import Final
 
 import yaml
 
+from welfare_search.faq import load_official_faq
 from welfare_search.split import MAX_SECTION_CHARS, build_nodes, split_document
 from welfare_search.types import (
     IndexReport,
@@ -355,6 +356,8 @@ def build_index(source_dir: Path, output_dir: Path) -> IndexReport:
             if document.name in indexed:
                 _delete_document(connection, document.name)
             _insert_document(connection, document)
+        faq_path = source_dir.parent / "knowledge" / "faq129" / "faq129.json"
+        official_faq_count = load_official_faq(connection, faq_path) if faq_path.is_file() else 0
         connection.commit()
         section_count = int(connection.execute("SELECT COUNT(*) FROM sections").fetchone()[0])
         reference_count = int(connection.execute("SELECT COUNT(*) FROM references_map").fetchone()[0])
@@ -375,6 +378,7 @@ def build_index(source_dir: Path, output_dir: Path) -> IndexReport:
                 "metadata_catalog": "document_metadata.yaml",
                 "authority_levels": ["primary", "reference", "summary", "index"],
                 "service_name_index": "section content and ancestor headings only",
+                "official_faq_count": official_faq_count,
             },
             ensure_ascii=False,
             indent=2,

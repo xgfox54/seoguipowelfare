@@ -1,0 +1,133 @@
+{
+ "evaluation_run": "round7-full250-answers",
+ "change_under_test": "15 source-verified program cards (141 facts) answer overview, target, case, premise and amount questions for single named programmes; procedure, exception, local and specific-amount questions keep the model path.",
+ "sample": "Same 40 general questions as semantic_sample40_round4.json and semantic_sample40_greedy.json",
+ "grader": "Codex, same rubric as semantic_sample40_round4.json",
+ "rubric": "Pass only when every requested item is answered correctly from the source and no statement misattributes a value, group, programme or condition. Unjustified 'not found' on an answerable question, mixed programmes and wrong group/value labels fail.",
+ "method": "18 answers were byte-identical to greedy-sample40-answers apart from notices and keep their greedy verdicts. The 22 card answers were graded again.",
+ "passed": 29,
+ "pass_pct": 72.5,
+ "wilson_95_ci_pct": [
+  57,
+  84
+ ],
+ "greedy_passed_same_items": 20,
+ "newly_passed": [
+  "Q021",
+  "Q035",
+  "Q045",
+  "Q150",
+  "Q153",
+  "Q169",
+  "Q184",
+  "Q197",
+  "Q199"
+ ],
+ "newly_failed": [],
+ "card_answers": [
+  "Q015",
+  "Q021",
+  "Q035",
+  "Q045",
+  "Q105",
+  "Q107",
+  "Q108",
+  "Q131",
+  "Q150",
+  "Q152",
+  "Q153",
+  "Q164",
+  "Q165",
+  "Q169",
+  "Q174",
+  "Q181",
+  "Q182",
+  "Q184",
+  "Q195",
+  "Q197",
+  "Q198",
+  "Q199"
+ ],
+ "notes": {
+  "Q021": "Card gives target groups, income-independent eligibility with copayment, basic and specialised services, voucher totals and copayment rates.",
+  "Q035": "Monthly 200,000 won, total 4.8 million won, up to 24 months(times) and the 2026 application window.",
+  "Q045": "Household-size annual amounts, summer-only amounts, usage and application periods.",
+  "Q107": "Still fail in round7: correct that eligibility cannot be confirmed and lists general criteria, but does not explain how cars and financial assets enter the income recognition amount. After this run a source-verified property conversion fact (financial 6.26%, car 100%) was added to the medical benefit card; the regenerated card answer covers it but was not part of this graded run.",
+  "Q150": "2026 youth rent target, income limits, amounts and application method without 2025 values.",
+  "Q153": "Answers from Volume 1 self-support work rules instead of asset-building accounts.",
+  "Q169": "Same Volume 1 self-support card; no emergency livelihood conditions mixed in.",
+  "Q184": "Premise corrected; income and household-member criteria listed without the earlier group misattribution.",
+  "Q197": "General 40% threshold, type 1/2 split and copayment table instead of the heritage-holder-only table.",
+  "Q199": "Cash amounts for ages 0 and 1 and the daycare difference payment stated correctly."
+ },
+ "verdicts": {
+  "Q015": "pass",
+  "Q019": "fail",
+  "Q021": "pass",
+  "Q023": "fail",
+  "Q035": "pass",
+  "Q045": "pass",
+  "Q051": "fail",
+  "Q058": "pass",
+  "Q065": "fail",
+  "Q066": "fail",
+  "Q067": "fail",
+  "Q080": "pass",
+  "Q087": "fail",
+  "Q092": "fail",
+  "Q101": "fail",
+  "Q102": "pass",
+  "Q105": "pass",
+  "Q107": "fail",
+  "Q108": "pass",
+  "Q131": "pass",
+  "Q146": "pass",
+  "Q150": "pass",
+  "Q152": "pass",
+  "Q153": "pass",
+  "Q164": "pass",
+  "Q165": "pass",
+  "Q169": "pass",
+  "Q174": "pass",
+  "Q176": "pass",
+  "Q181": "pass",
+  "Q182": "pass",
+  "Q184": "pass",
+  "Q185": "pass",
+  "Q186": "pass",
+  "Q187": "fail",
+  "Q191": "pass",
+  "Q195": "pass",
+  "Q197": "pass",
+  "Q198": "pass",
+  "Q199": "pass"
+ },
+ "remaining_failures_by_type": {
+  "model_answered_procedure": [
+   "Q065",
+   "Q066",
+   "Q067"
+  ],
+  "model_answered_exception": [
+   "Q087",
+   "Q092",
+   "Q101"
+  ],
+  "model_answered_broad_programme_without_card": [
+   "Q019",
+   "Q023",
+   "Q051"
+  ],
+  "local": [
+   "Q187"
+  ],
+  "card_gap": [
+   "Q107"
+  ]
+ },
+ "limitations": [
+  "40-item sample; 29/40 has a 95% Wilson interval of roughly 57-84%.",
+  "The grader is the same agent that built the cards, and the cards were written with these question types in view, so the sample is not an independent test.",
+  "Card answers are deterministic and bypass the model; the remaining failures are all model-answered or uncovered programmes."
+ ]
+}

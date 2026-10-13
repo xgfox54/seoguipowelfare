@@ -12,7 +12,7 @@ import urllib.request
 import uvicorn
 import webview
 
-from welfare_llm import RUNTIME, log_dir
+from welfare_llm import EMBEDDING_RUNTIME, RUNTIME, log_dir
 from welfare_runtime import configured_local_port, knowledge_base_root, open_http_url, resource_path
 from welfare_web import create_app
 
@@ -101,10 +101,12 @@ def main() -> int:
 
     engine_thread = threading.Thread(target=RUNTIME.start, daemon=True)
     engine_thread.start()
+    threading.Thread(target=EMBEDDING_RUNTIME.start, daemon=True).start()
     server_ref: dict[str, uvicorn.Server] = {}
 
     def request_shutdown() -> None:
         RUNTIME.stop()
+        EMBEDDING_RUNTIME.stop()
         server = server_ref.get("server")
         if server is not None:
             server.should_exit = True
@@ -139,6 +141,7 @@ def main() -> int:
     finally:
         server.should_exit = True
         RUNTIME.stop()
+        EMBEDDING_RUNTIME.stop()
         server_thread.join(timeout=5)
     return 0
 

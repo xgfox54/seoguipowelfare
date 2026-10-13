@@ -61,7 +61,7 @@ def test_institution_compounds_are_read_whole() -> None:
 
 
 def test_unanchored_task_focus_does_not_run_a_generic_focused_search(tmp_path: Path) -> None:
-    query = "노숙인 복지 신청 절차 알려줘"
+    query = "신청 절차 알려줘"
     plan = plan_query(query)
     assert _focus(query) and not plan.program_terms and not _query_service_terms(query)
     # Returns before touching the database: no generic "신청 접수 조사" search.

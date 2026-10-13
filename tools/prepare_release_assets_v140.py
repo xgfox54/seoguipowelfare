@@ -24,15 +24,21 @@ ASSETS = {
         "sha256": "e531007218dfab990486a5de7676a6932d6ea8dea233d1f698d7c21cf8a16889",
     },
     "e4b": {
-        "url": "https://huggingface.co/unsloth/gemma-4-E4B-it-GGUF/resolve/main/gemma-4-E4B-it-Q4_K_M.gguf?download=true",
-        "cache": "gemma-4-E4B-it-Q4_K_M.gguf",
+        "url": "https://huggingface.co/unsloth/gemma-4-E4B-it-qat-GGUF/resolve/main/gemma-4-E4B-it-qat-UD-Q4_K_XL.gguf?download=true",
+        "cache": "gemma-4-E4B-it-qat-UD-Q4_K_XL.gguf",
         "dest": MODELS / "gemma4-e4b.gguf",
-        "sha256": "85a896a047553e842f25297ee5b031d64ff30147d9c4af17b1e4b394cd1fab87",
+        "sha256": "df0fd4ee07072c607c29a0a1cb4f98918426cca12f45a2776bdd6ee6d09a4de3",
+    },
+    "embedding": {
+        "url": "https://huggingface.co/ggml-org/bge-m3-Q8_0-GGUF/resolve/main/bge-m3-q8_0.gguf?download=true",
+        "cache": "bge-m3-q8_0.gguf",
+        "dest": MODELS / "bge-m3-q8_0.gguf",
+        "sha256": "aa473d51f451a22f0fcf39ba3330c14bed38a385712b1113440f69df4047a173",
     },
     "llama": {
-        "url": "https://github.com/ggml-org/llama.cpp/releases/download/b10686/llama-b10686-bin-win-vulkan-x64.zip",
-        "cache": "llama-b10686-bin-win-vulkan-x64.zip",
-        "sha256": "7cd08366b3a7fbbe787d4e2f27d779c07e486508b2a4c47a5d3d8394fb8c7bd7",
+        "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11565/llama-b11565-bin-win-vulkan-x64.zip",
+        "cache": "llama-b11565-bin-win-vulkan-x64.zip",
+        "sha256": "d21649a9cc9dc063d88848ffa9ae3986222c9e953f2f950e993e00e49cedfe21",
     },
 }
 
@@ -111,7 +117,7 @@ def install_model(key: str) -> dict[str, object]:
 def install_llama() -> dict[str, object]:
     asset = ASSETS["llama"]
     archive = download(asset)
-    extract_root = ROOT / "runtime" / ".llamacpp-b10686"
+    extract_root = ROOT / "runtime" / ".llamacpp-b11565"
     if extract_root.exists():
         shutil.rmtree(extract_root)
     extract_root.mkdir(parents=True)
@@ -135,7 +141,7 @@ def install_llama() -> dict[str, object]:
     version_text = (version.stdout + "\n" + version.stderr).strip()[-2000:]
     print("LLAMA VERSION:\n" + version_text, flush=True)
     return {
-        "build": "b10686",
+        "build": "b11565",
         "archive_sha256": str(asset["sha256"]),
         "source": str(asset["url"]),
         "server": str(server.relative_to(ROOT)),
@@ -214,6 +220,7 @@ def main() -> int:
     QUALITY.mkdir(parents=True, exist_ok=True)
     e2b = install_model("e2b")
     e4b = install_model("e4b")
+    embedding = install_model("embedding")
     llama = install_llama()
     build_venv = ensure_build_venv()
     psutil_version = ensure_measurement_dependency()
@@ -222,6 +229,7 @@ def main() -> int:
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "e2b": e2b,
         "e4b": e4b,
+        "embedding": embedding,
         "llama_cpp": llama,
         "build_venv": build_venv,
         "psutil": psutil_version,

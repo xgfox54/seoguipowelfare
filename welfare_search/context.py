@@ -15,9 +15,11 @@ from welfare_evidence import (
 )
 from welfare_answer_format import is_numeric_overview_question
 from welfare_table_facts import table_money_facts, table_number_facts
+from welfare_criterion_amount import criterion_request, criterion_amount, criterion_rate_request, criterion_rate
 from welfare_telemetry import note
 
 from welfare_search.query import plan_query, program_dictionary, strip_exclusion_clauses
+from welfare_search.faq import best_official_faq, official_faq_evidence
 from welfare_search.search import (
     OwnerScope,
     excluded_source_names,
@@ -25,6 +27,7 @@ from welfare_search.search import (
     owner_scope,
     owning_source_names,
     search_sections,
+    semantic_hits,
     year_scope,
 )
 from welfare_search.synonyms import PROGRAM_MANUAL_ALIASES
@@ -32,6 +35,8 @@ from welfare_search.table_render import render_table_context
 from welfare_search.types import SearchHit
 
 MAX_SECTIONS_PER_HEADING: int = 2
+SEMANTIC_SLOT_COUNT: int = 2
+SEMANTIC_CANDIDATES: int = 12
 CONTEXT_CHAR_BUDGET: int = 14_000
 TASK_SLOT_TERMS: dict[str, tuple[str, ...]] = {
     "대상": ("대상", "자격", "지원대상", "신청대상"),
@@ -95,11 +100,21 @@ COMMON_WORK_SOURCE_MARKERS = ("사회보장급여", "공통업무")
 # A section *about* eligibility: its heading scope names it, or its body has a
 # sub-heading for it (not a passing "보호대상자" in a contract form).
 _TARGET_PHRASE = (
-    r"(?:(?:지원|서비스|이용|신청|사업|수급|급여)\s*대상|대상\s*(?:자\s*)?(?:선정|기준|요건|범위)"
+    r"(?:(?:지원|서비스|이용|신청|사업|수급|급여)\s*대상|대상\s*(?:자\s*)?(?:선정|기준|요건|범위)|이용자\s*선정"
     r"|자격\s*(?:요건|기준)|선정\s*기준)"
 )
 TARGET_HEADING_PATTERN = re.compile(_TARGET_PHRASE)
 TARGET_SUBHEADING_PATTERN = re.compile(r"^#{1,4}[^\n]*" + _TARGET_PHRASE, re.MULTILINE)
+TARGET_STATEMENT_PATTERN = re.compile(
+    r"^\s*(?:[-‒–•*]\s*)?(?:[가-하]\.\s*|\d+\)\s*)?(?:이용|지원|사업|서비스|수급)\s*대상\s*$"
+    r"|(?:이용|지원|사업|서비스)의?\s*대상은|우선적인\s*사업\s*대상",
+    re.MULTILINE,
+)
+AMOUNT_QUERY_PATTERN = re.compile(r"금액|지원액|지급액|급여액|얼마|한도|지원\s*수준")
+AMOUNT_HEADING_PATTERN = re.compile(
+    r"(?:지원|지급|급여|연금)\s*(?:금액|액|단가|수준)|기준연금액|지원\s*기준|이용료|본인부담"
+)
+MONEY_VALUE_PATTERN = re.compile(r"\d[\d,]*\s*(?:만원|천원|원)")
 
 
 def _compact(text: str) -> str:
@@ -433,16 +448,18 @@ def _query_service_terms(query: str) -> tuple[str, ...]:
     for match in SERVICE_QUERY_PATTERN.finditer(text):
         tail = re.match(r"[가-힣]*", text[match.end():]).group(0)
         compound = SERVICE_COMPOUND_TAIL_PATTERN.fullmatch(tail) if tail else None
-        terms.append(match.group(0) + (compound.group(1) if compound else ""))
+        term = match.group(0) + (compound.group(1) if compound else "")
+        if term not in {"신청지원", "신청·지원", "신청_지원", "신청-지원"}:
+            terms.append(term)
     return tuple(dict.fromkeys(terms))
 
 
 TASK_FOCUS_TERMS: dict[str, tuple[str, ...]] = {
     "신청방법": ("신청절차", "신청", "접수", "조사", "결정", "통지"),
     "처리절차": ("신청절차", "신청", "접수", "조사", "결정", "통지"),
-    "대상": ("수급대상", "지원대상", "선정기준", "소득인정액", "자격"),
-    "선정기준": ("선정기준", "수급대상", "소득인정액", "선정기준액", "기준중위소득"),
-    "제외대상": ("제외대상", "유사중복", "중복", "제외", "제한"),
+    "대상": ("수급대상", "지원대상", "지급대상", "이용대상", "이용자선정", "대상", "요건", "선정기준", "소득인정액", "자격"),
+    "선정기준": ("선정기준", "수급대상", "지급대상", "요건", "소득인정액", "선정기준액", "기준중위소득"),
+    "제외대상": ("제외대상", "유사중복", "중복", "제외", "제한", "지원대상", "신청자격"),
     "예외": ("예외", "특례", "예외신청"),
 }
 ELIGIBILITY_FOCUS_PATTERN = re.compile(r"선정|대상|자격|조건|소득|재산|받을\s*수|가능|검토")
@@ -451,6 +468,41 @@ OPERATIONAL_SERVICE_FOCUS_PATTERN = re.compile(
 )
 OPERATIONAL_SERVICE_FOCUS_TERMS = (
     "서비스 제공", "서비스 제공 의뢰서", "서비스 결과 보고서", "계약", "서비스 비용", "서비스 변경"
+)
+OVERVIEW_QUERY_PATTERN = re.compile(r'지원\s*내용|업무\s*기준.*(?:정리|요약)')
+GENERAL_CRITERIA_QUERY_PATTERN = re.compile(r'기준(?:을|은|이)?\s*(?:간단히\s*)?(?:알려|정리|요약|설명)')
+NARROW_TASK_PATTERN = re.compile(
+    r'금액|횟수|기간|소득|재산|신청|절차|서류|예외|특례|제외|대상|자격|판단|검토|가구|수치|한도|선정'
+)
+TOC_SECTION_PATTERN = re.compile(r'CONTENTS|목\s*차|·{5,}|…{3,}')
+ROMAN_PAGE_TITLE_PATTERN = re.compile(r'[ivxlcdm]{1,8}', re.IGNORECASE)
+
+
+def _is_overview_query(query: str) -> bool:
+    if OVERVIEW_QUERY_PATTERN.search(query):
+        return True
+    return bool(GENERAL_CRITERIA_QUERY_PATTERN.search(query)
+                and not NARROW_TASK_PATTERN.search(strip_exclusion_clauses(query)))
+
+
+def _is_toc_section(hit: SearchHit) -> bool:
+    return bool(ROMAN_PAGE_TITLE_PATTERN.fullmatch(hit.title.strip())
+                or TOC_SECTION_PATTERN.search(hit.title + hit.content[:300]))
+
+
+def _is_negligible_section(hit: SearchHit) -> bool:
+    body = '\n'.join(
+        line for line in hit.content.splitlines()
+        if not line.lstrip().startswith('#') and not re.fullmatch(r'\s*!\[[^\]]*\]\([^)]*\)\s*', line)
+    )
+    return (hit.title.lstrip('# ').startswith('원본 파일')
+            or len(re.sub(r'\s+', '', body)) < 15
+            or _is_toc_section(hit))
+
+
+OVERVIEW_HEADING_PATTERN = re.compile(
+    r'지원\s*내용|지원\s*대상|지급\s*금액|급여\s*내용|급여액|연금액|선정\s*기준|주요\s*기능'
+    r'|시스템\s*개요|추진\s*근거|업무\s*처리\s*절차|사업\s*개요|서비스\s*개요|사업\s*내용'
 )
 UMBRELLA_SERVICE_TERMS = frozenset(("제주가치돌봄", "통합돌봄", "보건복지"))
 
@@ -490,6 +542,19 @@ def _is_basic_pension_review_query(query: str) -> bool:
 def _task_focus_terms(query: str, plan) -> tuple[str, ...]:
     """Return canonical retrieval terms only for strongly expressed task intent."""
     terms: list[str] = []
+    if _is_overview_query(query):
+        if any(program in plan.explicit_programs for program in ('사회보장급여', '행복이음', '통합돌봄지원정보시스템')):
+            terms.extend(('시스템개요', '정보시스템개요', '추진근거', '주요기능', '기능', '업무처리절차',
+                          '처리절차', '업무절차', '조회', '등록'))
+        else:
+            terms.extend(('사업개요', '서비스개요', '지원내용', '지원금액', '지급금액', '급여액', '급여내용',
+                          '지원대상', '지원기준', '선정기준'))
+        if '기초연금' in query:
+            terms.extend(('기초연금액', '연금액'))
+    if '금액' in plan.tasks or AMOUNT_QUERY_PATTERN.search(query):
+        terms.extend(('지원금액', '지급금액', '지원액', '급여액', '지원단가', '지원기준'))
+        if '기초연금' in query:
+            terms.extend(('기준연금액', '기초연금액'))
     for task in plan.tasks:
         if task in ("신청방법", "처리절차") and ("신청" in query or "접수" in query):
             terms.extend(TASK_FOCUS_TERMS[task])
@@ -503,6 +568,8 @@ def _task_focus_terms(query: str, plan) -> tuple[str, ...]:
         terms.extend(("생계급여", "선정기준", "기준중위소득", "중위소득", "생계급여액"))
     if "기초연금" in query and ELIGIBILITY_FOCUS_PATTERN.search(query):
         terms.extend(("기초연금", "소득인정액", "선정기준액", "단독가구", "부부가구", "65세", "수급대상"))
+    if '부모급여' in query and re.search(r'금액|지원액|지급액|얼마', query):
+        terms.extend(('지급금액', '지급방식', '현금'))
     return tuple(dict.fromkeys(terms))
 
 
@@ -526,20 +593,30 @@ def _task_scoped_candidates(database_path: Path, query: str, plan) -> tuple[Sear
         hits = list(search_sections(database_path, focused_query, 20))
 
     anchor_terms = tuple(dict.fromkeys((*plan.program_terms, *_specific_service_terms(query))))
+    task_owners = owning_source_names(database_path, plan)
+    with sqlite3.connect(database_path) as connection:
+        owner_years = {
+            name: int(year) for name, year in connection.execute('SELECT source_name, year FROM documents')
+            if name in task_owners and str(year).isdigit()
+        }
+    latest_owner_year = max(owner_years.values(), default=0)
     if anchor_terms:
         anchor_sql = " OR ".join(
             "(s.title LIKE ? OR s.headings LIKE ? OR s.service_names LIKE ? OR s.content LIKE ?)"
             for _ in anchor_terms
         )
         focus_sql = " OR ".join(
-            "(s.title LIKE ? OR s.headings LIKE ? OR s.content LIKE ?)"
+            "(REPLACE(s.title, ' ', '') LIKE ? OR REPLACE(s.headings, ' ', '') LIKE ? OR REPLACE(s.content, ' ', '') LIKE ?)"
             for _ in focus_terms
         )
         params: list[str] = []
         for term in anchor_terms:
             params.extend((f"%{term}%",) * 4)
+        if task_owners:
+            anchor_sql = f"s.source_name IN ({','.join('?' for _ in task_owners)})"
+            params = sorted(task_owners)
         for term in focus_terms:
-            params.extend((f"%{term}%",) * 3)
+            params.extend((f"%{_compact(term)}%",) * 3)
         year_sql = ""
         if plan.requested_years:
             placeholders = ",".join("?" for _ in plan.requested_years)
@@ -549,7 +626,7 @@ def _task_scoped_candidates(database_path: Path, query: str, plan) -> tuple[Sear
             "SELECT s.section_id, s.source_name, s.title, s.headings, s.original_name, "
             "s.start_line, s.end_line, s.content FROM sections AS s "
             "JOIN documents AS d ON d.source_name=s.source_name "
-            f"WHERE ({anchor_sql}) AND ({focus_sql}){year_sql} LIMIT 200"
+            f"WHERE ({anchor_sql}) AND ({focus_sql}){year_sql} LIMIT 1000"
         )
         with sqlite3.connect(database_path) as connection:
             direct = [SearchHit(*row) for row in connection.execute(sql, params).fetchall()]
@@ -579,10 +656,26 @@ def _task_scoped_candidates(database_path: Path, query: str, plan) -> tuple[Sear
     def distractor_penalty(hit: SearchHit) -> int:
         scope = f"{hit.title} {hit.headings}"
         penalty = 0
+        if not re.search(r'개정|변경|비교|이전|과거', query):
+            penalty += 5 * bool(re.search(r'개정\s*사항|변경\s*사항|변경에\s*따른\s*조정', scope))
+        if not re.search(r'목차|차례', query):
+            penalty += 5 * _is_toc_section(hit)
+        penalty += 5 * _is_negligible_section(hit)
+        if not re.search(r'연락처|전화|서식|별지|양식|붙임|별첨|부록', query):
+            penalty += 4 * bool(re.search(r'연락처|별지\s*제?\d*\s*호?\s*서식|\[별지', scope))
+            penalty += 3 * bool(re.match(r'\s*(?:붙임|별첨|부록)\s*\d*', hit.title))
+        if _is_overview_query(query) and not re.search(r'담당자|교육과정|교육훈련|교육운영', query):
+            penalty += 5 * bool(re.search(r'담당자|교육과정|교육훈련|업무역량', scope))
+        if '부모급여' in query and not re.search(r'소급|상계|차액|상위반', query):
+            penalty += 5 * bool(re.search(r'소급|상계|상위반|개정사항', scope))
         if ("신청" in query or "절차" in query) and "이의" not in query:
             penalty += 3 * bool(re.search(r"이의신청|수급희망\s*이력관리|거주불명", scope))
         if ELIGIBILITY_FOCUS_PATTERN.search(query) and not re.search(r"연금액|산정|감액", query):
             penalty += 2 * bool(re.search(r"연금액.*산정|감액|급여액.*결정", scope))
+        if re.search(r"대상|자격|선정|기준", query) and not re.search(
+                r"제외|예외|특례|컨설팅|평가|채용|복무|교육|제공인력|제공기관|제공자|종사자", query):
+            penalty += 2 * bool(re.search(r"대상에서\s*제외|컨설팅|평가|점검|채용|복무|교육", hit.title))
+            penalty += 2 * bool(re.search(r"제공인력|제공기관|제공자|종사자|인력\s*기준", f"{hit.title} {hit.content[:200]}"))
         if "생계급여" in query and "기준" in query and not re.search(r"장기입원|보장시설|입소|공제|입양", query):
             penalty += 4 * bool(re.search(r"장기입원|보장시설|입소|공제|입양", scope))
             if plan.requested_years and not any(
@@ -650,20 +743,56 @@ def _task_scoped_candidates(database_path: Path, query: str, plan) -> tuple[Sear
             )
         )
         general_criterion_boost = int(
-            bool(re.search(r"(?:^|\s|>)\s*(?:\d+\s*)?수급자\s*선정기준", f"{hit.title} {hit.headings}"))
+            not re.search(r'개정|변경|비교', query)
+            and bool(re.fullmatch(r"(?:\d+\s*)?수급자\s*선정기준", hit.title.strip())
+                     or re.search(r"수급(?:자|권자)\s*(?:의\s*)?(?:선정\s*기준|범위)", hit.title))
         )
+        eligibility_heading_boost = 0
+        if (ELIGIBILITY_FOCUS_PATTERN.search(query)
+                and not any(task in {"금액", "신청방법", "처리절차", "예외", "제외대상"} for task in plan.tasks)):
+            statement = TARGET_STATEMENT_PATTERN.search(hit.content)
+            if (TARGET_HEADING_PATTERN.search(f"{hit.title} {hit.headings.split(' > ')[-1]}")
+                    or (statement is not None and statement.start() < 500)):
+                eligibility_heading_boost = 2
+            elif statement is not None or TARGET_SUBHEADING_PATTERN.search(hit.content):
+                eligibility_heading_boost = 1
         criterion_boost = 0
         if "기준" in query:
             criterion_boost = int(bool(re.search(r"선정기준|중위소득|수급대상", scope)))
+        overview_boost = 0
+        if _is_overview_query(query):
+            overview_boost = int(bool(OVERVIEW_HEADING_PATTERN.search(hit.title)))
+            overview_boost = max(overview_boost, int(bool(re.search(
+                r'^#{1,6}\s+.*(?:지원\s*내용|급여\s*내용|지급\s*금액|기초연금액의\s*산정)',
+                hit.content, re.MULTILINE,
+            ))))
+            if '기초연금' in query and '기초연금액의 산정' in hit.content and '기준연금액' in hit.content:
+                overview_boost += 2
+                overview_boost += 2 * bool(re.search(r'100%.*?\d[\d,]*원', hit.content))
+        amount_boost = 0
+        if '금액' in plan.tasks or AMOUNT_QUERY_PATTERN.search(query):
+            heading_scope = hit.title + '\n' + '\n'.join(
+                line for line in hit.content.splitlines() if line.lstrip().startswith('#')
+            )
+            amount_boost = int(bool(AMOUNT_HEADING_PATTERN.search(heading_scope)))
+            amount_boost += int(len(MONEY_VALUE_PATTERN.findall(hit.content)) >= 2)
+            if '기초연금' in query and '기준연금액' in hit.content:
+                amount_boost += 2 * bool(re.search(r'100%.*?\d[\d,]*원', hit.content))
         return (
+            int(hit.source_name in task_owners),
+            int(not plan.requested_years and latest_owner_year > 0 and owner_years.get(hit.source_name) == latest_owner_year),
             -distractor_penalty(hit),
+            overview_boost,
+            amount_boost,
+            int('부모급여' in query and bool(re.search(r'지급\s*금액.*수급아동.*월', hit.content))),
             basic_pension_eligibility_boost,
+            general_criterion_boost,
+            eligibility_heading_boost,
             section_owner_boost,
             dictionary_content_boost,
             operational_contract_boost,
             task_evidence_boost,
             owner_boost,
-            general_criterion_boost,
             requested_year_body_boost,
             criterion_boost,
             heading_matches,
@@ -680,7 +809,9 @@ def _service_scoped_body(body: str, query: str) -> str:
     an explicit level-2 heading naming the child service.  It never invents a
     boundary for ordinary prose or tables.
     """
-    requested = _specific_service_terms(query)
+    requested = tuple(term for term in _specific_service_terms(query) if re.fullmatch(
+        r'(?:일시재가|동행지원|방문목욕|운동지도|주거편의|식사지원)(?:서비스)?', term,
+    ))
     if not requested:
         return body
     lines = body.splitlines()
@@ -789,7 +920,7 @@ def retrieve_context(
     # requested year, no helper may filter to (another programme's) same-year
     # document.  The answer layer reports the mismatch deterministically.
     years = year_scope(database_path, query)
-    if years.mismatch:
+    if years.mismatch or (years.owner_sources and not years.available):
         plan = replace(plan, requested_years=frozenset())
     excluded = excluded_source_names(database_path, plan)
     basic_pension_review = _is_basic_pension_review_query(query)
@@ -811,7 +942,25 @@ def retrieve_context(
                     "target_slot_added": False}
     retrieval_query = _retrieval_query(query)
     broad_candidates = search_sections(database_path, retrieval_query, min(max(limit * 4, 20), 20))
-    focused_candidates = _task_scoped_candidates(database_path, query, plan)
+    criterion_candidates: list[SearchHit] = []
+    if criterion_request(query) is not None or criterion_rate_request(query) is not None:
+        with sqlite3.connect(database_path) as connection:
+            rows = connection.execute(
+                "SELECT s.section_id, s.source_name, s.title, s.headings, s.original_name, "
+                "s.start_line, s.end_line, s.content FROM sections s JOIN documents d "
+                "ON d.source_name=s.source_name WHERE d.source_name LIKE '%국민기초생활보장%' "
+                "AND s.content LIKE '%단위%' AND s.content LIKE '%인가구%' "
+                "AND s.content LIKE '%중위%' ORDER BY s.start_line LIMIT 100"
+            ).fetchall()
+        for row in rows:
+            hit = SearchHit(*row)
+            fetched = _fetch_evidence(database_path, (hit,))
+            for candidate, metadata, references in fetched:
+                block = _evidence_block(candidate, metadata, references, 1, query, plan, excluded)
+                if block is not None and (criterion_amount(query, (block,)) is not None
+                                          or criterion_rate(query, (block,)) is not None):
+                    criterion_candidates.append(hit)
+    focused_candidates = (*criterion_candidates, *_task_scoped_candidates(database_path, query, plan))
     merged: list[SearchHit] = []
     unrestricted: list[SearchHit] = []
     seen_candidate_ids: set[str] = set()
@@ -827,7 +976,8 @@ def retrieve_context(
         if not _strict_child_service_candidate(hit, query, plan):
             continue
         merged.append(hit)
-    candidates = tuple(merged)
+    substantive = [hit for hit in merged if not _is_negligible_section(hit)]
+    candidates = tuple(substantive or merged)
     heading_counts: dict[tuple[str, str], int] = {}
     selected: list[SearchHit] = []
 
@@ -1033,7 +1183,7 @@ def retrieve_context(
         if criterion_hits:
             selected = criterion_hits[:1]
 
-    def build_blocks(chosen: list[SearchHit]) -> list:
+    def build_blocks(chosen: list[SearchHit], tail_ids: frozenset[str] = frozenset(), reserved: int = 0) -> list:
         blocks = []
         used_chars = 0
         for evidence_index, (hit, metadata, references) in enumerate(
@@ -1043,7 +1193,8 @@ def retrieve_context(
             if block is None:
                 continue
             separator_size = len("\n\n-----\n\n") if blocks else 0
-            if used_chars + separator_size + len(block.raw) > char_budget:
+            allowed = char_budget if hit.section_id in tail_ids else char_budget - reserved
+            if used_chars + separator_size + len(block.raw) > allowed:
                 continue
             used_chars += separator_size + len(block.raw)
             blocks.append(block)
@@ -1085,6 +1236,40 @@ def retrieve_context(
             scope_report["target_slot_added"] = any(
                 block.metadata.get("section_id") == target.section_id for block in blocks
             )
+    # Semantic slot: sections closest in meaning reach answers worded unlike the
+    # question ("차를 바꾸면" vs "차량(번호)을 교체"). They follow the lexical
+    # selection. Room for the first one is kept free (sections are never cut),
+    # so a full lexical selection gives up its last block(s); a second one
+    # joins only if it still fits. Amount questions keep every lexical block:
+    # their household/amount table slots must not be displaced (H037 3인 가구).
+    if not numeric_overview and blocks:
+        chosen_ids = {hit.section_id for hit in selected}
+        extra = [
+            hit for hit in semantic_hits(database_path, query, SEMANTIC_CANDIDATES)
+            if hit.section_id not in chosen_ids and not is_excluded_hit(hit, plan, excluded)
+            and not _is_negligible_section(hit) and not _is_toc_section(hit)
+        ][:SEMANTIC_SLOT_COUNT]
+        first = build_blocks(extra[:1]) if extra else []
+        if first:
+            extra_ids = frozenset(hit.section_id for hit in extra)
+            amount_question = amount_slot_request or household_terms_present or bool(household)
+            reserved = 0 if amount_question else len(first[0].raw) + len("\n\n-----\n\n")
+            selected = [*selected, *extra]
+            blocks = build_blocks(selected, extra_ids, reserved)
+            scope_report["semantic_added"] = sum(
+                block.metadata.get("section_id") in extra_ids for block in blocks
+            )
+    faq_match = None if numeric_overview else best_official_faq(database_path, query, plan.program_terms)
+    if faq_match is not None:
+        faq, faq_score = faq_match
+        next_id = max((int(block.evidence_id[1:]) for block in blocks), default=0) + 1
+        faq_block = official_faq_evidence(faq, f"E{next_id}")
+        separator_size = len("\n\n-----\n\n")
+        kept = list(blocks[: max(0, limit - 1)])
+        while kept and sum(len(block.raw) + separator_size for block in kept) + len(faq_block.raw) > char_budget:
+            kept.pop()
+        blocks = [*kept, faq_block]
+        scope_report["official_faq"] = {"faq_id": faq.faq_id, "score": round(faq_score, 3)}
     note("retrieval_scope", scope_report)
     return EvidenceContext(tuple(blocks))
 

@@ -26,6 +26,11 @@ $ModelSourcePath = Join-Path $ProjectRoot "models\$ModelFilename"
 if (-not (Test-Path -LiteralPath $ModelSourcePath)) {
     throw "models\$ModelFilename 가 없습니다. $ModelVariant 빌드에 필요한 GGUF 파일을 models 폴더에 넣으세요."
 }
+$EmbeddingFilename = 'bge-m3-q8_0.gguf'
+$EmbeddingSourcePath = Join-Path $ProjectRoot "models\$EmbeddingFilename"
+if (-not (Test-Path -LiteralPath $EmbeddingSourcePath)) {
+    throw "models\$EmbeddingFilename 가 없습니다. 의미 검색용 임베딩 모델을 models 폴더에 넣으세요(tools\prepare_release_assets_v140.py)."
+}
 
 Push-Location $ProjectRoot
 try {
@@ -45,6 +50,7 @@ try {
     New-Item -ItemType Directory -Force -Path (Join-Path $Stage 'models') | Out-Null
     Copy-Item -LiteralPath $ModelSourcePath -Destination (Join-Path $Stage "models\$ModelFilename") -Force
     if ($LASTEXITCODE -ge 8) { throw 'models 복사 실패' }
+    Copy-Item -LiteralPath $EmbeddingSourcePath -Destination (Join-Path $Stage "models\$EmbeddingFilename") -Force
     New-Item -ItemType Directory -Force -Path (Join-Path $Stage 'logs') | Out-Null
 
     $Item = Get-Item -LiteralPath $Exe

@@ -1,7 +1,3 @@
-"""E4B locked-200 r1: single-amount questions Q057-Q062 abstained although the
-evidence table held the answer.  The single-amount path now recovers the value
-from a bound evidence table only when the model states no amount.
-"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -138,7 +134,7 @@ def test_answer_path_recovers_the_amount_after_a_model_abstention(
 ) -> None:
     kb, calls = _kb(tmp_path, monkeypatch, ABSTAIN)
     answer = welfare_assistant.answer_question(kb, _question(4))
-    assert len(calls) == 1
+    assert len(calls) == 0
     assert answer.startswith("2026년 긴급복지 생계지원 4인 가구 금액은 월 **1,994,600원**입니다. [E2]")
     assert "확인하지 못했습니다" not in answer and "783,000" not in answer
     trace = diagnostics()
@@ -146,10 +142,10 @@ def test_answer_path_recovers_the_amount_after_a_model_abstention(
     assert trace["answer_quality"]["status"] == "COMPLETE_CANDIDATE"
 
 
-def test_answer_path_keeps_a_model_amount_unchanged(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
-    model_line = "2026년 긴급복지 생계지원 4인 가구 금액은 1,994,600원입니다. [E2]"
+def test_answer_path_uses_bound_table_before_a_wrong_model_amount(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    model_line = "2026년 긴급복지 생계지원 4인 가구 금액은 1,644,000원입니다. [E2]"
     kb, calls = _kb(tmp_path, monkeypatch, model_line)
     answer = welfare_assistant.answer_question(kb, _question(4))
-    assert len(calls) == 1 and answer.startswith(model_line)
-    assert diagnostics()["numeric_render"]["table_fallback"] is False
+    assert len(calls) == 0 and '1,994,600원' in answer and '1,644,000원' not in answer
+    assert diagnostics()["numeric_render"]["table_fallback"] is True
 

@@ -144,3 +144,69 @@ def test_sanitizer_rejects_program_name_absent_from_evidence() -> None:
     sanitized = sanitize_grounded_answer(answer, context, "청년월세 대상은?")
 
     assert "에너지바우처" not in sanitized
+
+
+
+def test_sanitizer_reads_range_start_unit_from_source() -> None:
+    context = "지원대상은 청년(19 ~ 34세 이하)으로 부모와 별도 거주하는 무주택자이다."
+    answer = "지원 대상은 19세~34세 이하 무주택 청년입니다."
+
+    sanitized = sanitize_grounded_answer(answer, context, "청년월세 대상 기준")
+
+    assert "19세~34세" in sanitized
+    assert "자동 근거 검수" not in sanitized
+
+
+def test_sanitizer_matches_legal_negative_and_exclusion_wording() -> None:
+    context = (
+        "지원금은 일시에 지급하지 아니하고 3개월간 매월 지급한다.\n"
+        "제외기준: 유사중복사업 자격 해당자"
+    )
+    answer = (
+        "지원금은 3개월간 매월 지급되며 일시에 지급하지 않습니다.\n"
+        "제외 기준: 유사중복사업 자격 해당자는 신청할 수 없습니다."
+    )
+
+    sanitized = sanitize_grounded_answer(answer, context, "지급 방법과 제외 기준")
+
+    assert "일시에 지급하지 않습니다" in sanitized
+    assert "신청할 수 없습니다" in sanitized
+
+
+def test_sanitizer_keeps_future_change_stated_in_source_but_not_past_year() -> None:
+    context = "<EVIDENCE id=\"E1\">\n[year: 2026]\n'27년부터 (1)요건은 삭제될 예정이다. 2025년 기준은 별도.\n</EVIDENCE>"
+    answer = "'27년부터 (1)요건은 삭제될 예정입니다 [E1].\n2025년 기준이 적용됩니다 [E1]."
+
+    sanitized = sanitize_grounded_answer(answer, context, "일상돌봄 예외 기준")
+
+    assert "'27년부터" in sanitized
+    assert "2025년 기준이 적용" not in sanitized
+
+
+def test_sanitizer_allows_case_subject_echo_but_not_question_amount() -> None:
+    context = "소득인정액이 기준 중위소득의 48% 이하인지 확인한다."
+    question = "65세 1인가구인데 월 50만원 받을 수 있는지 판단하려면?"
+    answer = (
+        "65세 1인 가구의 소득인정액이 기준 중위소득의 48% 이하인지 확인해야 합니다.\n"
+        "65세 1인 가구는 월 50만원을 받습니다."
+    )
+
+    sanitized = sanitize_grounded_answer(answer, context, question)
+
+    assert "48% 이하인지 확인" in sanitized
+    assert "50만원" not in sanitized
+
+
+def test_sanitizer_reads_unit_caption_above_html_household_table() -> None:
+    context = (
+        "(단위 : 원)\n\n<table>\n"
+        "<tr><th>구분</th><th>1인가구</th><th>2인가구</th></tr>\n"
+        "<tr><td>소득인정액상한</td><td>2,051,390</td><td>3,359,434</td></tr>\n"
+        "</table>"
+    )
+    answer = "1인가구 소득인정액 상한은 2,051,390원입니다."
+
+    sanitized = sanitize_grounded_answer(answer, context, "의료급여 소득인정액 상한")
+
+    assert "2,051,390원" in sanitized
+    assert "자동 근거 검수" not in sanitized

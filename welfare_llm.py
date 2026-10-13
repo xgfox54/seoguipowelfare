@@ -78,7 +78,7 @@ MODEL_CHOICES: tuple[GgufModel, ...] = (
     ),
     GgufModel(
         key="gemma_e4b",
-        label="Gemma 4 E4B Q4_K_M",
+        label="Gemma 4 E4B QAT Q4",
         filename="gemma4-e4b.gguf",
         description="더 정확하지만 무거운 모델입니다. 인터넷 연결 없이 동작합니다.",
     ),
@@ -368,13 +368,110 @@ class LlamaRuntime:
 
 
 RUNTIME = LlamaRuntime()
+GENERATION_SEED = 20260101
+EMBEDDING_PORT = 18081
+EMBEDDING_BASE_URL = f"http://{LLM_HOST}:{EMBEDDING_PORT}"
+EMBEDDING_MODEL_FILENAME = "bge-m3-q8_0.gguf"
+EMBEDDING_THREADS = 2
+
+
+class EmbeddingRuntime:
+    """Second llama-server that embeds questions for semantic retrieval.
+
+    Optional: without its model file the app answers from lexical search only.
+    It runs on the CPU so the answer model keeps the GPU.
+    """
+
+    def __init__(self) -> None:
+        self._process: subprocess.Popen[bytes] | None = None
+        self._lock = threading.Lock()
+        self._job = _kill_on_close_job()
+        self.state: str = "idle"
+
+    @property
+    def model_path(self) -> Path:
+        return models_dir() / EMBEDDING_MODEL_FILENAME
+
+    def _healthy(self) -> bool:
+        try:
+            with open_http_url(f"{EMBEDDING_BASE_URL}/health", timeout=1.5) as response:
+                return response.status == 200 and json.loads(response.read().decode("utf-8")).get("status") == "ok"
+        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, OSError):
+            return False
+
+    def start(self) -> None:
+        with self._lock:
+            executable = find_llama_server()
+            if executable is None or not self.model_path.is_file():
+                self.state = "unavailable"
+                return
+            if self._healthy():
+                self.state = "ready"
+                return
+            args = [
+                str(executable),
+                "-m", str(self.model_path),
+                "--embedding",
+                "--host", LLM_HOST,
+                "--port", str(EMBEDDING_PORT),
+                "-c", "2048",
+                "-t", str(EMBEDDING_THREADS),
+                "-np", "1",
+                "-ngl", "0",
+                "--no-webui",
+                "--log-timestamps",
+            ]
+            stdout = (log_dir() / "embedding-server.log").open("ab")
+            creationflags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+            if sys.platform == "win32":
+                creationflags |= getattr(subprocess, "CREATE_BREAKAWAY_FROM_JOB", 0x01000000)
+            try:
+                self._process = subprocess.Popen(
+                    args, cwd=str(runtime_dir()), stdout=stdout, stderr=subprocess.STDOUT,
+                    stdin=subprocess.DEVNULL, creationflags=creationflags,
+                )
+                _assign_to_job(self._job, self._process)
+            except OSError:
+                logger.exception("embedding server spawn failed")
+                self.state = "error"
+                return
+            self.state = "loading"
+        started = time.monotonic()
+        while time.monotonic() - started < STARTUP_TIMEOUT_SECONDS:
+            if self._process is not None and self._process.poll() is not None:
+                logger.error("embedding server exited during startup (exit=%s)", self._process.returncode)
+                self.state = "error"
+                return
+            if self._healthy():
+                logger.info("embedding server ready after %.1fs", time.monotonic() - started)
+                self.state = "ready"
+                return
+            time.sleep(0.5)
+        self.state = "error"
+        self.stop()
+
+    def stop(self) -> None:
+        with self._lock:
+            process = self._process
+            self._process = None
+        if process is not None and process.poll() is None:
+            process.terminate()
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait(timeout=5)
+        self.state = "idle"
+
+
+EMBEDDING_RUNTIME = EmbeddingRuntime()
 
 
 def generate(
     prompt: str,
     *,
     system_prompt: str,
-    temperature: float = 0.2,
+    temperature: float = 0.0,
     timeout: int = 600,
     max_tokens: int = 2048,
     grammar: str | None = None,
@@ -385,6 +482,7 @@ def generate(
             {"role": "user", "content": prompt},
         ],
         "temperature": temperature,
+        "seed": GENERATION_SEED,
         "max_tokens": max_tokens,
         "stream": False,
         "chat_template_kwargs": {"enable_thinking": False},

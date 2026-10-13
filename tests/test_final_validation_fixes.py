@@ -169,6 +169,13 @@ def test_single_amount_classifier_keeps_wrong_premise_on_existing_path() -> None
     assert "line ::=" in single_amount_grammar()
 
 
+def test_single_amount_classifier_accepts_payment_wording_and_named_targets() -> None:
+    assert is_single_amount_question('2026년 긴급복지 생계지원 2인 가구의 월 지원액을 원 단위로 알려줘.')
+    assert is_single_amount_question('2026년 기초연금 단독가구 소득인정액 선정기준액 상한은 얼마인가요?')
+    assert is_single_amount_question('2026년 어린이집을 이용하지 않는 0세 아동의 부모급여 월 현금 지원액을 알려줘.')
+    assert is_single_amount_question('2026년 출생한 첫째아의 첫만남이용권 바우처 금액은 얼마인가요?')
+
+
 def test_directory_scope_answer_contains_no_foreign_numbers() -> None:
     owner = OwnerDocument("39.x.md", "39.[서귀포시업무-시설현황] 목록.md", "facility_directory", "시설현황", 1, 1321)
     answer = directory_scope_answer((owner,), Q056)
@@ -234,6 +241,20 @@ def test_q056_answer_path_returns_directory_scope_without_model_call(q056_index:
     answer = welfare_assistant.answer_question(q056_index.parent, Q056, welfare_assistant.DEFAULT_MODEL_KEY)
     assert "시설·기관 현황(목록) 자료" in answer
     assert "552,000" not in answer and "1개월" not in answer
+
+
+def test_directory_application_rules_do_not_use_other_manuals(q056_index: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    import welfare_assistant
+
+    def forbidden(*_args, **_kwargs) -> str:
+        raise AssertionError('A directory cannot establish application eligibility')
+
+    monkeypatch.setattr(welfare_assistant, '_index_dir', lambda _kb: q056_index.parent)
+    monkeypatch.setattr(welfare_assistant, '_llm_generate', forbidden)
+    question = '제주 사회복지시설 현황 신청·지원 기준을 지역 범위에 맞춰 알려줘'
+    answer = welfare_assistant.answer_question(q056_index.parent, question, welfare_assistant.DEFAULT_MODEL_KEY)
+    assert '시설·기관 현황(목록) 자료' in answer
+    assert '552,000' not in answer
 
 
 @pytest.fixture()

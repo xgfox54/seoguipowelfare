@@ -75,9 +75,14 @@ def is_single_amount_question(question: str) -> bool:
     deliberately stay on the established wrong-premise path.
     """
     households = HOUSEHOLD_RE.findall(question)
+    named_targets = (
+        re.findall(r'단독가구|부부가구', question) if '기초연금' in question else
+        re.findall(r'(?<!\d)[01]\s*세', question) if '부모급여' in question else
+        re.findall(r'첫째아|둘째아', question) if '첫만남이용권' in question else []
+    )
     return bool(
-        len(households) == 1
-        and re.search(r"얼마|금액", question)
+        len(households) + len(named_targets) == 1
+        and re.search(r"얼마|금액|지원액|지급액|급여액|상한", question)
         and not USER_AMOUNT_RE.search(question)
         and not re.search(
             r"맞(?:죠|나요|습니까|는지|아|나)|비교|차이|각각|전체|모두|표|항목별|가구별|"
@@ -150,8 +155,7 @@ def table_single_amount(question: str, blocks, programs: tuple[str, ...],
     """The requested household's payment amount when the evidence tables pin
     exactly one value for the requested programme and year.
 
-    Used only after the model declined to state an amount.  A value counts
-    only when every requested programme anchor appears in the block's source
+    A value counts only when every requested programme anchor appears in the block's source
     name, title/heading or the table row label, the row is a payment row, the
     block year is a requested year (when one was asked), and the unit is
     explicit (table_money_facts never infers one).  Two different bound
@@ -384,6 +388,17 @@ def directory_scope_answer(owners: tuple[OwnerDocument, ...], question: str) -> 
     define support amounts, counts or periods.  Numbers from other programmes
     must not be substituted, so the answer states the scope explicitly.
     """
+    refs = "; ".join(
+        f"{owner.original_name or owner.source_name} (원문 행 {owner.start_line}-{owner.end_line})"
+        for owner in owners
+    )
+    if not is_numeric_overview_question(question):
+        return (
+            "검색된 원문은 시설·기관 현황(목록) 자료입니다. "
+            "이 자료로는 사업별 신청대상, 지원자격, 신청절차를 확인할 수 없습니다. "
+            "확인하려는 복지사업명을 알려주시면 해당 사업 매뉴얼의 기준을 확인할 수 있습니다."
+            + ("\n\n확인할 원문: " + refs if refs else "")
+        )
     requested = [axis for axis in TRIPLET_AXES if axis in question] or list(TRIPLET_AXES)
     label = "·".join(requested)
     lines = [
@@ -392,10 +407,6 @@ def directory_scope_answer(owners: tuple[OwnerDocument, ...], question: str) -> 
         TRIPLET_HEADING,
     ]
     lines.extend(f"* **{axis}:** {NOT_FOUND_TEXT}" for axis in TRIPLET_AXES)
-    refs = "; ".join(
-        f"{owner.original_name or owner.source_name} (원문 행 {owner.start_line}-{owner.end_line})"
-        for owner in owners
-    )
     if refs:
         lines.extend(("", "확인할 원문: " + refs))
     return "\n".join(lines)

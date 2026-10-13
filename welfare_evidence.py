@@ -16,7 +16,7 @@ META_OPEN_RE = re.compile(r'^\[([a-z_][a-z0-9_]*):[ \t]*(.*)$')
 CITATION_RE = re.compile(r'\[(E\d+)\]')
 EXCEPTION_RE = re.compile(r'예외|제외|특례|중복|병행|불가|다만|단,|단\s*[:：]')
 SLOT_PATTERNS = {
-    '대상': re.compile(r'대상|자격|선정|요건'),
+    '대상': re.compile(r'대상|자격|선정|요건|소득인정액|부양의무자'),
     '금액': re.compile(r'금액|지원액|지급액|급여액|\d[\d,]*(?:\.\d+)?\s*(?:만원|천원|원)'),
     '기간': re.compile(r'지원기간|신청기간|지원\s*기간|개월|기한|연장'),
     '절차': re.compile(r'신청|접수|절차|서류|처리'),
@@ -220,7 +220,11 @@ def required_slots(question: str) -> tuple[str, ...]:
         slots.append('금액')
     if re.search(r'기간|언제|기한|연장|몇\s*개?월', question):
         slots.append('기간')
-    if re.search(r'신청|접수|절차|서류|방법', question):
+    if re.search(
+        r'신청\s*(?:방법|절차|서류|기간|시기|처|창구)|(?:어떻게|어디(?:서|에))\s*신청|'
+        r'신청(?:하려면|할\s*때|하는\s*법)|접수|절차|서류|방법',
+        question,
+    ):
         slots.append('절차')
     if re.search(r'중복|동시에|같이|병행|제외|예외|특례', question):
         slots.append('예외·제외')
@@ -230,8 +234,13 @@ def required_slots(question: str) -> tuple[str, ...]:
 def missing_slots(context: str, question: str) -> tuple[str, ...]:
     blocks = parse_evidence(context)
     text = '\n'.join(block.body for block in blocks)
+    households = {int(value) for value in re.findall(r'(?<!\d)(\d{1,2})\s*인\s*가구', question)}
+    table_amount = False
+    if '금액' in required_slots(question) and not SLOT_PATTERNS['금액'].search(text):
+        table_amount = any(not households or fact.household in households
+                           for block in blocks for fact in table_money_facts(block.body))
     return tuple(slot for slot in required_slots(question)
-                 if not SLOT_PATTERNS[slot].search(text))
+                 if not SLOT_PATTERNS[slot].search(text) and not (slot == '금액' and table_amount))
 
 
 def context_warning(context: str, question: str) -> str:

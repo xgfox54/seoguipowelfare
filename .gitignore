@@ -29,3 +29,5 @@ quality/e2e-install-v1.4.0/
 quality/shadow_env/
 quality/shadow_models/
 .release-v1.4.0/
+quality/individual_manuals_20261012/*-answers/
+quality/individual_manuals_20261012/*-retrieval/
