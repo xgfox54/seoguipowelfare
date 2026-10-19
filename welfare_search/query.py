@@ -313,7 +313,11 @@ def plan_query(query: str, *, use_dictionary: bool | None = None) -> QueryPlan:
             "",
         )
         if not jurisdiction and not explicit_programs and program_match.status == "matched":
-            regions = {DICTIONARY_REGION_JURISDICTION.get(program.region_status, "") for program in program_match.programs}
+            regions = {
+                DICTIONARY_REGION_JURISDICTION.get(program.region_status, "")
+                for program in program_match.programs
+                if program.has_source
+            }
             jurisdiction = next(iter(regions)) if len(regions) == 1 else ""
         jurisdiction = jurisdiction or "national"
     return QueryPlan(

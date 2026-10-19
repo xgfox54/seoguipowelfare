@@ -208,7 +208,7 @@ def link_sources(aliases: set[str], sections: list[tuple[str, str, str]], roles:
             if any(alias in text for alias in aliases):
                 body[source_name] += 1
     evidence = {name: {"heading_hits": heading[name], "content_hits": body[name]}
-                for name in set(heading) | set(body)}
+                for name in sorted(set(heading) | set(body))}
     manual = [n for n in evidence if roles[n]["role"] == "manual"]
     hinted = {n for n in manual if roles[n]["doc"] in hints}
     owners: list[str] = []

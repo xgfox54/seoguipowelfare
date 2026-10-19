@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import sqlite3
 from pathlib import Path
 
@@ -279,16 +280,18 @@ def test_retrieve_context_reads_beyond_search_preview(tmp_path: Path) -> None:
 
 
 def test_release_corpus_build_is_reproducible(tmp_path: Path) -> None:
-    # Given: the 113 individual manuals of the 2026-10-19 database update.
+    # Given: the manuals recorded in the latest db-update manifest.
     project_root = Path(__file__).resolve().parents[1]
+    manifest_path = max(project_root.glob("db-update-*.json"))
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
 
     # When: a new user builds the search index after cloning.
     report = build_index(project_root / "source-md", tmp_path / "search")
 
     # Then: the release reproduces the verified source bytes and section count.
-    assert report.document_count == 113
+    assert report.document_count == manifest["document_count"]
     assert report.section_count > 3116
-    assert report.source_bytes == 61791427
+    assert report.source_bytes == manifest["source_bytes"]
 
 
 def test_v120_schema_records_hierarchy_references_and_quality(source_dir: Path, tmp_path: Path) -> None:

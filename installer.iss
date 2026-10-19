@@ -1,5 +1,5 @@
 ﻿#ifndef AppVersion
-  #define AppVersion "1.7.0"
+  #define AppVersion "1.7.1"
 #endif
 #ifndef ModelVariant
   #define ModelVariant "E2B"
@@ -22,7 +22,7 @@
 AppId={#InstallId}
 AppName={#AppName}
 AppVersion={#AppVersion}
-VersionInfoVersion=1.7.0.0
+VersionInfoVersion=1.7.1.0
 AppVerName={#AppName} v{#AppVersion} ({#ModelVariant})
 AppPublisher=서귀포시
 DefaultDirName={localappdata}\{#InstallFolder}

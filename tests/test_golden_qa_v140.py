@@ -13,6 +13,24 @@ def _payload() -> dict[str, object]:
     return json.loads(GOLDEN_PATH.read_text(encoding="utf-8"))
 
 
+def _replacements() -> dict[str, str]:
+    replaced: dict[str, str] = {}
+    for manifest_path in sorted(PROJECT_ROOT.glob("db-update-*.json")):
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        for document in manifest.get("documents", []):
+            if document.get("replaces"):
+                replaced[document["replaces"]] = document["source_name"]
+    return replaced
+
+
+def _current_document(name: str, replaced: dict[str, str]) -> str:
+    seen: set[str] = set()
+    while name in replaced and name not in seen:
+        seen.add(name)
+        name = replaced[name]
+    return name
+
+
 def test_golden_qa_has_at_least_150_unique_questions() -> None:
     payload = _payload()
     items = payload["items"]
@@ -65,11 +83,12 @@ def test_golden_qa_expected_documents_exist_in_source_corpus() -> None:
     payload = _payload()
     items = payload["items"]
     source_names = {path.name for path in SOURCE_DIR.glob("*.md")}
+    replaced = _replacements()
     missing = sorted(
         {
             str(item["expected_document"])
             for item in items
-            if str(item["expected_document"]) not in source_names
+            if _current_document(str(item["expected_document"]), replaced) not in source_names
         }
     )
     assert missing == []

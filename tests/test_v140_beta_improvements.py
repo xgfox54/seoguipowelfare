@@ -360,6 +360,13 @@ def test_dictionary_owner_steers_retrieval_only_without_an_explicit_anchor() -> 
     assert plan_query("생계급여 기준 알려줘").dictionary_owner_sources == frozenset()
 
 
+def test_dictionary_region_applies_only_to_programmes_with_a_bokjitalk_source() -> None:
+    plan = plan_query("무연고 사망자 공영장례 절차")
+    assert [program.name for program in plan.program_match.programs] == ["공영장례 지원"]
+    assert not plan.program_match.programs[0].has_source
+    assert plan.jurisdiction == "national"
+
+
 def test_internal_focus_queries_do_not_consult_the_dictionary() -> None:
     # Follow-up searches are built from canonical words ("수급대상 선정기준 …");
     # matching them against the dictionary picked unrelated programmes (dry-run Q119).
